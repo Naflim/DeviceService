@@ -78,4 +78,23 @@ namespace DeviceService
         /// </summary>
         void AlarmTrigger();
     }
+
+    /// <summary>
+    /// 柜子
+    /// </summary>
+    public interface ICabinet : IDevice
+    {
+        /// <summary>
+        /// 开门
+        /// </summary>
+        void OpenDoor(int doorID);
+        /// <summary>
+        /// 开所有门
+        /// </summary>
+        void OpenAllDoor();
+        /// <summary>
+        /// 关门
+        /// </summary>
+        void CloseDoor();
+    }
 }
