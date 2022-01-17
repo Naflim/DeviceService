@@ -112,4 +112,13 @@ namespace DeviceService
         /// </summary>
         void AdoptTrigger(ChannelGateModel channelGate);
     }
+
+    public interface IReaderIC
+    {
+        /// <summary>
+        /// 获取IC卡ID
+        /// </summary>
+        /// <returns>卡ID</returns>
+        string GetCardID();
+    }
 }
