@@ -18,7 +18,7 @@ namespace DeviceService.SDK
 
     public delegate void RFIDCallBack(IntPtr p, Int32 nEvt);
 
-    public static class RWDev
+    public static class UHF288SDK
     {
         private const string DLLNAME = @"UHFReader288.dll";
 

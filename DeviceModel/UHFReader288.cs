@@ -26,7 +26,7 @@ namespace DeviceService.DeviceModel
 
         public void Connect(ConnectModel connect)
         {
-            int linkflag = RWDev.OpenNetPort(connect.Port, connect.Ip, ref comAdr, ref handle);
+            int linkflag = UHF288SDK.OpenNetPort(connect.Port, connect.Ip, ref comAdr, ref handle);
 
             if (linkflag != 0) throw UHF288Exception.AbnormalJudgment(linkflag);
         }
@@ -42,9 +42,9 @@ namespace DeviceService.DeviceModel
                 baud = Convert.ToByte(baud + 2);
             int linkflag;
             if (connect.Com == 0)
-                linkflag = RWDev.AutoOpenComPort(ref port, ref comAdr, baud, ref handle);
+                linkflag = UHF288SDK.AutoOpenComPort(ref port, ref comAdr, baud, ref handle);
             else
-                linkflag = RWDev.OpenComPort(connect.Com, ref comAdr, baud, ref handle);
+                linkflag = UHF288SDK.OpenComPort(connect.Com, ref comAdr, baud, ref handle);
 
             if (linkflag != 0)
                 throw UHF288Exception.AbnormalJudgment(linkflag);
@@ -52,7 +52,7 @@ namespace DeviceService.DeviceModel
 
         public void Disconnect()
         {
-            int linkflag = RWDev.CloseNetPort(handle);
+            int linkflag = UHF288SDK.CloseNetPort(handle);
 
             if (linkflag != 0) throw UHF288Exception.AbnormalJudgment(linkflag);
         }
@@ -62,7 +62,7 @@ namespace DeviceService.DeviceModel
         /// </summary>
         public void ComDisconnect()
         {
-            int linkflag = RWDev.CloseComPort();
+            int linkflag = UHF288SDK.CloseComPort();
 
             if (linkflag != 0) throw UHF288Exception.AbnormalJudgment(linkflag);
         }
@@ -73,7 +73,7 @@ namespace DeviceService.DeviceModel
         /// <param name="power"></param>
         public void SetPower(byte power)
         {
-            int powerflag = RWDev.SetRfPower(ref comAdr, power, handle);
+            int powerflag = UHF288SDK.SetRfPower(ref comAdr, power, handle);
 
             if (powerflag != 0) throw UHF288Exception.AbnormalJudgment(powerflag);
         }
@@ -89,7 +89,7 @@ namespace DeviceService.DeviceModel
                 int count = 0;
                 try
                 {
-                    while (selFlag)
+                    while (selFlag) 
                     {
                         if (workFlag)
                             continue;
@@ -118,7 +118,7 @@ namespace DeviceService.DeviceModel
                         int TagNum = 0;
                         int Totallen = 0;
 
-                        int fCmdRet = RWDev.Inventory_G2(ref comAdr, Qvalue, Session, MaskMem, MaskAdr, MaskLen, MaskData, MaskFlag, tidAddr, tidLen, TIDFlag, Target, InAnt, Scantime, FastFlag, EPC, ref Ant, ref Totallen, ref TagNum, handle);
+                        int fCmdRet = UHF288SDK.Inventory_G2(ref comAdr, Qvalue, Session, MaskMem, MaskAdr, MaskLen, MaskData, MaskFlag, tidAddr, tidLen, TIDFlag, Target, InAnt, Scantime, FastFlag, EPC, ref Ant, ref Totallen, ref TagNum, handle);
                         workFlag = false;
                         #endregion
 
