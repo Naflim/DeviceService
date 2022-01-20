@@ -42,7 +42,7 @@ namespace DeviceService.SDK
 
         [DllImport(DLLNAME, CallingConvention = CallingConvention.StdCall)]
         public static extern int CloseComPort();
-        
+
         [DllImport(DLLNAME, CallingConvention = CallingConvention.StdCall)]
         public static extern int AutoOpenComPort(ref int Port,
                                                  ref byte ComAddr,
@@ -60,19 +60,19 @@ namespace DeviceService.SDK
         public static extern int CloseUSBPort(int PortHandle);
 
         [DllImport(DLLNAME, CallingConvention = CallingConvention.StdCall)]
-        public static extern int GetReaderInformation(ref byte ComAdr,				//读写器地址		
-									                  byte[] VersionInfo,			//软件版本
-									                  ref byte ReaderType,				//读写器型号
-								                      ref byte TrType,		//支持的协议
-								                      ref byte dmaxfre,           //当前读写器使用的最高频率
-								                      ref byte dminfre,           //当前读写器使用的最低频率
-								                      ref byte powerdBm,             //读写器的输出功率
-								                      ref byte ScanTime,
-								                      ref byte Ant,
-								                      ref byte BeepEn,
-								                      ref byte OutputRep,
+        public static extern int GetReaderInformation(ref byte ComAdr,              //读写器地址		
+                                                      byte[] VersionInfo,           //软件版本
+                                                      ref byte ReaderType,              //读写器型号
+                                                      ref byte TrType,      //支持的协议
+                                                      ref byte dmaxfre,           //当前读写器使用的最高频率
+                                                      ref byte dminfre,           //当前读写器使用的最低频率
+                                                      ref byte powerdBm,             //读写器的输出功率
+                                                      ref byte ScanTime,
+                                                      ref byte Ant,
+                                                      ref byte BeepEn,
+                                                      ref byte OutputRep,
                                                       ref byte CheckAnt,
-								                      int FrmHandle);
+                                                      int FrmHandle);
 
         [DllImport(DLLNAME, CallingConvention = CallingConvention.StdCall)]
         public static extern int SetRegion(ref byte ComAdr,
@@ -84,7 +84,7 @@ namespace DeviceService.SDK
         public static extern int SetAddress(ref byte ComAdr,
                                              byte ComAdrData,
                                              int frmComPortindex);
-        
+
         [DllImport(DLLNAME, CallingConvention = CallingConvention.StdCall)]
         public static extern int SetInventoryScanTime(ref byte ComAdr,
                                                byte ScanTime,
@@ -99,7 +99,7 @@ namespace DeviceService.SDK
         public static extern int SetRfPower(ref byte ComAdr,
                                              byte powerDbm,
                                              int frmComPortindex);
-        
+
         [DllImport(DLLNAME, CallingConvention = CallingConvention.StdCall)]
         public static extern int BuzzerAndLEDControl(ref byte ComAdr,
                                                      byte AvtiveTime,
@@ -116,7 +116,7 @@ namespace DeviceService.SDK
         public static extern int SetAntennaMultiplexing(ref byte ComAdr,
                                             byte Ant,
                                             int frmComPortindex);
-        
+
         [DllImport(DLLNAME, CallingConvention = CallingConvention.StdCall)]
         public static extern int SetBeepNotification(ref byte ComAdr,
                                          byte BeepEn,
@@ -132,7 +132,7 @@ namespace DeviceService.SDK
                                           byte[] paramer,
                                           int frmComPortindex);
 
-       
+
         [DllImport(DLLNAME, CallingConvention = CallingConvention.StdCall)]
         public static extern int SetRelay(ref byte ComAdr,
                                           byte RelayTime,
@@ -150,7 +150,7 @@ namespace DeviceService.SDK
 
         [DllImport(DLLNAME, CallingConvention = CallingConvention.StdCall)]
         public static extern int SetNotificationPulseOutput(ref byte ComAdr,
-                                              byte OutputRep,            
+                                              byte OutputRep,
                                               int frmComPortindex);
 
         [DllImport(DLLNAME, CallingConvention = CallingConvention.StdCall)]
@@ -335,7 +335,7 @@ namespace DeviceService.SDK
         public static extern int Lock_G2(ref byte ComAdr,
                                                    byte[] EPC,
                                                    byte ENum,
-								                   byte select,
+                                                   byte select,
                                                    byte setprotect,
                                                    byte[] Password,
                                                    byte MaskMem,
@@ -522,8 +522,8 @@ namespace DeviceService.SDK
 
         [DllImport(DLLNAME, CallingConvention = CallingConvention.StdCall)]
         public static extern int GetQS(ref byte ConAddr,
-                                       ref  byte Qvalue,
-                                       ref  byte Session,
+                                       ref byte Qvalue,
+                                       ref byte Session,
                                        int PortHandle);
 
         [DllImport(DLLNAME, CallingConvention = CallingConvention.StdCall)]
@@ -595,7 +595,7 @@ namespace DeviceService.SDK
 
         [DllImport(DLLNAME, CallingConvention = CallingConvention.StdCall)]
         public static extern int GetSaveLen(ref byte ComAdr,
-                                            ref  byte SaveLen,
+                                            ref byte SaveLen,
                                             int frmComPortindex);
 
 
@@ -675,6 +675,16 @@ namespace DeviceService.SDK
                                              byte[] TestFreq,
                                              byte Ant,
                                              ref byte ReturnLoss,
+                                             int frmComPortindex);
+
+        [DllImport(DLLNAME, CallingConvention = CallingConvention.StdCall)]
+        public static extern int SetRfPowerByAnt(ref byte ComAdr,
+                                             byte[] powerDbm,
+                                             int frmComPortindex);
+
+        [DllImport(DLLNAME, CallingConvention = CallingConvention.StdCall)]
+        public static extern int GetRfPowerByAnt(ref byte ComAdr,
+                                             byte[] powerDbm,
                                              int frmComPortindex);
 
 

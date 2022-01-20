@@ -19,6 +19,8 @@ namespace DeviceService.Model.ExceptionModels
             {
                 case 1:
                     return new ICReaderException("命令操作失败 .....");
+                case 5:
+                    return new ICReaderException("数据包流水号不正确 .....");
                 default:
                     return new ICReaderException($"错误码：{state}");
             }

@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="CabinetSilverBox.cs" />
     <Compile Include="CameraHIK.cs" />
+    <Compile Include="ChannelGateUHF288.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="DeviceModel\HIKVISION.cs" />
     <Compile Include="DeviceModel\Protocol.cs" />

@@ -104,10 +104,6 @@ namespace DeviceService
     public interface IChannelGate
     {
         /// <summary>
-        /// 监听方向
-        /// </summary>
-        void MonitorDirection();
-        /// <summary>
         /// 人员通过触发
         /// </summary>
         void AdoptTrigger(ChannelGateModel channelGate);

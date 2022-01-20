@@ -19,6 +19,7 @@ namespace DeviceService.DeviceModel
 
         public void Connect(ConnectModel connect)
         {
+            mode = connect.ConnectMode;
             switch (mode)
             {
                 case ConnectMode.Tcp:
