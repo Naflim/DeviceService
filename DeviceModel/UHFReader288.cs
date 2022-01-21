@@ -253,8 +253,16 @@ namespace DeviceService.DeviceModel
                         workFlag = false;
                         #endregion
 
-                        if (fCmdRet != 0x01 && fCmdRet != 0x02)
-                            throw UHF288Exception.AbnormalJudgment(fCmdRet);
+                        if (fCmdRet != 0x01 && fCmdRet != 0x02) 
+                        {
+                            if (errorNum < 3)
+                            {
+                                errorNum++;
+                                TryLog?.Invoke($"{ip}-查询：{UHF288Exception.AbnormalJudgment(fCmdRet).Message}");
+                            }
+                            else
+                                throw UHF288Exception.AbnormalJudgment(fCmdRet);
+                        }
                         string[] EPCarr = DataConversion.GetEPC(EPC);//byte数组以EPC格式转换为字符串数组
                         foreach (string item in EPCarr)
                         {
