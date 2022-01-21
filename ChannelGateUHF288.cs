@@ -21,12 +21,12 @@ namespace DeviceService
         DateTime endStart;
         Direction direction = Direction.Null;
         bool directionFlag;
-        Action<ChannelGateModel> adoptTrigger;
+        Action<ChannelGateUHF288, ChannelGateModel> adoptTrigger;
 
         /// <summary>
         /// 显示GPIO
         /// </summary>
-        public Action<byte> ShowGPIO { get; set; }
+        public Action<ChannelGateUHF288, byte> ShowGPIO { get; set; }
 
         /// <summary>
         /// 超时结束查询
@@ -70,7 +70,7 @@ namespace DeviceService
         /// 开始监听GPIO
         /// </summary>
         /// <param name="adoptTrigger">方向判断成功触发事件</param>
-        public void StartMonitorGPIO(Action<ChannelGateModel> adoptTrigger)
+        public void StartMonitorGPIO(Action<ChannelGateUHF288, ChannelGateModel> adoptTrigger)
         {
             if (DefGPIO == byte.MaxValue) throw new Exception("默认GPIO不可为空");
             this.adoptTrigger = adoptTrigger;
@@ -95,7 +95,7 @@ namespace DeviceService
                         if (GPIOflag == 0)
                         {
                             SetGPIO(outupPin);
-                            ShowGPIO?.Invoke(outupPin);
+                            ShowGPIO?.Invoke(this,outupPin);
                         }
                         else
                         {
@@ -181,7 +181,7 @@ namespace DeviceService
 
         public void AdoptTrigger(ChannelGateModel channelGate)
         {
-            adoptTrigger(channelGate);
+            adoptTrigger(this,channelGate);
             Reset();
         }
 

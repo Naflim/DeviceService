@@ -278,6 +278,18 @@ namespace DeviceService.DeviceModel
         }
 
         /// <summary>
+        /// 获取GPIO值
+        /// </summary>
+        /// <returns>GPIO</returns>
+        public byte GetGPIO()
+        {
+            byte outupPin = 0;
+            int GPIOflag = UHF288SDK.GetGPIOStatus(ref comAdr, ref outupPin, handle);
+            if (GPIOflag != 0) throw UHF288Exception.AbnormalJudgment(GPIOflag);
+            return outupPin;
+        }
+
+        /// <summary>
         /// 结束查询
         /// </summary>
         public void StopSel()
@@ -298,11 +310,11 @@ namespace DeviceService.DeviceModel
         /// </summary>
         protected void Reconnection()
         {
-            TryLog($"{ip}-开始断线重连...");
+            TryLog?.Invoke($"{ip}-开始断线重连...");
             int count = 1;
             while (true)
             {
-                TryLog($"{ip}-重连开始，重连次数{count}...");
+                TryLog?.Invoke($"{ip}-重连开始，重连次数{count}...");
                 try
                 {
                     switch (mode)
