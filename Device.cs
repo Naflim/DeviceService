@@ -109,6 +109,9 @@ namespace DeviceService
         void AdoptTrigger(ChannelGateModel channelGate);
     }
 
+    /// <summary>
+    /// IC读卡器
+    /// </summary>
     public interface IReaderIC
     {
         /// <summary>

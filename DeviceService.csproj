@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NaflimHelperLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\NaflimHelperLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="RSNetDevice, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\RSNetDevice.dll</HintPath>
@@ -134,12 +138,6 @@
     <None Include="lib\HIKlib\HCNetSDKCom\HCPreview.lib" />
     <None Include="lib\HIKlib\LocalXml.zip" />
     <None Include="lib\HIKlib\PlayCtrl.lib" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NaflimHelperLibrary\4.5.2\NaflimHelperLibrary.csproj">
-      <Project>{bee8c0a8-2102-43fa-8432-f5a58923447a}</Project>
-      <Name>NaflimHelperLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -10,6 +10,13 @@ using NaflimHelperLibrary;
 
 namespace DeviceService.DeviceModel
 {
+    public enum AlarmLightColor 
+    {
+        Black,
+        Red,
+        Green
+    }
+
     public abstract class UHFReader288 : IDevice
     {
         /// <summary>
@@ -19,11 +26,11 @@ namespace DeviceService.DeviceModel
         /// <summary>
         /// 红灯端口
         /// </summary>
-        public byte RedPort { get; set; }
+        public byte RedPort { get; set; } = byte.MaxValue;
         /// <summary>
         /// 绿灯端口
         /// </summary>
-        public byte GreenPort { get; set; }
+        public byte GreenPort { get; set; } = byte.MaxValue;
         /// <summary>
         /// 设备句柄
         /// </summary>
@@ -45,7 +52,7 @@ namespace DeviceService.DeviceModel
         /// <summary>
         /// 抛出日志
         /// </summary>
-        public Action<string> TryLog { get; set; }
+        public Action<string> ThrowLog { get; set; }
 
         /// <summary>
         /// 设备ip
@@ -258,7 +265,7 @@ namespace DeviceService.DeviceModel
                             if (errorNum < 3)
                             {
                                 errorNum++;
-                                TryLog?.Invoke($"{ip}-查询：{UHF288Exception.AbnormalJudgment(fCmdRet).Message}");
+                                ThrowLog?.Invoke($"{ip}-查询：{UHF288Exception.AbnormalJudgment(fCmdRet).Message}");
                             }
                             else
                                 throw UHF288Exception.AbnormalJudgment(fCmdRet);
@@ -318,11 +325,11 @@ namespace DeviceService.DeviceModel
         /// </summary>
         protected void Reconnection()
         {
-            TryLog?.Invoke($"{ip}-开始断线重连...");
+            ThrowLog?.Invoke($"{ip}-开始断线重连...");
             int count = 1;
             while (true)
             {
-                TryLog?.Invoke($"{ip}-重连开始，重连次数{count}...");
+                ThrowLog?.Invoke($"{ip}-重连开始，重连次数{count}...");
                 try
                 {
                     switch (mode)
@@ -337,13 +344,64 @@ namespace DeviceService.DeviceModel
                 }
                 catch (Exception ex)
                 {
-                    TryLog($"{ex.Message}");
+                    ThrowLog($"{ex.Message}");
                 }
 
                 count++;
                 System.Threading.Thread.Sleep(3000);
             };
             
+        }
+
+        /// <summary>
+        /// 打开警报灯
+        /// </summary>
+        /// <param name="lightColor">警报灯颜色</param>
+        /// <param name="alarmTime">警报时长</param>
+        async public void OpenAlarmLight(AlarmLightColor lightColor,int alarmTime)
+        {
+            try
+            {
+                if (RedPort == byte.MaxValue || GreenPort == byte.MaxValue)
+                    throw new UHF288Exception("警报灯端口未设置！");
+
+                while (true)
+                {
+                    if (workFlag)
+                        continue;
+
+
+                    #region 防止线程撞车
+                    workFlag = true;
+                    switch (lightColor)
+                    {
+                        case AlarmLightColor.Black:
+                            UHF288SDK.SetGPIO(ref comAdr, 0, handle);
+                            break;
+                        case AlarmLightColor.Red:
+                            UHF288SDK.SetGPIO(ref comAdr, RedPort, handle);
+                            break;
+                        case AlarmLightColor.Green:
+                            UHF288SDK.SetGPIO(ref comAdr, GreenPort, handle);
+                            break;
+                    }
+                    await Task.Delay(alarmTime);
+                    UHF288SDK.SetGPIO(ref comAdr, 0, handle);
+                    byte test = 0;
+                    int GPIOflag = UHF288SDK.GetGPIOStatus(ref comAdr, ref test, handle);
+                    workFlag = false;
+                    break;
+                    #endregion
+                }
+
+            }
+            catch (Exception ex)
+            {
+                if (ErrorShow is null)
+                    Log.PrintError(ex);
+                else
+                    ErrorShow(ex);
+            }
         }
     }
 }

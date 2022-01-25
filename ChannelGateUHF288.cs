@@ -102,7 +102,7 @@ namespace DeviceService
                             if (errorNum < 3)
                             {
                                 errorNum++;
-                                TryLog?.Invoke($"{ip}-红外：{UHF288Exception.AbnormalJudgment(GPIOflag).Message}");
+                                ThrowLog?.Invoke($"{ip}-红外：{UHF288Exception.AbnormalJudgment(GPIOflag).Message}");
                             }
                             else
                                 throw UHF288Exception.AbnormalJudgment(GPIOflag);
@@ -187,7 +187,7 @@ namespace DeviceService
 
         void Reset()
         {
-            TryLog?.Invoke($"{ip}-重置");
+            ThrowLog?.Invoke($"{ip}-重置");
             StopSel();
             ClearCache();
             direction = Direction.Null;
