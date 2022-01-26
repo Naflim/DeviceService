@@ -74,28 +74,30 @@ namespace DeviceService
         {
             if (DefGPIO == byte.MaxValue) throw new Exception("默认GPIO不可为空");
             this.adoptTrigger = adoptTrigger;
-            Task.Factory.StartNew(async () =>
+            Task.Factory.StartNew(() =>
             {
                 try
                 {
+                    int count = 0;
                     while (true)
                     {
+                        if (count >= AntennaList.Count)
+                            count = 0;
+
                         byte outupPin = 0;
 
-                        if (workFlag)
-                            continue;
-
-                        #region 防止线程撞车
-                        workFlag = true;
-                        await Task.Delay(100);
                         int GPIOflag = UHF288SDK.GetGPIOStatus(ref comAdr, ref outupPin, handle);
-                        workFlag = false;
-                        #endregion
 
                         if (GPIOflag == 0)
                         {
                             SetGPIO(outupPin);
                             ShowGPIO?.Invoke(this,outupPin);
+
+                            if (selFlag)
+                            {
+                                SelTag(count);
+                                count++;
+                            }
                         }
                         else
                         {
@@ -147,7 +149,7 @@ namespace DeviceService
         /// </summary>
         void GPIO_ValueChanged()
         {
-            StartSel();
+            selFlag = true;
             endStart = DateTime.Now;
 
             if (gpio != oldGPIO)

@@ -72,7 +72,6 @@ namespace DeviceService.DeviceModel
         protected int handle = -1;
         protected byte comAdr = 255;
         protected bool selFlag;
-        protected bool workFlag;
         protected byte errorNum;
         protected string ip;
         protected readonly List<string> cacheEPC = new List<string>();
@@ -228,11 +227,6 @@ namespace DeviceService.DeviceModel
                 {
                     while (selFlag)
                     {
-                        if (workFlag)
-                            continue;
-
-                        #region 防止线程撞车
-                        workFlag = true;
                         if (count >= AntennaList.Count)
                             count = 0;
 
@@ -257,8 +251,6 @@ namespace DeviceService.DeviceModel
 
                         await Task.Delay(0);
                         int fCmdRet = UHF288SDK.Inventory_G2(ref comAdr, Qvalue, Session, MaskMem, MaskAdr, MaskLen, MaskData, MaskFlag, tidAddr, tidLen, TIDFlag, Target, InAnt, Scantime, FastFlag, EPC, ref Ant, ref Totallen, ref TagNum, handle);
-                        workFlag = false;
-                        #endregion
 
                         if (fCmdRet != 0x01 && fCmdRet != 0x02) 
                         {
@@ -290,6 +282,51 @@ namespace DeviceService.DeviceModel
                     if (selFlag) StartSel();
                 }
             }, TaskCreationOptions.LongRunning);
+        }
+
+        /// <summary>
+        /// 查询标签
+        /// </summary>
+        public virtual void SelTag(int antIndex)
+        {
+
+            byte InAnt = AntennaList[antIndex];//不可变
+            byte FastFlag = 1;//不可变
+            byte Qvalue = 4;//可变
+            byte tidAddr = 0;//可变
+            byte tidLen = 0;//可变
+            byte TIDFlag = 0;//可变
+            byte Scantime = 20;//可变
+            byte Target = 0;
+            byte Ant = 0;
+            byte MaskMem = 0;
+            byte MaskLen = 0;
+            byte MaskFlag = 0;
+            byte Session = 0;
+            byte[] MaskAdr = new byte[2];
+            byte[] MaskData = new byte[100];
+            byte[] EPC = new byte[50000];
+            int TagNum = 0;
+            int Totallen = 0;
+
+            int fCmdRet = UHF288SDK.Inventory_G2(ref comAdr, Qvalue, Session, MaskMem, MaskAdr, MaskLen, MaskData, MaskFlag, tidAddr, tidLen, TIDFlag, Target, InAnt, Scantime, FastFlag, EPC, ref Ant, ref Totallen, ref TagNum, handle);
+
+            if (fCmdRet != 0x01 && fCmdRet != 0x02)
+            {
+                if (errorNum < 3)
+                {
+                    errorNum++;
+                    ThrowLog?.Invoke($"{ip}-查询：{UHF288Exception.AbnormalJudgment(fCmdRet).Message}");
+                }
+                else
+                    throw UHF288Exception.AbnormalJudgment(fCmdRet);
+            }
+            string[] EPCarr = DataConversion.GetEPC(EPC);//byte数组以EPC格式转换为字符串数组
+            foreach (string item in EPCarr)
+            {
+                if (item != null && !cacheEPC.Contains(item))
+                    cacheEPC.Add(item);
+            }
         }
 
         /// <summary>
@@ -358,42 +395,29 @@ namespace DeviceService.DeviceModel
         /// </summary>
         /// <param name="lightColor">警报灯颜色</param>
         /// <param name="alarmTime">警报时长</param>
-        async public void OpenAlarmLight(AlarmLightColor lightColor,int alarmTime)
+        public void OpenAlarmLight(AlarmLightColor lightColor,int alarmTime)
         {
             try
             {
                 if (RedPort == byte.MaxValue || GreenPort == byte.MaxValue)
                     throw new UHF288Exception("警报灯端口未设置！");
 
-                while (true)
+                switch (lightColor)
                 {
-                    if (workFlag)
-                        continue;
-
-
-                    #region 防止线程撞车
-                    workFlag = true;
-                    switch (lightColor)
-                    {
-                        case AlarmLightColor.Black:
-                            UHF288SDK.SetGPIO(ref comAdr, 0, handle);
-                            break;
-                        case AlarmLightColor.Red:
-                            UHF288SDK.SetGPIO(ref comAdr, RedPort, handle);
-                            break;
-                        case AlarmLightColor.Green:
-                            UHF288SDK.SetGPIO(ref comAdr, GreenPort, handle);
-                            break;
-                    }
-                    await Task.Delay(alarmTime);
-                    UHF288SDK.SetGPIO(ref comAdr, 0, handle);
-                    byte test = 0;
-                    int GPIOflag = UHF288SDK.GetGPIOStatus(ref comAdr, ref test, handle);
-                    workFlag = false;
-                    break;
-                    #endregion
+                    case AlarmLightColor.Black:
+                        UHF288SDK.SetGPIO(ref comAdr, 0, handle);
+                        break;
+                    case AlarmLightColor.Red:
+                        UHF288SDK.SetGPIO(ref comAdr, RedPort, handle);
+                        break;
+                    case AlarmLightColor.Green:
+                        UHF288SDK.SetGPIO(ref comAdr, GreenPort, handle);
+                        break;
                 }
-
+                System.Threading.Thread.Sleep(alarmTime);
+                UHF288SDK.SetGPIO(ref comAdr, 0, handle);
+                byte test = 0;
+                int GPIOflag = UHF288SDK.GetGPIOStatus(ref comAdr, ref test, handle);
             }
             catch (Exception ex)
             {
