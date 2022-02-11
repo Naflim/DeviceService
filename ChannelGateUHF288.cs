@@ -39,6 +39,11 @@ namespace DeviceService
         public bool DelayMode { get; set; }
 
         /// <summary>
+        /// GPIO间隙
+        /// </summary>
+        public int GPIOinterval { get; set; } = 100;
+
+        /// <summary>
         /// 设置红外模式
         /// </summary>
         /// <param name="mode">是否对射</param>
@@ -74,7 +79,7 @@ namespace DeviceService
         {
             if (DefGPIO == byte.MaxValue) throw new Exception("默认GPIO不可为空");
             this.adoptTrigger = adoptTrigger;
-            Task.Factory.StartNew(() =>
+            Task.Factory.StartNew(async () =>
             {
                 try
                 {
@@ -104,11 +109,13 @@ namespace DeviceService
                             if (errorNum < 3)
                             {
                                 errorNum++;
-                                ThrowLog?.Invoke($"{ip}-红外：{UHF288Exception.AbnormalJudgment(GPIOflag).Message}");
+                                ThrowLog?.Invoke($"{DeviceName}-红外：{UHF288Exception.AbnormalJudgment(GPIOflag).Message}");
                             }
                             else
                                 throw UHF288Exception.AbnormalJudgment(GPIOflag);
                         }
+
+                        await Task.Delay(GPIOinterval);
                     }
                 }
                 catch (Exception ex)
@@ -189,7 +196,7 @@ namespace DeviceService
 
         void Reset()
         {
-            ThrowLog?.Invoke($"{ip}-重置");
+            ThrowLog?.Invoke($"{DeviceName}-重置");
             StopSel();
             ClearCache();
             direction = Direction.Null;
