@@ -129,12 +129,12 @@
     <Content Include="lib\HIKlib\YUVProcess.dll" />
     <Content Include="lib\HIKlib\zlib1.dll" />
     <Content Include="lib\NaflimHelperLibrary.dll" />
-    <Content Include="lib\ICReader\function.dll" />
-    <Content Include="lib\ICReader\USB.dll" />
+    <Content Include="lib\ICReaderlib\function.dll" />
+    <Content Include="lib\ICReaderlib\USB.dll" />
     <Content Include="lib\RSNetDevice.dll" />
     <Content Include="lib\UHFGate.dll" />
-    <Content Include="lib\UHFReader09\Basic.dll" />
-    <Content Include="lib\UHFReader09\UHFReader09CSharp.dll" />
+    <Content Include="lib\UHFReader09lib\Basic.dll" />
+    <Content Include="lib\UHFReader09lib\UHFReader09CSharp.dll" />
     <Content Include="lib\UHFReader288.dll" />
   </ItemGroup>
   <ItemGroup>
