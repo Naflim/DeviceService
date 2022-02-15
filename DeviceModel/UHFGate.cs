@@ -17,6 +17,16 @@ namespace DeviceService.DeviceModel
         protected byte comAdr = 255;
         protected int port;
 
+        /// <summary>
+        /// 显示异常
+        /// </summary>
+        public Action<Exception> ErrorShow { get; set; }
+
+        /// <summary>
+        /// 抛出日志
+        /// </summary>
+        public Action<string> ThrowLog { get; set; }
+
         public void Connect(ConnectModel connect)
         {
             mode = connect.ConnectMode;
@@ -25,19 +35,6 @@ namespace DeviceService.DeviceModel
                 case ConnectMode.Tcp:
                     int tcpFlag = UHFGateSDK.OpenNetPort(connect.Port, connect.Ip, ref comAdr, ref handle);
                     if (tcpFlag != 0) throw UHFGateException.AbnormalJudgment(tcpFlag);
-                    break;
-                case ConnectMode.SerialPort:
-                    byte baud = Convert.ToByte(connect.Com);
-                    if (baud > 2)
-                        baud = Convert.ToByte(baud + 2);
-                    int comFlag;
-                    if (connect.Com == 0)
-                        comFlag = UHF288SDK.AutoOpenComPort(ref port, ref comAdr, baud, ref handle);
-                    else
-                        comFlag = UHF288SDK.OpenComPort(connect.Com, ref comAdr, baud, ref handle);
-
-                    if (comFlag != 0)
-                        throw UHF288Exception.AbnormalJudgment(comFlag);
                     break;
                 default:
                     throw new Exception("未定义的连接模式！");
@@ -54,7 +51,7 @@ namespace DeviceService.DeviceModel
                     break;
                 case ConnectMode.SerialPort:
                     int comFlag = UHFGateSDK.CloseComPort();
-                    if (comFlag != 0) throw UHF288Exception.AbnormalJudgment(comFlag);
+                    if (comFlag != 0) throw UHFGateException.AbnormalJudgment(comFlag);
                     break;
                 default:
                     throw new Exception("未定义的连接模式！");
@@ -68,7 +65,7 @@ namespace DeviceService.DeviceModel
         public void SetPower(byte[] power)
         {
             int powerflag = UHFGateSDK.ConfigureController(comAdr, 35, 8, power, handle);
-            if (powerflag != 0) throw UHF288Exception.AbnormalJudgment(powerflag);
+            if (powerflag != 0) throw UHFGateException.AbnormalJudgment(powerflag);
         }
 
         /// <summary>
@@ -80,7 +77,7 @@ namespace DeviceService.DeviceModel
             byte CFGLen = 255;
             byte[] CFGData = new byte[CFGLen];
             int powerflag = UHFGateSDK.GetControllerConfig(comAdr, 35, ref CFGLen, CFGData, handle);
-            if (powerflag != 0) throw UHF288Exception.AbnormalJudgment(powerflag);
+            if (powerflag != 0) throw UHFGateException.AbnormalJudgment(powerflag);
             byte[] power = new byte[8];
             Array.Copy(CFGData, 0, power, 0, 8);
             return power;
@@ -98,9 +95,10 @@ namespace DeviceService.DeviceModel
             byte msgType = 0;
             byte[] msg = new byte[256];
             int msgFlag = UHFGateSDK.GetChannelMessage(comAdr, ref packetNo, msg, ref msgLength, ref msgType, handle);
-            if (msgFlag != 0) throw UHF288Exception.AbnormalJudgment(msgFlag);
+            if (msgFlag != 0) throw UHFGateException.AbnormalJudgment(msgFlag);
             if (msgLength == 0) return null;
             gateMsg.Type = (MsgType)msgType;
+            gateMsg.MsgData = new byte[msgLength];
             Array.Copy(msg, 0, gateMsg.MsgData, 0, msgLength);
             return gateMsg;
         }
@@ -139,7 +137,7 @@ namespace DeviceService.DeviceModel
         /// <summary>
         /// 消息类型
         /// </summary>
-        public MsgType Type  { get; set; }
+        public MsgType Type { get; set; }
 
         /// <summary>
         /// 消息数据

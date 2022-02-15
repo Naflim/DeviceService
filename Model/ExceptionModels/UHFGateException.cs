@@ -14,7 +14,7 @@ namespace DeviceService.Model.ExceptionModels
         }
 
         /// <summary>
-        /// 返回UHF288设备异常信息
+        /// 返回UHFGate设备异常信息
         /// </summary>
         /// <param name="state">异常状态</param>
         /// <returns></returns>
