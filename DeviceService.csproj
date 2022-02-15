@@ -48,6 +48,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="UHFReader09CSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UHFReader09CSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CabinetSilverBox.cs" />
@@ -56,6 +60,7 @@
     <Compile Include="Device.cs" />
     <Compile Include="DeviceModel\HIKVISION.cs" />
     <Compile Include="DeviceModel\Protocol.cs" />
+    <Compile Include="DeviceModel\UHFReader09.cs" />
     <Compile Include="ICReader.cs" />
     <Compile Include="DeviceModel\UHFGate.cs" />
     <Compile Include="Model\ChannelGateModel.cs" />
@@ -63,6 +68,7 @@
     <Compile Include="Model\ExceptionModels\RSException.cs" />
     <Compile Include="Model\ConnectModel.cs" />
     <Compile Include="Model\ExceptionModels\HIKException.cs" />
+    <Compile Include="Model\ExceptionModels\UHF09Exception.cs" />
     <Compile Include="Model\ExceptionModels\UHF288Exception.cs" />
     <Compile Include="Model\ExceptionModels\UHFGateException.cs" />
     <Compile Include="Model\TempHumModel.cs" />
@@ -123,10 +129,12 @@
     <Content Include="lib\HIKlib\YUVProcess.dll" />
     <Content Include="lib\HIKlib\zlib1.dll" />
     <Content Include="lib\NaflimHelperLibrary.dll" />
-    <Content Include="lib\Readerlib\function.dll" />
-    <Content Include="lib\Readerlib\USB.dll" />
+    <Content Include="lib\ICReader\function.dll" />
+    <Content Include="lib\ICReader\USB.dll" />
     <Content Include="lib\RSNetDevice.dll" />
     <Content Include="lib\UHFGate.dll" />
+    <Content Include="lib\UHFReader09\Basic.dll" />
+    <Content Include="lib\UHFReader09\UHFReader09CSharp.dll" />
     <Content Include="lib\UHFReader288.dll" />
   </ItemGroup>
   <ItemGroup>
