@@ -21,6 +21,11 @@ namespace DeviceService
         public int Timeout { get; set; } = 10000;
 
         /// <summary>
+        /// 显示GPIO
+        /// </summary>
+        public Action<int, bool> ShowGPIO { get; set; }
+
+        /// <summary>
         /// 开始通道服务
         /// </summary>
         /// <param name="adoptTrigger">方向触发事件</param>
@@ -49,6 +54,7 @@ namespace DeviceService
                             break;
                         case MsgType.Infrared:
                             ThrowLog?.Invoke("红外消息");
+                            Infrared(gateMsg.MsgData);
                             break;
                         default:
                             ThrowLog?.Invoke(gateMsg.Type.ToString());
@@ -103,6 +109,13 @@ namespace DeviceService
 
             AdoptTrigger(new ChannelGateModel(direction, epc));
 
+        }
+
+        void Infrared(byte[] data)
+        {
+            int id = data[6];
+            bool flag = Convert.ToBoolean(data[7]);
+            ShowGPIO?.Invoke(id, flag);
         }
 
         public void AdoptTrigger(ChannelGateModel channelGate)

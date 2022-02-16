@@ -16,6 +16,7 @@ namespace DeviceService.DeviceModel
         protected int handle = -1;
         protected byte comAdr = 255;
         protected int port;
+        protected string ip;
 
         /// <summary>
         /// 显示异常
@@ -27,6 +28,15 @@ namespace DeviceService.DeviceModel
         /// </summary>
         public Action<string> ThrowLog { get; set; }
 
+        /// <summary>
+        /// 设备ip
+        /// </summary>
+        public string IP
+        {
+            get { return ip; }
+            set { }
+        }
+
         public void Connect(ConnectModel connect)
         {
             mode = connect.ConnectMode;
@@ -35,6 +45,7 @@ namespace DeviceService.DeviceModel
                 case ConnectMode.Tcp:
                     int tcpFlag = UHFGateSDK.OpenNetPort(connect.Port, connect.Ip, ref comAdr, ref handle);
                     if (tcpFlag != 0) throw UHFGateException.AbnormalJudgment(tcpFlag);
+                    ip = connect.Ip;
                     break;
                 default:
                     throw new Exception("未定义的连接模式！");

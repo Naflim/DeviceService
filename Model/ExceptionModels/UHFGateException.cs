@@ -24,6 +24,8 @@ namespace DeviceService.Model.ExceptionModels
             {
                 case 48:
                     return new UHFGateException("通讯错误。");
+                case 55:
+                    return new UHFGateException("无效的句柄。");
                 case 248:
                     return new UHFGateException("天线检测错误。");
                 default:
