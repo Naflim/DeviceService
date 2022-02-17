@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.32002.261
+VisualStudioVersion = 16.0.32126.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceService", "DeviceService.csproj", "{ABE73EA3-4B9E-49C3-A09B-0EF7EC159C6E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceService", "DeviceService.csproj", "{DDBD647B-B76F-448E-BD19-DB65FB81CCA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{ABE73EA3-4B9E-49C3-A09B-0EF7EC159C6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ABE73EA3-4B9E-49C3-A09B-0EF7EC159C6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ABE73EA3-4B9E-49C3-A09B-0EF7EC159C6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ABE73EA3-4B9E-49C3-A09B-0EF7EC159C6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDBD647B-B76F-448E-BD19-DB65FB81CCA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDBD647B-B76F-448E-BD19-DB65FB81CCA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDBD647B-B76F-448E-BD19-DB65FB81CCA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDBD647B-B76F-448E-BD19-DB65FB81CCA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A6CE1875-6051-4406-A6F8-CC79F0C34576}
+		SolutionGuid = {272D52A3-C60B-4418-B9F5-CCC5FD3C6A31}
 	EndGlobalSection
 EndGlobal
