@@ -4,4 +4,10 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="RSNetDevice">
+      <HintPath>lib\RSNetDevice.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
