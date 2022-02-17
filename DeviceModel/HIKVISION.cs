@@ -33,6 +33,8 @@ namespace DeviceService.DeviceModel
         protected int port;
         bool linkStatus;
 
+        public Action<HIKVISION> LinkOk { get; set; }
+
         public void Connect(ConnectModel connect)
         {
             if (!CHCNetSDK.NET_DVR_Init())
@@ -87,6 +89,7 @@ namespace DeviceService.DeviceModel
                 userID = lUserID;
                 linkStatus = true;
                 GetDeviceInfo();
+                LinkOk?.Invoke(this);
             }
             catch (Exception ex)
             {

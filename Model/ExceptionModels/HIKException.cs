@@ -35,6 +35,8 @@ namespace DeviceService.Model.ExceptionModels
                     return new HIKException("用户不存在。注册的用户 ID 已注销或不可用。");
                 case 102:
                     return new HIKException("用户还没登录成功。");
+                case 1924:
+                    return new HIKException("布防超过最大连接数。");
                 default:
                     return new HIKException($"错误码：{state}");
             }

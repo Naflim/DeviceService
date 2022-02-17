@@ -14733,6 +14733,17 @@ namespace DeviceService.SDK
             public ushort wTaskNo;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 6, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;//这里保留音频的压缩参数 
+
+            public byte byDeployType;    //布防类型：0-客户端布防，1-实时布防
+            public byte bySubScription;	//订阅，按位表示，未开启订阅不上报  //占位 //Bit7-移动侦测人车分类是否传图；0-不传图(V30上报)，1-传图(V40上报)
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I1)]
+            public byte[] byRes1;
+            public byte byAlarmTypeURL;
+            //bit0-表示人脸抓拍报警上传（INTER_FACESNAP_RESULT）；0-表示二进制传输，1-表示URL传输（设备支持的情况下，设备支持能力根据具体报警能力集判断,同时设备需要支持URL的相关服务，当前是”云存储“）
+            //bit1-表示EVENT_JSON中图片数据长传类型；0-表示二进制传输，1-表示URL传输（设备支持的情况下，设备支持能力根据具体报警能力集判断）
+            //bit2 - 人脸比对(报警类型为COMM_SNAP_MATCH_ALARM)中图片数据上传类型：0 - 二进制传输，1 - URL传输
+            //bit3 - 行为分析(报警类型为COMM_ALARM_RULE)中图片数据上传类型：0 - 二进制传输，1 - URL传输，本字段设备是否支持，对应软硬件能力集中<isSupportBehaviorUploadByCloudStorageURL>节点是否返回且为true
+            public byte byCustomCtrl;//Bit0- 表示支持副驾驶人脸子图上传: 0-不上传,1-上传
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -17286,11 +17297,49 @@ namespace DeviceService.SDK
         #endregion
 
         #region 门禁
+        public const int NET_SDK_GET_NEXT_STATUS_SUCCESS = 1000;
+        public const int NET_SDK_GET_NEXT_STATUS_NEED_WAIT = 1001;
+        public const int NET_SDK_GET_NEXT_STATUS_FINISH = 1002;
+        public const int NET_SDK_GET_NEXT_STATUS_FAILED = 1003;
+
+        public const int NET_DVR_CAPTURE_FACE_INFO = 2510;//采集人脸
+        public const int NET_DVR_JSON_CONFIG = 2550;
+        public const int NET_DVR_FACE_DATA_RECORD = 2551;
+        public const int NET_DVR_FACE_DATA_SEARCH = 2552;
+        public const int NET_DVR_FACE_DATA_MODIFY = 2553;
+
         [DllImport(@"HIKlib/HCNetSDK.dll")]
         public static extern bool NET_DVR_SetDVRMessageCallBack_V50(int iIndex, MSGCallBack fMessageCallBack, IntPtr pUser);
 
         [DllImport(@"HIKlib/HCNetSDK.dll")]
         public static extern bool NET_DVR_STDXMLConfig(int lUserID, IntPtr lpInputParam, IntPtr lpOutputParam);
+
+        [DllImport(@"HIKlib/HCNetSDK.dll")]
+        public static extern int NET_DVR_SendWithRecvRemoteConfig(int lHandle, IntPtr lpInBuff, uint dwInBuffSize, IntPtr lpOutBuff, uint dwOutBuffSize, ref uint dwOutDataLen);
+
+        // 用户调用SendwithRecv接口时，接口返回的状态
+        public enum NET_SDK_SENDWITHRECV_STATUS
+        {
+            NET_SDK_CONFIG_STATUS_SUCCESS = 1000,    // 成功读取到数据，客户端处理完本次数据后需要再次调用NET_DVR_SendWithRecvRemoteConfig获取下一条数据
+            NET_SDK_CONFIG_STATUS_NEEDWAIT,          // 配置等待，客户端可重新NET_DVR_SendWithRecvRemoteConfig
+            NET_SDK_CONFIG_STATUS_FINISH,            // 数据全部取完，此时客户端可调用NET_DVR_StopRemoteConfig结束
+            NET_SDK_CONFIG_STATUS_FAILED,            // 配置失败，客户端可重新NET_DVR_SendWithRecvRemoteConfig
+            NET_SDK_CONFIG_STATUS_EXCEPTION,         // 配置异常，此时客户端可调用NET_DVR_StopRemoteConfig结束
+        }
+
+        [StructLayoutAttribute(LayoutKind.Sequential)]
+        public struct NET_DVR_JSON_DATA_CFG
+        {
+            public uint dwSize;                    //size of NET_DVR_JSON_DATA_CFG
+            public IntPtr lpJsonData;                //Json data
+            public uint dwJsonDataSize;            //Json data size
+            public IntPtr lpPicData;                //picture data
+            public uint dwPicDataSize;            //picture data size
+            public uint dwInfraredFacePicSize;            //infrared picture data size
+            public IntPtr lpInfraredFacePicBuffer;                //infrared picture data
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 248)]
+            public byte[] byRes;  //reserve
+        }
         #endregion
     }
 }

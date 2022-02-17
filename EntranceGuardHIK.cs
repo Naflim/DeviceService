@@ -1,7 +1,9 @@
 ﻿using DeviceService.DeviceModel;
+using DeviceService.Model;
 using DeviceService.Model.ExceptionModels;
 using DeviceService.SDK;
 using NaflimHelperLibrary;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +15,32 @@ namespace DeviceService
 {
     public class EntranceGuardHIK : HIKVISION
     {
-        public void StartMonitoring()
+        /// <summary>
+        /// 输出日志
+        /// </summary>
+        public Action<string> ThrowLog { get; set; }
+
+        /// <summary>
+        /// 单次执行数量
+        /// </summary>
+        public int Batch { get; set; } = 100;
+
+        /// <summary>
+        /// 门禁触发事件
+        /// </summary>
+        Action<EntranceGuardHIK, PersonnelModel, DateTime> MonitoringEvent;
+
+        public void StartMonitoring(Action<EntranceGuardHIK, PersonnelModel, DateTime> action)
         {
+            MonitoringEvent = action;
+            CHCNetSDK.NET_DVR_SETUPALARM_PARAM struSetupAlarmParam = new CHCNetSDK.NET_DVR_SETUPALARM_PARAM();
+            struSetupAlarmParam.dwSize = (uint)Marshal.SizeOf(struSetupAlarmParam);
+            struSetupAlarmParam.byLevel = 1;
+            struSetupAlarmParam.byAlarmInfoType = 1;
+            struSetupAlarmParam.byDeployType = 1;
+            if (CHCNetSDK.NET_DVR_SetupAlarmChan_V41(userID, ref struSetupAlarmParam) < 0)
+                throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
+
             if (!CHCNetSDK.NET_DVR_SetDVRMessageCallBack_V50(0, MSGCallBack, IntPtr.Zero))
                 throw new HIKException("事件注册失败");
         }
@@ -30,37 +56,22 @@ namespace DeviceService
             if (employeeID == 0)
                 return;
 
-            //var struTime = struAcsAlarmInfo.struTime;
-            //string date = $"{struTime.dwYear}-{struTime.dwMonth}-{struTime.dwDay} {struTime.dwHour}:{struTime.dwMinute}:{struTime.dwSecond}";
-            //string card = System.Text.Encoding.UTF8.GetString(struAcsAlarmInfo.struAcsEventInfo.byCardNo).TrimEnd('\0');
-            //DataRow row = userInfo.NewRow();
-            //string name = null;
-            //List<CUserInfo> user = GetUserInfos(pAlarmer.lUserID, 1, new List<string> { employeeID.ToString() });
-            //if (user != null && user.Count > 0)
-            //    name = user[0].name;
-            //row["设备"] = lUserIDs[pAlarmer.lUserID];
-            //row["工号"] = employeeID;
-            //row["姓名"] = name;
-            //row["卡号"] = card;
-            //row["触发时间"] = date;
-            //userInfo.Rows.Add(row);
-            //RefreshTable();
+            PersonnelModel personnel = new PersonnelModel();
+            var struTime = struAcsAlarmInfo.struTime;
 
-            //string eqName = System.Text.RegularExpressions.Regex.Replace(lUserIDs[pAlarmer.lUserID], @"[^0-9]+", "");
+            DateTime date = Convert.ToDateTime($"{struTime.dwYear}-{struTime.dwMonth}-{struTime.dwDay} {struTime.dwHour}:{struTime.dwMinute}:{struTime.dwSecond}");
+            personnel.CardID = Encoding.UTF8.GetString(struAcsAlarmInfo.struAcsEventInfo.byCardNo).TrimEnd('\0');
 
-            //MySQLHelper mySQL = new MySQLHelper(ConfigurationManager.ConnectionStrings["warehouseDB"].ConnectionString);
-            //string sql = "insert into t_AC_info(eq_name,tgr_time,user_name,job_ID,card_ID) values(@eq_name,@time, @userName, @userID,@cardID)";
-            //MySqlParameter[] parameters = {
-            //                new MySqlParameter("eq_name",eqName),
-            //                new MySqlParameter("time",date),
-            //                new MySqlParameter("userName",name),
-            //                new MySqlParameter("userID",employeeID),
-            //                new MySqlParameter("cardID",card)
-            //};
-            //if (mySQL.GetExecuteNonQuery(sql, parameters))
-            //    Invoke(new Action(() => FrmLog("上传成功！")));
-            //else
-            //    Invoke(new Action(() => FrmLog("上传失败！")));
+            List<CUserInfo> user = GetUserInfos(pAlarmer.lUserID, new List<string> { employeeID.ToString() });
+            if (user != null && user.Count > 0)
+            {
+                personnel.Name = user[0].name;
+                personnel.DoorRight = user[0].doorRight;
+            }
+
+            personnel.EmployeeID = employeeID;
+
+            MonitoringEvent(this, personnel, date);
         }
 
         /// <summary>
@@ -100,11 +111,307 @@ namespace DeviceService
             if (CHCNetSDK.NET_DVR_STDXMLConfig(userID, ptrInput, ptrOuput))
             {
                 string json = Marshal.PtrToStringAnsi(struOuput.lpOutBuffer);
-                string count = DataConversion.GetJsonItem(json, new string[] { "UserInfoCount", "userNumber" });
+                string count = DataConversion.GetJsonItem(json, new List<string> { "UserInfoCount", "userNumber" });
                 return count;
             }
             else
                 throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
+        }
+
+        /// <summary>
+        /// 获取全部用户信息
+        /// </summary>
+        /// <param name="lUserID">设备句柄</param>
+        /// <param name="count">请求大小</param>
+        /// <returns>用户列表</returns>
+        List<CUserInfo> GetUserInfos(int lUserID, int count)
+        {
+            List<CUserInfo> userInfos = new List<CUserInfo>();
+
+            string sURL = "POST /ISAPI/AccessControl/UserInfo/Search?format=json";
+            IntPtr ptrURL = Marshal.StringToHGlobalAnsi(sURL);
+            int m_lSetUserCfgHandle = CHCNetSDK.NET_DVR_StartRemoteConfig(lUserID, CHCNetSDK.NET_DVR_JSON_CONFIG, ptrURL, sURL.Length, null, IntPtr.Zero);
+
+            if (m_lSetUserCfgHandle < 0)
+                throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
+
+            int endNum = count / Batch;
+
+            CUserInfoSearchCondCfg JsonUserInfoSearchCondCfg = new CUserInfoSearchCondCfg();
+            JsonUserInfoSearchCondCfg.UserInfoSearchCond = new CUserInfoSearchCond();
+            JsonUserInfoSearchCondCfg.UserInfoSearchCond.searchID = lUserID.ToString();
+            JsonUserInfoSearchCondCfg.UserInfoSearchCond.maxResults = 100;
+
+            for (int i = 0; i < endNum + 1; i++)
+            {
+                JsonUserInfoSearchCondCfg.UserInfoSearchCond.searchResultPosition = i * Batch;
+
+                string strUserInfoSearchCondCfg = TypeConversion.ObjectToJson(JsonUserInfoSearchCondCfg);
+                IntPtr ptrUserInfoSearchCondCfg = Marshal.StringToHGlobalAnsi(strUserInfoSearchCondCfg);
+                userInfos.AddRange(SendWithRecvRemoteConfig(m_lSetUserCfgHandle, ptrUserInfoSearchCondCfg, (uint)strUserInfoSearchCondCfg.Length));
+            }
+
+            return userInfos;
+        }
+
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <param name="lUserID">设备句柄</param>
+        /// <param name="EmployeeNoList">工号列表</param>
+        /// <returns>用户列表</returns>
+        List<CUserInfo> GetUserInfos(int lUserID, List<string> EmployeeNoList)
+        {
+            int count = EmployeeNoList.Count;
+
+            string sURL = "POST /ISAPI/AccessControl/UserInfo/Search?format=json";
+            IntPtr ptrURL = Marshal.StringToHGlobalAnsi(sURL);
+            int m_lSetUserCfgHandle = CHCNetSDK.NET_DVR_StartRemoteConfig(lUserID, CHCNetSDK.NET_DVR_JSON_CONFIG, ptrURL, sURL.Length, null, IntPtr.Zero);
+
+            if (m_lSetUserCfgHandle < 0)
+                throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
+
+            int endNum = count / Batch;
+
+            CUserInfoSearchCondCfg JsonUserInfoSearchCondCfg = new CUserInfoSearchCondCfg();
+            JsonUserInfoSearchCondCfg.UserInfoSearchCond = new CUserInfoSearchCond();
+            JsonUserInfoSearchCondCfg.UserInfoSearchCond.searchID = lUserID.ToString();
+            JsonUserInfoSearchCondCfg.UserInfoSearchCond.searchResultPosition = 0;
+            JsonUserInfoSearchCondCfg.UserInfoSearchCond.maxResults = count;
+            JsonUserInfoSearchCondCfg.UserInfoSearchCond.EmployeeNoList = new List<CEmployeeNoList>();
+            EmployeeNoList.ForEach(v =>
+            {
+                CEmployeeNoList singleEmployeeNoList = new CEmployeeNoList();
+                singleEmployeeNoList.employeeNo = v;
+                JsonUserInfoSearchCondCfg.UserInfoSearchCond.EmployeeNoList.Add(singleEmployeeNoList);
+            });
+
+            string strUserInfoSearchCondCfg = TypeConversion.ObjectToJson(JsonUserInfoSearchCondCfg);
+            IntPtr ptrUserInfoSearchCondCfg = Marshal.StringToHGlobalAnsi(strUserInfoSearchCondCfg);
+            return SendWithRecvRemoteConfig(m_lSetUserCfgHandle, ptrUserInfoSearchCondCfg, (uint)strUserInfoSearchCondCfg.Length);
+        }
+
+        /// <summary>
+        /// 设置门权限
+        /// </summary>
+        /// <param name="employeeNo">工号</param>
+        /// <param name="flag">是否可开门</param>
+        public void SetDoorFlag(string employeeNo, bool flag)
+        {
+            string sURL = "PUT /ISAPI/AccessControl/UserInfo/SetUp?format=json";
+            IntPtr ptrURL = Marshal.StringToHGlobalAnsi(sURL);
+            int m_lSetUserCfgHandle = CHCNetSDK.NET_DVR_StartRemoteConfig(userID, CHCNetSDK.NET_DVR_JSON_CONFIG, ptrURL, sURL.Length, null, IntPtr.Zero);
+
+            if (m_lSetUserCfgHandle < 0)
+                throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
+
+            CUserInfoCfg JsonUserInfo = new CUserInfoCfg();
+            JsonUserInfo.UserInfo = new CUserInfo();
+            JsonUserInfo.UserInfo.employeeNo = employeeNo;
+            JsonUserInfo.UserInfo.userType = flag ? "normal" : "blackList";
+
+            string strJsonUserInfo = JsonConvert.SerializeObject(JsonUserInfo, Formatting.Indented,
+                                                        new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore });
+
+            byte[] byJsonUserInfo = Encoding.UTF8.GetBytes(strJsonUserInfo);
+            IntPtr ptrJsonUserInfo = Marshal.AllocHGlobal(byJsonUserInfo.Length);
+            Marshal.Copy(byJsonUserInfo, 0, ptrJsonUserInfo, byJsonUserInfo.Length);
+
+            IntPtr ptrJsonData = Marshal.AllocHGlobal(1024);
+            for (int i = 0; i < 1024; i++)
+                Marshal.WriteByte(ptrJsonData, i, 0);
+
+            uint dwReturned = 0;
+            int dwState = CHCNetSDK.NET_DVR_SendWithRecvRemoteConfig(m_lSetUserCfgHandle, ptrJsonUserInfo, (uint)byJsonUserInfo.Length, ptrJsonData, 1024, ref dwReturned);
+            string strJsonData = Marshal.PtrToStringAnsi(ptrJsonData);
+
+            switch (dwState)
+            {
+                case (int)CHCNetSDK.NET_SDK_SENDWITHRECV_STATUS.NET_SDK_CONFIG_STATUS_SUCCESS:
+                    CResponseStatus JsonResponseStatus = new CResponseStatus();
+                    JsonResponseStatus = JsonConvert.DeserializeObject<CResponseStatus>(strJsonData);
+
+                    if (JsonResponseStatus.statusCode == 1)
+                        ThrowLog?.Invoke("设置成功！");
+                    else
+                        ThrowLog?.Invoke($"设置失败！状态码：{JsonResponseStatus.statusCode}");
+                    break;
+                case (int)CHCNetSDK.NET_SDK_SENDWITHRECV_STATUS.NET_SDK_CONFIG_STATUS_NEEDWAIT:
+                    SetDoorFlag(employeeNo, flag);
+                    break;
+                case (int)CHCNetSDK.NET_SDK_SENDWITHRECV_STATUS.NET_SDK_CONFIG_STATUS_FINISH:
+                    ThrowLog?.Invoke("设置完成！");
+                    break;
+                case (int)CHCNetSDK.NET_SDK_SENDWITHRECV_STATUS.NET_SDK_CONFIG_STATUS_FAILED:
+                    ThrowLog?.Invoke(HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError()).Message);
+                    SetDoorFlag(employeeNo, flag);
+                    break;
+                case (int)CHCNetSDK.NET_SDK_SENDWITHRECV_STATUS.NET_SDK_CONFIG_STATUS_EXCEPTION:
+                    CHCNetSDK.NET_DVR_StopRemoteConfig(m_lSetUserCfgHandle);
+                    throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
+                default:
+                    CHCNetSDK.NET_DVR_StopRemoteConfig(m_lSetUserCfgHandle);
+                    throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
+            }
+        }
+
+        /// <summary>
+        /// 发送json透传
+        /// </summary>
+        /// <param name="m_lSetUserCfgHandle">NET_DVR_StartRemoteConfig的返回值 </param>
+        /// <param name="ptrUserInfoSearchCondCfg">请求数据</param>
+        /// <param name="CfgSize">请求数据大小/param>
+        /// <returns>用户列表</returns>
+        List<CUserInfo> SendWithRecvRemoteConfig(int m_lSetUserCfgHandle, IntPtr ptrUserInfoSearchCondCfg, uint CfgSize)
+        {
+            try
+            {
+                List<CUserInfo> userInfos = null;
+                IntPtr ptrJsonData = Marshal.AllocHGlobal(1024 * Batch);
+                for (int i = 0; i < 1024; i++)
+                    Marshal.WriteByte(ptrJsonData, i, 0);
+                uint dwReturned = 0;
+                int dwState;
+
+                dwState = CHCNetSDK.NET_DVR_SendWithRecvRemoteConfig(m_lSetUserCfgHandle, ptrUserInfoSearchCondCfg, CfgSize, ptrJsonData, (uint)(1024 * Batch), ref dwReturned);
+
+                switch (dwState)
+                {
+                    case (int)CHCNetSDK.NET_SDK_SENDWITHRECV_STATUS.NET_SDK_CONFIG_STATUS_SUCCESS:
+                        byte[] bUserInfoSearch = new byte[1024 * 10];
+                        Marshal.Copy(ptrJsonData, bUserInfoSearch, 0, (int)dwReturned);
+                        string strUserInfoSearch = System.Text.Encoding.UTF8.GetString(bUserInfoSearch);
+
+                        CUserInfoSearchCfg JsonUserInfoSearchCfg = new CUserInfoSearchCfg();
+                        JsonUserInfoSearchCfg = TypeConversion.JsonToObject<CUserInfoSearchCfg>(strUserInfoSearch);
+                        if (JsonUserInfoSearchCfg.UserInfoSearch == null)
+                        {
+                            //null说明返回的Json报文不是UserInfoSearch，而是ResponseStatus
+                            CResponseStatus JsonResponseStatus = new CResponseStatus();
+                            JsonResponseStatus = TypeConversion.JsonToObject<CResponseStatus>(strUserInfoSearch);
+                            if (JsonResponseStatus.statusCode == 1)
+                                ThrowLog?.Invoke("获取用户成功");
+                            else
+                                ThrowLog?.Invoke($"获取用户失败，{JsonResponseStatus.errorMsg}");
+                        }
+                        else
+                        {
+                            //解析UserInfoSearch报文
+                            if (JsonUserInfoSearchCfg.UserInfoSearch.totalMatches == 0)
+                                ThrowLog?.Invoke("没有符合条件的记录！");
+                            else
+                                userInfos = JsonUserInfoSearchCfg.UserInfoSearch.UserInfo;
+                        }
+                        break;
+                    case (int)CHCNetSDK.NET_SDK_SENDWITHRECV_STATUS.NET_SDK_CONFIG_STATUS_NEEDWAIT:
+                        return SendWithRecvRemoteConfig(m_lSetUserCfgHandle, ptrUserInfoSearchCondCfg, CfgSize);
+                    case (int)CHCNetSDK.NET_SDK_SENDWITHRECV_STATUS.NET_SDK_CONFIG_STATUS_FINISH:
+                        ThrowLog?.Invoke("获取完成！");
+                        break;
+                    case (int)CHCNetSDK.NET_SDK_SENDWITHRECV_STATUS.NET_SDK_CONFIG_STATUS_FAILED:
+                        ThrowLog?.Invoke(HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError()).Message);
+                        return SendWithRecvRemoteConfig(m_lSetUserCfgHandle, ptrUserInfoSearchCondCfg, CfgSize);
+                    case (int)CHCNetSDK.NET_SDK_SENDWITHRECV_STATUS.NET_SDK_CONFIG_STATUS_EXCEPTION:
+                        CHCNetSDK.NET_DVR_StopRemoteConfig(m_lSetUserCfgHandle);
+                        throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
+                    default:
+                        CHCNetSDK.NET_DVR_StopRemoteConfig(m_lSetUserCfgHandle);
+                        throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
+                }
+                return userInfos;
+            }
+            finally
+            {
+                if (!CHCNetSDK.NET_DVR_StopRemoteConfig(m_lSetUserCfgHandle))
+                    throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
+            }
+        }
+
+        /// <summary>
+        /// 获取人脸信息
+        /// </summary>
+        /// <param name="lUserID">设备句柄</param>
+        /// <param name="count">请求大小</param>
+        /// <param name="EmployeeNo">工号</param>
+        /// <returns>base64图片信息</returns>
+        string GetFaceInfos(int lUserID, int count, string EmployeeNo)
+        {
+            string sURL = "POST /ISAPI/Intelligent/FDLib/FDSearch?format=json";
+            IntPtr ptrURL = Marshal.StringToHGlobalAnsi(sURL);
+            int m_lSetUserCfgHandle = CHCNetSDK.NET_DVR_StartRemoteConfig(lUserID, CHCNetSDK.NET_DVR_FACE_DATA_SEARCH, ptrURL, sURL.Length, null, IntPtr.Zero);
+
+            if (m_lSetUserCfgHandle < 0)
+                throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
+
+            int endNum = count / Batch;
+            CSearchFaceDataCond JsonSearchFaceDataCond = new CSearchFaceDataCond();
+            JsonSearchFaceDataCond.searchResultPosition = 0;
+            JsonSearchFaceDataCond.maxResults = count;
+            JsonSearchFaceDataCond.faceLibType = "blackFD";
+            JsonSearchFaceDataCond.FDID = "1";
+            JsonSearchFaceDataCond.FPID = EmployeeNo;
+
+            string strSearchFaceDataCond = TypeConversion.ObjectToJson(JsonSearchFaceDataCond);
+            IntPtr ptrSearchFaceDataCond = Marshal.StringToHGlobalAnsi(strSearchFaceDataCond);
+            return SendWithFaceRemoteConfig(m_lSetUserCfgHandle, ptrSearchFaceDataCond, (uint)strSearchFaceDataCond.Length);
+        }
+
+        /// <summary>
+        /// 发送json透传
+        /// </summary>
+        /// <param name="m_lGetFaceCfgHandle">NET_DVR_StartRemoteConfig的返回值</param>
+        /// <param name="ptrJsonSearchFaceDataCond">请求数据</param>
+        /// <param name="CfgSize">请求数据大小</param>
+        /// <returns>base64图片信息</returns>
+        string SendWithFaceRemoteConfig(int m_lGetFaceCfgHandle, IntPtr ptrJsonSearchFaceDataCond, uint CfgSize)
+        {
+            CHCNetSDK.NET_DVR_JSON_DATA_CFG struJsonDataCfg = new CHCNetSDK.NET_DVR_JSON_DATA_CFG();
+            struJsonDataCfg.dwSize = (uint)Marshal.SizeOf(struJsonDataCfg);
+            IntPtr ptrJsonDataCfg = Marshal.AllocHGlobal((int)struJsonDataCfg.dwSize);
+            Marshal.StructureToPtr(struJsonDataCfg, ptrJsonDataCfg, false);
+            uint dwReturned = 0;
+            try
+            {
+                int dwState = CHCNetSDK.NET_DVR_SendWithRecvRemoteConfig(m_lGetFaceCfgHandle, ptrJsonSearchFaceDataCond, CfgSize, ptrJsonDataCfg, struJsonDataCfg.dwSize, ref dwReturned); ;
+                switch (dwState)
+                {
+                    case CHCNetSDK.NET_SDK_GET_NEXT_STATUS_SUCCESS:
+                        return ProcessFaceData(ptrJsonDataCfg);
+                    case CHCNetSDK.NET_SDK_GET_NEXT_STATUS_FAILED:
+                        throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
+                    default:
+                        throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
+                }
+            }
+            finally
+            {
+                if (!CHCNetSDK.NET_DVR_StopRemoteConfig(m_lGetFaceCfgHandle))
+                    throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
+                Marshal.FreeHGlobal(ptrJsonSearchFaceDataCond);
+                Marshal.FreeHGlobal(ptrJsonDataCfg);
+            }
+        }
+
+        /// <summary>
+        /// 人脸图片转base64
+        /// </summary>
+        /// <param name="lpBuffer">人脸信息句柄</param>
+        /// <returns>base64字符值</returns>
+        private string ProcessFaceData(IntPtr lpBuffer)
+        {
+            CHCNetSDK.NET_DVR_JSON_DATA_CFG m_struJsonDataCfg = (CHCNetSDK.NET_DVR_JSON_DATA_CFG)Marshal.PtrToStructure(lpBuffer, typeof(CHCNetSDK.NET_DVR_JSON_DATA_CFG));
+            string strSearchFaceDataReturn = Marshal.PtrToStringAnsi(m_struJsonDataCfg.lpJsonData, (int)m_struJsonDataCfg.dwJsonDataSize);
+            CSearchFaceDataReturn m_JsonSearchFaceDataReturn = TypeConversion.JsonToObject<CSearchFaceDataReturn>(strSearchFaceDataReturn);
+            if (m_JsonSearchFaceDataReturn.totalMatches == 0)
+            {
+                ThrowLog?.Invoke("无人脸数据");
+                return null;
+            }
+
+            int size = (int)m_struJsonDataCfg.dwPicDataSize;
+            byte[] buffer = new byte[size];
+            Marshal.Copy(m_struJsonDataCfg.lpPicData, buffer, 0, size);
+            return Convert.ToBase64String(buffer);
         }
     }
 }
