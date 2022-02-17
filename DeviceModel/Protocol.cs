@@ -1,14 +1,11 @@
 ﻿using DeviceService.Model;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Ports;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DeviceService.DeviceModel
 {
+#pragma warning disable CA1416 // 验证平台兼容性
     public abstract class Protocol : IDevice
     {
         SerialPort serialPort;
@@ -35,7 +32,9 @@ namespace DeviceService.DeviceModel
 
         public void Disconnect()
         {
+
             if (serialPort.IsOpen)
+
                 serialPort.Close();
         }
 
@@ -81,4 +80,5 @@ namespace DeviceService.DeviceModel
             return memory.ToArray();
         }
     }
+#pragma warning restore CA1416 // 验证平台兼容性
 }

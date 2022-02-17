@@ -5,8 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.IO.Ports" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\C#\NaflimHelperLibrary\net5\NaflimHelperLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="RSNetDevice">
       <HintPath>lib\RSNetDevice.dll</HintPath>
+    </Reference>
+    <Reference Include="UHFReader09CSharp">
+      <HintPath>lib\UHFReader09lib\UHFReader09CSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
 
