@@ -1,7 +1,11 @@
 ﻿using DeviceService.Model;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Ports;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DeviceService.DeviceModel
 {
@@ -21,7 +25,9 @@ namespace DeviceService.DeviceModel
                     break;
                 case ConnectMode.SerialPort:
                     string portName = $"COM{connect.Com}";
+
                     serialPort = new SerialPort(portName, connect.BaudRate, connect.Parity, connect.DataBits, connect.StopBits);
+
                     Disconnect();
                     serialPort.Open();
                     break;
@@ -32,9 +38,7 @@ namespace DeviceService.DeviceModel
 
         public void Disconnect()
         {
-
             if (serialPort.IsOpen)
-
                 serialPort.Close();
         }
 

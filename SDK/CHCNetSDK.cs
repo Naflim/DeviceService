@@ -13,7 +13,9 @@ namespace DeviceService.SDK
             // TODO: 在此处添加构造函数逻辑
             //
         }
-        
+
+        #region 预设参数
+       
         //SDK类型
         public const int SDK_PLAYMPEG4 = 1;//播放库
         public const int SDK_HCNETSDK = 2;//网络库
@@ -16911,7 +16913,9 @@ namespace DeviceService.SDK
             public tagIMAGESUBPARAM[] struImageParamSched;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 16, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
-        }       
+        }
+        #endregion
+
 
         #region  取流模块相关结构与接口
 
@@ -17279,6 +17283,14 @@ namespace DeviceService.SDK
         [DllImport("RecordDLL.dll")]
         public static extern int GetData(int iHandle, int iDataType, IntPtr pBuf, uint uiSize);
 
-        #endregion        
+        #endregion
+
+        #region 门禁
+        [DllImport(@"HIKlib/HCNetSDK.dll")]
+        public static extern bool NET_DVR_SetDVRMessageCallBack_V50(int iIndex, MSGCallBack fMessageCallBack, IntPtr pUser);
+
+        [DllImport(@"HIKlib/HCNetSDK.dll")]
+        public static extern bool NET_DVR_STDXMLConfig(int lUserID, IntPtr lpInputParam, IntPtr lpOutputParam);
+        #endregion
     }
 }
