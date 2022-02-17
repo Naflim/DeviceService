@@ -22,7 +22,7 @@ namespace DeviceService
             lpJpegPara.wPicSize = 0xff; //抓图分辨率 Picture size: 2- 4CIF，0xff- Auto(使用当前码流分辨率)，抓图分辨率需要设备支持，更多取值请参考SDK文档
 
             //JPEG抓图 Capture a JPEG picture
-            if (!CHCNetSDK.NET_DVR_CaptureJPEGPicture(UserID, lChannel, ref lpJpegPara, imgPath))
+            if (!CHCNetSDK.NET_DVR_CaptureJPEGPicture(userID, lChannel, ref lpJpegPara, imgPath))
                 throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
         }
 
@@ -40,7 +40,7 @@ namespace DeviceService
             lpJpegPara.wPicSize = 0xff; //抓图分辨率 Picture size: 2- 4CIF，0xff- Auto(使用当前码流分辨率)，抓图分辨率需要设备支持，更多取值请参考SDK文档
 
             //JPEG抓图 Capture a JPEG picture
-            if (!CHCNetSDK.NET_DVR_CaptureJPEGPicture(UserID, lChannel, ref lpJpegPara, imgPath))
+            if (!CHCNetSDK.NET_DVR_CaptureJPEGPicture(userID, lChannel, ref lpJpegPara, imgPath))
                 throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
         }
     }

@@ -33,6 +33,8 @@ namespace DeviceService.Model.ExceptionModels
                     return new HIKException("创建文件出错。本地录像、保存图片、获取配置文件和远程下载录像时创建文件失败。");
                 case 47:
                     return new HIKException("用户不存在。注册的用户 ID 已注销或不可用。");
+                case 102:
+                    return new HIKException("用户还没登录成功。");
                 default:
                     return new HIKException($"错误码：{state}");
             }

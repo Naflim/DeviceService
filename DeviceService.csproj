@@ -62,6 +62,7 @@
     <Compile Include="DeviceModel\HIKVISION.cs" />
     <Compile Include="DeviceModel\Protocol.cs" />
     <Compile Include="DeviceModel\UHFReader09.cs" />
+    <Compile Include="EntranceGuardHIK.cs" />
     <Compile Include="ICReader.cs" />
     <Compile Include="DeviceModel\UHFGate.cs" />
     <Compile Include="Model\ChannelGateModel.cs" />
