@@ -29,38 +29,6 @@ namespace DeviceService
             uint employeeID = struAcsAlarmInfo.struAcsEventInfo.dwEmployeeNo;
             if (employeeID == 0)
                 return;
-
-            //var struTime = struAcsAlarmInfo.struTime;
-            //string date = $"{struTime.dwYear}-{struTime.dwMonth}-{struTime.dwDay} {struTime.dwHour}:{struTime.dwMinute}:{struTime.dwSecond}";
-            //string card = System.Text.Encoding.UTF8.GetString(struAcsAlarmInfo.struAcsEventInfo.byCardNo).TrimEnd('\0');
-            //DataRow row = userInfo.NewRow();
-            //string name = null;
-            //List<CUserInfo> user = GetUserInfos(pAlarmer.lUserID, 1, new List<string> { employeeID.ToString() });
-            //if (user != null && user.Count > 0)
-            //    name = user[0].name;
-            //row["设备"] = lUserIDs[pAlarmer.lUserID];
-            //row["工号"] = employeeID;
-            //row["姓名"] = name;
-            //row["卡号"] = card;
-            //row["触发时间"] = date;
-            //userInfo.Rows.Add(row);
-            //RefreshTable();
-
-            //string eqName = System.Text.RegularExpressions.Regex.Replace(lUserIDs[pAlarmer.lUserID], @"[^0-9]+", "");
-
-            //MySQLHelper mySQL = new MySQLHelper(ConfigurationManager.ConnectionStrings["warehouseDB"].ConnectionString);
-            //string sql = "insert into t_AC_info(eq_name,tgr_time,user_name,job_ID,card_ID) values(@eq_name,@time, @userName, @userID,@cardID)";
-            //MySqlParameter[] parameters = {
-            //                new MySqlParameter("eq_name",eqName),
-            //                new MySqlParameter("time",date),
-            //                new MySqlParameter("userName",name),
-            //                new MySqlParameter("userID",employeeID),
-            //                new MySqlParameter("cardID",card)
-            //};
-            //if (mySQL.GetExecuteNonQuery(sql, parameters))
-            //    Invoke(new Action(() => FrmLog("上传成功！")));
-            //else
-            //    Invoke(new Action(() => FrmLog("上传失败！")));
         }
 
         /// <summary>
