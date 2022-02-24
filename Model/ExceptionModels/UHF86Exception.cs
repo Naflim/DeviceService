@@ -28,6 +28,8 @@ namespace DeviceService.Model.ExceptionModels
                     return new UHF86Exception("天线检测错误。");
                 case 250:
                     return new UHF86Exception("有电子标签，但通信不畅，无法操作");
+                case 251:
+                    return new UHF86Exception("无电子标签可操作");
                 default:
                     return new UHF86Exception($"错误码：{state}");
             }
