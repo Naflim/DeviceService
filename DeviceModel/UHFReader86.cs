@@ -60,7 +60,6 @@ namespace DeviceService.DeviceModel
         /// <returns>标签组</returns>
         public virtual string[] SelTag()
         {
-
             byte Ant = 0;
             int CardNum = 0;
             int Totallen = 0;

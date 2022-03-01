@@ -43,7 +43,7 @@ namespace DeviceService
     /// <summary>
     /// 温湿度
     /// </summary>
-    public interface ITempHumMeter :IDevice
+    public interface ITempHumMeter : IDevice
     {
         /// <summary>
         /// 获取温湿度列表
@@ -119,5 +119,19 @@ namespace DeviceService
         /// </summary>
         /// <returns>卡ID</returns>
         string GetCardID();
+    }
+
+    public interface IReadOrWrite : IDevice
+    {
+        /// <summary>
+        /// 查询标签
+        /// </summary>
+        /// <returns>标签组</returns>
+        string[] SelTag();
+        /// <summary>
+        /// epc写入标签
+        /// </summary>
+        /// <param name="epc">写入的epc</param>
+        void WriteTag(string epc);
     }
 }
