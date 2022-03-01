@@ -30,6 +30,8 @@ namespace DeviceService.Model.ExceptionModels
                     return new UHF86Exception("有电子标签，但通信不畅，无法操作");
                 case 251:
                     return new UHF86Exception("无电子标签可操作");
+                case 255:
+                    return new UHF86Exception("参数错误");
                 default:
                     return new UHF86Exception($"错误码：{state}");
             }

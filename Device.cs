@@ -121,8 +121,15 @@ namespace DeviceService
         string GetCardID();
     }
 
+    /// <summary>
+    /// 键盘模式发卡器
+    /// </summary>
     public interface IReadOrWrite : IDevice
     {
+        /// <summary>
+        /// 自动串口连接
+        /// </summary>
+        void Connect();
         /// <summary>
         /// 查询标签
         /// </summary>
@@ -133,5 +140,10 @@ namespace DeviceService
         /// </summary>
         /// <param name="epc">写入的epc</param>
         void WriteTag(string epc);
+        /// <summary>
+        /// 设置功率
+        /// </summary>
+        /// <param name="power">功率值</param>
+        void SetPower(byte power);
     }
 }

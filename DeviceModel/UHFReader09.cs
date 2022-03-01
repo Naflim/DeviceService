@@ -57,7 +57,7 @@ namespace DeviceService.DeviceModel
         {
             int powerflag = StaticClassReaderB.SetPowerDbm(ref comAdr, power, handle);
 
-            if (powerflag != 0) throw UHF288Exception.AbnormalJudgment(powerflag);
+            if (powerflag != 0) throw UHF09Exception.AbnormalJudgment(powerflag);
         }
 
         /// <summary>

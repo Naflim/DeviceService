@@ -26,6 +26,8 @@ namespace DeviceService.Model.ExceptionModels
                     return new UHF09Exception("通讯错误。");
                 case 248:
                     return new UHF09Exception("天线检测错误。");
+                case 255:
+                    return new UHF09Exception("参数错误。");
                 default:
                     return new UHF09Exception($"错误码：{state}");
             }
