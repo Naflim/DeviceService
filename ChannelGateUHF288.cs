@@ -17,6 +17,7 @@ namespace DeviceService
 
         byte ago = byte.MaxValue;
         byte rear = byte.MaxValue;
+        byte total = byte.MaxValue;
         byte oldGPIO;
         DateTime endStart;
         Direction direction = Direction.Null;
@@ -53,11 +54,13 @@ namespace DeviceService
             {
                 ago = (byte)(DefGPIO - 1);
                 rear = (byte)(DefGPIO - 2);
+                total = (byte)(DefGPIO - 3);
             }
             else
             {
                 ago = (byte)(DefGPIO + 1);
                 rear = (byte)(DefGPIO + 2);
+                total = (byte)(DefGPIO + 3);
             }
         }
 
@@ -96,7 +99,7 @@ namespace DeviceService
                         if (GPIOflag == 0)
                         {
                             SetGPIO(outupPin);
-                            ShowGPIO?.Invoke(this,outupPin);
+                            ShowGPIO?.Invoke(this, outupPin);
 
                             if (selFlag)
                             {
@@ -169,11 +172,13 @@ namespace DeviceService
         void DirectionJudgment()
         {
             if (ago == byte.MaxValue || rear == byte.MaxValue) throw new Exception("未设置红外模式");
+
             if (directionFlag) return;
-            if (oldGPIO == ago && gpio == rear)
+
+            if ((oldGPIO == ago && (gpio == rear || gpio == total)) || oldGPIO == total && gpio == rear)
                 direction = Direction.In;
 
-            if (oldGPIO == rear && gpio == ago)
+            if (oldGPIO == rear && (gpio == ago || gpio == total) || oldGPIO == total && gpio == ago)
                 direction = Direction.Out;
 
             if (direction != Direction.Null)
@@ -183,14 +188,14 @@ namespace DeviceService
                     AdoptTrigger(new ChannelGateModel(direction, cacheEPC));
             }
 
-            if (!directionFlag && (gpio == ago || gpio == rear))
+            if (!directionFlag && gpio != DefGPIO)
                 oldGPIO = gpio;
         }
 
 
         public void AdoptTrigger(ChannelGateModel channelGate)
         {
-            adoptTrigger(this,channelGate);
+            adoptTrigger(this, channelGate);
             Reset();
         }
 
