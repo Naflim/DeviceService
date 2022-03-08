@@ -76,7 +76,7 @@ namespace DeviceService
         /// <summary>
         /// 触发警报
         /// </summary>
-        void AlarmTrigger();
+        void StartAlarmServer(Action<IAlarm, AlarmModel> adoptTrigger);
     }
 
     /// <summary>
@@ -106,7 +106,7 @@ namespace DeviceService
         /// <summary>
         /// 人员通过触发
         /// </summary>
-        void AdoptTrigger(ChannelGateModel channelGate);
+        void StartChannelGateServer(Action<IChannelGate, ChannelGateModel> adoptTrigger);
     }
 
     /// <summary>
@@ -144,6 +144,6 @@ namespace DeviceService
         /// 设置功率
         /// </summary>
         /// <param name="power">功率值</param>
-        void SetPower(byte power);
+        void SetPower(int Ant,byte power);
     }
 }

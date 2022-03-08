@@ -36,6 +36,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\NaflimHelperLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="rfidLink, Version=1.2.2.13, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\CardWriteCETClib\rfidLink.dll</HintPath>
+    </Reference>
     <Reference Include="RSNetDevice, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\RSNetDevice.dll</HintPath>
@@ -56,17 +60,21 @@
   <ItemGroup>
     <Compile Include="CabinetSilverBox.cs" />
     <Compile Include="CameraHIK.cs" />
+    <Compile Include="AlarmUHF288.cs" />
     <Compile Include="ChannelGateUHF288.cs" />
     <Compile Include="ChannelGateUHFGate.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="DeviceModel\HIKVISION.cs" />
     <Compile Include="DeviceModel\Protocol.cs" />
     <Compile Include="DeviceModel\UHFReader09.cs" />
+    <Compile Include="DeviceModel\CardWriteCETC.cs" />
     <Compile Include="DeviceModel\UHFReader86.cs" />
     <Compile Include="EntranceGuardHIK.cs" />
     <Compile Include="ICReader.cs" />
     <Compile Include="DeviceModel\UHFGate.cs" />
+    <Compile Include="Model\AlarmModel.cs" />
     <Compile Include="Model\ChannelGateModel.cs" />
+    <Compile Include="Model\ExceptionModels\CETCException.cs" />
     <Compile Include="Model\ExceptionModels\ICReaderException.cs" />
     <Compile Include="Model\ExceptionModels\RSException.cs" />
     <Compile Include="Model\ConnectModel.cs" />
@@ -87,6 +95,10 @@
     <Compile Include="DeviceModel\UHFReader288.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="lib\CardWriteCETClib\cpl.dll" />
+    <Content Include="lib\CardWriteCETClib\rfid.dll" />
+    <Content Include="lib\CardWriteCETClib\rfidLink.dll" />
+    <Content Include="lib\CardWriteCETClib\rfidtx.dll" />
     <Content Include="lib\HIKlib\AudioRender.dll" />
     <Content Include="lib\HIKlib\ClientDemo.exe" />
     <Content Include="lib\HIKlib\ClientDemoDll\calib.dll" />
@@ -145,6 +157,7 @@
     <Content Include="lib\UHFReader86.dll" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="lib\CardWriteCETClib\RFIDcomm.cfg" />
     <None Include="lib\HIKlib\GdiPlus.lib" />
     <None Include="lib\HIKlib\HCCore.lib" />
     <None Include="lib\HIKlib\HCNetSDK.lib" />

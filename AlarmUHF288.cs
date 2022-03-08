@@ -11,23 +11,17 @@ using NaflimHelperLibrary;
 
 namespace DeviceService
 {
-    public class ChannelGateUHF288 : UHFReader288, IChannelGate
+    public class AlarmUHF288 : UHFReader288, IAlarm
     {
         private byte gpio;
 
-        byte ago = byte.MaxValue;
-        byte rear = byte.MaxValue;
-        byte total = byte.MaxValue;
-        byte oldGPIO;
         DateTime endStart;
-        Direction direction = Direction.Null;
-        bool directionFlag;
-        Action<ChannelGateUHF288, ChannelGateModel> adoptTrigger;
+        Action<AlarmUHF288, AlarmModel> adoptTrigger;
 
         /// <summary>
         /// 显示GPIO
         /// </summary>
-        public Action<ChannelGateUHF288, byte> ShowGPIO { get; set; }
+        public Action<AlarmUHF288, byte> ShowGPIO { get; set; }
 
         /// <summary>
         /// 超时结束查询
@@ -45,40 +39,10 @@ namespace DeviceService
         public int GPIOinterval { get; set; } = 100;
 
         /// <summary>
-        /// 设置红外模式
-        /// </summary>
-        /// <param name="mode">是否对射</param>
-        public void SetInfraredMode(bool mode)
-        {
-            if (mode)
-            {
-                ago = (byte)(DefGPIO - 1);
-                rear = (byte)(DefGPIO - 2);
-                total = (byte)(DefGPIO - 3);
-            }
-            else
-            {
-                ago = (byte)(DefGPIO + 1);
-                rear = (byte)(DefGPIO + 2);
-                total = (byte)(DefGPIO + 3);
-            }
-        }
-
-        /// <summary>
-        /// 方向反向
-        /// </summary>
-        public void ReverseDirection()
-        {
-            ago ^= rear;
-            rear = (byte)(ago ^ rear);
-            ago ^= rear;
-        }
-
-        /// <summary>
         /// 开始监听GPIO
         /// </summary>
         /// <param name="adoptTrigger">方向判断成功触发事件</param>
-        public void StartChannelGateServer(Action<IChannelGate, ChannelGateModel> adoptTrigger)
+        public void StartAlarmServer(Action<IAlarm, AlarmModel> adoptTrigger)
         {
             if (DefGPIO == byte.MaxValue) throw new Exception("默认GPIO不可为空");
             this.adoptTrigger = adoptTrigger;
@@ -129,7 +93,7 @@ namespace DeviceService
                         ErrorShow(ex);
                     Reset();
                     Reconnection();
-                    StartChannelGateServer(adoptTrigger);
+                    StartAlarmServer(adoptTrigger);
                 }
             }, TaskCreationOptions.LongRunning);
         }
@@ -145,13 +109,22 @@ namespace DeviceService
                 GPIO_ValueChanged();
             else
             {
-                if (selFlag && (DateTime.Now - endStart).TotalMilliseconds > EndTime)
+                if (selFlag)
                 {
-                    if (DelayMode && direction != Direction.Null) AdoptTrigger(new ChannelGateModel(direction, cacheEPC));
-                    else Reset();
+                    if (DelayMode)
+                    {
+                        if (selFlag && (DateTime.Now - endStart).TotalMilliseconds > EndTime)
+                            AdoptTrigger(new AlarmModel(cacheEPC));
+                    }else AdoptTrigger(new AlarmModel(cacheEPC));
+
                 }
-                directionFlag = false;
             }
+        }
+
+        private void AdoptTrigger(AlarmModel alarm)
+        {
+            adoptTrigger(this, alarm);
+            Reset();
         }
 
         /// <summary>
@@ -161,51 +134,14 @@ namespace DeviceService
         {
             selFlag = true;
             endStart = DateTime.Now;
-
-            if (gpio != oldGPIO)
-                DirectionJudgment();
         }
 
-        /// <summary>
-        /// 判断方向
-        /// </summary>
-        void DirectionJudgment()
-        {
-            if (ago == byte.MaxValue || rear == byte.MaxValue) throw new Exception("未设置红外模式");
-
-            if (directionFlag) return;
-
-            if ((oldGPIO == ago && (gpio == rear || gpio == total)) || oldGPIO == total && gpio == rear)
-                direction = Direction.In;
-
-            if (oldGPIO == rear && (gpio == ago || gpio == total) || oldGPIO == total && gpio == ago)
-                direction = Direction.Out;
-
-            if (direction != Direction.Null)
-            {
-                directionFlag = true;
-                if (!DelayMode)
-                    AdoptTrigger(new ChannelGateModel(direction, cacheEPC));
-            }
-
-            if (!directionFlag && gpio != DefGPIO)
-                oldGPIO = gpio;
-        }
-
-
-        public void AdoptTrigger(ChannelGateModel channelGate)
-        {
-            adoptTrigger(this, channelGate);
-            Reset();
-        }
 
         void Reset()
         {
             ThrowLog?.Invoke($"{DeviceName}-重置");
             StopSel();
             ClearCache();
-            direction = Direction.Null;
-            oldGPIO = 0;
         }
     }
 }

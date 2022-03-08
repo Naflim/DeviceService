@@ -24,6 +24,8 @@ namespace DeviceService.Model.ExceptionModels
             {
                 case 48:
                     return new UHF288Exception("通讯错误。");
+                case 238:
+                    return new UHF288Exception("设备忙碌。");
                 case 248:
                     return new UHF288Exception("天线检测错误。");
                 default:
