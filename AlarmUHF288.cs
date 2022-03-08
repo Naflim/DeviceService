@@ -13,8 +13,6 @@ namespace DeviceService
 {
     public class AlarmUHF288 : UHFReader288, IAlarm
     {
-        private byte gpio;
-
         DateTime endStart;
         Action<AlarmUHF288, AlarmModel> adoptTrigger;
 
@@ -104,7 +102,6 @@ namespace DeviceService
         /// <param name="GPIO">GPIO</param>
         void SetGPIO(byte GPIO)
         {
-            gpio = GPIO;
             if (GPIO != DefGPIO)
                 GPIO_ValueChanged();
             else
@@ -116,7 +113,6 @@ namespace DeviceService
                         if (selFlag && (DateTime.Now - endStart).TotalMilliseconds > EndTime)
                             AdoptTrigger(new AlarmModel(cacheEPC));
                     }else AdoptTrigger(new AlarmModel(cacheEPC));
-
                 }
             }
         }
