@@ -9,10 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\C#\NaflimHelperLibrary\core3.1\NaflimHelperLibrary.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <Reference Include="NaflimHelperLibrary">
+      <HintPath>lib\NaflimHelperLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="RSNetDevice">
       <HintPath>lib\RSNetDevice.dll</HintPath>
     </Reference>

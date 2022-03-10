@@ -75,7 +75,7 @@ namespace DeviceService
         /// 开始监听GPIO
         /// </summary>
         /// <param name="adoptTrigger">方向判断成功触发事件</param>
-        public void StartMonitorGPIO(Action<ChannelGateUHF288, ChannelGateModel> adoptTrigger)
+        public void StartChannelGateServer(Action<IChannelGate, ChannelGateModel> adoptTrigger)
         {
             if (DefGPIO == byte.MaxValue) throw new Exception("默认GPIO不可为空");
             this.adoptTrigger = adoptTrigger;
@@ -126,7 +126,7 @@ namespace DeviceService
                         ErrorShow(ex);
                     Reset();
                     Reconnection();
-                    StartMonitorGPIO(adoptTrigger);
+                    StartChannelGateServer(adoptTrigger);
                 }
             }, TaskCreationOptions.LongRunning);
         }

@@ -13,7 +13,7 @@ namespace DeviceService
     {
         bool monitorFlag;
         Dictionary<DateTime, string> cacheEPC = new Dictionary<DateTime, string>();
-        Action<ChannelGateModel> adoptTrigger;
+        Action<ChannelGateUHFGate, ChannelGateModel> adoptTrigger;
 
         /// <summary>
         /// 超时时间
@@ -29,7 +29,7 @@ namespace DeviceService
         /// 开始通道服务
         /// </summary>
         /// <param name="adoptTrigger">方向触发事件</param>
-        public void StartGateServer(Action<ChannelGateModel> adoptTrigger)
+        public void StartChannelGateServer(Action<IChannelGate, ChannelGateModel> adoptTrigger)
         {
             monitorFlag = true;
             this.adoptTrigger = adoptTrigger;
@@ -120,7 +120,7 @@ namespace DeviceService
 
         public void AdoptTrigger(ChannelGateModel channelGate)
         {
-            adoptTrigger(channelGate);
+            adoptTrigger(this, channelGate);
             cacheEPC.Clear();
         }
     }

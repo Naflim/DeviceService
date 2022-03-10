@@ -62,7 +62,7 @@ namespace DeviceService
             DateTime date = Convert.ToDateTime($"{struTime.dwYear}-{struTime.dwMonth}-{struTime.dwDay} {struTime.dwHour}:{struTime.dwMinute}:{struTime.dwSecond}");
             personnel.CardID = Encoding.UTF8.GetString(struAcsAlarmInfo.struAcsEventInfo.byCardNo).TrimEnd('\0');
 
-            List<CUserInfo> user = GetUserInfos(pAlarmer.lUserID, new List<string> { employeeID.ToString() });
+            List<CUserInfo> user = GetUserInfos(new List<string> { employeeID.ToString() });
             if (user != null && user.Count > 0)
             {
                 personnel.Name = user[0].name;
@@ -121,16 +121,15 @@ namespace DeviceService
         /// <summary>
         /// 获取全部用户信息
         /// </summary>
-        /// <param name="lUserID">设备句柄</param>
         /// <param name="count">请求大小</param>
         /// <returns>用户列表</returns>
-        List<CUserInfo> GetUserInfos(int lUserID, int count)
+        public List<CUserInfo> GetUserInfos(int count)
         {
             List<CUserInfo> userInfos = new List<CUserInfo>();
 
             string sURL = "POST /ISAPI/AccessControl/UserInfo/Search?format=json";
             IntPtr ptrURL = Marshal.StringToHGlobalAnsi(sURL);
-            int m_lSetUserCfgHandle = CHCNetSDK.NET_DVR_StartRemoteConfig(lUserID, CHCNetSDK.NET_DVR_JSON_CONFIG, ptrURL, sURL.Length, null, IntPtr.Zero);
+            int m_lSetUserCfgHandle = CHCNetSDK.NET_DVR_StartRemoteConfig(userID, CHCNetSDK.NET_DVR_JSON_CONFIG, ptrURL, sURL.Length, null, IntPtr.Zero);
 
             if (m_lSetUserCfgHandle < 0)
                 throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
@@ -139,7 +138,7 @@ namespace DeviceService
 
             CUserInfoSearchCondCfg JsonUserInfoSearchCondCfg = new CUserInfoSearchCondCfg();
             JsonUserInfoSearchCondCfg.UserInfoSearchCond = new CUserInfoSearchCond();
-            JsonUserInfoSearchCondCfg.UserInfoSearchCond.searchID = lUserID.ToString();
+            JsonUserInfoSearchCondCfg.UserInfoSearchCond.searchID = userID.ToString();
             JsonUserInfoSearchCondCfg.UserInfoSearchCond.maxResults = 100;
 
             for (int i = 0; i < endNum + 1; i++)
@@ -160,13 +159,13 @@ namespace DeviceService
         /// <param name="lUserID">设备句柄</param>
         /// <param name="EmployeeNoList">工号列表</param>
         /// <returns>用户列表</returns>
-        List<CUserInfo> GetUserInfos(int lUserID, List<string> EmployeeNoList)
+        public List<CUserInfo> GetUserInfos(List<string> EmployeeNoList)
         {
             int count = EmployeeNoList.Count;
 
             string sURL = "POST /ISAPI/AccessControl/UserInfo/Search?format=json";
             IntPtr ptrURL = Marshal.StringToHGlobalAnsi(sURL);
-            int m_lSetUserCfgHandle = CHCNetSDK.NET_DVR_StartRemoteConfig(lUserID, CHCNetSDK.NET_DVR_JSON_CONFIG, ptrURL, sURL.Length, null, IntPtr.Zero);
+            int m_lSetUserCfgHandle = CHCNetSDK.NET_DVR_StartRemoteConfig(userID, CHCNetSDK.NET_DVR_JSON_CONFIG, ptrURL, sURL.Length, null, IntPtr.Zero);
 
             if (m_lSetUserCfgHandle < 0)
                 throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
@@ -175,7 +174,7 @@ namespace DeviceService
 
             CUserInfoSearchCondCfg JsonUserInfoSearchCondCfg = new CUserInfoSearchCondCfg();
             JsonUserInfoSearchCondCfg.UserInfoSearchCond = new CUserInfoSearchCond();
-            JsonUserInfoSearchCondCfg.UserInfoSearchCond.searchID = lUserID.ToString();
+            JsonUserInfoSearchCondCfg.UserInfoSearchCond.searchID = userID.ToString();
             JsonUserInfoSearchCondCfg.UserInfoSearchCond.searchResultPosition = 0;
             JsonUserInfoSearchCondCfg.UserInfoSearchCond.maxResults = count;
             JsonUserInfoSearchCondCfg.UserInfoSearchCond.EmployeeNoList = new List<CEmployeeNoList>();
@@ -334,21 +333,22 @@ namespace DeviceService
         /// <param name="count">请求大小</param>
         /// <param name="EmployeeNo">工号</param>
         /// <returns>base64图片信息</returns>
-        string GetFaceInfos(int lUserID, int count, string EmployeeNo)
+        public string GetFaceInfos(string EmployeeNo)
         {
             string sURL = "POST /ISAPI/Intelligent/FDLib/FDSearch?format=json";
             IntPtr ptrURL = Marshal.StringToHGlobalAnsi(sURL);
-            int m_lSetUserCfgHandle = CHCNetSDK.NET_DVR_StartRemoteConfig(lUserID, CHCNetSDK.NET_DVR_FACE_DATA_SEARCH, ptrURL, sURL.Length, null, IntPtr.Zero);
+            int m_lSetUserCfgHandle = CHCNetSDK.NET_DVR_StartRemoteConfig(userID, CHCNetSDK.NET_DVR_FACE_DATA_SEARCH, ptrURL, sURL.Length, null, IntPtr.Zero);
 
             if (m_lSetUserCfgHandle < 0)
                 throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
 
-            int endNum = count / Batch;
             CSearchFaceDataCond JsonSearchFaceDataCond = new CSearchFaceDataCond();
             JsonSearchFaceDataCond.searchResultPosition = 0;
-            JsonSearchFaceDataCond.maxResults = count;
+            JsonSearchFaceDataCond.maxResults = 1;
             JsonSearchFaceDataCond.faceLibType = "blackFD";
+            //人脸库ID
             JsonSearchFaceDataCond.FDID = "1";
+            //人脸记录ID
             JsonSearchFaceDataCond.FPID = EmployeeNo;
 
             string strSearchFaceDataCond = TypeConversion.ObjectToJson(JsonSearchFaceDataCond);

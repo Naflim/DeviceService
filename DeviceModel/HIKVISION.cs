@@ -10,12 +10,10 @@ namespace DeviceService.DeviceModel
 {
     public abstract class HIKVISION : IDevice
     {
+        /// <summary>
+        /// 设备连接状态
+        /// </summary>
         public bool LinkStatus { get { return linkStatus; } }
-        ///// <summary>
-        ///// 登录ID
-        ///// </summary>
-        //public int UserID { get { return userID; } }
-
         /// <summary>
         /// 设备IP
         /// </summary>
@@ -71,6 +69,7 @@ namespace DeviceService.DeviceModel
         {
             if (!CHCNetSDK.NET_DVR_Logout(userID))
                 throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
+            linkStatus = false;
         }
 
         /// <summary>

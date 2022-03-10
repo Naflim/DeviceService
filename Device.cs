@@ -8,19 +8,18 @@ using DeviceService.Model;
 namespace DeviceService
 {
     /// <summary>
-    /// 上传服务器
+    /// 设备服务器
     /// </summary>
-    public interface IUploadServer
+    public interface IDeviceServer
     {
         /// <summary>
-        /// 接口上传
+        /// 开启服务
         /// </summary>
-        void RequestInterface();
-
+        void OpenService();
         /// <summary>
-        /// 数据库上传
+        /// 关闭服务
         /// </summary>
-        void UploadDatabase();
+        void CloseService();
     }
 
     /// <summary>
@@ -69,17 +68,6 @@ namespace DeviceService
     }
 
     /// <summary>
-    /// 警报器
-    /// </summary>
-    public interface IAlarm : IDevice
-    {
-        /// <summary>
-        /// 触发警报
-        /// </summary>
-        void AlarmTrigger();
-    }
-
-    /// <summary>
     /// 柜子
     /// </summary>
     public interface ICabinet : IDevice
@@ -106,7 +94,7 @@ namespace DeviceService
         /// <summary>
         /// 人员通过触发
         /// </summary>
-        void AdoptTrigger(ChannelGateModel channelGate);
+        void StartChannelGateServer(Action<IChannelGate, ChannelGateModel> adoptTrigger);
     }
 
     /// <summary>
