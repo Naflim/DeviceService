@@ -8,19 +8,18 @@ using DeviceService.Model;
 namespace DeviceService
 {
     /// <summary>
-    /// 上传服务器
+    /// 设备服务器
     /// </summary>
-    public interface IUploadServer
+    public interface IDeviceServer
     {
         /// <summary>
-        /// 接口上传
+        /// 开启服务
         /// </summary>
-        void RequestInterface();
-
+        void OpenService();
         /// <summary>
-        /// 数据库上传
+        /// 关闭服务
         /// </summary>
-        void UploadDatabase();
+        void CloseService();
     }
 
     /// <summary>
