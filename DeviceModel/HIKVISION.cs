@@ -14,6 +14,7 @@ namespace DeviceService.DeviceModel
         /// 设备连接状态
         /// </summary>
         public bool LinkStatus { get { return linkStatus; } }
+
         /// <summary>
         /// 设备IP
         /// </summary>
@@ -31,6 +32,9 @@ namespace DeviceService.DeviceModel
         protected int port;
         bool linkStatus;
 
+        /// <summary>
+        /// 连接回调函数
+        /// </summary>
         public Action<HIKVISION> LinkOk { get; set; }
 
         public void Connect(ConnectModel connect)

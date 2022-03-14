@@ -20,17 +20,13 @@ namespace DeviceService.Model.ExceptionModels
         /// <returns></returns>
         public static UHFGateException AbnormalJudgment(int state)
         {
-            switch (state)
+            return state switch
             {
-                case 48:
-                    return new UHFGateException("通讯错误。");
-                case 55:
-                    return new UHFGateException("无效的句柄。");
-                case 248:
-                    return new UHFGateException("天线检测错误。");
-                default:
-                    return new UHFGateException($"错误码：{state}");
-            }
+                48 => new UHFGateException("通讯错误。"),
+                55 => new UHFGateException("无效的句柄。"),
+                248 => new UHFGateException("天线检测错误。"),
+                _ => new UHFGateException($"错误码：{state}"),
+            };
         }
     }
 }

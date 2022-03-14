@@ -30,6 +30,8 @@ namespace DeviceService
         /// </summary>
         Action<EntranceGuardHIK, PersonnelModel, DateTime> MonitoringEvent;
 
+        CHCNetSDK.MSGCallBack callBack;
+
         public void StartMonitoring(Action<EntranceGuardHIK, PersonnelModel, DateTime> action)
         {
             MonitoringEvent = action;
@@ -41,7 +43,9 @@ namespace DeviceService
             if (CHCNetSDK.NET_DVR_SetupAlarmChan_V41(userID, ref struSetupAlarmParam) < 0)
                 throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
 
-            if (!CHCNetSDK.NET_DVR_SetDVRMessageCallBack_V50(0, MSGCallBack, IntPtr.Zero))
+            callBack = MSGCallBack;
+
+            if (!CHCNetSDK.NET_DVR_SetDVRMessageCallBack_V50(0, callBack, IntPtr.Zero))
                 throw new HIKException("事件注册失败");
         }
 
@@ -111,7 +115,7 @@ namespace DeviceService
             if (CHCNetSDK.NET_DVR_STDXMLConfig(userID, ptrInput, ptrOuput))
             {
                 string json = Marshal.PtrToStringAnsi(struOuput.lpOutBuffer);
-                string count = DataConversion.GetJsonItem(json, new List<string> { "UserInfoCount", "userNumber" });
+                string count = DataConversion.GetJsonItem(json, new string[] { "UserInfoCount", "userNumber" });
                 return count;
             }
             else
@@ -227,8 +231,7 @@ namespace DeviceService
             switch (dwState)
             {
                 case (int)CHCNetSDK.NET_SDK_SENDWITHRECV_STATUS.NET_SDK_CONFIG_STATUS_SUCCESS:
-                    CResponseStatus JsonResponseStatus = new CResponseStatus();
-                    JsonResponseStatus = JsonConvert.DeserializeObject<CResponseStatus>(strJsonData);
+                    CResponseStatus JsonResponseStatus = JsonConvert.DeserializeObject<CResponseStatus>(strJsonData);
 
                     if (JsonResponseStatus.statusCode == 1)
                         ThrowLog?.Invoke("设置成功！");

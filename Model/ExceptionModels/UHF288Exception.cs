@@ -20,15 +20,12 @@ namespace DeviceService.Model.ExceptionModels
         /// <returns></returns>
         public static UHF288Exception AbnormalJudgment(int state)
         {
-            switch (state)
+            return state switch
             {
-                case 48:
-                    return new UHF288Exception("通讯错误。");
-                case 248:
-                    return new UHF288Exception("天线检测错误。");
-                default:
-                    return new UHF288Exception($"错误码：{state}");
-            }
+                48 => new UHF288Exception("通讯错误。"),
+                248 => new UHF288Exception("天线检测错误。"),
+                _ => new UHF288Exception($"错误码：{state}"),
+            };
         }
     }
 }

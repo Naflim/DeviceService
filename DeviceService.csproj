@@ -5,12 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.IO.Ports" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="NaflimHelperLibrary">
       <HintPath>lib\NaflimHelperLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="RFIDReaderNetwork_SerialSDK_ForCSharp">
+      <HintPath>lib\RFIDReaderNetwork_SerialSDK_ForCSharp.dll</HintPath>
     </Reference>
     <Reference Include="RSNetDevice">
       <HintPath>lib\RSNetDevice.dll</HintPath>

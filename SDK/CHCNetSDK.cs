@@ -2,9 +2,9 @@ using System;
 using System.Runtime.InteropServices;
 namespace DeviceService.SDK
 {
-	/// <summary>
-	/// CHCNetSDK 的摘要说明。
-	/// </summary>
+    /// <summary>
+    /// CHCNetSDK 的摘要说明。
+    /// </summary>
     public class CHCNetSDK
     {
         public CHCNetSDK()
@@ -15,7 +15,7 @@ namespace DeviceService.SDK
         }
 
         #region 预设参数
-       
+
         //SDK类型
         public const int SDK_PLAYMPEG4 = 1;//播放库
         public const int SDK_HCNETSDK = 2;//网络库
@@ -152,53 +152,53 @@ namespace DeviceService.SDK
         public const int MAX_LAYERNUMS = 32;
 
         public const int MAX_ROIDETECT_NUM = 8;    //支持的ROI区域数
-        public const int MAX_LANERECT_NUM   =     5;    //最大车牌识别区域数
-        public const int MAX_FORTIFY_NUM   =      10;   //最大布防个数
-        public const int MAX_INTERVAL_NUM  =      4;    //最大时间间隔个数
-        public const int MAX_CHJC_NUM     =       3;    //最大车辆省份简称字符个数
-        public const int MAX_VL_NUM        =      5;    //最大虚拟线圈个数
-        public const int MAX_DRIVECHAN_NUM =      16;   //最大车道数
-        public const int MAX_COIL_NUM      =      3;    //最大线圈个数
-        public const int MAX_SIGNALLIGHT_NUM =    6;   //最大信号灯个数
-        public const int LEN_32				=	32;
-        public const int LEN_31				=	31; 
-        public const int MAX_CABINET_COUNT  =     8;    //最大支持机柜数量
-        public const int MAX_ID_LEN         =     48;
-        public const int MAX_PARKNO_LEN    =      16;
-        public const int MAX_ALARMREASON_LEN =    32;
-        public const int MAX_UPGRADE_INFO_LEN=    48; //获取升级文件匹配信息(模糊升级)
-        public const int MAX_CUSTOMDIR_LEN  =     32; //自定义目录长度
+        public const int MAX_LANERECT_NUM = 5;    //最大车牌识别区域数
+        public const int MAX_FORTIFY_NUM = 10;   //最大布防个数
+        public const int MAX_INTERVAL_NUM = 4;    //最大时间间隔个数
+        public const int MAX_CHJC_NUM = 3;    //最大车辆省份简称字符个数
+        public const int MAX_VL_NUM = 5;    //最大虚拟线圈个数
+        public const int MAX_DRIVECHAN_NUM = 16;   //最大车道数
+        public const int MAX_COIL_NUM = 3;    //最大线圈个数
+        public const int MAX_SIGNALLIGHT_NUM = 6;   //最大信号灯个数
+        public const int LEN_32 = 32;
+        public const int LEN_31 = 31;
+        public const int MAX_CABINET_COUNT = 8;    //最大支持机柜数量
+        public const int MAX_ID_LEN = 48;
+        public const int MAX_PARKNO_LEN = 16;
+        public const int MAX_ALARMREASON_LEN = 32;
+        public const int MAX_UPGRADE_INFO_LEN = 48; //获取升级文件匹配信息(模糊升级)
+        public const int MAX_CUSTOMDIR_LEN = 32; //自定义目录长度
 
-        public const int MAX_TRANSPARENT_CHAN_NUM  =    4;   //每个串口允许建立的最大透明通道数
-        public const int MAX_TRANSPARENT_ACCESS_NUM =   4;   //每个监听端口允许接入的最大主机数
+        public const int MAX_TRANSPARENT_CHAN_NUM = 4;   //每个串口允许建立的最大透明通道数
+        public const int MAX_TRANSPARENT_ACCESS_NUM = 4;   //每个监听端口允许接入的最大主机数
 
         //ITS
-        public const int MAX_PARKING_STATUS  =     8;    //车位状态 0代表无车，1代表有车，2代表压线(优先级最高), 3特殊车位 
-        public const int MAX_PARKING_NUM	   =      4;    //一个通道最大4个车位 (从左到右车位 数组0～3)
+        public const int MAX_PARKING_STATUS = 8;    //车位状态 0代表无车，1代表有车，2代表压线(优先级最高), 3特殊车位 
+        public const int MAX_PARKING_NUM = 4;    //一个通道最大4个车位 (从左到右车位 数组0～3)
 
-        public const int MAX_ITS_SCENE_NUM    =    16;   //最大场景数量
-        public const int MAX_SCENE_TIMESEG_NUM =   16;   //最大场景时间段数量
-        public const int MAX_IVMS_IP_CHANNEL  =    128;  //最大IP通道数
-        public const int DEVICE_ID_LEN      =      48;   //设备编号长度
-        public const int MONITORSITE_ID_LEN  =     48;   //监测点编号长度
-        public const int MAX_AUXAREA_NUM       =   16;   //辅助区域最大数目
-        public const int MAX_SLAVE_CHANNEL_NUM =   16;   //最大从通道数量
+        public const int MAX_ITS_SCENE_NUM = 16;   //最大场景数量
+        public const int MAX_SCENE_TIMESEG_NUM = 16;   //最大场景时间段数量
+        public const int MAX_IVMS_IP_CHANNEL = 128;  //最大IP通道数
+        public const int DEVICE_ID_LEN = 48;   //设备编号长度
+        public const int MONITORSITE_ID_LEN = 48;   //监测点编号长度
+        public const int MAX_AUXAREA_NUM = 16;   //辅助区域最大数目
+        public const int MAX_SLAVE_CHANNEL_NUM = 16;   //最大从通道数量
 
         public const int MAX_SCH_TASKS_NUM = 10;
 
-        public const int MAX_SERVERID_LEN   =         64; //最大服务器ID的长度
-        public const int MAX_SERVERDOMAIN_LEN =       128; //服务器域名最大长度
-        public const int MAX_AUTHENTICATEID_LEN =     64; //认证ID最大长度
+        public const int MAX_SERVERID_LEN = 64; //最大服务器ID的长度
+        public const int MAX_SERVERDOMAIN_LEN = 128; //服务器域名最大长度
+        public const int MAX_AUTHENTICATEID_LEN = 64; //认证ID最大长度
         public const int MAX_AUTHENTICATEPASSWD_LEN = 32; //认证密码最大长度
-        public const int MAX_SERVERNAME_LEN =         64; //最大服务器用户名 
-        public const int MAX_COMPRESSIONID_LEN =      64; //编码ID的最大长度
-        public const int MAX_SIPSERVER_ADDRESS_LEN =  128; //SIP服务器地址支持域名和IP地址
+        public const int MAX_SERVERNAME_LEN = 64; //最大服务器用户名 
+        public const int MAX_COMPRESSIONID_LEN = 64; //编码ID的最大长度
+        public const int MAX_SIPSERVER_ADDRESS_LEN = 128; //SIP服务器地址支持域名和IP地址
         //压线报警
-        public const int MAX_PlATE_NO_LEN =        32;   //车牌号码最大长度 2013-09-27
-        public const int UPNP_PORT_NUM	=		12;	  //upnp端口映射端口数目
+        public const int MAX_PlATE_NO_LEN = 32;   //车牌号码最大长度 2013-09-27
+        public const int UPNP_PORT_NUM = 12;      //upnp端口映射端口数目
 
-        
-        public const int MAX_LOCAL_ADDR_LEN	= 96;		//SOCKS最大本地网段个数
+
+        public const int MAX_LOCAL_ADDR_LEN = 96;		//SOCKS最大本地网段个数
         public const int MAX_COUNTRY_NAME_LEN = 4;		//国家简写名称长度
 
         public const int THERMOMETRY_ALARMRULE_NUM = 40; //热成像报警规则数
@@ -209,27 +209,27 @@ namespace DeviceService.SDK
         public const int MAX_ID_ADDR_LEN = 280;   //最大住址长度
         public const int MAX_ID_ISSUING_AUTHORITY_LEN = 128; //最大签发机关长度
 
-        public const int MAX_CARD_RIGHT_PLAN_NUM        = 4;   //卡权限最大计划个数
-        public const int MAX_GROUP_NUM_128              = 128; //最大群组数
-        public const int MAX_CARD_READER_NUM            = 64;  //最大读卡器数
-        public const int MAX_SNEAK_PATH_NODE            = 8;   //最大后续读卡器数
+        public const int MAX_CARD_RIGHT_PLAN_NUM = 4;   //卡权限最大计划个数
+        public const int MAX_GROUP_NUM_128 = 128; //最大群组数
+        public const int MAX_CARD_READER_NUM = 64;  //最大读卡器数
+        public const int MAX_SNEAK_PATH_NODE = 8;   //最大后续读卡器数
         public const int MAX_MULTI_DOOR_INTERLOCK_GROUP = 8;   //最大多门互锁组数
-        public const int MAX_INTER_LOCK_DOOR_NUM        = 8;   //一个多门互锁组中最大互锁门数
-        public const int MAX_CASE_SENSOR_NUM            = 8;  //最大case sensor触发器数
-        public const int MAX_DOOR_NUM_256               = 256; //最大门数
-        public const int MAX_READER_ROUTE_NUM           = 16;  //最大刷卡循序路径 
-        public const int MAX_FINGER_PRINT_NUM           = 10;  //最大指纹个数
-        public const int MAX_CARD_READER_NUM_512        = 512; //最大读卡器数
+        public const int MAX_INTER_LOCK_DOOR_NUM = 8;   //一个多门互锁组中最大互锁门数
+        public const int MAX_CASE_SENSOR_NUM = 8;  //最大case sensor触发器数
+        public const int MAX_DOOR_NUM_256 = 256; //最大门数
+        public const int MAX_READER_ROUTE_NUM = 16;  //最大刷卡循序路径 
+        public const int MAX_FINGER_PRINT_NUM = 10;  //最大指纹个数
+        public const int MAX_CARD_READER_NUM_512 = 512; //最大读卡器数
         public const int NET_SDK_MULTI_CARD_GROUP_NUM_20 = 20;   //单门最大多重卡组数
-        public const int CARD_PASSWORD_LEN              = 8;   //卡密码长度
-        public const int MAX_DOOR_CODE_LEN              = 8; //房间代码长度
-        public const int MAX_LOCK_CODE_LEN              = 8; //锁代码长度
+        public const int CARD_PASSWORD_LEN = 8;   //卡密码长度
+        public const int MAX_DOOR_CODE_LEN = 8; //房间代码长度
+        public const int MAX_LOCK_CODE_LEN = 8; //锁代码长度
 
-        public const int MAX_NOTICE_NUMBER_LEN     = 32;   //公告编号最大长度
-        public const int MAX_NOTICE_THEME_LEN      = 64;   //公告主题最大长度
-        public const int MAX_NOTICE_DETAIL_LEN     = 1024; //公告详情最大长度
-        public const int MAX_NOTICE_PIC_NUM        = 6;    //公告信息最大图片数量
-        public const int MAX_DEV_NUMBER_LEN        = 32;   //设备编号最大长度
+        public const int MAX_NOTICE_NUMBER_LEN = 32;   //公告编号最大长度
+        public const int MAX_NOTICE_THEME_LEN = 64;   //公告主题最大长度
+        public const int MAX_NOTICE_DETAIL_LEN = 1024; //公告详情最大长度
+        public const int MAX_NOTICE_PIC_NUM = 6;    //公告信息最大图片数量
+        public const int MAX_DEV_NUMBER_LEN = 32;   //设备编号最大长度
         public const int LOCK_NAME_LEN = 32;  //锁名称
 
         public const int NET_SDK_EMPLOYEE_NO_LEN = 32;  //工号长度
@@ -706,7 +706,7 @@ namespace DeviceService.SDK
         //录像时间(NET_DVR_RECORD_V30结构)
         public const int NET_DVR_GET_RECORDCFG_V30 = 1004;//获取录像参数
         public const int NET_DVR_SET_RECORDCFG_V30 = 1005;//设置录像参数
-        
+
         public const int NET_DVR_GET_RECORDCFG_V40 = 1008; //获取录像参数(扩展)
         public const int NET_DVR_SET_RECORDCFG_V40 = 1009; //设置录像参数(扩展)
 
@@ -1047,7 +1047,7 @@ namespace DeviceService.SDK
         public const int COMM_ITS_GATE_COSTITEM = 0x3054;  //出入口过车收费明细 2013-11-19
         public const int COMM_ITS_GATE_HANDOVER = 0x3055; //出入口交接班数据 2013-11-19
         public const int COMM_ITS_PARK_VEHICLE = 0x3056;  //停车场数据上传
-        public const int COMM_ITS_BLOCKLIST_ALARM = 0x3057; 
+        public const int COMM_ITS_BLOCKLIST_ALARM = 0x3057;
         public const int COMM_ALARM_TPS_REAL_TIME = 0x3081;  //TPS实时过车数据上传
         public const int COMM_ALARM_TPS_STATISTICS = 0x3082;  //TPS统计过车数据上传
         public const int COMM_ALARM_V30 = 0x4000;	 //9000报警信息主动上传
@@ -1071,8 +1071,8 @@ namespace DeviceService.SDK
         public const int COMM_PASSNUM_INFO_ALARM = 0x5201;  //通行人数上报
         public const int COMM_ISAPI_ALARM = 0x6009;
 
-        public const int COMM_UPLOAD_AIOP_VIDEO         =  0x4021; //设备支持AI开放平台接入，上传视频检测数据
-        public const int COMM_UPLOAD_AIOP_PICTURE       =  0x4022; //设备支持AI开放平台接入，上传图片检测数据
+        public const int COMM_UPLOAD_AIOP_VIDEO = 0x4021; //设备支持AI开放平台接入，上传视频检测数据
+        public const int COMM_UPLOAD_AIOP_PICTURE = 0x4022; //设备支持AI开放平台接入，上传图片检测数据
         public const int COMM_UPLOAD_AIOP_POLLING_SNAP = 0x4023; //设备支持AI开放平台接入，上传轮巡抓图图片检测数据 对应的结构体(NET_AIOP_POLLING_SNAP_HEAD)
         public const int COMM_UPLOAD_AIOP_POLLING_VIDEO = 0x4024; //设备支持AI开放平台接入，上传轮巡视频检测数据 对应的结构体(NET_AIOP_POLLING_VIDEO_HEAD)
 
@@ -1222,7 +1222,7 @@ namespace DeviceService.SDK
         public const int UPTOCENTER = 0x4;/*上传中心*/
         public const int TRIGGERALARMOUT = 0x8;/*触发报警输出*/
         public const int TRIGGERCATPIC = 0x10;/*触发抓图并上传E-mail*/
-        public const int SEND_PIC_FTP = 0x200;  /*抓图并上传ftp*/        
+        public const int SEND_PIC_FTP = 0x200;  /*抓图并上传ftp*/
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_STRUCTHEAD
@@ -1244,7 +1244,7 @@ namespace DeviceService.SDK
             /*0x10: 触发JPRG抓图并上传Email*/
             /*0x20: 无线声光报警器联动*/
             /*0x40: 联动电子地图(目前只有PCNVR支持)*/
-            /*0x200: 抓图并上传FTP*/ 
+            /*0x200: 抓图并上传FTP*/
             public uint dwMaxRelAlarmOutChanNum; //触发的报警输出通道数（只读）最大支持数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_ALARMOUT_V40, ArraySubType = UnmanagedType.U4)]
             public uint[] dwRelAlarmOut; //触发报警通道      
@@ -1264,7 +1264,7 @@ namespace DeviceService.SDK
             /*0x10: 触发JPRG抓图并上传Email*/
             /*0x20: 无线声光报警器联动*/
             /*0x40: 联动电子地图(目前只有PCNVR支持)*/
-            /*0x200: 抓图并上传FTP*/ 
+            /*0x200: 抓图并上传FTP*/
             public uint dwMaxRelAlarmOutChanNum; //触发的报警输出通道数（只读）最大支持数
             public uint dwRelAlarmOutChanNum; //触发的报警输出通道数 实际支持数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_CHANNUM_V30, ArraySubType = UnmanagedType.U4)]
@@ -1554,12 +1554,12 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 64, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;
         }
-        
+
         //Ip可视对讲音频相关参数配置
         [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public struct NET_DVR_IP_VIEW_AUDIO_CFG
         {
-            public uint dwSize;	
+            public uint dwSize;
             public byte byAudioEncPri1; //音频编码优先级1，0-OggVorbis，1-G711_U，2-G711_A， 5-MPEG2,6-G726，7-AAC
             public byte byAudioEncPri2; //音频编码优先级2，当sip服务器不支持音频编码1时会使用音频编码2，0-OggVorbis，1-G711_U，2-G711_A， 5-MPEG2,6-G726，7-AAC
             public ushort wAudioPacketLen1; //音频编码1数据包长度
@@ -1567,12 +1567,12 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 30, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
-        
+
         //IP分机呼叫对讲参数配置结构体
         [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public struct NET_DVR_IP_VIEW_CALL_CFG
         {
-            public uint dwSize ;
+            public uint dwSize;
             public byte byEnableAutoResponse; //使能自动应答,0-不使能，1-使能
             public byte byAudoResponseTime; //自动应答时间，0-30秒
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I1)]
@@ -1590,26 +1590,26 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 72, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes4;
         }
-        
+
         //通道图象结构
         //移动侦测(子结构)(按组方式扩展)
         [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public struct NET_DVR_RECORDCHAN
-        {    
+        {
             public uint dwMaxRecordChanNum;   //设备支持的最大关联录像通道数-只读
             public uint dwCurRecordChanNum;   //当前实际已配置的关联录像通道数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_CHANNUM_V30, ArraySubType = UnmanagedType.U4)]
-            public uint dwRelRecordChan;	 /* 实际触发录像通道，按值表示,采用紧凑型排列，从下标0 - MAX_CHANNUM_V30-1有效，如果中间遇到0xffffffff,则后续无效*/  
+            public uint dwRelRecordChan;     /* 实际触发录像通道，按值表示,采用紧凑型排列，从下标0 - MAX_CHANNUM_V30-1有效，如果中间遇到0xffffffff,则后续无效*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 64, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;          //保留
-        }             
+        }
 
         //通道图象结构
         //移动侦测(子结构)(9000扩展)
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_MOTION_V30
         {
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 96*64, ArraySubType = UnmanagedType.I1)]
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 96 * 64, ArraySubType = UnmanagedType.I1)]
             public byte[] byMotionScope;/*侦测区域,0-96位,表示64行,共有96*64个小宏块,为1表示是移动侦测区域,0-表示不是*/
             public byte byMotionSensitive;/*移动侦测灵敏度, 0 - 5,越高越灵敏,oxff关闭*/
             public byte byEnableHandleMotion;/* 是否处理移动侦测 0－否 1－是*/
@@ -1750,9 +1750,9 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
             public NET_VCA_RECT struRect;//单个区域的坐标信息(矩形) size = 16;
-	        public NET_DVR_DNMODE  struDayNightDisable;//关闭模式
-            public NET_DVR_DNMODE  struDayModeParam;//白天模式
-            public NET_DVR_DNMODE  struNightModeParam;//夜晚模式
+            public NET_DVR_DNMODE struDayNightDisable;//关闭模式
+            public NET_DVR_DNMODE struDayModeParam;//白天模式
+            public NET_DVR_DNMODE struNightModeParam;//夜晚模式
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;
         }
@@ -1773,8 +1773,8 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public struct NET_DVR_MOTION_SINGLE_AREA
         {
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 64*96, ArraySubType = UnmanagedType.I1)]
-            public byte[]byMotionScope;		/*侦测区域,0-96位,表示64行,共有96*64个小宏块,目前有效的是22*18,为1表示是移动侦测区域,0-表示不是*/
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 64 * 96, ArraySubType = UnmanagedType.I1)]
+            public byte[] byMotionScope;		/*侦测区域,0-96位,表示64行,共有96*64个小宏块,目前有效的是22*18,为1表示是移动侦测区域,0-表示不是*/
             public byte byMotionSensitive;			/*移动侦测灵敏度, 0 - 5,越高越灵敏,0xff关闭*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
@@ -1784,16 +1784,16 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public struct NET_DVR_MOTION_MODE_PARAM
         {
-            public NET_DVR_MOTION_SINGLE_AREA  struMotionSingleArea; //普通模式下的单区域设
+            public NET_DVR_MOTION_SINGLE_AREA struMotionSingleArea; //普通模式下的单区域设
             public NET_DVR_MOTION_MULTI_AREA struMotionMultiArea; //专家模式下的多区域设置	
         }
 
         //移动侦测
         [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public struct NET_DVR_MOTION_V40
-        {	
+        {
             public NET_DVR_MOTION_MODE_PARAM struMotionMode; //(5.1.0新增)
-            public byte byEnableHandleMotion;		/* 是否处理移动侦测 0－否 1－是*/ 
+            public byte byEnableHandleMotion;       /* 是否处理移动侦测 0－否 1－是*/
             public byte byEnableDisplay;	/*启用移动侦测高亮显示，0-否，1-是*/
             public byte byConfigurationMode; //0~普通,1~专家(5.1.0新增)
             public byte byRes1; //保留字节
@@ -1807,16 +1807,16 @@ namespace DeviceService.SDK
             /*0x10: 触发JPRG抓图并上传Email*/
             /*0x20: 无线声光报警器联动*/
             /*0x40: 联动电子地图(目前只有PCNVR支持)*/
-            /*0x200: 抓图并上传FTP*/ 
-            public uint dwMaxRelAlarmOutChanNum ; //触发的报警输出通道数（只读）最大支持数量
+            /*0x200: 抓图并上传FTP*/
+            public uint dwMaxRelAlarmOutChanNum; //触发的报警输出通道数（只读）最大支持数量
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_ALARMOUT_V40, ArraySubType = UnmanagedType.U4)]
             public uint[] dwRelAlarmOut; //实际触发的报警输出号，按值表示,采用紧凑型排列，从下标0 - dwRelAlarmOut -1有效，如果中间遇到0xffffffff,则后续无效
-	        [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DAYS*MAX_TIMESEGMENT_V30, ArraySubType = UnmanagedType.Struct)]
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DAYS * MAX_TIMESEGMENT_V30, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_SCHEDTIME[] struAlarmTime; /*布防时间*/
             /*触发的录像通道*/
             public uint dwMaxRecordChanNum;   //设备支持的最大关联录像通道数-只读
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_CHANNUM_V40, ArraySubType = UnmanagedType.U4)]
-            public uint[] dwRelRecordChan;	 /* 实际触发录像通道，按值表示,采用紧凑型排列，从下标0 - dwRelRecordChan -1有效，如果中间遇到0xffffffff,则后续无效*/  
+            public uint[] dwRelRecordChan;   /* 实际触发录像通道，按值表示,采用紧凑型排列，从下标0 - dwRelRecordChan -1有效，如果中间遇到0xffffffff,则后续无效*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 128, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes; //保留字节
         }
@@ -1829,8 +1829,8 @@ namespace DeviceService.SDK
             public ushort wHideAlarmAreaTopLeftX;			/* 遮挡区域的x坐标 */
             public ushort wHideAlarmAreaTopLeftY;			/* 遮挡区域的y坐标 */
             public ushort wHideAlarmAreaWidth;				/* 遮挡区域的宽 */
-            public ushort wHideAlarmAreaHeight;				/*遮挡区域的高*/ 
-            /* 信号丢失触发报警输出 */	
+            public ushort wHideAlarmAreaHeight;             /*遮挡区域的高*/
+            /* 信号丢失触发报警输出 */
             public uint dwHandleType;        //异常处理,异常处理方式的"或"结果  
             /*0x00: 无响应*/
             /*0x01: 监视器上警告*/
@@ -1840,36 +1840,36 @@ namespace DeviceService.SDK
             /*0x10: 触发JPRG抓图并上传Email*/
             /*0x20: 无线声光报警器联动*/
             /*0x40: 联动电子地图(目前只有PCNVR支持)*/
-            /*0x200: 抓图并上传FTP*/ 
-            public uint dwMaxRelAlarmOutChanNum ; //触发的报警输出通道数（只读）最大支持数量
+            /*0x200: 抓图并上传FTP*/
+            public uint dwMaxRelAlarmOutChanNum; //触发的报警输出通道数（只读）最大支持数量
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_ALARMOUT_V40, ArraySubType = UnmanagedType.U4)]
-            public uint[] dwRelAlarmOut; /*触发报警输出号，按值表示,采用紧凑型排列，从下标0 - dwRelAlarmOut -1有效，如果中间遇到0xffffffff,则后续无效*/  	
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DAYS*MAX_TIMESEGMENT_V30, ArraySubType = UnmanagedType.Struct)]
+            public uint[] dwRelAlarmOut; /*触发报警输出号，按值表示,采用紧凑型排列，从下标0 - dwRelAlarmOut -1有效，如果中间遇到0xffffffff,则后续无效*/
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DAYS * MAX_TIMESEGMENT_V30, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_SCHEDTIME[] struAlarmTime; /*布防时间*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 64, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes; //保留
-        } 
+        }
 
         //信号丢失报警
         [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public struct NET_DVR_VILOST_V40
         {
-            public uint dwEnableVILostAlarm;				/* 是否启动信号丢失报警 ,0-否,1-是*/	 
-            /* 信号丢失触发报警输出 */	
+            public uint dwEnableVILostAlarm;                /* 是否启动信号丢失报警 ,0-否,1-是*/
+            /* 信号丢失触发报警输出 */
             public uint dwHandleType;        //异常处理,异常处理方式的"或"结果     
-            /*0x00: 无响应*/    
-            /*0x01: 监视器上警告*/    
-            /*0x02: 声音警告*/    
-            /*0x04: 上传中心*/    
-            /*0x08: 触发报警输出*/    
-            /*0x10: 触发JPRG抓图并上传Email*/    
-            /*0x20: 无线声光报警器联动*/    
-            /*0x40: 联动电子地图(目前只有PCNVR支持)*/    
-            /*0x200: 抓图并上传FTP*/ 
-            public uint dwMaxRelAlarmOutChanNum ; //触发的报警输出通道数（只读）最大支持数量
+            /*0x00: 无响应*/
+            /*0x01: 监视器上警告*/
+            /*0x02: 声音警告*/
+            /*0x04: 上传中心*/
+            /*0x08: 触发报警输出*/
+            /*0x10: 触发JPRG抓图并上传Email*/
+            /*0x20: 无线声光报警器联动*/
+            /*0x40: 联动电子地图(目前只有PCNVR支持)*/
+            /*0x200: 抓图并上传FTP*/
+            public uint dwMaxRelAlarmOutChanNum; //触发的报警输出通道数（只读）最大支持数量
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_ALARMOUT_V40, ArraySubType = UnmanagedType.U4)]
             public uint[] dwRelAlarmOut; /*触发报警输出号，按值表示,采用紧凑型排列，从下标0 - dwRelAlarmOut -1有效，如果中间遇到0xffffffff,则后续无效*/
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DAYS*MAX_TIMESEGMENT_V30, ArraySubType = UnmanagedType.Struct)]
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DAYS * MAX_TIMESEGMENT_V30, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_SCHEDTIME[] struAlarmTime; /*布防时间*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 64, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes; //保留
@@ -1879,9 +1879,9 @@ namespace DeviceService.SDK
         public struct NET_DVR_VICOLOR
         {
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_TIMESEGMENT_V30, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_COLOR[]	  struColor;/*图象参数(第一个有效，其他三个保留)*/
+            public NET_DVR_COLOR[] struColor;/*图象参数(第一个有效，其他三个保留)*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_TIMESEGMENT_V30, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_SCHEDTIME[]  struHandleTime;/*处理时间段(保留)*/
+            public NET_DVR_SCHEDTIME[] struHandleTime;/*处理时间段(保留)*/
         }
 
         //通道图象结构(V40扩展)
@@ -1890,14 +1890,14 @@ namespace DeviceService.SDK
         {
             public uint dwSize;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
-            public byte[] sChanName; 
+            public byte[] sChanName;
             public uint dwVideoFormat;	/* 只读 视频制式 1-NTSC 2-PAL  */
             public NET_DVR_VICOLOR struViColor;//	图像参数按时间段设置
-	        //显示通道名
+                                               //显示通道名
             public uint dwShowChanName; // 预览的图象上是否显示通道名称,0-不显示,1-显示
             public ushort wShowNameTopLeftX;				/* 通道名称显示位置的x坐标 */
-            public ushort wShowNameTopLeftY;				/* 通道名称显示位置的y坐标 */
-	        //隐私遮挡
+            public ushort wShowNameTopLeftY;                /* 通道名称显示位置的y坐标 */
+            //隐私遮挡
             public uint dwEnableHide;		/* 是否启动遮挡 ,0-否,1-是*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_SHELTERNUM, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_SHELTER[] struShelter;
@@ -1916,12 +1916,12 @@ namespace DeviceService.SDK
             /*7: xxxx/xx/xx(年/月/日) */
             /*8: xx/xx/xxxx(日/月/年)*/
             public byte byDispWeek;				/* 是否显示星期 */
-            public byte byOSDAttrib;				/* OSD属性:透明，闪烁 */
+            public byte byOSDAttrib;                /* OSD属性:透明，闪烁 */
             /* 0: 不显示OSD */
             /* 1: 透明，闪烁 */
             /* 2: 透明，不闪烁 */
             /* 3: 不透明，闪烁 */
-            /* 4: 不透明，不闪烁 */	
+            /* 4: 不透明，不闪烁 */
             public byte byHourOSDType;				/* OSD小时制:0-24小时制,1-12小时制 */
             public byte byFontSize;      //16*16(中)/8*16(英)，1-32*32(中)/16*32(英)，2-64*64(中)/32*64(英) FOR 91系列HD-SDI高清DVR
             public byte byOSDColorType;	 //0-默认（黑白）；1-自定义
@@ -2205,12 +2205,12 @@ namespace DeviceService.SDK
             public byte byRecordType;/* 录象类型 0:定时录像，1:移动侦测，2:报警录像，3:动测|报警，4:动测&报警 5:命令触发, 6: 智能录像*/
             public byte reservedData;
         }
-        
+
         //时间段录像参数配置(子结构)
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_RECORDSCHED_V40
         {
-            public NET_DVR_SCHEDTIME  struRecordTime;
+            public NET_DVR_SCHEDTIME struRecordTime;
             /*录像类型，0:定时录像，1:移动侦测，2:报警录像，3:动测|报警，4:动测&报警 5:命令触发, 
             6-智能报警录像，10-PIR报警，11-无线报警，12-呼救报警，13-全部事件,14-智能交通事件, 
             15-越界侦测,16-区域入侵,17-声音异常,18-场景变更侦测,
@@ -2219,29 +2219,29 @@ namespace DeviceService.SDK
             28-物品遗留侦测,29-物品拿取侦测,30-火点检测，31-防破坏检测,32-打架斗殴事件(司法),33-起身事件(司法), 34-瞌睡事件(司法)
             35-船只检测, 36-测温预警，37-测温报警，38-温差报警，39-离线测温报警,40-防区报警，41-紧急求助,42-业务咨询,43-起身检测,44-折线攀高,45-如厕超时，46-人脸抓拍，47-非法摆摊,48-目标抓拍,
             49-剧烈运动，50离岗检测，51-起立，52人数变化 */
-            public byte byRecordType; 
+            public byte byRecordType;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 31, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
 
-         //全天录像参数配置(子结构)
+        //全天录像参数配置(子结构)
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_RECORDDAY_V40
         {
             public byte byAllDayRecord; /* 是否全天录像 0-否 1-是*/
-                         /*录像类型，0:定时录像，1:移动侦测，2:报警录像，3:动测|报警，4:动测&报警 5:命令触发, 
-                         6-智能报警录像，10-PIR报警，11-无线报警，12-呼救报警，13-全部事件,14-智能交通事件, 
-                         15-越界侦测,16-区域入侵,17-声音异常,18-场景变更侦测,
-                         19-智能侦测(越界侦测|区域入侵|人脸侦测|声音异常|场景变更侦测),20－人脸侦测,21-POS录像,
-                         22-进入区域侦测, 23-离开区域侦测,24-徘徊侦测,25-人员聚集侦测,26-快速运动侦测,27-停车侦测,
-                         28-物品遗留侦测,29-物品拿取侦测,30-火点检测，31-防破坏检测,32-打架斗殴事件(司法),33-起身事件(司法), 34-瞌睡事件(司法)
-                         35-船只检测, 36-测温预警，37-测温报警，38-温差报警，39-离线测温报警,40-防区报警，41-紧急求助,42-业务咨询,43-起身检测,44-折线攀高,45-如厕超时,46-人脸抓拍,47-非法摆摊,48-目标抓拍,
-                         49-剧烈运动，50离岗检测，51-起立，52人数变化*/
-            public byte byRecordType; 
+            /*录像类型，0:定时录像，1:移动侦测，2:报警录像，3:动测|报警，4:动测&报警 5:命令触发, 
+            6-智能报警录像，10-PIR报警，11-无线报警，12-呼救报警，13-全部事件,14-智能交通事件, 
+            15-越界侦测,16-区域入侵,17-声音异常,18-场景变更侦测,
+            19-智能侦测(越界侦测|区域入侵|人脸侦测|声音异常|场景变更侦测),20－人脸侦测,21-POS录像,
+            22-进入区域侦测, 23-离开区域侦测,24-徘徊侦测,25-人员聚集侦测,26-快速运动侦测,27-停车侦测,
+            28-物品遗留侦测,29-物品拿取侦测,30-火点检测，31-防破坏检测,32-打架斗殴事件(司法),33-起身事件(司法), 34-瞌睡事件(司法)
+            35-船只检测, 36-测温预警，37-测温报警，38-温差报警，39-离线测温报警,40-防区报警，41-紧急求助,42-业务咨询,43-起身检测,44-折线攀高,45-如厕超时,46-人脸抓拍,47-非法摆摊,48-目标抓拍,
+            49-剧烈运动，50离岗检测，51-起立，52人数变化*/
+            public byte byRecordType;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 62, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_RECORD_V40
         {
@@ -2490,8 +2490,8 @@ namespace DeviceService.SDK
             /*0x10: 触发JPRG抓图并上传Email*/
             /*0x20: 无线声光报警器联动*/
             /*0x40: 联动电子地图(目前只有PCNVR支持)*/
-            /*0x200: 抓图并上传FTP*/ 
-            public uint dwMaxRelAlarmOutChanNum ; //触发的报警输出通道数（只读）最大支持数量
+            /*0x200: 抓图并上传FTP*/
+            public uint dwMaxRelAlarmOutChanNum; //触发的报警输出通道数（只读）最大支持数量
             public uint dwRelAlarmOutChanNum; //触发的报警输出通道数 实际支持数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_ALARMOUT_V40, ArraySubType = UnmanagedType.U4)]
             public uint[] dwRelAlarmOut; //触发报警通道
@@ -2501,7 +2501,7 @@ namespace DeviceService.SDK
             public uint dwMaxRecordChanNum;   //设备支持的最大关联录像通道数-只读
             public uint dwCurRecordChanNum;    //当前实际已配置的关联录像通道数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_CHANNUM_V40, ArraySubType = UnmanagedType.U4)]
-            public uint[] dwRelRecordChan;	 /* 实际触发录像通道，按值表示,采用紧凑型排列，从下标0 - dwCurRecordChanNum -1有效，如果中间遇到0xffffffff,则后续无效*/ 
+            public uint[] dwRelRecordChan;   /* 实际触发录像通道，按值表示,采用紧凑型排列，从下标0 - dwCurRecordChanNum -1有效，如果中间遇到0xffffffff,则后续无效*/
             public uint dwMaxEnablePtzCtrlNun; //最大可启用的云台控制总数(只读)
             public uint dwEnablePresetChanNum;  //当前已启用预置点的数目
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_CHANNUM_V40, ArraySubType = UnmanagedType.Struct)]
@@ -2556,9 +2556,9 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct STRUCT_IO_ALARM
         {
-            public uint	dwAlarmInputNo;		//发生报警的报警输入通道号，一次只有一个
-            public uint	dwTrigerAlarmOutNum;	/*触发的报警输出个数，用于后面计算变长数据部分中所有触发的报警输出通道号，四字节表示一个*/
-            public uint	dwTrigerRecordChanNum;	/*触发的录像通道个数，用于后面计算变长数据部分中所有触发的录像通道号，四字节表示一个*/
+            public uint dwAlarmInputNo;		//发生报警的报警输入通道号，一次只有一个
+            public uint dwTrigerAlarmOutNum;	/*触发的报警输出个数，用于后面计算变长数据部分中所有触发的报警输出通道号，四字节表示一个*/
+            public uint dwTrigerRecordChanNum;	/*触发的录像通道个数，用于后面计算变长数据部分中所有触发的录像通道号，四字节表示一个*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 116, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
@@ -2566,14 +2566,14 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct STRUCT_ALARM_CHANNEL
         {
-            public uint	dwAlarmChanNum;	/*发生报警通道数据个数，用于后面计算变长数据部分中所有发生的报警通道号，四字节表示一个*/
+            public uint dwAlarmChanNum;	/*发生报警通道数据个数，用于后面计算变长数据部分中所有发生的报警通道号，四字节表示一个*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 124, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct STRUCT_ALARM_HD
         {
-            public uint	dwAlarmHardDiskNum;	/*发生报警的硬盘数据长度，用于后面计算变长数据部分中所有发生报警的硬盘号，四节表示一个*/
+            public uint dwAlarmHardDiskNum;	/*发生报警的硬盘数据长度，用于后面计算变长数据部分中所有发生报警的硬盘号，四节表示一个*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 124, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
@@ -2583,7 +2583,7 @@ namespace DeviceService.SDK
         {
             [FieldOffset(0)]
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 128, ArraySubType = UnmanagedType.I1)]
-            public byte[] byUnionLen;         
+            public byte[] byUnionLen;
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -2594,12 +2594,12 @@ namespace DeviceService.SDK
             public UNION_ALARMINFO_FIXED uStruAlarm;
         }
 
-       [StructLayoutAttribute(LayoutKind.Sequential)]
+        [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_ALARMINFO_V40
-       {
+        {
             public NET_DVR_ALRAM_FIXED_HEADER struAlarmFixedHeader;	//报警固定部分
-            public IntPtr pAlarmData;	//报警可变部分内容
-       }
+            public IntPtr pAlarmData;   //报警可变部分内容
+        }
 
         //报警输入参数配置
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -2611,7 +2611,7 @@ namespace DeviceService.SDK
             public byte byAlarmType;//报警器类型,0：常开,1：常闭
             public byte byAlarmInHandle;/* 是否处理 0-不处理 1-处理*/
             public byte byChannel;     // 报警输入触发智能识别通道
-            public byte byRes;                     
+            public byte byRes;
             public NET_DVR_HANDLEEXCEPTION struAlarmHandleType;/* 处理方式 */
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DAYS * MAX_TIMESEGMENT, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_SCHEDTIME[] struAlarmTime;//布防时间
@@ -2636,14 +2636,14 @@ namespace DeviceService.SDK
         public struct NET_DVR_ANALOG_ALARMINCFG
         {
             public uint dwSize;
-            public byte	byEnableAlarmHandle; //处理报警输入
+            public byte byEnableAlarmHandle; //处理报警输入
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] byAlarmInName; //模拟报警输入名称
             public ushort wAlarmInUpper; //模拟输入电压上限，实际值乘10，范围0~360
             public ushort wAlarmInLower; //模拟输入电压下限，实际值乘10，范围0~360 
-            public NET_DVR_HANDLEEXCEPTION_V30 struAlarmHandleType;	/* 处理方式 */ 
+            public NET_DVR_HANDLEEXCEPTION_V30 struAlarmHandleType; /* 处理方式 */
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DAYS * MAX_TIMESEGMENT_V30, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_SCHEDTIME[] struAlarmTime;//布防时间
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_CHANNUM_V30, ArraySubType = UnmanagedType.I1)]
@@ -2714,7 +2714,7 @@ namespace DeviceService.SDK
         {
             public uint dwSize;   //结构体
             public uint dwExceptionCase;   //报警原因   0-网络异常
-            public NET_DVR_IPADDR  struDeviceIP;    //产生异常的设备IP地址
+            public NET_DVR_IPADDR struDeviceIP;    //产生异常的设备IP地址
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 256, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;         //保留
         }
@@ -2908,26 +2908,26 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_IPSERVER_STREAM
         {
-            public byte  byEnable;
+            public byte byEnable;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
-            public byte[]  byRes;
+            public byte[] byRes;
             public NET_DVR_IPADDR struIPServer;
-            public ushort  wPort;
-            public ushort  wDvrNameLen;
+            public ushort wPort;
+            public ushort wDvrNameLen;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
-            public byte[]  byDVRName;
-            public ushort  wDVRSerialLen;
+            public byte[] byDVRName;
+            public ushort wDVRSerialLen;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.U2)]
-            public ushort[]  byRes1;
+            public ushort[] byRes1;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = SERIALNO_LEN, ArraySubType = UnmanagedType.I1)]
-            public byte[]  byDVRSerialNumber;
+            public byte[] byDVRSerialNumber;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
-            public byte[]  byUserName;
+            public byte[] byUserName;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = PASSWD_LEN, ArraySubType = UnmanagedType.I1)]
-            public byte[]  byPassWord;
-            public byte  byChannel;
+            public byte[] byPassWord;
+            public byte byChannel;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 11, ArraySubType = UnmanagedType.I1)]
-            public byte[]  byRes2;
+            public byte[] byRes2;
             public void Init()
             {
                 byRes = new byte[3];
@@ -3034,7 +3034,7 @@ namespace DeviceService.SDK
             public byte byEnable;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 240, ArraySubType = UnmanagedType.I1)]
             public byte[] strURL;
-            public byte   byTransPortocol;
+            public byte byTransPortocol;
             public ushort wIPID;
             public byte byChannel;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 7, ArraySubType = UnmanagedType.I1)]
@@ -3083,7 +3083,7 @@ namespace DeviceService.SDK
             }
         }
 
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_IPCHANINFO_V40
         {
@@ -3117,7 +3117,7 @@ namespace DeviceService.SDK
                                           * 3- 通过IPServer找到设备，再通过流媒体取设备的流； 4- 通过流媒体由URL去取流；
                                           * 5- 通过hiDDNS域名连接设备然后从设备取流 */
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
-            public byte[]  byRes;
+            public byte[] byRes;
             public NET_DVR_GET_STREAM_UNION uGetStream;
             public void Init()
             {
@@ -3155,9 +3155,9 @@ namespace DeviceService.SDK
         public struct NET_DVR_ALARMINFO_DEV
         {
             public uint dwAlarmType;  //0-编码器(通道)信号量报警；1-私有卷二损坏；2- NVR服务退出；
-	        //3-编码器状态异常；4-系统时钟异常；5-录像卷剩余容量过低；
-	        //6-编码器(通道)移动侦测报警；7-编码器(通道)遮挡报警。
-            public NET_DVR_TIME   struTime;     //报警时间
+                                      //3-编码器状态异常；4-系统时钟异常；5-录像卷剩余容量过低；
+                                      //6-编码器(通道)移动侦测报警；7-编码器(通道)遮挡报警。
+            public NET_DVR_TIME struTime;     //报警时间
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;    //保留
             public uint dwNumber;     //数目
@@ -3245,7 +3245,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;				/* 保留 */
         }
-         /*IP报警输入资源*/
+        /*IP报警输入资源*/
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_IPALARMINCFG_V40
         {
@@ -3301,7 +3301,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_IP_ALARMIN, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_IPALARMININFO[] struIPAlarmInInfo;    /* IP报警输入 */
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_IP_ALARMOUT, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_IPALARMOUTINFO[] struIPAlarmOutInfo; /* IP报警输出 */   
+            public NET_DVR_IPALARMOUTINFO[] struIPAlarmOutInfo; /* IP报警输出 */
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 20, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;                          // 保留字节
         }
@@ -3317,7 +3317,7 @@ namespace DeviceService.SDK
             NET_HD_STAT_OFFLINE = 6,/*网络盘处于未连接状态 */
             HD_RIADVD_EXPAND = 7,    /* 虚拟磁盘可扩容 */
             HD_STAT_REPARING = 10,   /* 硬盘正在修复(9000 2.0) */
-            HD_STAT_FORMATING = 11,   /* 硬盘正在格式化(9000 2.0) */ 
+            HD_STAT_FORMATING = 11,   /* 硬盘正在格式化(9000 2.0) */
         }
 
         //本地硬盘信息配置
@@ -3337,9 +3337,9 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;
             public uint dwStorageType;    //按位表示 0-不支持 非0-支持
-							// dwStorageType & 0x1 表示是否是普通录像专用存储盘     
-							// dwStorageType & 0x2  表示是否是抽帧录像专用存储盘
-							// dwStorageType & 0x4 表示是否是图片录像专用存储盘
+                                          // dwStorageType & 0x1 表示是否是普通录像专用存储盘     
+                                          // dwStorageType & 0x2  表示是否是抽帧录像专用存储盘
+                                          // dwStorageType & 0x4 表示是否是图片录像专用存储盘
 
             public uint dwPictureCapacity; //硬盘图片容量(不可设置)，单位:MB
             public uint dwFreePictureSpace; //剩余图片空间(不可设置)，单位:MB
@@ -3360,7 +3360,7 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_SINGLE_HDGROUP_V40
         {
-            public uint dwHDGroupNo;       /*盘组号(不可设置) 1-MAX_HD_GROUP*/    
+            public uint dwHDGroupNo;       /*盘组号(不可设置) 1-MAX_HD_GROUP*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_CHANNUM_V40, ArraySubType = UnmanagedType.U4)]
             public uint[] dwRelRecordChan;  //触发的录像通道，按值表示，遇到0xffffffff时后续视为无效    
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 64, ArraySubType = UnmanagedType.I1)]
@@ -3539,7 +3539,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = PASSWD_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] sPassword;			/* 密码 */
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_RIGHT, ArraySubType = UnmanagedType.I1)]
-            public byte[] byLocalRight;	/* 本地权限 */
+            public byte[] byLocalRight; /* 本地权限 */
             /*数组0: 本地控制云台*/
             /*数组1: 本地手动录象*/
             /*数组2: 本地回放*/
@@ -3549,9 +3549,9 @@ namespace DeviceService.SDK
             /*数组6: 本地查看参数 */
             /*数组7: 本地管理模拟和IP camera */
             /*数组8: 本地备份 */
-            /*数组9: 本地关机/重启 */    
+            /*数组9: 本地关机/重启 */
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_RIGHT, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRemoteRight;/* 远程权限 */	
+            public byte[] byRemoteRight;/* 远程权限 */
             /*数组0: 远程控制云台*/
             /*数组1: 远程手动录象*/
             /*数组2: 远程回放 */
@@ -3565,7 +3565,7 @@ namespace DeviceService.SDK
             /*数组10: 远程控制串口*/
             /*数组11: 远程查看参数 */
             /*数组12: 远程管理模拟和IP camera */
-            /*数组13: 远程关机/重启 */	
+            /*数组13: 远程关机/重启 */
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_CHANNUM_V40, ArraySubType = UnmanagedType.U4)]
             public uint[] dwNetPreviewRight;			/* 远程可以预览的通道，从前往后顺序排列，遇到0xffffffff后续均为无效*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_CHANNUM_V40, ArraySubType = UnmanagedType.U4)]
@@ -3582,19 +3582,19 @@ namespace DeviceService.SDK
             public uint[] dwNetPTZRight;				/* 远程可以PTZ的通道，从前往后顺序排列，遇到0xffffffff后续均为无效*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_CHANNUM_V40, ArraySubType = UnmanagedType.U4)]
             public uint[] dwLocalBackupRight;			/* 本地备份权限通道，从前往后顺序排列，遇到0xffffffff后续均为无效*/
-            public NET_DVR_IPADDR	struUserIP;				/* 用户IP地址(为0时表示允许任何地址) */
+            public NET_DVR_IPADDR struUserIP;				/* 用户IP地址(为0时表示允许任何地址) */
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MACADDR_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] byMACAddr;	/* 物理地址 */
-            public byte byPriority;				/* 优先级，0xff-无，0--低，1--中，2--高 */
-                                    /* 无……表示不支持优先级的设置
-                                    低……默认权限:包括本地和远程回放,本地和远程查看日志和状态,本地和远程关机/重启
-                                    中……包括本地和远程控制云台,本地和远程手动录像,本地和远程回放,语音对讲和远程预览、本地备份,本地/远程关机/重启
-                                    高……管理员 */
+            public byte byPriority;             /* 优先级，0xff-无，0--低，1--中，2--高 */
+            /* 无……表示不支持优先级的设置
+            低……默认权限:包括本地和远程回放,本地和远程查看日志和状态,本地和远程关机/重启
+            中……包括本地和远程控制云台,本地和远程手动录像,本地和远程回放,语音对讲和远程预览、本地备份,本地/远程关机/重启
+            高……管理员 */
             public byte byAlarmOnRight;         // 报警输入口布防权限 1-有权限，0-无权限
             public byte byAlarmOffRight;         // 报警输入口撤防权限 1-有权限，0-无权限
             public byte byBypassRight;           // 报警输入口旁路权限 1-有权限，0-无权限 
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 118, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes;	
+            public byte[] byRes;
         }
 
         //单用户参数(子结构)(9000扩展)
@@ -3781,13 +3781,13 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_EXCEPTION_V40
         {
-            public uint dwSize ;             //结构体大小
-            public uint dwMaxGroupNum ;    //设备支持的最大组数
+            public uint dwSize;             //结构体大小
+            public uint dwMaxGroupNum;    //设备支持的最大组数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_EXCEPTIONNUM_V30, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_HANDLEEXCEPTION_V41[] struExceptionHandle;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 128, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;          //保留
-        } 
+        }
 
         //DVR异常参数(9000扩展)
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -3865,11 +3865,11 @@ namespace DeviceService.SDK
         //设备工作状态扩展结构体
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_WORKSTATE_V40
-        { 
-            public uint dwSize ;            //结构体大小
+        {
+            public uint dwSize;            //结构体大小
             public uint dwDeviceStatic; 	 //设备的状态,0-正常,1-CPU占用率太高,超过85%,2-硬件错误,例如串口死掉
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DISKNUM_V30, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_DISKSTATE[]  struHardDiskStatic;   //硬盘状态,一次最多只能获取33个硬盘信息
+            public NET_DVR_DISKSTATE[] struHardDiskStatic;   //硬盘状态,一次最多只能获取33个硬盘信息
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_CHANNUM_V40, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_CHANNELSTATE_V30[] struChanStatic;//通道的状态，从前往后顺序排列
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_ALARMIN_V40, ArraySubType = UnmanagedType.U4)]
@@ -3882,17 +3882,17 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 126, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes; 				//保留
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_GETWORKSTATE_COND
         {
-            public uint dwSize ;  //结构体长度
+            public uint dwSize;  //结构体长度
             public byte byFindHardByCond; /*0-查找全部磁盘(但一次最多只能查找33个)，此时dwFindHardStatusNum无效*/
-            public byte byFindChanByCond ;  /*0-查找全部通道，此时dwFindChanNum无效*/
+            public byte byFindChanByCond;  /*0-查找全部通道，此时dwFindChanNum无效*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;//保留	
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DISKNUM_V30, ArraySubType = UnmanagedType.U4)]
-            public uint[] dwFindHardStatus ; /*要查找的硬盘号，按值表示，该值采用顺序排列， 遇到0xffffffff则认为后续无效 */
+            public uint[] dwFindHardStatus; /*要查找的硬盘号，按值表示，该值采用顺序排列， 遇到0xffffffff则认为后续无效 */
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_CHANNUM_V40, ArraySubType = UnmanagedType.U4)]
             public uint[] dwFindChanNo; /*要查找的通道号，按值表示，该值采用顺序排列， 遇到0xffffffff则认为后续无效 */
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 64, ArraySubType = UnmanagedType.I1)]
@@ -3955,7 +3955,7 @@ namespace DeviceService.SDK
                 byAlarmInStatic = new byte[MAX_ALARMIN];
                 byAlarmOutStatic = new byte[MAX_ALARMOUT];
             }
-        }        
+        }
 
         //日志信息(9000扩展)
         [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
@@ -4005,19 +4005,19 @@ namespace DeviceService.SDK
         {
             public ushort wMajorType;		// 主类型
             public ushort wMinorType;		// 次类型 
-            public NET_DVR_TIME    struStartTime;	// 开始时间 
-            public NET_DVR_TIME    struEndTime;	// 结束时间
+            public NET_DVR_TIME struStartTime;	// 开始时间 
+            public NET_DVR_TIME struEndTime;	// 结束时间
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;		// 保留字节
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_ALARMHOST_LOG_RET
         {
-            public NET_DVR_TIME	struLogTime;                //  日志时间
+            public NET_DVR_TIME struLogTime;                //  日志时间
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] sUserName;     // 操作用户
-            public NET_DVR_IPADDR	struIPAddr;                 // 操作IP地址
+            public NET_DVR_IPADDR struIPAddr;                 // 操作IP地址
             public ushort wMajorType;                 // 主类型 
             public ushort wMinorType;                 // 次类型
             public ushort wParam;	                    // 操作参数
@@ -4048,7 +4048,7 @@ namespace DeviceService.SDK
         {
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 4, ArraySubType = UnmanagedType.I1)]
             public byte[] Output;
-        }        
+        }
 
         //ATM专用
         /****************************ATM(begin)***************************/
@@ -4105,7 +4105,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 12, ArraySubType = UnmanagedType.I1)]
             public byte[] code;/* 代码 */
         }
-        
+
         //ATM参数
         [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public struct NET_DVR_FRAMEFORMAT
@@ -4307,23 +4307,23 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_ATM_USER_DEFINE_PROTOCOL
         {
-            public NET_DVR_IDENTIFICAT        struIdentification;  //报文标志
-            public NET_DVR_FILTER             struFilter; //数据包过滤设置
+            public NET_DVR_IDENTIFICAT struIdentification;  //报文标志
+            public NET_DVR_FILTER struFilter; //数据包过滤设置
             public NET_DVR_ATM_PACKAGE_OTHERS struCardNoPara; //叠加卡号设置
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_ACTION_TYPE, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_ATM_PACKAGE_ACTION[] struTradeActionPara; //叠加交易行为设置 0-9 依次对应InCard OutCard OverLay SetTime GetStatus Query WithDraw Deposit ChanPass Transfer
             public NET_DVR_ATM_PACKAGE_OTHERS struAmountPara; //叠加交易金额设置
             public NET_DVR_ATM_PACKAGE_OTHERS struSerialNoPara; //叠加交易序号设置
-            public NET_DVR_OVERLAY_CHANNEL    struOverlayChan; //叠加通道设置
-            public NET_DVR_ATM_PACKAGE_DATE   struRes1; //叠加日期，保留
-            public NET_DVR_ATM_PACKAGE_TIME   struRes2; //叠加时间，保留
+            public NET_DVR_OVERLAY_CHANNEL struOverlayChan; //叠加通道设置
+            public NET_DVR_ATM_PACKAGE_DATE struRes1; //叠加日期，保留
+            public NET_DVR_ATM_PACKAGE_TIME struRes2; //叠加时间，保留
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 124, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes3;        //保留
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_ATM_FRAMEFORMAT_V30
-        {		
+        {
             public uint dwSize;                 //结构大小
             public byte byEnable;				/*是否启用0,不启用;1,启用*/
             public byte byInputMode;			/**输入方式:0-网络监听、1网络协议、2-串口监听、3-串口协议*/
@@ -4334,7 +4334,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;              // 保留字节
             public uint dwAtmType;				/*ATM协议类型，从NET_DVR_ATM_PROTOCOL结构中获取，如果类型为自定义时使用用户自定义协议*/
-            public NET_DVR_ATM_USER_DEFINE_PROTOCOL  struAtmUserDefineProtocol; //用户自定义协议，当ATM类型为自定时需要使用该定义
+            public NET_DVR_ATM_USER_DEFINE_PROTOCOL struAtmUserDefineProtocol; //用户自定义协议，当ATM类型为自定时需要使用该定义
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes3;
         }
@@ -4467,7 +4467,7 @@ namespace DeviceService.SDK
             public NET_DVR_PORTINFO[] struTransPortInfo;/* 数组0表示232 数组1表示485 */
         }
 
-        [StructLayoutAttribute(LayoutKind.Sequential)]               
+        [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct bytime
         {
             public uint dwChannel;
@@ -4664,7 +4664,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 15, ArraySubType = UnmanagedType.I1)]
             public byte[] res;
         }
-        /****************************DS9000新增结构(end)******************************/     
+        /****************************DS9000新增结构(end)******************************/
         //时间点
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_TIMEPOINT
@@ -4865,7 +4865,7 @@ namespace DeviceService.SDK
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_ISCSI_CFG
-        {   
+        {
             public uint dwSize;                   // 结构大小
             public ushort wVrmPort;                  // VRM 监听端口
             public byte byEnable;                  // 是否启用 ISCSI存储
@@ -5091,7 +5091,7 @@ namespace DeviceService.SDK
             public NET_DVR_IPADDR struMcastIP;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.I1)]
             public byte[] res;
-        }       
+        }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_MATRIX_TRAN_CHAN_INFO_V30
@@ -5133,7 +5133,7 @@ namespace DeviceService.SDK
             public byte[] vyRes;/* 保留 */
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_SERIAL_NUM, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_MATRIX_TRAN_CHAN_INFO[] struTranInfo;/*同时支持建立MAX_SERIAL_NUM个透明通道*/
-        }        
+        }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_MATRIX_CHAN_INFO_V30
@@ -5181,20 +5181,20 @@ namespace DeviceService.SDK
             public byte byStartChan;
             public byte byVGANums;
             public byte byBNCNums;
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 8*12, ArraySubType = UnmanagedType.I1)]
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 8 * 12, ArraySubType = UnmanagedType.I1)]
             public byte[] byVGAWindowMode;/*VGA支持的窗口模式*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 4, ArraySubType = UnmanagedType.I1)]
             public byte[] byBNCWindowMode;/*BNC支持的窗口模式*/
-            public byte byDspNums;   
+            public byte byDspNums;
             public byte byHDMINums;//HDMI显示通道个数（从25开始）
             public byte byDVINums;//DVI显示通道个数（从29开始）
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 13, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_RESOLUTIONNUM, ArraySubType = UnmanagedType.I1)]
             public byte[] bySupportResolution;//按照上面的枚举定义,一个字节代表一个分辨率是//否支持，1：支持，0：不支持
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 4*8, ArraySubType = UnmanagedType.I1)]
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 4 * 8, ArraySubType = UnmanagedType.I1)]
             public byte[] byHDMIWindowMode;//HDMI支持的窗口模式
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 4*8, ArraySubType = UnmanagedType.I1)]
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 4 * 8, ArraySubType = UnmanagedType.I1)]
             public byte[] byDVIWindowMode;//DVI支持的窗口模式
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 24, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;
@@ -5351,12 +5351,12 @@ namespace DeviceService.SDK
             public byte[] byJoinDecChan;/*各个子窗口关联的解码通道*/
             public byte byEnlargeStatus;          /*是否处于放大状态，0：不放大，1：放大*/
             public byte byEnlargeSubWindowIndex;//放大的子窗口号
-	        [StructLayoutAttribute(LayoutKind.Explicit)]
+            [StructLayoutAttribute(LayoutKind.Explicit)]
             public struct struDiff
             {
                 [FieldOffsetAttribute(0)]
                 [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 16, ArraySubType = UnmanagedType.I1)]
-                 public byte[] byRes;
+                public byte[] byRes;
             }
             public byte byUnionType;/*区分共用体，0-视频综合平台内部解码器显示通道配置，1-其他解码器显示通道配置*/
             public byte byScale; /*显示模式，0---真实显示，1---缩放显示( 针对BNC )*/
@@ -5415,7 +5415,7 @@ namespace DeviceService.SDK
         public const int PASSIVE_DEC_FAST = 3;   /*快速被动解码(仅文件流有效)*/
         public const int PASSIVE_DEC_SLOW = 4;   /*慢速被动解码(仅文件流有效)*/
         public const int PASSIVE_DEC_NORMAL = 5;   /*正常被动解码(仅文件流有效)*/
-        public const int PASSIVE_DEC_ONEBYONE =	6;  /*被动解码单帧播放(保留)*/
+        public const int PASSIVE_DEC_ONEBYONE = 6;  /*被动解码单帧播放(保留)*/
         public const int PASSIVE_DEC_AUDIO_ON = 7;   /*音频开启*/
         public const int PASSIVE_DEC_AUDIO_OFF = 8; 	 /*音频关闭*/
         public const int PASSIVE_DEC_RESETBUFFER = 9;    /*清空缓冲区*/
@@ -5423,12 +5423,12 @@ namespace DeviceService.SDK
         //2009-12-16 增加控制解码器解码通道缩放
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_MATRIX_DECCHAN_CONTROL
-        {        
+        {
             public uint dwSize;
             public byte byDecChanScaleStatus;/*解码通道显示缩放控制,1表示缩放显示，0表示真实显示*/
             public byte byDecodeDelay;//解码延时，0-默认，1-实时性好，2-实时性较好，3-实时性中，流畅性中，4-流畅性较好，5-流畅性好，0xff-自动调整   
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 66, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes;	
+            public byte[] byRes;
         }
         /************************************多路解码器(end)***************************************/
 
@@ -5496,7 +5496,7 @@ namespace DeviceService.SDK
             public uint dwPoolTime; /*轮询间隔，单位：秒*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_CYCLE_CHAN_V30, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_MATRIX_CHAN_INFO_V30[] struChanConInfo;
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 16, ArraySubType = UnmanagedType.I1)]            
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 16, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
 
@@ -5506,7 +5506,7 @@ namespace DeviceService.SDK
             public uint dwSize;
             public byte byAlarmMode;//报警触发类型，1-轮询，2-保持 
             public ushort wLoopTime;//轮询时间, 单位：秒 
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 9, ArraySubType = UnmanagedType.I1)] 
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 9, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
 
@@ -5516,11 +5516,11 @@ namespace DeviceService.SDK
             public uint dwSize;
             public NET_DVR_IPADDR struIP;/*码分器IP地址*/
             public ushort wPort;//码分器端口号
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 6, ArraySubType = UnmanagedType.I1)]             
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 6, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)] 
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] sUserName;/* 用户名 */
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = PASSWD_LEN, ArraySubType = UnmanagedType.I1)] 
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = PASSWD_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] sPassword;/*密码 */
             public byte byChan;//码分器485号
             public byte by485Port;//485口地址      
@@ -5534,7 +5534,7 @@ namespace DeviceService.SDK
             public byte byAssociateType;//关联类型，1-报警
             public ushort wAlarmDelay;//报警延时，0－5秒；1－10秒；2－30秒；3－1分钟；4－2分钟；5－5分钟；6－10分钟；
             public byte byAlarmNum;//报警号，具体的值由应用赋，相同的报警赋相同的值
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.I1)] 
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
 
@@ -5544,7 +5544,7 @@ namespace DeviceService.SDK
             public uint dwSize;
             public NET_DVR_ASSOCIATECFG struAssociateCfg;//触发动态解码关联结构
             public NET_DVR_PU_STREAM_CFG struPuStreamCfg;//动态解码结构
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.I1)] 
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -5553,7 +5553,7 @@ namespace DeviceService.SDK
             public NET_DVR_SCHEDTIME struSchedTime;
             public byte byDecodeType;/*0-无，1-轮询解码，2-动态解码*/
             public byte byLoopGroup;//轮询组号
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 6, ArraySubType = UnmanagedType.I1)] 
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 6, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
             public NET_DVR_PU_STREAM_CFG struDynamicDec;//动态解码
         }
@@ -5561,9 +5561,9 @@ namespace DeviceService.SDK
         public struct NET_DVR_PLANDECODE
         {
             public uint dwSize;
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DAYS * DECODE_TIMESEGMENT, ArraySubType = UnmanagedType.I1)] 
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DAYS * DECODE_TIMESEGMENT, ArraySubType = UnmanagedType.I1)]
             public NET_DVR_DECODESCHED[] struDecodeSched;//周一作为开始，和9000一致
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.I1)] 
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.I1)]
             public byte[] byres;
         }
         /************************************视频综合平台(end)***************************************/
@@ -5579,7 +5579,7 @@ namespace DeviceService.SDK
             public byte[] byRes;
         }
 
-        
+
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_SUBSYSTEM_ABILITY
@@ -5659,7 +5659,7 @@ namespace DeviceService.SDK
             public byte bySupportPreAllocDec;   //是否支持智能解码资源预分配，0-不支持，1-支持
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 628, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;
-        }       
+        }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_SINGLESCREENCFG
@@ -5699,10 +5699,10 @@ namespace DeviceService.SDK
                 struFollowSingleScreen = new NET_DVR_SINGLESCREENCFG[MAX_BIGSCREENNUM];
                 byRes2 = new byte[12];
             }
-        }       
+        }
 
         /************************************视频综合平台(end)***************************************/
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public struct NET_DVR_EMAILCFG
         {
@@ -5822,22 +5822,22 @@ namespace DeviceService.SDK
             public byte byMainProto;			//主码流传输协议类型 0-private, 1-rtsp,2-同时支持private和rtsp
             public byte bySubProto;				//子码流传输协议类型0-private, 1-rtsp,2-同时支持private和rtsp
             public byte bySupport;        //能力，位与结果为0表示不支持，1表示支持，
-            //bySupport & 0x1, 表示是否支持智能搜索
-            //bySupport & 0x2, 表示是否支持备份
-            //bySupport & 0x4, 表示是否支持压缩参数能力获取
-            //bySupport & 0x8, 表示是否支持多网卡
-            //bySupport & 0x10, 表示支持远程SADP
-            //bySupport & 0x20, 表示支持Raid卡功能
-            //bySupport & 0x40, 表示支持IPSAN 目录查找
-	        //bySupport & 0x80, 表示支持rtp over rtsp
+                                          //bySupport & 0x1, 表示是否支持智能搜索
+                                          //bySupport & 0x2, 表示是否支持备份
+                                          //bySupport & 0x4, 表示是否支持压缩参数能力获取
+                                          //bySupport & 0x8, 表示是否支持多网卡
+                                          //bySupport & 0x10, 表示支持远程SADP
+                                          //bySupport & 0x20, 表示支持Raid卡功能
+                                          //bySupport & 0x40, 表示支持IPSAN 目录查找
+                                          //bySupport & 0x80, 表示支持rtp over rtsp
             public byte bySupport1;        // 能力集扩充，位与结果为0表示不支持，1表示支持
-	        //bySupport1 & 0x1, 表示是否支持snmp v30
-	        //bySupport1 & 0x2, 支持区分回放和下载
-	        //bySupport1 & 0x4, 是否支持布防优先级	
-	        //bySupport1 & 0x8, 智能设备是否支持布防时间段扩展
-	        //bySupport1 & 0x10, 表示是否支持多磁盘数（超过33个）
-	        //bySupport1 & 0x20, 表示是否支持rtsp over http	
-	        //bySupport1 & 0x80, 表示是否支持车牌新报警信息2012-9-28, 且还表示是否支持NET_DVR_IPPARACFG_V40结构体
+                                           //bySupport1 & 0x1, 表示是否支持snmp v30
+                                           //bySupport1 & 0x2, 支持区分回放和下载
+                                           //bySupport1 & 0x4, 是否支持布防优先级	
+                                           //bySupport1 & 0x8, 智能设备是否支持布防时间段扩展
+                                           //bySupport1 & 0x10, 表示是否支持多磁盘数（超过33个）
+                                           //bySupport1 & 0x20, 表示是否支持rtsp over http	
+                                           //bySupport1 & 0x80, 表示是否支持车牌新报警信息2012-9-28, 且还表示是否支持NET_DVR_IPPARACFG_V40结构体
             public byte bySupport2; /*能力，位与结果为0表示不支持，非0表示支持							
 							bySupport2 & 0x1, 表示解码器是否支持通过URL取流解码
 							bySupport2 & 0x2,  表示支持FTPV40
@@ -5848,12 +5848,12 @@ namespace DeviceService.SDK
 							bySupport2 & 0x40,  表示是否是码流加密设备*/
             public ushort wDevType;              //设备型号
             public byte bySupport3; //能力集扩展，位与结果为0表示不支持，1表示支持
-							//bySupport3 & 0x1, 表示是否多码流
-							// bySupport3 & 0x4 表示支持按组配置， 具体包含 通道图像参数、报警输入参数、IP报警输入、输出接入参数、
-                            // 用户参数、设备工作状态、JPEG抓图、定时和时间抓图、硬盘盘组管理 
-							//bySupport3 & 0x8为1 表示支持使用TCP预览、UDP预览、多播预览中的"延时预览"字段来请求延时预览（后续都将使用这种方式请求延时预览）。而当bySupport3 & 0x8为0时，将使用 "私有延时预览"协议。
-							//bySupport3 & 0x10 表示支持"获取报警主机主要状态（V40）"。
-							//bySupport3 & 0x20 表示是否支持通过DDNS域名解析取流
+                                    //bySupport3 & 0x1, 表示是否多码流
+                                    // bySupport3 & 0x4 表示支持按组配置， 具体包含 通道图像参数、报警输入参数、IP报警输入、输出接入参数、
+                                    // 用户参数、设备工作状态、JPEG抓图、定时和时间抓图、硬盘盘组管理 
+                                    //bySupport3 & 0x8为1 表示支持使用TCP预览、UDP预览、多播预览中的"延时预览"字段来请求延时预览（后续都将使用这种方式请求延时预览）。而当bySupport3 & 0x8为0时，将使用 "私有延时预览"协议。
+                                    //bySupport3 & 0x10 表示支持"获取报警主机主要状态（V40）"。
+                                    //bySupport3 & 0x20 表示是否支持通过DDNS域名解析取流
 
             public byte byMultiStreamProto;//是否支持多码流,按位表示,0-不支持,1-支持,bit1-码流3,bit2-码流4,bit7-主码流，bit-8子码流
             public byte byStartDChan;		//起始数字通道号,0表示无效
@@ -5861,9 +5861,9 @@ namespace DeviceService.SDK
             public byte byHighDChanNum;		//数字通道个数，高位
             public byte bySupport4;
             public byte byLanguageType;// 支持语种能力,按位表示,每一位0-不支持,1-支持  
-						//  byLanguageType 等于0 表示 老设备
-						//  byLanguageType & 0x1表示支持中文
-						//  byLanguageType & 0x2表示支持英文
+                                       //  byLanguageType 等于0 表示 老设备
+                                       //  byLanguageType & 0x1表示支持中文
+                                       //  byLanguageType & 0x2表示支持英文
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 9, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;		//保留
         }
@@ -6104,12 +6104,12 @@ namespace DeviceService.SDK
             public string sCardNum;
             public byte byLocked;//9000设备支持,1表示此文件已经被锁定,0表示正常的文件
             public byte byFileType;  //文件类型:0－定时录像,1-移动侦测 ，2－报警触发，
-	        //3-报警|移动侦测 4-报警&移动侦测 5-命令触发 6-手动录像,7－震动报警，8-环境报警，9-智能报警，10-PIR报警，11-无线报警，12-呼救报警,14-智能交通事件
+                                     //3-报警|移动侦测 4-报警&移动侦测 5-命令触发 6-手动录像,7－震动报警，8-环境报警，9-智能报警，10-PIR报警，11-无线报警，12-呼救报警,14-智能交通事件
             public byte byQuickSearch; //0:普通查询结果，1：快速（日历）查询结果
             public byte byRes;
             public uint dwFileIndex; //文件索引号
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 128, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes1;	
+            public byte[] byRes1;
         }
 
         //录象文件参数(带卡号)
@@ -6257,12 +6257,12 @@ namespace DeviceService.SDK
         {
             [FieldOffsetAttribute(0)]
             public UNION_EAP_TTLS EAP_TTLS;//WPA-enterprise/WPA2-enterpris模式适用
-			
+
             [FieldOffsetAttribute(0)]
             public UNION_EAP_PEAP EAP_PEAP; //WPA-enterprise/WPA2-enterpris模式适用
 
-			[FieldOffsetAttribute(0)]
-            public UNION_EAP_TLS EAP_TLS; 
+            [FieldOffsetAttribute(0)]
+            public UNION_EAP_TLS EAP_TLS;
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
@@ -6400,7 +6400,7 @@ namespace DeviceService.SDK
         }
 
         //行为分析能力类型
-        public enum VCA_ABILITY_TYPE:uint
+        public enum VCA_ABILITY_TYPE : uint
         {
             TRAVERSE_PLANE_ABILITY = 0x01,       //穿越警戒面
             ENTER_AREA_ABILITY = 0x02,       //进入区域
@@ -7211,7 +7211,7 @@ namespace DeviceService.SDK
         {
             public uint dwSize;			//dwSize = sizeof(NET_AIOP_POLLING_VIDEO_HEAD)		
             public uint dwChannel;      //设备分析通道的通道号(走SDK协议)；
-            public NET_DVR_SYSTEM_TIME     struTime; 	//时间
+            public NET_DVR_SYSTEM_TIME struTime; 	//时间
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 64, ArraySubType = UnmanagedType.I1)]
             public byte[] szTaskID;    //轮询抓图任务ID，来自于轮询抓图任务派发
             public uint dwAIOPDataSize;	//对应AIOPDdata数据长度
@@ -7786,7 +7786,7 @@ namespace DeviceService.SDK
         public const int INQUEST_TAG_INFO = 0x1003;       /*重点标记信息*/
         public const int INQUEST_SEGMENT_INFO = 0x1004;      /*审讯片断状态信息*/
 
-        public enum VCA_DETECTION_MINOR_TYPE:uint
+        public enum VCA_DETECTION_MINOR_TYPE : uint
         {
             EVENT_VCA_TRAVERSE_PLANE = 1,        //越警侦测
             EVENT_FIELD_DETECTION,		     //区域入侵侦测
@@ -7966,21 +7966,21 @@ namespace DeviceService.SDK
         //审讯事件搜索条件
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct EVENT_INQUEST_PARAM
-		{			
+        {
             public byte byRoomIndex;    //审讯室编号,从1开始
-			[MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 299, ArraySubType = UnmanagedType.I1)]
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 299, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;     //保留
             public void init()
             {
                 byRes = new byte[299];
             }
-		}
+        }
 
         //智能侦测查找条件
-		[StructLayoutAttribute(LayoutKind.Sequential)]
+        [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct EVENT_VCADETECT_BYBIT
-		{
-			[MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 256, ArraySubType = UnmanagedType.I1)]
+        {
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 256, ArraySubType = UnmanagedType.I1)]
             public byte[] byChan;//触发智能侦测的通道号，按数组下标表示，byChan[0]若置1则表示查找由通道1发生移动侦测触发的事件 
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 44, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;     //保留
@@ -7989,23 +7989,23 @@ namespace DeviceService.SDK
                 byChan = new byte[256];
                 byRes = new byte[44];
             }
-		}
-		
+        }
+
         //智能侦测查找条件 ，通道号按值表示
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct EVENT_VCADETECT_BYVALUE
-		{
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_CHANNUM_V30-1, ArraySubType = UnmanagedType.U4)]
+        {
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_CHANNUM_V30 - 1, ArraySubType = UnmanagedType.U4)]
             public uint[] dwChanNo;// 触发通道号,按值表示，0xffffffff无效，且后续数据也表示无效值
             public byte byAll;//0-表示不是全部，1-表示全部。
-			[MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 47, ArraySubType = UnmanagedType.I1)]
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 47, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
             public void init()
             {
                 dwChanNo = new uint[MAX_CHANNUM_V30 - 1];
                 byRes = new byte[47];
             }
-		}
+        }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct EVENT_STREAMID_PARAM
@@ -8013,14 +8013,14 @@ namespace DeviceService.SDK
             public NET_DVR_STREAM_INFO struIDInfo; // 流id信息，72字节长
             public uint dwCmdType;  // 外部触发类型，NVR接入云存储使用
             public byte byBackupVolumeNum; //存档卷号，CVR使用
-			[MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 223, ArraySubType = UnmanagedType.I1)]
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 223, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
             public void init()
             {
                 struIDInfo.Init();
                 byRes = new byte[223];
             }
-		}
+        }
 
         [StructLayout(LayoutKind.Explicit)]
         public struct SEARCH_EVENT_UNION
@@ -8028,27 +8028,27 @@ namespace DeviceService.SDK
             [FieldOffsetAttribute(0)]
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = SEARCH_EVENT_INFO_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] byLen;
-           /* [FieldOffsetAttribute(0)]
-            public EVENT_ALARM_BYBIT struAlarmParam;
-            [FieldOffsetAttribute(0)]
-            public EVENT_ALARM_BYVALUE struAlarmParamByValue;
-            [FieldOffsetAttribute(0)]
-            public EVENT_MOTION_BYBIT struMotionParam;
-            [FieldOffsetAttribute(0)]
-            public EVENT_MOTION_BYVALUE struMotionParamByValue;
-            [FieldOffsetAttribute(0)]
-            public EVENT_VCA_BYBIT struVcaParam;
-            [FieldOffsetAttribute(0)]
-            public EVENT_VCA_BYVALUE struVcaParamByValue;
-            [FieldOffsetAttribute(0)]
-            public EVENT_INQUEST_PARAM struInquestParam;
-            [FieldOffsetAttribute(0)]
-            public EVENT_VCADETECT_BYBIT struVCADetectByBit;
-            [FieldOffsetAttribute(0)]
-            public EVENT_VCADETECT_BYVALUE struVCADetectByValue;
-            [FieldOffsetAttribute(0)]
-            public EVENT_STREAMID_PARAM struStreamIDParam;
-            * */
+            /* [FieldOffsetAttribute(0)]
+             public EVENT_ALARM_BYBIT struAlarmParam;
+             [FieldOffsetAttribute(0)]
+             public EVENT_ALARM_BYVALUE struAlarmParamByValue;
+             [FieldOffsetAttribute(0)]
+             public EVENT_MOTION_BYBIT struMotionParam;
+             [FieldOffsetAttribute(0)]
+             public EVENT_MOTION_BYVALUE struMotionParamByValue;
+             [FieldOffsetAttribute(0)]
+             public EVENT_VCA_BYBIT struVcaParam;
+             [FieldOffsetAttribute(0)]
+             public EVENT_VCA_BYVALUE struVcaParamByValue;
+             [FieldOffsetAttribute(0)]
+             public EVENT_INQUEST_PARAM struInquestParam;
+             [FieldOffsetAttribute(0)]
+             public EVENT_VCADETECT_BYBIT struVCADetectByBit;
+             [FieldOffsetAttribute(0)]
+             public EVENT_VCADETECT_BYVALUE struVCADetectByValue;
+             [FieldOffsetAttribute(0)]
+             public EVENT_STREAMID_PARAM struStreamIDParam;
+             * */
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -8121,7 +8121,7 @@ namespace DeviceService.SDK
             public uint dwSegmentNo;     //本片断在本次审讯中的序号,从1开始 
             public ushort wSegmetSize;     //本片断的大小, 单位M 
             public ushort wSegmentState;   //本片断状态 0 刻录正常，1 刻录异常，2 不刻录审讯
-			[MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 288, ArraySubType = UnmanagedType.I1)]
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 288, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;     //保留
 
             public void init()
@@ -8139,9 +8139,9 @@ namespace DeviceService.SDK
             public uint dwRecordLength;	//录像大小
             public byte byLockFlag;    // 锁定标志 0：没锁定 1：锁定
             public byte byDrawFrameType;    // 0：非抽帧录像 1：抽帧录像
-			[MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I1)]
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;
-			[MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] byFileName; 	//文件名
             public uint dwFileIndex;    		// 存档卷上的文件索引
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 256, ArraySubType = UnmanagedType.I1)]
@@ -8200,16 +8200,16 @@ namespace DeviceService.SDK
         // 标定配置类型
         public enum tagCALIBRATE_TYPE
         {
-            PDC_CALIBRATE  = 0x01,  // PDC 标定
-            BEHAVIOR_OUT_CALIBRATE  = 0x02, //行为室外场景标定  
+            PDC_CALIBRATE = 0x01,  // PDC 标定
+            BEHAVIOR_OUT_CALIBRATE = 0x02, //行为室外场景标定  
             BEHAVIOR_IN_CALIBRATE = 0x03,    // 行为室内场景标定 
-            ITS_CALBIRETE       = 0x04      //  交通事件标定
+            ITS_CALBIRETE = 0x04      //  交通事件标定
         }
 
         public const int MAX_RECT_NUM = 6;
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_RECT_LIST
-        {	
+        {
             public byte byRectNum;    // 矩形框的个数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 11, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;  //保留字节 
@@ -8241,11 +8241,11 @@ namespace DeviceService.SDK
             public byte byEnableHorizon;    // 是否使能设置摄像机地平线
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 5, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;   // 保留字节 
-            public float  fCameraHeight;    // 摄像机高度
-            public float  fCameraAngle;     // 摄像机俯仰角度
-            public float  fHorizon;         // 场景中的地平线
+            public float fCameraHeight;    // 摄像机高度
+            public float fCameraAngle;     // 摄像机俯仰角度
+            public float fHorizon;         // 场景中的地平线
         }
-        
+
         /*当fValue表示目标高度的时候，struStartPoint和struEndPoint分别表示目标头部点和脚部点。
          * 当fValue表示线段长度的时候，struStartPoint和struEndPoint分别表示线段起始点和终点，
          * mode表示当前样本线表示高度线还是长度线。*/
@@ -8255,8 +8255,8 @@ namespace DeviceService.SDK
             public byte byLineMode;     // 参照 LINE_MODE
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;       // 保留字节 
-            public NET_VCA_POINT   struStartPoint;  
-            public NET_VCA_POINT   struEndPoint;
+            public NET_VCA_POINT struStartPoint;
+            public NET_VCA_POINT struEndPoint;
             public float fValue;
         }
 
@@ -8268,8 +8268,8 @@ namespace DeviceService.SDK
         {
             public uint dwLineSegNum;          // 样本线个数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_LINE_SEG_NUM, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_LINE_SEGMENT[]  struLineSegment;    // 样本线最大个数
-            public NET_DVR_CAMERA_PARAM  struCameraParam;    // 摄像机参数
+            public NET_DVR_LINE_SEGMENT[] struLineSegment;    // 样本线最大个数
+            public NET_DVR_CAMERA_PARAM struCameraParam;    // 摄像机参数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 20, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
@@ -8286,12 +8286,12 @@ namespace DeviceService.SDK
         public const int MAX_SAMPLE_NUM = 5;
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
-        public struct NET_DVR_BEHAVIOR_IN_CALIBRATION 
+        public struct NET_DVR_BEHAVIOR_IN_CALIBRATION
         {
             public uint dwCalSampleNum;      //  标定样本个数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_SAMPLE_NUM, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_IN_CAL_SAMPLE[]  struCalSample; // 标定样本最大个数
-            public NET_DVR_CAMERA_PARAM    struCameraParam;    // 摄像机参数
+            public NET_DVR_IN_CAL_SAMPLE[] struCalSample; // 标定样本最大个数
+            public NET_DVR_CAMERA_PARAM struCameraParam;    // 摄像机参数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 16, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
@@ -8357,8 +8357,8 @@ namespace DeviceService.SDK
             public byte byEnable;             // 是否激活规则;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 23, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;       // 保留字节 
-            public NET_VCA_POLYGON  struPolygon;            // 多边形
-            public NET_DVR_PDC_ENTER_DIRECTION  struEnterDirection;    // 流量进入方向
+            public NET_VCA_POLYGON struPolygon;            // 多边形
+            public NET_DVR_PDC_ENTER_DIRECTION struEnterDirection;    // 流量进入方向
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -8369,7 +8369,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 23, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;       // 保留字节 
             public NET_VCA_POLYGON struPolygon;            // 多边形
-            public NET_DVR_PDC_ENTER_DIRECTION  struEnterDirection;    // 流量进入方向
+            public NET_DVR_PDC_ENTER_DIRECTION struEnterDirection;    // 流量进入方向
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DAYS * MAX_TIMESEGMENT_V30, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_SCHEDTIME struAlarmTime;//布防时间
             public NET_DVR_TIME_EX struDayStartTime; //白天开始时间，时分秒有效
@@ -8394,7 +8394,7 @@ namespace DeviceService.SDK
             public uint dwSize;
             public uint dwChannel; //通道号
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 64, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes; 
+            public byte[] byRes;
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -8407,14 +8407,14 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DAYS, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_TIME_EX[] struTime;//数据清零时间，时分秒有效
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 64, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes; 
+            public byte[] byRes;
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_VCA_CTRLINFO_COND
         {
             public uint dwSize;
-            public NET_DVR_STREAM_INFO  struStreamInfo;
+            public NET_DVR_STREAM_INFO struStreamInfo;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 64, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
@@ -8428,8 +8428,8 @@ namespace DeviceService.SDK
             public byte byStreamWithVCA; //码流中是否带智能信息
             public byte byMode;			//模式，ATM 能力时参照VCA_CHAN_MODE_TYPE ,TFS 能力时参照 TFS_CHAN_MODE_TYPE，行为分析完整版时参照BEHAVIOR_SCENE_MODE_TYPE
             public byte byControlType;   //控制类型，按位表示，0-否，1-是
-	                        //byControlType &1 是否启用抓拍功能
-                            //byControlType &2 是否启用联动前端设备
+                                         //byControlType &1 是否启用抓拍功能
+                                         //byControlType &2 是否启用联动前端设备
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 83, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes; 		//保留，设置为0
         }
@@ -8466,7 +8466,7 @@ namespace DeviceService.SDK
         public enum PDC_PARAM_KEY
         {
             HUMAN_GENERATE_RATE = 50,  // 目标生成速度 从50开始
-            DETECT_SENSITIVE    = 51,  // 检测灵敏度
+            DETECT_SENSITIVE = 51,  // 检测灵敏度
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -8485,7 +8485,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
             public byte[] yRes1;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_TARGET_NUM, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_PDC_TARGET_INFO[]  struTargetInfo;   //目标信息数组
+            public NET_DVR_PDC_TARGET_INFO[] struTargetInfo;   //目标信息数组
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;                  // 保留字节
         }
@@ -8539,7 +8539,7 @@ namespace DeviceService.SDK
             public NET_DVR_TIME tmStart;
             public NET_DVR_TIME tmEnd;
             public uint dwLeaveNum;
-            public uint dwEnterNum; 
+            public uint dwEnterNum;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 256, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;
         }
@@ -8562,18 +8562,18 @@ namespace DeviceService.SDK
         public struct NET_DVR_POSITION_RULE_CFG
         {
             public uint dwSize;             // 结构大小 
-            public NET_DVR_PTZ_POSITION    struPtzPosition;    // 场景位置信息
-            public NET_VCA_RULECFG         struVcaRuleCfg;     //行为规则配置
+            public NET_DVR_PTZ_POSITION struPtzPosition;    // 场景位置信息
+            public NET_VCA_RULECFG struVcaRuleCfg;     //行为规则配置
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 80, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;         // 保留字节
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_POSITION_RULE_CFG_V41
         {
             public uint dwSize;             // 结构大小 
-            public NET_DVR_PTZ_POSITION  struPtzPosition;    // 场景位置信息
-            public NET_VCA_RULECFG_V41   struVcaRuleCfg;     //行为规则配置
+            public NET_DVR_PTZ_POSITION struPtzPosition;    // 场景位置信息
+            public NET_VCA_RULECFG_V41 struVcaRuleCfg;     //行为规则配置
             public byte byTrackEnable; //是否启用跟踪
             public byte byRes1;
             public ushort wTrackDuration; //跟踪持续时间，单位s
@@ -8587,10 +8587,10 @@ namespace DeviceService.SDK
             public byte byEnable;	// 是否启用场景限位功能
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;
-            public NET_DVR_PTZPOS  struUp;     // 上限位
-            public NET_DVR_PTZPOS  struDown;   // 下限位
-            public NET_DVR_PTZPOS  struLeft;   // 左限位
-            public NET_DVR_PTZPOS  struRight;  // 右限位
+            public NET_DVR_PTZPOS struUp;     // 上限位
+            public NET_DVR_PTZPOS struDown;   // 下限位
+            public NET_DVR_PTZPOS struLeft;   // 左限位
+            public NET_DVR_PTZPOS struRight;  // 右限位
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 20, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;
         }
@@ -8614,11 +8614,11 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_POSITION_NUM, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_POSITION_INDEX[]   struPositionIndex;
+            public NET_DVR_POSITION_INDEX[] struPositionIndex;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;
         }
-        
+
         //巡航路径场景信息
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_PATROL_SCENE_INFO
@@ -8668,7 +8668,7 @@ namespace DeviceService.SDK
         }
 
         /********************************智能交通事件 begin****************************************/
-        public const int MAX_REGION_NUM	= 8;  // 区域列表最大数目
+        public const int MAX_REGION_NUM = 8;  // 区域列表最大数目
         public const int MAX_TPS_RULE = 8;   // 最大参数规则数目
         public const int MAX_AID_RULE = 8;   // 最大事件规则数目
         public const int MAX_LANE_NUM = 8;   // 最大车道数目
@@ -8676,60 +8676,60 @@ namespace DeviceService.SDK
         //交通事件类型
         public enum TRAFFIC_AID_TYPE
         {
-            CONGESTION            = 0x01,    //拥堵
-            PARKING               = 0x02,    //停车  
-            INVERSE               = 0x04,    //逆行
-            PEDESTRIAN            = 0x08,    //行人                      
-            DEBRIS                = 0x10,    //遗留物 抛洒物碎片 
-            SMOKE                 = 0x20,    //烟雾  
-	        OVERLINE              = 0x40,     //压线
-	        VEHICLE_CONTROL_LIST  = 0x80,  //黑名单数据
-	        SPEED                 = 0x100  //超速
+            CONGESTION = 0x01,    //拥堵
+            PARKING = 0x02,    //停车  
+            INVERSE = 0x04,    //逆行
+            PEDESTRIAN = 0x08,    //行人                      
+            DEBRIS = 0x10,    //遗留物 抛洒物碎片 
+            SMOKE = 0x20,    //烟雾  
+            OVERLINE = 0x40,     //压线
+            VEHICLE_CONTROL_LIST = 0x80,  //黑名单数据
+            SPEED = 0x100  //超速
         }
-        
+
         public enum TRAFFIC_SCENE_MODE
         {
-	        FREEWAY = 0,	//  高速户外场景
-	        TUNNEL,         //  高速隧道场景
-	        BRIDGE          //  高速桥梁场景
+            FREEWAY = 0,    //  高速户外场景
+            TUNNEL,         //  高速隧道场景
+            BRIDGE          //  高速桥梁场景
         }
-        
+
         public enum ITS_ABILITY_TYPE
         {
-            ITS_CONGESTION_ABILITY             = 0x01,      //拥堵
-            ITS_PARKING_ABILITY                = 0x02,      //停车  
-            ITS_INVERSE_ABILITY                = 0x04,      //逆行
-            ITS_PEDESTRIAN_ABILITY             = 0x08,      //行人                      
-            ITS_DEBRIS_ABILITY                 = 0x10,      //遗留物 抛洒物碎片
-            ITS_SMOKE_ABILITY                  = 0x20,      //烟雾-隧道
-            ITS_OVERLINE_ABILITY               = 0x40,      //压线
-	        ITS_VEHICLE_CONTROL_LIST_ABILITY   = 0x80,		//黑名单数据
-	        ITS_SPEED_ABILITY				   = 0x100,	    //超速	
-            ITS_LANE_VOLUME_ABILITY            = 0x010000,  //车道流量
-            ITS_LANE_VELOCITY_ABILITY          = 0x020000,  //车道平均速度
-            ITS_TIME_HEADWAY_ABILITY           = 0x040000,  //车头时距
-            ITS_SPACE_HEADWAY_ABILITY          = 0x080000,  //车头间距
-            ITS_TIME_OCCUPANCY_RATIO_ABILITY   = 0x100000,  //车道占有率，（时间上)
-            ITS_SPACE_OCCUPANCY_RATIO_ABILITY  = 0x200000,  //车道占有率，百分比计算（空间上)
-            ITS_LANE_QUEUE_ABILITY             = 0x400000,  //排队长度
-	        ITS_VEHICLE_TYPE_ABILITY           = 0x800000,  //车辆类型
-	        ITS_TRAFFIC_STATE_ABILITY          = 0x1000000  //交通状态
+            ITS_CONGESTION_ABILITY = 0x01,      //拥堵
+            ITS_PARKING_ABILITY = 0x02,      //停车  
+            ITS_INVERSE_ABILITY = 0x04,      //逆行
+            ITS_PEDESTRIAN_ABILITY = 0x08,      //行人                      
+            ITS_DEBRIS_ABILITY = 0x10,      //遗留物 抛洒物碎片
+            ITS_SMOKE_ABILITY = 0x20,      //烟雾-隧道
+            ITS_OVERLINE_ABILITY = 0x40,      //压线
+            ITS_VEHICLE_CONTROL_LIST_ABILITY = 0x80,        //黑名单数据
+            ITS_SPEED_ABILITY = 0x100,	    //超速	
+            ITS_LANE_VOLUME_ABILITY = 0x010000,  //车道流量
+            ITS_LANE_VELOCITY_ABILITY = 0x020000,  //车道平均速度
+            ITS_TIME_HEADWAY_ABILITY = 0x040000,  //车头时距
+            ITS_SPACE_HEADWAY_ABILITY = 0x080000,  //车头间距
+            ITS_TIME_OCCUPANCY_RATIO_ABILITY = 0x100000,  //车道占有率，（时间上)
+            ITS_SPACE_OCCUPANCY_RATIO_ABILITY = 0x200000,  //车道占有率，百分比计算（空间上)
+            ITS_LANE_QUEUE_ABILITY = 0x400000,  //排队长度
+            ITS_VEHICLE_TYPE_ABILITY = 0x800000,  //车辆类型
+            ITS_TRAFFIC_STATE_ABILITY = 0x1000000  //交通状态
         }
-        
+
         // 交通统计参数
         public enum ITS_TPS_TYPE
         {
-            LANE_VOLUME           = 0x01,    //车道流量
-            LANE_VELOCITY         = 0x02,    //车道速度
-            TIME_HEADWAY          = 0x04,    //车头时距
-            SPACE_HEADWAY         = 0x08,    //车头间距
-            TIME_OCCUPANCY_RATIO  = 0x10,    //车道占有率 (时间上)
+            LANE_VOLUME = 0x01,    //车道流量
+            LANE_VELOCITY = 0x02,    //车道速度
+            TIME_HEADWAY = 0x04,    //车头时距
+            SPACE_HEADWAY = 0x08,    //车头间距
+            TIME_OCCUPANCY_RATIO = 0x10,    //车道占有率 (时间上)
             SPACE_OCCUPANCY_RATIO = 0x20,    //车道占有率，百分比计算(空间上)
-            QUEUE                 = 0x40,    //排队长度
-	        VEHICLE_TYPE          = 0x80,    //车辆类型
-	        TRAFFIC_STATE         = 0x100    //交通状态
+            QUEUE = 0x40,    //排队长度
+            VEHICLE_TYPE = 0x80,    //车辆类型
+            TRAFFIC_STATE = 0x100    //交通状态
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_REGION_LIST
         {
@@ -8797,7 +8797,7 @@ namespace DeviceService.SDK
         //单条交通事件规则结构体
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_ONE_AID_RULE
-        {   
+        {
             public byte byEnable;                   // 是否启用事件规则
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;                  // 保留字节
@@ -8805,10 +8805,10 @@ namespace DeviceService.SDK
             public byte[] byRuleName;       // 规则名称 
             public uint dwEventType;                // 交通事件检测类型 TRAFFIC_AID_TYPE
             public NET_VCA_SIZE_FILTER struSizeFilter; // 尺寸过滤器
-            public NET_VCA_POLYGON     struPolygon;    // 规则区域
-            public NET_DVR_AID_PARAM   struAIDParam;   //  事件参数
+            public NET_VCA_POLYGON struPolygon;    // 规则区域
+            public NET_DVR_AID_PARAM struAIDParam;   //  事件参数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DAYS * MAX_TIMESEGMENT_2, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_SCHEDTIME[]   struAlarmTime;//布防时间
+            public NET_DVR_SCHEDTIME[] struAlarmTime;//布防时间
             public NET_DVR_HANDLEEXCEPTION_V30 struHandleType;	  //处理方式
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_CHANNUM_V30, ArraySubType = UnmanagedType.I1)]
             public byte[] byRelRecordChan;        //报警触发的录象通道,为1表示触发该通道
@@ -8826,7 +8826,7 @@ namespace DeviceService.SDK
             public byte[] byRes1;                 // 保留字节
             public NET_DVR_JPEGPARA struPictureParam; //图片规格结构
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_AID_RULE, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_ONE_AID_RULE[]  struOneAIDRule;
+            public NET_DVR_ONE_AID_RULE[] struOneAIDRule;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;
         }
@@ -8834,7 +8834,7 @@ namespace DeviceService.SDK
         //单条交通事件规则结构体(扩展)
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_ONE_AID_RULE_V41
-        {   
+        {
             public byte byEnable;                 // 是否启用事件规则
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;                // 保留字节
@@ -8863,7 +8863,7 @@ namespace DeviceService.SDK
             public byte[] byRes1;                  // 保留字节
             public NET_DVR_JPEGPARA struPictureParam; 	// 图片规格结构
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_AID_RULE, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_ONE_AID_RULE_V41[]  struAIDRule;  //规则数组
+            public NET_DVR_ONE_AID_RULE_V41[] struAIDRule;  //规则数组
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 128, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;                //保留
         }
@@ -8906,10 +8906,10 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;                    //保留
             public uint dwCalcType;                   // 统计参数类型ITS_TPS_TYPE
-            public NET_VCA_SIZE_FILTER  struSizeFilter;  //尺寸过滤器 
-            public NET_VCA_POLYGON  struVitrualLoop; //虚拟线圈
+            public NET_VCA_SIZE_FILTER struSizeFilter;  //尺寸过滤器 
+            public NET_VCA_POLYGON struVitrualLoop; //虚拟线圈
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DAYS * MAX_TIMESEGMENT_V30, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_SCHEDTIME[]  struAlarmTime;//布防时间
+            public NET_DVR_SCHEDTIME[] struAlarmTime;//布防时间
             public NET_DVR_HANDLEEXCEPTION_V30 struHandleType;	   //处理方式 
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 60, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;                   // 保留字节
@@ -8925,7 +8925,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 128, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;     // 保留
         }
-        
+
         //实时信息
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_TPS_PARAM
@@ -8955,7 +8955,7 @@ namespace DeviceService.SDK
         public struct NET_DVR_LLI_PARAM
         {
             public float fSec;//秒[0.000000,60.000000]
-            public byte  byDegree;//度:纬度[0,90] 经度[0,180]
+            public byte byDegree;//度:纬度[0,90] 经度[0,180]
             public byte byMinute;//分[0,59]
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 6, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
@@ -9064,7 +9064,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] byRuleName; //  规则名称
             public uint dwAIDType;  // 报警事件类型
-            public NET_DVR_DIRECTION   struDirect; // 报警指向区域  
+            public NET_DVR_DIRECTION struDirect; // 报警指向区域  
             public byte bySpeedLimit; //限速值，单位km/h[0,255]
             public byte byCurrentSpeed; //当前速度值，单位km/h[0,255]
             public byte byVehicleEnterState;//车辆出入状态 0-无效 1-驶入 2-驶出
@@ -9132,28 +9132,28 @@ namespace DeviceService.SDK
         {
             public uint dwLanNum;   // 交通参数的车道数目
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_TPS_RULE, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_LANE_PARAM[]  struLaneParam;
+            public NET_DVR_LANE_PARAM[] struLaneParam;
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_TPS_ALARM
         {
             public uint dwSize;          //结构体大小
             public uint dwRelativeTime;  //相对时标
             public uint dwAbsTime;       //绝对时标
-            public NET_VCA_DEV_INFO  struDevInfo;     //前端设备信息
-            public NET_DVR_TPS_INFO  struTPSInfo;     //交通事件信息
+            public NET_VCA_DEV_INFO struDevInfo;     //前端设备信息
+            public NET_DVR_TPS_INFO struTPSInfo;     //交通事件信息
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;      //保留字节
         }
-        
+
         public enum TRAFFIC_DATA_VARY_TYPE_EX_ENUM
-        {    
-	        ENUM_TRAFFIC_VARY_NO             = 0x00,   //无变化
-	        ENUM_TRAFFIC_VARY_VEHICLE_ENTER  = 0x01,   //车辆进入虚拟线圈
-	        ENUM_TRAFFIC_VARY_VEHICLE_LEAVE  = 0x02,   //车辆离开虚拟线圈
-	        ENUM_TRAFFIC_VARY_QUEUE          = 0x04,   //队列变化
-	        ENUM_TRAFFIC_VARY_STATISTIC      = 0x08,   //统计数据变化（每分钟变化一次包括平均速度，车道空间/时间占有率，交通状态）        
+        {
+            ENUM_TRAFFIC_VARY_NO = 0x00,   //无变化
+            ENUM_TRAFFIC_VARY_VEHICLE_ENTER = 0x01,   //车辆进入虚拟线圈
+            ENUM_TRAFFIC_VARY_VEHICLE_LEAVE = 0x02,   //车辆离开虚拟线圈
+            ENUM_TRAFFIC_VARY_QUEUE = 0x04,   //队列变化
+            ENUM_TRAFFIC_VARY_STATISTIC = 0x08,   //统计数据变化（每分钟变化一次包括平均速度，车道空间/时间占有率，交通状态）        
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -9169,7 +9169,7 @@ namespace DeviceService.SDK
             public uint dwTpsType;            // 数据变化类型标志，表示当前上传的统计参数中，哪些数据有效，参照ITS_TPS_TYPE,按位区分
             public uint dwLaneVolume;	     // 车道流量，统计有多少车子通过
             public uint dwLaneVelocity;       // 车道速度，公里计算
-            public uint dwTimeHeadway ;       // 车头时距，以秒计算
+            public uint dwTimeHeadway;       // 车头时距，以秒计算
             public uint dwSpaceHeadway;       // 车头间距，以米来计算
             public float fSpaceOccupyRation;   // 车道占有率，百分比计算（空间上)
             public float fTimeOccupyRation;    // 时间占有率，百分比计算
@@ -9181,13 +9181,13 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 64, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;           // 保留
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_TPS_INFO_V41
         {
             public uint dwLanNum;          // 交通参数的车道数目
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_TPS_RULE, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_LANE_PARAM_V41[]  struLaneParam;
+            public NET_DVR_LANE_PARAM_V41[] struLaneParam;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;         //保留
         }
@@ -9203,11 +9203,11 @@ namespace DeviceService.SDK
             public byte byUpFacePic; //是否上传人脸子图，0-否，1-是	
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] byRuleName;
-            public NET_VCA_POLYGON     struVcaPolygon;    // 人脸检测规则区域
+            public NET_VCA_POLYGON struVcaPolygon;    // 人脸检测规则区域
             public byte byPicProType;	//报警时图片处理方式 0-不处理 非0-上传
             public byte bySensitivity;   // 规则灵敏度
             public ushort wDuration;      // 触发人脸报警时间阈值
-            public NET_DVR_JPEGPARA    struPictureParam; 		//图片规格结构
+            public NET_DVR_JPEGPARA struPictureParam; 		//图片规格结构
             public NET_VCA_SIZE_FILTER struSizeFilter;         //尺寸过滤器
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DAYS * MAX_TIMESEGMENT_2, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_SCHEDTIME[] struAlarmTime;//布防时间
@@ -9218,10 +9218,10 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 39, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;         //保留字节
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_FACE_PIPCFG
-        {	
+        {
             public byte byEnable; //是否开启画中画
             public byte byBackChannel; //背景通道号（面板通道）
             public byte byPosition; //叠加位置，0-左上,1-左下,2-右上,3-右下
@@ -9229,7 +9229,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 4, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_FACEDETECT_RULECFG_V41
         {
@@ -9244,10 +9244,10 @@ namespace DeviceService.SDK
             public byte byPicProType;	//报警时图片处理方式 0-不处理 非0-上传
             public byte bySensitivity;   // 规则灵敏度
             public ushort wDuration;      // 触发人脸报警时间阈值
-            public NET_DVR_JPEGPARA    struPictureParam; 		//图片规格结构
+            public NET_DVR_JPEGPARA struPictureParam; 		//图片规格结构
             public NET_VCA_SIZE_FILTER struSizeFilter;         //尺寸过滤器
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DAYS * MAX_TIMESEGMENT_V30, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_SCHEDTIME[]   struAlarmTime;//布防时间
+            public NET_DVR_SCHEDTIME[] struAlarmTime;//布防时间
             public NET_DVR_HANDLEEXCEPTION_V30 struHandleType;	  //处理方式 
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_CHANNUM_V30, ArraySubType = UnmanagedType.I1)]
             public byte[] byRelRecordChan;			//报警触发的录象通道,为1表示触发该通道
@@ -9258,7 +9258,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 28, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;         //保留字节
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_FACEDETECT_ALARM
         {
@@ -9267,8 +9267,8 @@ namespace DeviceService.SDK
             public uint dwAbsTime;			// 绝对时标
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] byRuleName;   // 规则名称
-            public NET_VCA_TARGET_INFO  struTargetInfo;	//报警目标信息
-            public NET_VCA_DEV_INFO  	 struDevInfo;		//前端设备信息
+            public NET_VCA_TARGET_INFO struTargetInfo;	//报警目标信息
+            public NET_VCA_DEV_INFO struDevInfo;		//前端设备信息
             public uint dwPicDataLen;						//返回图片的长度 为0表示没有图片，大于0表示该结构后面紧跟图片数据*/
             public byte byAlarmPicType;			// 0-异常人脸报警图片 1- 人脸图片,2-多张人脸 
             public byte byPanelChan;        /*2012-3-1人脸通道关联的面板通道*/
@@ -9280,7 +9280,7 @@ namespace DeviceService.SDK
             public IntPtr pFaceImage; //指向人脸图指针
             public IntPtr pImage;   						//指向图片的指针
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_EVENT_PARAM_UNION
         {
@@ -9312,14 +9312,14 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_RULE_NUM, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_EVENT_INFO[] struEventInfo;	// 事际实时信息
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_RULE_INFO_ALARM
         {
             public uint dwSize;				// 结构体大小
             public uint dwRelativeTime; 	// 相对时标
             public uint dwAbsTime;			// 绝对时标
-            public NET_VCA_DEV_INFO  	struDevInfo;		// 前端设备信息
+            public NET_VCA_DEV_INFO struDevInfo;		// 前端设备信息
             public NET_DVR_EVENT_INFO_LIST struEventInfoList;	//事件信息列表
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 40, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;			// 保留字节
@@ -9341,7 +9341,7 @@ namespace DeviceService.SDK
         //场景起效时间段配置
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_SCENE_TIME_CFG
-        {   
+        {
             public uint dwSize;                                               //结构大小
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_SCENE_TIMESEG_NUM, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_ONE_SCENE_TIME[] struSceneTime; //场景时间段数组
@@ -9352,7 +9352,7 @@ namespace DeviceService.SDK
         //单条场景配置信息
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_ONE_SCENE_CFG
-        {    
+        {
             public byte byEnable;                 //是否启用该场景,0-不启用 1- 启用
             public byte byDirection;              //监测方向 1-上行，2-下行，3-双向，4-由东向西，5-由南向北，6-由西向东，7-由北向南，8-其它
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I1)]
@@ -9401,16 +9401,16 @@ namespace DeviceService.SDK
         //报警场景信息
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_SCENE_INFO
-        {  
+        {
             public uint dwSceneID;              //场景ID, 0 - 表示该场景无效
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] bySceneName;  //场景名称
             public byte byDirection;            //监测方向 1-上行，2-下行，3-双向，4-由东向西，5-由南向北，6-由西向东，7-由北向南，8-其它
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;              //保留
-            public NET_DVR_PTZPOS  struPtzPos;             //Ptz 坐标
+            public NET_DVR_PTZPOS struPtzPos;             //Ptz 坐标
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 64, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes2 ;            //保留
+            public byte[] byRes2;            //保留
         }
 
         //交通事件报警(扩展)
@@ -9449,7 +9449,7 @@ namespace DeviceService.SDK
             public uint dwRelativeTime;  // 相对时标
             public uint dwAbsTime;       // 绝对时标
             public NET_VCA_DEV_INFO struDevInfo;     // 前端设备信息
-            public NET_DVR_TPS_INFO_V41  struTPSInfo;     // 交通参数统计信息 
+            public NET_DVR_TPS_INFO_V41 struTPSInfo;     // 交通参数统计信息 
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 128, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;      // 保留
         }
@@ -9472,17 +9472,17 @@ namespace DeviceService.SDK
         /******************************车牌识别 begin******************************************/
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_PLATE_PARAM
-        {	
+        {
             public byte byPlateRecoMode;    //车牌识别的模式,默认为1(视频触发模式)
             public byte byBelive;	/*整牌置信度阈值, 只用于视频识别方式, 根据背景复杂程度设置, 误触发率高就设高, 漏车率高就设低, 
                                      * 建议在80-90范围内*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 22, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;          //保留字节
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_PLATECFG
-        {	
+        {
             public uint dwSize;
             public uint dwEnable;				           /* 是否启用视频车牌识别 0－否 1－是 */
             public byte byPicProType;	//报警时图片处理方式 0-不处理 非0-上传
@@ -9518,7 +9518,7 @@ namespace DeviceService.SDK
             public byte[] sPlateCategory;//车牌附加信息, 即中东车牌中车牌号码旁边的小字信息，(目前只有中东地区支持)
             public uint dwXmlLen;                        //XML报警信息长度
             public IntPtr pXmlBuf;                      // XML报警信息指针,报警类型为 COMM_ITS_PLATE_RESUL时有效，其XML对应到EventNotificationAlert XML Block
-            public NET_VCA_RECT	struPlateRect;	//车牌位置
+            public NET_VCA_RECT struPlateRect;	//车牌位置
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_LICENSE_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] sLicense;	//车牌号码 
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_LICENSE_LEN, ArraySubType = UnmanagedType.I1)]
@@ -9678,12 +9678,12 @@ namespace DeviceService.SDK
         public struct NET_DVR_EXPOSURE
         {
             public byte byExposureMode; /*0 手动曝光 1自动曝光*/
-            public byte byAutoApertureLevel; /* 自动光圈灵敏度, 0-10 */ 
+            public byte byAutoApertureLevel; /* 自动光圈灵敏度, 0-10 */
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
-            public uint dwVideoExposureSet; /* 自定义视频曝光时间（单位us）*//*注:自动曝光时该值为曝光最慢值 新增20-1s(1000000us)*/        
-            public uint dwExposureUserSet; /* 自定义曝光时间,在抓拍机上应用时，CCD模式时是抓拍快门速度*/   
-            public uint dwRes;    
+            public uint dwVideoExposureSet; /* 自定义视频曝光时间（单位us）*//*注:自动曝光时该值为曝光最慢值 新增20-1s(1000000us)*/
+            public uint dwExposureUserSet; /* 自定义曝光时间,在抓拍机上应用时，CCD模式时是抓拍快门速度*/
+            public uint dwRes;
         }
 
         //宽动态配置
@@ -9716,7 +9716,7 @@ namespace DeviceService.SDK
             public byte byBeginTimeSec; //开始时间（秒），0-59
             public byte byEndTimeMin; //结束时间（分），0-59
             public byte byEndTimeSec; //结束时间（秒），0-59
-	        //报警输入触发模式参数
+                                      //报警输入触发模式参数
             public byte byAlarmTrigState; //报警输入触发状态，0-白天，1-夜晚
         }
 
@@ -9754,7 +9754,7 @@ namespace DeviceService.SDK
             public byte byDigitalNoiseRemoveLevel; /*普通模式数字降噪级别：0x0-0xF*/
             public byte bySpectralLevel;       /*专家模式下空域强度：0-100*/
             public byte byTemporalLevel;   /*专家模式下时域强度：0-100*/
-            public byte byDigitalNoiseRemove2DEnable;         /* 抓拍帧2D降噪，0-不启用，1-启用 */	
+            public byte byDigitalNoiseRemove2DEnable;         /* 抓拍帧2D降噪，0-不启用，1-启用 */
             public byte byDigitalNoiseRemove2DLevel;            /* 抓拍帧2D降噪级别，0-100 */
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
@@ -9779,7 +9779,7 @@ namespace DeviceService.SDK
         public struct NET_DVR_CAMERAPARAMCFG
         {
             public uint dwSize;
-            public NET_DVR_VIDEOEFFECT struVideoEffect;/*亮度、对比度、饱和度、锐度、色调配置*/    
+            public NET_DVR_VIDEOEFFECT struVideoEffect;/*亮度、对比度、饱和度、锐度、色调配置*/
             public NET_DVR_GAIN struGain;/*自动增益*/
             public NET_DVR_WHITEBALANCE struWhiteBalance;/*白平衡*/
             public NET_DVR_EXPOSURE struExposure; /*曝光控制*/
@@ -9789,31 +9789,31 @@ namespace DeviceService.SDK
             public NET_DVR_BACKLIGHT struBackLight;/*背光补偿*/
             public NET_DVR_NOISEREMOVE struNoiseRemove;/*数字降噪*/
             public byte byPowerLineFrequencyMode; /*0-50HZ; 1-60HZ*/
-            public byte byIrisMode; /*0 自动光圈 1手动光圈*/    
-            public byte byMirror ;  /* 镜像：0 off，1- leftright，2- updown，3-center */
+            public byte byIrisMode; /*0 自动光圈 1手动光圈*/
+            public byte byMirror;  /* 镜像：0 off，1- leftright，2- updown，3-center */
             public byte byDigitalZoom;  /*数字缩放:0 dsibale  1 enable*/
             public byte byDeadPixelDetect;   /*坏点检测,0 dsibale  1 enable*/
-            public byte byBlackPwl;/*黑电平补偿 ,  0-255*/ 
+            public byte byBlackPwl;/*黑电平补偿 ,  0-255*/
             public byte byEptzGate;// EPTZ开关变量:0-不启用电子云台，1-启用电子云台
             public byte byLocalOutputGate;//本地输出开关变量0-本地输出关闭1-本地BNC输出打开 2-HDMI输出关闭  
-				     //20-HDMI_720P50输出开
-					 //21-HDMI_720P60输出开
-					 //22-HDMI_1080I60输出开
-					 //23-HDMI_1080I50输出开
-					 //24-HDMI_1080P24输出开
-					 //25-HDMI_1080P25输出开
-					 //26-HDMI_1080P30输出开
-					 //27-HDMI_1080P50输出开
-			         //28-HDMI_1080P60输出开
-					 //40-SDI_720P50,
-					 //41-SDI_720P60,
-					 //42-SDI_1080I50,
-					 //43-SDI_1080I60,
-					 //44-SDI_1080P24,
-					 //45-SDI_1080P25,
-					 //46-SDI_1080P30,
-					 //47-SDI_1080P50,
-					 //48-SDI_1080P60
+                                          //20-HDMI_720P50输出开
+                                          //21-HDMI_720P60输出开
+                                          //22-HDMI_1080I60输出开
+                                          //23-HDMI_1080I50输出开
+                                          //24-HDMI_1080P24输出开
+                                          //25-HDMI_1080P25输出开
+                                          //26-HDMI_1080P30输出开
+                                          //27-HDMI_1080P50输出开
+                                          //28-HDMI_1080P60输出开
+                                          //40-SDI_720P50,
+                                          //41-SDI_720P60,
+                                          //42-SDI_1080I50,
+                                          //43-SDI_1080I60,
+                                          //44-SDI_1080P24,
+                                          //45-SDI_1080P25,
+                                          //46-SDI_1080P30,
+                                          //47-SDI_1080P50,
+                                          //48-SDI_1080P60
             public byte byCoderOutputMode;//编码器fpga输出模式0直通3像素搬家
             public byte byLineCoding; //是否开启行编码：0-否，1-是
             public byte byDimmerMode; //调光模式：0-半自动，1-自动
@@ -9836,7 +9836,7 @@ namespace DeviceService.SDK
             public byte byMode; //模式，0-不启用，1-自动模式，2-常开模式
             public byte byLevel; //等级，0-100
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 6, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes; 
+            public byte[] byRes;
         }
 
         //电子防抖
@@ -9846,7 +9846,7 @@ namespace DeviceService.SDK
             public byte byEnable;//使能 0- 不启用，1- 启用
             public byte byLevel; //等级，0-100
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 6, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes; 
+            public byte[] byRes;
         }
 
         //走廊模式
@@ -9893,22 +9893,22 @@ namespace DeviceService.SDK
             public NET_DVR_BACKLIGHT struBackLight;/*背光补偿*/
             public NET_DVR_NOISEREMOVE struNoiseRemove;/*数字降噪*/
             public byte byPowerLineFrequencyMode; /*0-50HZ; 1-60HZ*/
-            public byte byIrisMode; /*0-自动光圈 1-手动光圈, 2-P-Iris1*/    
-            public byte byMirror ;  /* 镜像：0 off，1- leftright，2- updown，3-center */
+            public byte byIrisMode; /*0-自动光圈 1-手动光圈, 2-P-Iris1*/
+            public byte byMirror;  /* 镜像：0 off，1- leftright，2- updown，3-center */
             public byte byDigitalZoom;  /*数字缩放:0 dsibale  1 enable*/
             public byte byDeadPixelDetect;   /*坏点检测,0 dsibale  1 enable*/
-            public byte byBlackPwl;/*黑电平补偿 ,  0-255*/ 
+            public byte byBlackPwl;/*黑电平补偿 ,  0-255*/
             public byte byEptzGate;// EPTZ开关变量:0-不启用电子云台，1-启用电子云台
             public byte byLocalOutputGate;//本地输出开关变量0-本地输出关闭1-本地BNC输出打开 2-HDMI输出关闭  
-	        //20-HDMI_720P50输出开
-	        //21-HDMI_720P60输出开
-	        //22-HDMI_1080I60输出开
-	        //23-HDMI_1080I50输出开
-	        //24-HDMI_1080P24输出开
-	        //25-HDMI_1080P25输出开
-	        //26-HDMI_1080P30输出开
-	        //27-HDMI_1080P50输出开
-	        //28-HDMI_1080P60输出开
+                                          //20-HDMI_720P50输出开
+                                          //21-HDMI_720P60输出开
+                                          //22-HDMI_1080I60输出开
+                                          //23-HDMI_1080I50输出开
+                                          //24-HDMI_1080P24输出开
+                                          //25-HDMI_1080P25输出开
+                                          //26-HDMI_1080P30输出开
+                                          //27-HDMI_1080P50输出开
+                                          //28-HDMI_1080P60输出开
             public byte byCoderOutputMode;//编码器fpga输出模式0直通3像素搬家
             public byte byLineCoding; //是否开启行编码：0-否，1-是
             public byte byDimmerMode; //调光模式：0-半自动，1-自动
@@ -9928,7 +9928,7 @@ namespace DeviceService.SDK
             public byte byExposureSegmentEnable; //0~不启用,1~启用  曝光时间和增益呈阶梯状调整，比如曝光往上调整时，先提高曝光时间到中间值，然后提高增益到中间值，再提高曝光到最大值，最后提高增益到最大值
             public byte byBrightCompensate;//亮度增强 [0~100]
 
-	        /*0-关闭、1-640*480@25fps、2-640*480@30ps、3-704*576@25fps、4-704*480@30fps、5-1280*720@25fps、6-1280*720@30fps、
+            /*0-关闭、1-640*480@25fps、2-640*480@30ps、3-704*576@25fps、4-704*480@30fps、5-1280*720@25fps、6-1280*720@30fps、
              * 7-1280*720@50fps、8-1280*720@60fps、9-1280*960@15fps、10-1280*960@25fps、11-1280*960@30fps、
              * 12-1280*1024@25fps、13--1280*1024@30fps、14-1600*900@15fps、15-1600*1200@15fps、16-1920*1080@15fps、
              * 17-1920*1080@25fps、18-1920*1080@30fps、19-1920*1080@50fps、20-1920*1080@60fps、21-2048*1536@15fps、22-2048*1536@20fps、
@@ -9968,21 +9968,21 @@ namespace DeviceService.SDK
 
         public enum VLR_VEHICLE_CLASS
         {
-            VLR_OTHER       = 0,   //其它
-	        VLR_VOLKSWAGEN = 1,    //大众
-	        VLR_BUICK        = 2,  //别克
-	        VLR_BMW         = 3,   //宝马
-	        VLR_HONDA       = 4,   //本田
-	        VLR_PEUGEOT     = 5,   //标致
-	        VLR_TOYOTA      = 6,   //丰田
-	        VLR_FORD         = 7,  //福特
-	        VLR_NISSAN       = 8,  //日产
-	        VLR_AUDI         = 9,  //奥迪
-	        VLR_MAZDA       = 10,  //马自达
-	        VLR_CHEVROLET  = 11,   //雪佛兰
-	        VLR_CITROEN     = 12,  //雪铁龙
-	        VLR_HYUNDAI    = 13,   //现代
-	        VLR_CHERY       = 14   //奇瑞
+            VLR_OTHER = 0,   //其它
+            VLR_VOLKSWAGEN = 1,    //大众
+            VLR_BUICK = 2,  //别克
+            VLR_BMW = 3,   //宝马
+            VLR_HONDA = 4,   //本田
+            VLR_PEUGEOT = 5,   //标致
+            VLR_TOYOTA = 6,   //丰田
+            VLR_FORD = 7,  //福特
+            VLR_NISSAN = 8,  //日产
+            VLR_AUDI = 9,  //奥迪
+            VLR_MAZDA = 10,  //马自达
+            VLR_CHEVROLET = 11,   //雪佛兰
+            VLR_CITROEN = 12,  //雪铁龙
+            VLR_HYUNDAI = 13,   //现代
+            VLR_CHERY = 14   //奇瑞
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -10104,15 +10104,15 @@ namespace DeviceService.SDK
         public enum ITC_MAINMODE_ABILITY
         {
             ITC_MODE_UNKNOW = 0x0,   //无
-	        ITC_POST_MODE   = 0x1,  //卡口模式
-	        ITC_EPOLICE_MODE      = 0x2,  //电警模式
-	        ITC_POSTEPOLICE_MODE  = 0x4  //卡式电警模式
+            ITC_POST_MODE = 0x1,  //卡口模式
+            ITC_EPOLICE_MODE = 0x2,  //电警模式
+            ITC_POSTEPOLICE_MODE = 0x4  //卡式电警模式
         }
 
         public enum ITC_RECOG_REGION_TYPE
         {
-            ITC_REGION_RECT    = 0x0,   //矩形
-	        ITC_REGION_POLYGON  = 0x1,  //多边形
+            ITC_REGION_RECT = 0x0,   //矩形
+            ITC_REGION_POLYGON = 0x1,  //多边形
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -10132,27 +10132,27 @@ namespace DeviceService.SDK
             public byte byIoLightGroup; //支持的IO红绿灯组数
             public byte byRecogRegionType; //牌识区域支持的类型，详见定义ITC_RECOG_REGION_TYPE
             public byte bySupport; //设备能力，按位表示，0-不支持，1-支持
-	        // bySupport&0x1，表示是否支持扩展的字符叠加配置
-	        // bySupport&0x2，表示是否支持扩展的校时配置结构
-	        // bySupport&0x4, 表示是否支持多网卡(多网隔离)
-	        // bySupport&0x8, 表示是否支持网卡的bonding功能(网络容错)
-	        // bySupport&0x10, 表示是否支持语音对讲
-	        //2013-07-09 能力集返回
+                                   // bySupport&0x1，表示是否支持扩展的字符叠加配置
+                                   // bySupport&0x2，表示是否支持扩展的校时配置结构
+                                   // bySupport&0x4, 表示是否支持多网卡(多网隔离)
+                                   // bySupport&0x8, 表示是否支持网卡的bonding功能(网络容错)
+                                   // bySupport&0x10, 表示是否支持语音对讲
+                                   //2013-07-09 能力集返回
             public ushort wSupportMultiRadar;// 设备能力，按位表示，0-不支持，1-支持
-	        // wSupportMultiRadar&0x1，表示 卡口RS485雷达 支持车道关联雷达处理
-	        // wSupportMultiRadar&0x2，表示 卡口虚拟线圈 支持车道关联雷达处理
-	        // wSupportMultiRadar&0x4，表示 混行卡口 支持车道关联雷达处理
-	        // wSupportMultiRadar&0x8，表示 视频检测 支持车道关联雷达处理
+                                             // wSupportMultiRadar&0x1，表示 卡口RS485雷达 支持车道关联雷达处理
+                                             // wSupportMultiRadar&0x2，表示 卡口虚拟线圈 支持车道关联雷达处理
+                                             // wSupportMultiRadar&0x4，表示 混行卡口 支持车道关联雷达处理
+                                             // wSupportMultiRadar&0x8，表示 视频检测 支持车道关联雷达处理
             public byte byICRPresetNum;
-	        // 表示支持的ICR预置点（滤光片偏移点）数
+            // 表示支持的ICR预置点（滤光片偏移点）数
             public byte byICRTimeSlot;//表示支持的ICR的时间段数（1～8）
             public byte bySupportRS485Num;//表示支持的RS485口的数量
             public byte byExpandRs485SupportSensor;// 设备能力，按位表示，0-不支持，1-支持
-	        // byExpandRs485SupportSensor &0x1，表示电警车检器支持车检器
-	        // byExpandRs485SupportSensor &0x2，表示卡式电警车检器支持车检器
+                                                   // byExpandRs485SupportSensor &0x1，表示电警车检器支持车检器
+                                                   // byExpandRs485SupportSensor &0x2，表示卡式电警车检器支持车检器
             public byte byExpandRs485SupportSignalLampDet;// 设备能力，按位表示，0-不支持，1-支持
-	        // byExpandRs485SupportSignalLampDet &0x1，表示电警车检器支持外接信号灯检测器
-            // byExpandRs485SupportSignalLampDet &0x2，表示卡式电警车检器支持外接信号灯检测器
+                                                          // byExpandRs485SupportSignalLampDet &0x1，表示电警车检器支持外接信号灯检测器
+                                                          // byExpandRs485SupportSignalLampDet &0x2，表示卡式电警车检器支持外接信号灯检测器
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 13, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
@@ -10160,7 +10160,7 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_ITC_ICRTIMECFG
         {
-            public NET_DVR_SCHEDTIME  struTime;
+            public NET_DVR_SCHEDTIME struTime;
             public byte byAssociateRresetNo;//预置点号1～8 , 0代表无
             public byte bySubSwitchMode;//1~白天，2~晚上 (当预置点等于0 的时候生效)
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 10, ArraySubType = UnmanagedType.I1)]
@@ -10177,17 +10177,17 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 20, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_ITC_ICR_MANUALSWITCH_PARAM
-        {	
+        {
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_ICR_NUM, ArraySubType = UnmanagedType.I1)]
             public byte[] byICRPreset; //实际生效根据能力集动态显示 [0~100]
-            public byte  bySubSwitchMode;//1~白天，2~晚上
+            public byte bySubSwitchMode;//1~白天，2~晚上
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 147, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_ITC_ICR_AOTOSWITCH_PARAM
         {
@@ -10222,15 +10222,15 @@ namespace DeviceService.SDK
         public struct NET_ITC_HANDLEEXCEPTION
         {
             public uint dwHandleType; //异常处理,异常处理方式的"或"结果
-	        /*0x00: 无响应*/
-	        /*0x01: 监视器上警告*/
-	        /*0x02: 声音警告*/
-	        /*0x04: 上传中心*/
-	        /*0x08: 触发报警输出（继电器输出）*/
-	        /*0x10: 触发JPRG抓图并上传Email*/
-	        /*0x20: 无线声光报警器联动*/
-	        /*0x40: 联动电子地图(目前只有PCNVR支持)*/
-	        /*0x200: 抓图并上传FTP*/  
+            /*0x00: 无响应*/
+            /*0x01: 监视器上警告*/
+            /*0x02: 声音警告*/
+            /*0x04: 上传中心*/
+            /*0x08: 触发报警输出（继电器输出）*/
+            /*0x10: 触发JPRG抓图并上传Email*/
+            /*0x20: 无线声光报警器联动*/
+            /*0x40: 联动电子地图(目前只有PCNVR支持)*/
+            /*0x200: 抓图并上传FTP*/
             public byte byEnable; //0～不启用，1～启用
             public byte byRes;
             public ushort wDuration;//持续时间(单位/s)
@@ -10245,7 +10245,7 @@ namespace DeviceService.SDK
         {
             public uint dwSize;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_EXCEPTIONNUM_V30, ArraySubType = UnmanagedType.Struct)]
-            public NET_ITC_HANDLEEXCEPTION[] struSnapExceptionType; 
+            public NET_ITC_HANDLEEXCEPTION[] struSnapExceptionType;
             //数组的每个元素都表示一种异常，数组0- 硬盘出错,1-网线断,2-IP 地址冲突, 3-车检器异常, 4-信号灯检测器异常
         }
 
@@ -10260,42 +10260,42 @@ namespace DeviceService.SDK
 
         public enum PROVINCE_CITY_IDX
         {
-	        ANHUI_PROVINCE             = 0,              //安徽
-	        AOMEN_PROVINCE             = 1,              //澳门
-	        BEIJING_PROVINCE           = 2,              //北京
-	        CHONGQING_PROVINCE         = 3,              //重庆
-	        FUJIAN_PROVINCE            = 4,              //福建
-	        GANSU_PROVINCE             = 5,              //甘肃
-	        GUANGDONG_PROVINCE         = 6,              //广东
-	        GUANGXI_PROVINCE           = 7,              //广西
-	        GUIZHOU_PROVINCE           = 8,              //贵州
-	        HAINAN_PROVINCE            = 9,              //海南
-	        HEBEI_PROVINCE             = 10,             //河北
-	        HENAN_PROVINCE             = 11,             //河南
-	        HEILONGJIANG_PROVINCE      = 12,             //黑龙江
-	        HUBEI_PROVINCE             = 13,             //湖北
-	        HUNAN_PROVINCE             = 14,             //湖南
-	        JILIN_PROVINCE             = 15,             //吉林
-	        JIANGSU_PROVINCE           = 16,             //江苏
-	        JIANGXI_PROVINCE           = 17,             //江西
-	        LIAONING_PROVINCE          = 18,             //辽宁
-	        NEIMENGGU_PROVINCE         = 19,             //内蒙古
-	        NINGXIA_PROVINCE           = 20,             //宁夏
-	        QINGHAI_PROVINCE           = 21,             //青海
-	        SHANDONG_PROVINCE          = 22,             //山东
-	        SHANXI_JIN_PROVINCE        = 23,             //山西
-	        SHANXI_SHAN_PROVINCE       = 24,             //陕西
-	        SHANGHAI_PROVINCE          = 25,             //上海
-	        SICHUAN_PROVINCE           = 26,             //四川
-	        TAIWAN_PROVINCE            = 27,             //台湾
-	        TIANJIN_PROVINCE           = 28,             //天津
-	        XIZANG_PROVINCE            = 29,             //西藏
-	        XIANGGANG_PROVINCE         = 30,             //香港
-	        XINJIANG_PROVINCE          = 31,             //新疆
-	        YUNNAN_PROVINCE            = 32,             //云南
-	        ZHEJIANG_PROVINCE          = 33              //浙江
+            ANHUI_PROVINCE = 0,              //安徽
+            AOMEN_PROVINCE = 1,              //澳门
+            BEIJING_PROVINCE = 2,              //北京
+            CHONGQING_PROVINCE = 3,              //重庆
+            FUJIAN_PROVINCE = 4,              //福建
+            GANSU_PROVINCE = 5,              //甘肃
+            GUANGDONG_PROVINCE = 6,              //广东
+            GUANGXI_PROVINCE = 7,              //广西
+            GUIZHOU_PROVINCE = 8,              //贵州
+            HAINAN_PROVINCE = 9,              //海南
+            HEBEI_PROVINCE = 10,             //河北
+            HENAN_PROVINCE = 11,             //河南
+            HEILONGJIANG_PROVINCE = 12,             //黑龙江
+            HUBEI_PROVINCE = 13,             //湖北
+            HUNAN_PROVINCE = 14,             //湖南
+            JILIN_PROVINCE = 15,             //吉林
+            JIANGSU_PROVINCE = 16,             //江苏
+            JIANGXI_PROVINCE = 17,             //江西
+            LIAONING_PROVINCE = 18,             //辽宁
+            NEIMENGGU_PROVINCE = 19,             //内蒙古
+            NINGXIA_PROVINCE = 20,             //宁夏
+            QINGHAI_PROVINCE = 21,             //青海
+            SHANDONG_PROVINCE = 22,             //山东
+            SHANXI_JIN_PROVINCE = 23,             //山西
+            SHANXI_SHAN_PROVINCE = 24,             //陕西
+            SHANGHAI_PROVINCE = 25,             //上海
+            SICHUAN_PROVINCE = 26,             //四川
+            TAIWAN_PROVINCE = 27,             //台湾
+            TIANJIN_PROVINCE = 28,             //天津
+            XIZANG_PROVINCE = 29,             //西藏
+            XIANGGANG_PROVINCE = 30,             //香港
+            XINJIANG_PROVINCE = 31,             //新疆
+            YUNNAN_PROVINCE = 32,             //云南
+            ZHEJIANG_PROVINCE = 33              //浙江
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_GEOGLOCATION
         {
@@ -10307,11 +10307,11 @@ namespace DeviceService.SDK
         //场景模式
         public enum SCENE_MODE
         {
-	        UNKOWN_SCENE_MODE   = 0,            //未知场景模式
-	        HIGHWAY_SCENE_MODE  = 1,            //高速场景模式
-	        SUBURBAN_SCENE_MODE = 2,            //郊区场景模式(保留)
-	        URBAN_SCENE_MODE    = 3,            //市区场景模式
-	        TUNNEL_SCENE_MODE   = 4             //隧道场景模式(保留)
+            UNKOWN_SCENE_MODE = 0,            //未知场景模式
+            HIGHWAY_SCENE_MODE = 1,            //高速场景模式
+            SUBURBAN_SCENE_MODE = 2,            //郊区场景模式(保留)
+            URBAN_SCENE_MODE = 3,            //市区场景模式
+            TUNNEL_SCENE_MODE = 4             //隧道场景模式(保留)
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -10328,10 +10328,10 @@ namespace DeviceService.SDK
             public NET_DVR_TRIGCOORDINATE[] struRes;
             public byte byTotalLaneNum;/*视频触发的车道数1*/
             public byte byPolarLenType; /*偏振镜类型，0：不加偏振镜；1：加施耐德偏振镜。*/
-            public byte	byDayAuxLightMode; /*白天辅助照明模式，0：无辅助照明；1：LED灯照明；2：闪光灯照明*/
-            public byte	byLoopToCalRoadBright; /*用以计算路面亮度的车道(虚拟线圈)*/
-            public byte	byRoadGrayLowTh; /*路面亮度低阈值初始化值1*/
-            public byte	byRoadGrayHighTh; /*路面亮度高阈值初始化值140*/
+            public byte byDayAuxLightMode; /*白天辅助照明模式，0：无辅助照明；1：LED灯照明；2：闪光灯照明*/
+            public byte byLoopToCalRoadBright; /*用以计算路面亮度的车道(虚拟线圈)*/
+            public byte byRoadGrayLowTh; /*路面亮度低阈值初始化值1*/
+            public byte byRoadGrayHighTh; /*路面亮度高阈值初始化值140*/
             public ushort wLoopPosBias; /*晚间触发线圈位移30*/
             public uint dwHfrShtterInitValue; /*连续图像曝光时间的初始值2000*/
             public uint dwSnapShtterInitValue; /*抓拍图像曝光时间的初始值500*/
@@ -10468,7 +10468,7 @@ namespace DeviceService.SDK
             public NET_DVR_JPEGPARA[] struJpegPara;	/*每个通道的图像参数*/
             public ushort wBurstMode;							/*抓图方式,按位设置.0x1=报警输入触发，0x2=移动侦测触发 0x4=232触发，0x8=485触发，0x10=网络触发*/
             public ushort wUploadInterval;					/*图片上传间隔(秒)[0,65535]*/
-            public NET_DVR_PICTURE_NAME 	struPicNameRule;	/* 图片命名规则 */
+            public NET_DVR_PICTURE_NAME struPicNameRule;	/* 图片命名规则 */
             public byte bySaveToHD;		/*是否保存到硬盘*/
             public byte byRes1;
             public ushort wCatchInterval;		/*抓图间隔(毫秒)[0,65535]*/
@@ -10491,9 +10491,9 @@ namespace DeviceService.SDK
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
-        public struct NET_DVR_SPRCFG    
+        public struct NET_DVR_SPRCFG
         {
-            public uint dwSize; 
+            public uint dwSize;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_CHJC_NUM, ArraySubType = UnmanagedType.I1)]
             public byte[] byDefaultCHN; /*设备运行省份的汉字简写*/
             public byte byPlateOSD;    /*0:不发送车牌彩色图,1:发送车牌彩色图*/
@@ -10531,7 +10531,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;	//保留 
             public byte byTradeoffFlash;     //是否考虑闪光灯的影响: 0 - 否;  1 - 是(默认); 
-	        //使用闪光灯补光时, 如果考虑减弱闪光灯的亮度增强效应, 则需要设为1;否则为0
+                                             //使用闪光灯补光时, 如果考虑减弱闪光灯的亮度增强效应, 则需要设为1;否则为0
             public byte byCorrectFactor;     //纠正系数, 范围[0, 100], 默认值50 (在tradeoff_flash切换时,恢复默认值）
             public ushort wLoopStatsEn;  //是否该线圈的亮度，按位表示，0-不统计，1-统计
             public byte byPlcBrightOffset;// 车牌亮度补偿灵敏度(虚拟线圈模式起效)，取值范围1~100
@@ -10597,11 +10597,11 @@ namespace DeviceService.SDK
         //协议列表
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_IPC_PROTO_LIST
-        {    
-            public uint dwSize; 
-            public uint dwProtoNum;           /*有效的ipc协议数目*/  
+        {
+            public uint dwSize;
+            public uint dwProtoNum;           /*有效的ipc协议数目*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = IPC_PROTOCOL_NUM, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_PROTO_TYPE[] struProto;   /*有效的ipc协议*/    
+            public NET_DVR_PROTO_TYPE[] struProto;   /*有效的ipc协议*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
@@ -10609,38 +10609,38 @@ namespace DeviceService.SDK
         //协议列表V41
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_IPC_PROTO_LIST_V41
-        {   
-            public uint dwSize;  
+        {
+            public uint dwSize;
             public uint dwProtoNum;  //有效的ipc协议数目
             public IntPtr pBuffer;    //协议列表缓冲区, dwProtoNum 个NET_DVR_PROTO_TYPE结构  
             public uint dwBufferLen; //缓冲区长度
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes;   
+            public byte[] byRes;
         }
 
 
         public const int MAX_ALERTLINE_NUM = 8; //最大警戒线条数	
-        
+
         //越界侦测查询条件
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_TRAVERSE_PLANE_SEARCHCOND
-        {	
+        {
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_ALERTLINE_NUM, ArraySubType = UnmanagedType.Struct)]
             public NET_VCA_TRAVERSE_PLANE[] struVcaTraversePlane;  //穿越境界面参数
             public uint dwPreTime;   /*智能报警提前时间 单位:秒*/
-            public uint dwDelayTime; /*智能报警延迟时间 单位:秒*/ 
+            public uint dwDelayTime; /*智能报警延迟时间 单位:秒*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 5656, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes; //保留
-        } 
+        }
 
         public const int MAX_INTRUSIONREGION_NUM = 8; //最大区域数数
         [StructLayoutAttribute(LayoutKind.Sequential)]
-        public struct NET_DVR_INTRUSION_SEARCHCOND  
+        public struct NET_DVR_INTRUSION_SEARCHCOND
         {
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_INTRUSIONREGION_NUM, ArraySubType = UnmanagedType.Struct)]
             public NET_VCA_INTRUSION[] struVcaIntrusion; //入侵区域
             public uint dwPreTime;   /*智能报警提前时间 单位:秒*/
-            public uint dwDelayTime; /*智能报警延迟时间 单位:秒*/ 
+            public uint dwDelayTime; /*智能报警延迟时间 单位:秒*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 5400, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes; //保留
         }
@@ -10648,7 +10648,7 @@ namespace DeviceService.SDK
 
         [StructLayoutAttribute(LayoutKind.Explicit)]
         public struct NET_DVR_AREA_SMARTSEARCH_COND_UNION
-        {  
+        {
             [FieldOffsetAttribute(0)]
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 6144, ArraySubType = UnmanagedType.I1)]
             public byte[] byLen;  //结构体长度
@@ -10668,7 +10668,7 @@ namespace DeviceService.SDK
         {
             public byte byChan;					//通道号
             public byte bySearchCondType; //智能查找联合体NET_DVR_AREA_SMARTSEARCH_COND_UNION的索引     
-	        /*0-移动侦测区域 ，1-越界侦测， 2-区域入侵*/
+            /*0-移动侦测区域 ，1-越界侦测， 2-区域入侵*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;
             public NET_DVR_TIME struStartTime;		//录像开始的时间
@@ -10678,7 +10678,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 11, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;
         }
-    
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_SMART_SEARCH_RET
         {
@@ -10692,7 +10692,7 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_IPSAN_SERACH_PARAM
         {
-            public NET_DVR_IPADDR  struIP;     // IPSAN IP地址
+            public NET_DVR_IPADDR struIP;     // IPSAN IP地址
             public ushort wPort;      // IPSAN  端口
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 10, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;  // 保留字节
@@ -10743,29 +10743,29 @@ namespace DeviceService.SDK
             public byte byIPChanNum;			//最大数字通道数 低8位，高8位见byHighIPChanNum 
             public byte byZeroChanNum;			//零通道编码个数
             public byte bySupport;        //能力，位与结果为0表示不支持，1表示支持，
-            //bySupport & 0x1, 表示是否支持智能搜索
-            //bySupport & 0x2, 表示是否支持备份
-            //bySupport & 0x4, 表示是否支持压缩参数能力获取
-            //bySupport & 0x8, 表示是否支持多网卡
-            //bySupport & 0x10, 表示支持远程SADP
-            //bySupport & 0x20, 表示支持Raid卡功能
-            //bySupport & 0x40, 表示支持IPSAN搜索
-	        //bySupport & 0x80, 表示支持rtp over rtsp
+                                          //bySupport & 0x1, 表示是否支持智能搜索
+                                          //bySupport & 0x2, 表示是否支持备份
+                                          //bySupport & 0x4, 表示是否支持压缩参数能力获取
+                                          //bySupport & 0x8, 表示是否支持多网卡
+                                          //bySupport & 0x10, 表示支持远程SADP
+                                          //bySupport & 0x20, 表示支持Raid卡功能
+                                          //bySupport & 0x40, 表示支持IPSAN搜索
+                                          //bySupport & 0x80, 表示支持rtp over rtsp
             public byte byEsataUseage;		//Esata的默认用途，0-默认备份，1-默认录像
             public byte byIPCPlug;			//0-关闭即插即用，1-打开即插即用
             public byte byStorageMode;		//0-盘组模式,1-磁盘配额, 2抽帧模式
-            public byte bySupport1;		//能力，位与结果为0表示不支持，1表示支持
-	        //bySupport1 & 0x1, 表示是否支持snmp v30
-	        //bySupport1 & 0x2, 支持区分回放和下载
-	        //bySupport1 & 0x4, 是否支持布防优先级	
-	        //bySupport1 & 0x8, 智能设备是否支持布防时间段扩展
-	        //bySupport1 & 0x10, 表示是否支持多磁盘数（超过33个）
-	        //bySupport1 & 0x20, 表示是否支持rtsp over http	
+            public byte bySupport1;     //能力，位与结果为0表示不支持，1表示支持
+                                        //bySupport1 & 0x1, 表示是否支持snmp v30
+                                        //bySupport1 & 0x2, 支持区分回放和下载
+                                        //bySupport1 & 0x4, 是否支持布防优先级	
+                                        //bySupport1 & 0x8, 智能设备是否支持布防时间段扩展
+                                        //bySupport1 & 0x10, 表示是否支持多磁盘数（超过33个）
+                                        //bySupport1 & 0x20, 表示是否支持rtsp over http	
             public ushort wDevType;//设备型号
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = DEV_TYPE_NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] byDevTypeName;//设备型号名称 
             public byte bySupport2; //能力集扩展，位与结果为0表示不支持，1表示支持
-	        //bySupport2 & 0x1, 表示是否支持扩展的OSD字符叠加(终端和抓拍机扩展区分)
+                                    //bySupport2 & 0x1, 表示是否支持扩展的OSD字符叠加(终端和抓拍机扩展区分)
             public byte byAnalogAlarmInPortNum; //模拟报警输入个数
             public byte byStartAlarmInNo;    //模拟报警输入起始号
             public byte byStartAlarmOutNo;  //模拟报警输出起始号
@@ -10789,7 +10789,7 @@ namespace DeviceService.SDK
                                              * 12-320K 13-384K 14-448K 15-512K 16-640K 17-768K 18-896K 19-1024K 20-1280K 21-1536K 22-1792K
                                              * 23-2048K
                                              * 最高位(31位)置成1表示是自定义码流, 0-30位表示码流值(MIN-32K MAX-8192K) */
-            public uint dwVideoFrameRate;	//帧率 0-全部; 1-1/16; 2-1/8; 3-1/4; 4-1/2; 5-1; 6-2; 7-4; 8-6; 9-8; 10-10; 11-12; 12-16; 13-20, 
+            public uint dwVideoFrameRate;   //帧率 0-全部; 1-1/16; 2-1/8; 3-1/4; 4-1/2; 5-1; 6-2; 7-4; 8-6; 9-8; 10-10; 11-12; 12-16; 13-20, 
                                             //V2.0增加14-15, 15-18, 16-22;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;        //保留
@@ -10827,7 +10827,7 @@ namespace DeviceService.SDK
             public byte[] byTrapHostIP;	//自陷主机ip地址描述，支持IPV4 IPV6和域名描述    
             public ushort wTrapHostPort;   //trap主机端口
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
-            public byte[] byTrapName;	
+            public byte[] byTrapName;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 70, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;    //保留
         }
@@ -10847,7 +10847,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = PASSWD_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] byPrivpass;	//加密密码
         }
-        
+
         //snmpv30
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_SNMPCFG_V30
@@ -10867,13 +10867,13 @@ namespace DeviceService.SDK
             public byte[] byTrapHostIP;		//自陷主机ip地址描述，支持IPV4 IPV6和域名描述    
             public ushort wTrapHostPort;					// trap主机端口
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes2;       
+            public byte[] byRes2;
             public NET_DVR_SNMPv3_USER struRWUser;    // 读写用户
             public NET_DVR_SNMPv3_USER struROUser;    // 只读用户
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] byTrapName;
         }
-        
+
         public const int PROCESSING = 0;    //正在处理
         public const int PROCESS_SUCCESS = 100;   //过程完成
         public const int PROCESS_EXCEPTION = 400;   //过程异常
@@ -11256,8 +11256,8 @@ namespace DeviceService.SDK
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_DESC_NODE
-        { 
-            public int iValue; 
+        {
+            public int iValue;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = DESC_LEN_32, ArraySubType = UnmanagedType.I1)]
             public byte[] byDescribe; //描述字段 
             public uint dwFreeSpace; //获取磁盘列表专用,单位为M
@@ -11267,7 +11267,7 @@ namespace DeviceService.SDK
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_DISKABILITY_LIST
-        { 
+        {
             public uint dwSize;            //结构长度
             public uint dwNodeNum;		 //能力结点个数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_NODE_NUM, ArraySubType = UnmanagedType.Struct)]
@@ -11275,26 +11275,26 @@ namespace DeviceService.SDK
         }
 
         //备份进度列表
-        public const int BACKUP_SUCCESS            =    100;  //备份完成
-        public const int BACKUP_CHANGE_DEVICE      =    101;  //备份设备已满，更换设备继续备份
+        public const int BACKUP_SUCCESS = 100;  //备份完成
+        public const int BACKUP_CHANGE_DEVICE = 101;  //备份设备已满，更换设备继续备份
 
-        public const int BACKUP_SEARCH_DEVICE      =    300;  //正在搜索备份设备
-        public const int BACKUP_SEARCH_FILE        =    301;  //正在搜索录像文件
-        public const int BACKUP_SEARCH_LOG_FILE    =    302;  //正在搜索日志文件
+        public const int BACKUP_SEARCH_DEVICE = 300;  //正在搜索备份设备
+        public const int BACKUP_SEARCH_FILE = 301;  //正在搜索录像文件
+        public const int BACKUP_SEARCH_LOG_FILE = 302;  //正在搜索日志文件
 
-        public const int BACKUP_EXCEPTION		   =    400;  //备份异常
-        public const int BACKUP_FAIL			   =	500;  //备份失败
+        public const int BACKUP_EXCEPTION = 400;  //备份异常
+        public const int BACKUP_FAIL = 500;  //备份失败
 
-        public const int BACKUP_TIME_SEG_NO_FILE   =    501;  //时间段内无录像文件
-        public const int BACKUP_NO_RESOURCE        =    502;  //申请不到资源
-        public const int BACKUP_DEVICE_LOW_SPACE   =    503;  //备份设备容量不足
-        public const int BACKUP_DISK_FINALIZED     =    504;  //刻录光盘封盘
-        public const int BACKUP_DISK_EXCEPTION     =    505;  //刻录光盘异常
-        public const int BACKUP_DEVICE_NOT_EXIST   =    506;  //备份设备不存在
-        public const int BACKUP_OTHER_BACKUP_WORK  =    507;  //有其他备份操作在进行
-        public const int BACKUP_USER_NO_RIGHT      =    508;  //用户没有操作权限
-        public const int BACKUP_OPERATE_FAIL       =    509;  //操作失败
-        public const int BACKUP_NO_LOG_FILE        =    510;  //硬盘中无日志
+        public const int BACKUP_TIME_SEG_NO_FILE = 501;  //时间段内无录像文件
+        public const int BACKUP_NO_RESOURCE = 502;  //申请不到资源
+        public const int BACKUP_DEVICE_LOW_SPACE = 503;  //备份设备容量不足
+        public const int BACKUP_DISK_FINALIZED = 504;  //刻录光盘封盘
+        public const int BACKUP_DISK_EXCEPTION = 505;  //刻录光盘异常
+        public const int BACKUP_DEVICE_NOT_EXIST = 506;  //备份设备不存在
+        public const int BACKUP_OTHER_BACKUP_WORK = 507;  //有其他备份操作在进行
+        public const int BACKUP_USER_NO_RIGHT = 508;  //用户没有操作权限
+        public const int BACKUP_OPERATE_FAIL = 509;  //操作失败
+        public const int BACKUP_NO_LOG_FILE = 510;  //硬盘中无日志
 
         //备份过程接口定义
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -11329,32 +11329,32 @@ namespace DeviceService.SDK
         public enum COMPRESSION_ABILITY_TYPE
         {
             COMPRESSION_STREAM_ABILITY = 0, //码流压缩类型
-	        MAIN_RESOLUTION_ABILITY = 1,	//主码流压缩分辨率
-	        SUB_RESOLUTION_ABILITY  = 2,	//子码流压缩分辨率
-	        EVENT_RESOLUTION_ABILITY =  3,  //事件压缩参数分辨率
-	        FRAME_ABILITY = 4,				//帧率能力
-	        BITRATE_TYPE_ABILITY = 5,		//位率类型能力
-	        BITRATE_ABILITY = 6,			//位率上限
-	        THIRD_RESOLUTION_ABILITY = 7,   //三码流压缩分辨率
-	        STREAM_TYPE_ABILITY = 8,        //码流类型
-	        PIC_QUALITY_ABILITY = 9,         //图像质量
-	        INTERVAL_BPFRAME_ABILITY = 10,  //BP帧间隔
-	        VIDEO_ENC_ABILITY = 11,           //视频编码能力
-	        AUDIO_ENC_ABILITY = 12,           //音频编码能力
-	        VIDEO_ENC_COMPLEXITY_ABILITY = 13, //视频编码复杂度能力
-	        FORMAT_ABILITY = 14, //封装格式能力
+            MAIN_RESOLUTION_ABILITY = 1,    //主码流压缩分辨率
+            SUB_RESOLUTION_ABILITY = 2, //子码流压缩分辨率
+            EVENT_RESOLUTION_ABILITY = 3,  //事件压缩参数分辨率
+            FRAME_ABILITY = 4,              //帧率能力
+            BITRATE_TYPE_ABILITY = 5,       //位率类型能力
+            BITRATE_ABILITY = 6,            //位率上限
+            THIRD_RESOLUTION_ABILITY = 7,   //三码流压缩分辨率
+            STREAM_TYPE_ABILITY = 8,        //码流类型
+            PIC_QUALITY_ABILITY = 9,         //图像质量
+            INTERVAL_BPFRAME_ABILITY = 10,  //BP帧间隔
+            VIDEO_ENC_ABILITY = 11,           //视频编码能力
+            AUDIO_ENC_ABILITY = 12,           //音频编码能力
+            VIDEO_ENC_COMPLEXITY_ABILITY = 13, //视频编码复杂度能力
+            FORMAT_ABILITY = 14, //封装格式能力
         }
 
         //能力列表
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_ABILITY_LIST
-        { 
+        {
             public uint dwAbilityType;	//能力类型 COMPRESSION_ABILITY_TYPE
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;        //保留字节
             public uint dwNodeNum;		//能力结点个数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_NODE_NUM, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_DESC_NODE[]  struDescNode;  //描述参数  
+            public NET_DVR_DESC_NODE[] struDescNode;  //描述参数  
         }
 
         public const int MAX_ABILITYTYPE_NUM = 12;   //最大能力项
@@ -11362,7 +11362,7 @@ namespace DeviceService.SDK
         // 压缩参数能力列表
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_COMPRESSIONCFG_ABILITY
-        { 
+        {
             public uint dwSize;            //结构长度
             public uint dwAbilityNum;		//能力类型个数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_ABILITYTYPE_NUM, ArraySubType = UnmanagedType.Struct)]
@@ -11407,7 +11407,7 @@ namespace DeviceService.SDK
 
         [StructLayoutAttribute(LayoutKind.Explicit)]
         public struct NET_DVR_HOLIDATE_UNION
-        {	
+        {
             //联合体大小 12字节
             [FieldOffsetAttribute(0)]
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.U4)]
@@ -11481,7 +11481,7 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_ONE_LINK
         {
-            public NET_DVR_IPADDR  struIP;     // 客户端IP
+            public NET_DVR_IPADDR struIP;     // 客户端IP
             public int lChannel;   // 通道号
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;  // 保留字节
@@ -11502,7 +11502,7 @@ namespace DeviceService.SDK
 
         public const int MAX_BOND_NUM = 2;
 
-                //单BONDING网卡配置结构体
+        //单BONDING网卡配置结构体
         [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public struct NET_DVR_ONE_BONDING
         {
@@ -11521,10 +11521,10 @@ namespace DeviceService.SDK
         //BONDING网卡配置结构体
         [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public struct NET_DVR_NETWORK_BONDING
-        {  
-            public uint dwSize;  
+        {
+            public uint dwSize;
             public byte byEnable;
-            public byte byNum;  
+            public byte byNum;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_BOND_NUM, ArraySubType = UnmanagedType.Struct)]
@@ -11536,7 +11536,7 @@ namespace DeviceService.SDK
 
         //磁盘配额
         [StructLayoutAttribute(LayoutKind.Sequential)]
-        public struct NET_DVR_DISK_QUOTA 
+        public struct NET_DVR_DISK_QUOTA
         {
             public byte byQuotaType;	 // 磁盘配额类型,1 - 按容量 
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 7, ArraySubType = UnmanagedType.I1)]
@@ -11610,7 +11610,7 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_EVENT_CAPTURE
         {
-            public NET_DVR_JPEGPARA  struJpegPara;   // 事件抓图图片质量
+            public NET_DVR_JPEGPARA struJpegPara;   // 事件抓图图片质量
             public uint dwPicInterval;  /*事件抓图时间间隔  单位为秒  1-1s 2-2s 3-3s 4-4s 5-5s 
                                              * 6-10m 7-30m 8-1h 9-12h 10-24h*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_PIC_EVENT_NUM, ArraySubType = UnmanagedType.Struct)]
@@ -11628,7 +11628,7 @@ namespace DeviceService.SDK
         public struct NET_DVR_JPEG_CAPTURE_CFG_V40
         {
             public uint dwSize;               //结构体长度
-            public NET_DVR_TIMING_CAPTURE struTimingCapture;    
+            public NET_DVR_TIMING_CAPTURE struTimingCapture;
             public NET_DVR_EVENT_CAPTURE_V40 struEventCapture;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 20, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes3;     // 保留字节
@@ -11638,7 +11638,7 @@ namespace DeviceService.SDK
         public struct NET_DVR_JPEG_CAPTURE_CFG
         {
             public uint dwSize;         // 结构体大小
-            public NET_DVR_TIMING_CAPTURE struTimingCapture;    
+            public NET_DVR_TIMING_CAPTURE struTimingCapture;
             public NET_DVR_EVENT_CAPTURE struEventCapture;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 20, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes3;     // 保留字节
@@ -11674,7 +11674,7 @@ namespace DeviceService.SDK
             public NET_DVR_CAPTURE_DAY[] struCaptureDay;//全天抓图计划
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DAYS * MAX_TIMESEGMENT_V30, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_CAPTURE_SCHED[] struCaptureSched;//时间段抓图布防计划
-            public NET_DVR_CAPTURE_DAY	struCaptureHoliday;	//假日抓图计划
+            public NET_DVR_CAPTURE_DAY struCaptureHoliday;	//假日抓图计划
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_TIMESEGMENT_V30, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_CAPTURE_SCHED[] struHolidaySched;	//时间段假日抓图布防计划
             public uint dwRecorderDuration;	//抓图保存最长时间 0xffffffff表示该值无效 
@@ -11753,7 +11753,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = LABEL_NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] sLabelName;	//修改后的标签名称
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 40, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes2;				
+            public byte[] byRes2;
         }
 
         //标签搜索结构体
@@ -11762,8 +11762,8 @@ namespace DeviceService.SDK
         {
             public uint dwSize;          // 结构体大小
             public int lChannel;		// 查找的通道
-            public NET_DVR_TIME	struStartTime;	// 开始时间
-            public NET_DVR_TIME	struStopTime;	// 结束时间
+            public NET_DVR_TIME struStartTime;	// 开始时间
+            public NET_DVR_TIME struStopTime;	// 结束时间
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = LABEL_NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] sLabelName;	//  录像标签名称 如果标签名称为空，则搜索起止时间所有标签
             public byte byDrawFrame;		//0:不抽帧，1：抽帧
@@ -11798,27 +11798,27 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;		//  保留字节
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_FIND_PICTURE_PARAM
         {
             public uint dwSize;         // 结构体大小 
             public int lChannel;       // 通道号
-            public byte byFileType;        
+            public byte byFileType;
             public byte byNeedCard;     // 是否需要卡号
             public byte byProvince;     //省份索引值
             public byte byEventType;      // 事件类型：0保留，1-交通事件；2-违章取证；3-其他事件
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = CARDNUM_LEN_V30, ArraySubType = UnmanagedType.I1)]
             public byte[] sCardNum;     // 卡号
-            public NET_DVR_TIME  struStartTime;//查找图片的开始时间
-            public NET_DVR_TIME  struStopTime;// 查找图片的结束时间
+            public NET_DVR_TIME struStartTime;//查找图片的开始时间
+            public NET_DVR_TIME struStopTime;// 查找图片的结束时间
             //ITC3.7 新增
             public uint dwTrafficType; //图片检索生效项 参考 VCA_OPERATE _TYPE 
             public uint dwVehicleType; //车辆类型 参考 VCA_VEHICLE_TYPE
             //违规检测类型参考 VCA_ILLEGAL_TYPE 当前不支持复选
             public uint dwIllegalType;
             public byte byLaneNo;  //车道号(1~99)
-            public byte bySubHvtType ;//0-保留,1-机动车(机动车子类型中支持车牌检索，省份检索),2-非机动车,3-行人
+            public byte bySubHvtType;//0-保留,1-机动车(机动车子类型中支持车牌检索，省份检索),2-非机动车,3-行人
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_LICENSE_LEN, ArraySubType = UnmanagedType.I1)]
@@ -11852,20 +11852,20 @@ namespace DeviceService.SDK
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_COMPRESSION_LIMIT
-        {	
+        {
             public uint dwSize;           //结构体大小
             public uint dwChannel;        //通道号
             public byte byCompressType;   //待获取的压缩参数类型1,主码流2,子码流3,事件
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 15, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;        //保留
-            public NET_DVR_COMPRESSIONCFG_V30  struCurrentCfg; //当前压缩参数配置
+            public NET_DVR_COMPRESSIONCFG_V30 struCurrentCfg; //当前压缩参数配置
         }
 
-        public const int STEP_READY      = 0;    //准备升级
-        public const int STEP_RECV_DATA  = 1;    //接收升级包数据
-        public const int STEP_UPGRADE    = 2;    //升级系统
-        public const int STEP_BACKUP     = 3;    //备份系统
-        public const int STEP_SEARCH     = 255;  //搜索升级文件
+        public const int STEP_READY = 0;    //准备升级
+        public const int STEP_RECV_DATA = 1;    //接收升级包数据
+        public const int STEP_UPGRADE = 2;    //升级系统
+        public const int STEP_BACKUP = 3;    //备份系统
+        public const int STEP_SEARCH = 255;  //搜索升级文件
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_VIDEO_EFFECT
@@ -11882,7 +11882,7 @@ namespace DeviceService.SDK
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_VIDEO_INPUT_EFFECT
-        {	
+        {
             public uint dwSize;				//结构体大小
             public ushort wEffectMode;        //模式 0-标准 1-室内 2-弱光 3-室外  255-自定义
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 146, ArraySubType = UnmanagedType.I1)]
@@ -11920,7 +11920,7 @@ namespace DeviceService.SDK
             public byte byDevType;		// 被关联的设备类型  1 代表智能设备
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;		// 保留字节
-            public NET_DVR_IPADDR	struIP;			// 关联的被取流设备IP地址
+            public NET_DVR_IPADDR struIP;			// 关联的被取流设备IP地址
             public ushort wPort;			// 关联的被取流设备端口号
             public ushort wChannel;		// 关联的被取流设备通道号
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 20, ArraySubType = UnmanagedType.I1)]
@@ -11933,7 +11933,7 @@ namespace DeviceService.SDK
             public byte byJointed;				// 0-没有关联  1-已经关联
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;
-            public NET_DVR_IPADDR	struIP;					// 关联的取流设备IP地址
+            public NET_DVR_IPADDR struIP;					// 关联的取流设备IP地址
             public ushort wPort;					// 关联的取流设备端口号
             public ushort wChannel;				// 关联的取流设备通道号
             public byte byVcaChanStatus;		// 0 - 未启用 1 - 启用
@@ -11975,26 +11975,26 @@ namespace DeviceService.SDK
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_VGA_DISP_CHAN_CFG_V40
-        {        
-            public uint dwSize; 
+        {
+            public uint dwSize;
             public byte byAudio;			/*音频是否开启*/
             public byte byAudioWindowIdx;      /*音频开启子窗口*/
             public byte byVgaResolution;      /*分辨率，从能力集获取*/
             public byte byVedioFormat;         /*1:NTSC,2:PAL，0-NULL*/
-            public uint dwWindowMode;		/*画面模式，能力集获取*/       
+            public uint dwWindowMode;       /*画面模式，能力集获取*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_WINDOWS, ArraySubType = UnmanagedType.I1)]
             public byte[] byJoinDecChan;/*各个子窗口关联的解码通道*/
             public byte byEnlargeStatus;          /*是否处于放大状态，0：不放大，1：放大*/
             public byte byEnlargeSubWindowIndex;//放大的子窗口号
             public byte byScale; /*显示模式，0---真实显示，1---缩放显示( 针对BNC )*/
-	        /*区分共用体，0-视频综合平台内部解码器显示通道配置，1-其他解码器显示通道配置*/
+            /*区分共用体，0-视频综合平台内部解码器显示通道配置，1-其他解码器显示通道配置*/
             public byte byUnionType;
-	
+
             [StructLayoutAttribute(LayoutKind.Explicit)]
             public struct struDiff
             {
                 [FieldOffsetAttribute(0)]
-		        [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 160, ArraySubType = UnmanagedType.I1)]
+                [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 160, ArraySubType = UnmanagedType.I1)]
                 public byte[] byRes;
 
                 /*[FieldOffsetAttribute(0)]
@@ -12003,7 +12003,7 @@ namespace DeviceService.SDK
                 [FieldOffsetAttribute(0)]
                 public UNION_NOTVIDEOPLATFORM_V40 struNotVideoPlatform;
                  * */
-	        }
+            }
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 120, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
@@ -12054,9 +12054,9 @@ namespace DeviceService.SDK
             public byte[] byRes;
         }
 
-        public const int INQUEST_MESSAGE_LEN  = 44;    //审讯重点标记信息长度
+        public const int INQUEST_MESSAGE_LEN = 44;    //审讯重点标记信息长度
         public const int INQUEST_MAX_ROOM_NUM = 2;    //最大审讯室个数
-        public const int MAX_RESUME_SEGMENT   = 2;     //支持同时恢复的片段数目
+        public const int MAX_RESUME_SEGMENT = 2;     //支持同时恢复的片段数目
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_INQUEST_ROOM
@@ -12089,8 +12089,8 @@ namespace DeviceService.SDK
         {
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = INQUEST_MAX_ROOM_NUM, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_INQUEST_SENSOR_DEVICE[] struSensorDevice;
-            public uint  dwSupportPro;      //支持协议类型,按位表示, 新版本走能力集，不再扩展此字段
-							   //0x1:米乐 0x2:镭彩 0x4:优力
+            public uint dwSupportPro;      //支持协议类型,按位表示, 新版本走能力集，不再扩展此字段
+                                           //0x1:米乐 0x2:镭彩 0x4:优力
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 120, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;        //保留
         }
@@ -12102,16 +12102,16 @@ namespace DeviceService.SDK
             public string szCDName;	//光盘名称，单室双刻光盘名称是一样的
             [StructLayoutAttribute(LayoutKind.Explicit)]
             public struct uCalcMode
-	        {
+            {
                 [FieldOffsetAttribute(0)]
-                public byte byBitRate;	// byCalcType为0时有效，(0-32、1-48、2-64、3-80、4-96、5-128、
-								//6-160、7-192、8-224、9-256、10-320、11-384、12-448、
-								//13-512、14-640、15-768、16-896前16个值保留)17-1024、18-1280、19-1536、
-								//20-1792、21-2048、22-3072、23-4096、24-8192
+                public byte byBitRate;  // byCalcType为0时有效，(0-32、1-48、2-64、3-80、4-96、5-128、
+                                        //6-160、7-192、8-224、9-256、10-320、11-384、12-448、
+                                        //13-512、14-640、15-768、16-896前16个值保留)17-1024、18-1280、19-1536、
+                                        //20-1792、21-2048、22-3072、23-4096、24-8192
                 [FieldOffsetAttribute(0)]
                 public byte byInquestTime;  // byCalcType为1时有效，0-1小时, 1-2小时,2-3小时,3-4小时, 4-6小时,5-8小时
-		                        //8-16小时, 9-20小时,10-22小时,11-24小时
-	        }
+                                            //8-16小时, 9-20小时,10-22小时,11-24小时
+            }
             public byte byCalcType;			//刻录计算类型0-按码率 1-按时间
             public byte byAutoDelRecord;	// 是否自动删除录像，0-不删除，即结束时保存录像 1-删除
             public byte byAlarmThreshold;		// 声音报警阀值
@@ -12124,20 +12124,20 @@ namespace DeviceService.SDK
         public struct NET_DVR_INQUEST_SYSTEM_INFO
         {
             public uint dwRecordMode;         //刻录模式:1 单室双刻模式 2 单室轮刻模式 3 双室双刻模式（修改需要重启设备）
-            public uint  dwWorkMode;           //工作模式:0 标准模式 1 通用模式(保留，目前只有标准模式)
+            public uint dwWorkMode;           //工作模式:0 标准模式 1 通用模式(保留，目前只有标准模式)
             public uint dwResolutionMode;     //设备分辨率，0:标清 1:D1 2:720P 3:1080P（高清审讯机不用此字段）
             public NET_DVR_INQUEST_SENSOR_INFO struSensorInfo;  //温湿度传感器配置
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = INQUEST_MAX_ROOM_NUM, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_INQUEST_ROOM_INFO[] struInquestRoomInfo;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 24, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes;	
+            public byte[] byRes;
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_INQUEST_RESUME_SEGMENT
         {
-            public NET_DVR_TIME  struStartTime; //事件起始时间
-            public NET_DVR_TIME  struStopTime;  //事件终止时间
+            public NET_DVR_TIME struStartTime; //事件起始时间
+            public NET_DVR_TIME struStopTime;  //事件终止时间
             public byte byRoomIndex;         //审讯室编号,从1开始
             public byte byDriveIndex;        //刻录机编号,从1开始
             public ushort wSegmetSize;         //本片断的大小, 单位M 
@@ -12149,7 +12149,7 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_INQUEST_RESUME_EVENT
         {
-            public uint  dwResumeNum;       //需恢复的事件个数
+            public uint dwResumeNum;       //需恢复的事件个数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_RESUME_SEGMENT, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_INQUEST_RESUME_SEGMENT[] struResumeSegment;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 200, ArraySubType = UnmanagedType.I1)]
@@ -12179,7 +12179,7 @@ namespace DeviceService.SDK
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
-        public struct NET_DVR_DISK_RAID_INFO 
+        public struct NET_DVR_DISK_RAID_INFO
         {
             public uint dwSize;   //结构体大小
             public byte byEnable;  //磁盘Raid是否禁用
@@ -12210,7 +12210,7 @@ namespace DeviceService.SDK
 
         //通过获取DVR的网络状态：单位bps
         [StructLayoutAttribute(LayoutKind.Sequential)]
-        public struct NET_DEVICE_NET_USING_INFO 
+        public struct NET_DEVICE_NET_USING_INFO
         {
             public uint dwSize;    //结构体大小
             public uint dwPreview;   //预览
@@ -12229,7 +12229,7 @@ namespace DeviceService.SDK
             public NET_DVR_IPADDR struIP;       //IPC的IP地址
             public ushort wPort;       //IPC的端口
             [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 126)]
-            public string res;  
+            public string res;
         }
 
         //按时间锁定
@@ -12251,7 +12251,7 @@ namespace DeviceService.SDK
         public struct NET_DVR_LOCK_RETURN
         {
             public uint dwSize;      //结构体大小
-            public NET_DVR_TIME strBeginTime; 
+            public NET_DVR_TIME strBeginTime;
             public NET_DVR_TIME strEndTime;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 20, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
@@ -12259,31 +12259,31 @@ namespace DeviceService.SDK
 
         //67DVS
         //证书下载类型
-        public enum NET_SDK_UPLOAD_TYPE 
+        public enum NET_SDK_UPLOAD_TYPE
         {
-            UPGRADE_CERT_FILE = 0, 
-	        UPLOAD_CERT_FILE = 1,
-	        TRIAL_CERT_FILE = 2,
+            UPGRADE_CERT_FILE = 0,
+            UPLOAD_CERT_FILE = 1,
+            TRIAL_CERT_FILE = 2,
             CONFIGURATION_FILE = 3
         }
 
         public enum NET_SDK_DOWNLOAD_TYPE
         {
-	        NET_SDK_DOWNLOAD_CERT = 0,		//下载证书
-	        NET_SDK_DOWNLOAD_IPC_CFG_FILE = 1,//下载IPC配置文件
+            NET_SDK_DOWNLOAD_CERT = 0,      //下载证书
+            NET_SDK_DOWNLOAD_IPC_CFG_FILE = 1,//下载IPC配置文件
             NET_SDK_DOWNLOAD_BASELINE_SCENE_PIC = 2, //下载基准场景图片
-	        NET_SDK_DOWNLOAD_VQD_ALARM_PIC = 3,       //下载VQD报警图片
-            NET_SDK_DOWNLOAD_CONFIGURATION_FILE=4   //下载配置文件
+            NET_SDK_DOWNLOAD_VQD_ALARM_PIC = 3,       //下载VQD报警图片
+            NET_SDK_DOWNLOAD_CONFIGURATION_FILE = 4   //下载配置文件
         }
 
         //下载状态
-       public enum NET_SDK_DOWNLOAD_STATUS
-       {
-	        NET_SDK_DOWNLOAD_STATUS_SUCCESS = 1,	//下载成功
-	        NET_SDK_DOWNLOAD_STATUS_PROCESSING,		//正在下载
-	        NET_SDK_DOWNLOAD_STATUS_FAILED,			//下载失败
-	        NET_SDK_DOWNLOAD_STATUS_UNKOWN_ERROR	//未知错误 
-       }
+        public enum NET_SDK_DOWNLOAD_STATUS
+        {
+            NET_SDK_DOWNLOAD_STATUS_SUCCESS = 1,    //下载成功
+            NET_SDK_DOWNLOAD_STATUS_PROCESSING,     //正在下载
+            NET_SDK_DOWNLOAD_STATUS_FAILED,         //下载失败
+            NET_SDK_DOWNLOAD_STATUS_UNKOWN_ERROR    //未知错误 
+        }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_BONJOUR_CFG
@@ -12291,7 +12291,7 @@ namespace DeviceService.SDK
             public uint dwSize;				// 结构体大小
             public byte byEnableBonjour;		// Bonjour使能 0 ：开启 1：关闭
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes1;				
+            public byte[] byRes1;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DOMAIN_NAME, ArraySubType = UnmanagedType.I1)]
             public byte[] byFriendlyName; 	// 服务名
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 128, ArraySubType = UnmanagedType.I1)]
@@ -12358,7 +12358,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DOMAIN_NAME, ArraySubType = UnmanagedType.I1)]
             public byte[] byCommonName;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DOMAIN_NAME, ArraySubType = UnmanagedType.I1)]
-            public byte[] byEmail;  
+            public byte[] byEmail;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 128, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
@@ -12371,7 +12371,7 @@ namespace DeviceService.SDK
             public ushort wCertType; //证书类型，0-CA，1-Certificate,2-私钥文件
             public byte byFileType; //证书文件类型，0-PEM,1-PFX
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 35, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes; 
+            public byte[] byRes;
         }
 
         public const int UPLOAD_CERTIFICATE = 1; //上传证书
@@ -12390,7 +12390,7 @@ namespace DeviceService.SDK
             public NET_DVR_TIME_EX struEndTime;   //证书截止时间（自签名证书信息获取时有效）
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] serialNumber;   //证书标识码（自签名证书信息获取时有效）
-            public byte byVersion; 
+            public byte byVersion;
             public byte byKeyAlgorithm;			//加密类型 0-RSA  1-DSA
             public byte byKeyLen;				//加密长度 0-512  1-1024、 2-2048
             public byte bySignatureAlgorithm; //签名算法类型（自签名证书信息获取时有效）
@@ -12418,15 +12418,15 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_IP_ALARM_GROUP_NUM
         {
-            public uint dwSize; 
+            public uint dwSize;
             public uint dwIPAlarmInGroup;      //IP通道报警输入组数
             public uint dwIPAlarmInNum;       //IP通道报警输入个数
             public uint dwIPAlarmOutGroup;     //IP通道报警输出组数
             public uint dwIPAlarmOutNum;      //IP通道报警输出个数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 64, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes;  
+            public byte[] byRes;
         }
-        
+
         //****NVR end***//
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_CHAN_GROUP_RECORD_STATUS
@@ -12454,7 +12454,7 @@ namespace DeviceService.SDK
             public byte byInputIdx;          /*输入源索引*/
             public byte byLayerIdx;          /*图层，0为最底层*/
             public byte byTransparency; //透明度，0～100 
-            public NET_DVR_RECTCFG  struWin;//目的窗口(相对显示墙)
+            public NET_DVR_RECTCFG struWin;//目的窗口(相对显示墙)
             public ushort wScreenHeight;//大屏高
             public ushort wScreenWidth;//大屏宽
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 20, ArraySubType = UnmanagedType.I1)]
@@ -12486,12 +12486,12 @@ namespace DeviceService.SDK
         /*摄像机信息,最多9999个，从1开始 */
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_MATRIX_CAMERAINFO
-        {  
+        {
             public uint dwGlobalCamId;      /* cam的全局编号*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] sCamName; /*cam的名称*/
             public uint dwMatrixId;          /*cam对应矩阵的编号*/
-            public uint dwLocCamId;         /*cam对应矩阵的内部编号*/ 
+            public uint dwLocCamId;         /*cam对应矩阵的内部编号*/
             public byte byValid;    /*是否有效，0-否，1-是*/
             public byte byPtzCtrl; /* 是否可控，0-否，1-是*/
             public byte byUseType; //*使用类型，0-不作为干线使用，1-BNC，2-SP3,3-V6光纤，4-其他光纤*/ 
@@ -12503,12 +12503,12 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] sPurpose;/*用途描述*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 20, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes2;  
+            public byte[] byRes2;
         }
 
         /*监视器信息，最多2048个*/
         [StructLayoutAttribute(LayoutKind.Sequential)]
-        public struct NET_MATRIX_MONITORINFO 
+        public struct NET_MATRIX_MONITORINFO
         {
             public uint dwGloalMonId; /*mon 的统一编号*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
@@ -12516,14 +12516,14 @@ namespace DeviceService.SDK
             public uint dwMatrixId;  /*mon所在矩阵的编号*/
             public uint dwLocalMonId; /*mon的内部编号*/
             public byte byValid;    /*是否有效，0-否，1-是*/
-            public byte byTrunkType; /*使用类型，0-不作为干线使用，1-BNC，2-SP3,3-V6光纤，4-其他光纤*/ 
+            public byte byTrunkType; /*使用类型，0-不作为干线使用，1-BNC，2-SP3,3-V6光纤，4-其他光纤*/
             public byte byUsedByTrunk;//当前使用状态，0-没有被使用，1-被干线使用 
             public byte byTrunkReq; /*分辨率, 以D1为单位：1- 1个D1，2- 2个D1，作为干线使用时，指的是干线的带宽*/
             public NET_DVR_TIME struInstallTime;//安装时间
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] sPurpose;/*用途描述*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 20, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes;  
+            public byte[] byRes;
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -12533,7 +12533,7 @@ namespace DeviceService.SDK
             public ushort wPort;
             public byte byNicNum; /*0 - eth0, 1 - eth1, 考虑双网口如何通信加入绑定的网口*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 69, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes;   
+            public byte[] byRes;
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -12545,7 +12545,7 @@ namespace DeviceService.SDK
             public byte[] byRes1;
             public NET_DVR_SINGLE_RS232 struRS232;	//232串口参数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 200, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes2;      
+            public byte[] byRes2;
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -12558,17 +12558,17 @@ namespace DeviceService.SDK
             public IntPtr pBuffer;//矩阵信息缓冲区
             public uint dwBufLen;//所分配指针长度，输入参数
         }
- 
+
         /*串口配置信息*/
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_MATRIX_UARTPARAM
-        {	
+        {
             public uint dwSize;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] byPortName;
             public ushort wUserId; /*用户编号，当连接设备为键盘时，绑定一个用户，用于权限管理*/
             public byte byPortType;    /*串口类型，三种0-RS232/1-RS485/2-RS422*/
-            public byte byFuncType; /*串口连接的设备的类型0-空闲，1-键盘，2-用作透明通道(485串口不可配置成透明通道),3-模拟矩阵*/     
+            public byte byFuncType; /*串口连接的设备的类型0-空闲，1-键盘，2-用作透明通道(485串口不可配置成透明通道),3-模拟矩阵*/
             public byte byProtocolType;  /*串口支持的协议类型, 当连接键盘设备时需要该信息,获取键盘支持协议的编号及描述符*/
             public byte byBaudRate;
             public byte byDataBits;
@@ -12581,7 +12581,7 @@ namespace DeviceService.SDK
 
         //最多256个用户，1～256
         [StructLayoutAttribute(LayoutKind.Sequential)]
-        public struct NET_MATRIX_USERPARAM 
+        public struct NET_MATRIX_USERPARAM
         {
             public uint dwSize;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
@@ -12605,7 +12605,7 @@ namespace DeviceService.SDK
             public byte byRes1;
             public ushort wMemNum;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 512, ArraySubType = UnmanagedType.U4)]
-            public uint[] dwGlobalId; 
+            public uint[] dwGlobalId;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 20, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;
         }
@@ -12642,7 +12642,7 @@ namespace DeviceService.SDK
             public byte byLevel;		/* 干线级别 1-255*/
             public ushort wReserveUserID;	//预留的用户ID： 1~256 ，0表示释放预留
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 18, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes; 
+            public byte[] byRes;
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -12656,16 +12656,16 @@ namespace DeviceService.SDK
             public uint dwBufLen;//所分配指针长度，输入参数
         }
 
-        public const int MATRIX_PROTOCOL_NUM   = 20;    //支持的最大矩阵协议数
+        public const int MATRIX_PROTOCOL_NUM = 20;    //支持的最大矩阵协议数
         public const int KEYBOARD_PROTOCOL_NUM = 20;    //支持的最大键盘协议数
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_PROTO_TYPE_EX
-        { 
-            public ushort wType;               /*ipc协议值*/  
+        {
+            public ushort wType;               /*ipc协议值*/
             public ushort wCommunitionType;		/*0：模拟 1：数字 2：兼容模拟、数字*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = DESC_LEN, ArraySubType = UnmanagedType.I1)]
-            public byte[] byDescribe; /*协议描述字段*/    
+            public byte[] byDescribe; /*协议描述字段*/
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -12684,12 +12684,12 @@ namespace DeviceService.SDK
             public byte nStartUserGroupNum;//起始用户组号
             public byte nStartResourceGroupNum;//起始资源组号
             public byte nStartSerialNum;//起始串口号
-            public uint  dwMatrixProtoNum;     /*有效的矩阵协议数目，从0开始*/
+            public uint dwMatrixProtoNum;     /*有效的矩阵协议数目，从0开始*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MATRIX_PROTOCOL_NUM, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_PROTO_TYPE_EX[] struMatrixProto;/*最大协议列表长度*/ 
+            public NET_DVR_PROTO_TYPE_EX[] struMatrixProto;/*最大协议列表长度*/
             public uint dwKeyBoardProtoNum;     /*有效的键盘协议数目，从0开始*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MATRIX_PROTOCOL_NUM, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_PROTO_TYPE_EX[] struKeyBoardProto;/*最大协议列表长度*/   
+            public NET_DVR_PROTO_TYPE_EX[] struKeyBoardProto;/*最大协议列表长度*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
@@ -12812,7 +12812,7 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_AUDIOEXCEPTION_ALARM
         {
-            public uint    dwSize;     /*结构长度*/
+            public uint dwSize;     /*结构长度*/
             public byte byAlarmType;//报警类型，1-音频输入异常，2-音频输入突变
             public byte byRes1;
             public ushort wAudioDecibel;//声音强度（音频输入突变时用到）
@@ -12844,13 +12844,13 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_VCA_FD_PROCIMG_CFG
         {
-            public uint  dwSize;           //结构大小
+            public uint dwSize;           //结构大小
             public byte byEnable;         //是否激活规则;
             public byte bySensitivity;      //检测灵敏度，[0,5]
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 22, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;       //保留字节 
             public NET_VCA_SIZE_FILTER struSizeFilter;  //尺寸过滤器
-            public NET_VCA_POLYGON  struPolygon;    //多边形
+            public NET_VCA_POLYGON struPolygon;    //多边形
             public NET_VCA_FD_IMAGE_CFG struFDImage;  //图片信息
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 20, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;    //保留
@@ -12976,10 +12976,10 @@ namespace DeviceService.SDK
         public struct NET_VCA_BLOCKLIST_PARA
         {
             public uint dwSize;   //结构大小
-            public NET_VCA_BLOCKLIST_INFO struBlockkListInfo; 
+            public NET_VCA_BLOCKLIST_INFO struBlockkListInfo;
             public uint dwRegisterPicNum;  //黑名单图个数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_HUMAN_PICTURE_NUM, ArraySubType = UnmanagedType.Struct)]
-            public NET_VCA_PICMODEL_RESULT[] struRegisterPic;  
+            public NET_VCA_PICMODEL_RESULT[] struRegisterPic;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 40, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes; //保留
         }
@@ -12997,7 +12997,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 20, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_VCA_BLOCKLIST_PIC
         {
@@ -13020,7 +13020,7 @@ namespace DeviceService.SDK
         }
 
         public const int MAX_FACE_PIC_LEN = 6144;   //最大人脸图片数据长度
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_VCA_SUB_SNAPPIC_DATA
         {
@@ -13069,8 +13069,8 @@ namespace DeviceService.SDK
 
         public enum VCA_FIND_SNAPPIC_TYPE
         {
-            VCA_NORMAL_FIND  = 0x00000000,   //普通检索
-	        VCA_ADVANCE_FIND  = 0x00000001  //高级检索
+            VCA_NORMAL_FIND = 0x00000000,   //普通检索
+            VCA_ADVANCE_FIND = 0x00000001  //高级检索
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -13113,8 +13113,8 @@ namespace DeviceService.SDK
             public float fStayDuration;  //停留画面中时间(单位: 秒)
             public IntPtr pBuffer1;  //抓拍人脸子图的图片数据
         }
-        
-        
+
+
         //黑名单报警信息
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_VCA_BLOCKLIST_INFO_ALARM
@@ -13152,18 +13152,18 @@ namespace DeviceService.SDK
             public byte byModelingStatus;// 建模状态
             public byte byLivenessDetectionStatus;//活体检测状态：0-保留，1-未知（检测失败），2-非真人人脸，3-真人人脸，4-未开启活体检测
             public byte cTimeDifferenceH;         /*与UTC的时差（小时），-12 ... +14， +表示东区,0xff无效*/
-            public byte cTimeDifferenceM;      	/*与UTC的时差（分钟），-30, 30, 45， +表示东区，0xff无效*/    
+            public byte cTimeDifferenceM;       /*与UTC的时差（分钟），-30, 30, 45， +表示东区，0xff无效*/
             public byte byMask;                //抓拍图是否戴口罩，0-保留，1-未知，2-不戴口罩，3-戴口罩
             public byte bySmile;               //抓拍图是否微笑，0-保留，1-未知，2-不微笑，3-微笑
             public byte byContrastStatus;      //比对结果，0-保留，1-比对成功，2-比对失败
             public byte byBrokenNetHttp;     //断网续传标志位，0-不是重传数据，1-重传数据
-        }   
-   
+        }
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_VCA_BLOCKLIST_INFO_ALARM_LOG
         {
-            public NET_VCA_BLOCKLIST_INFO struBlockListInfo; 
-            public uint dwBlockListPicID;       
+            public NET_VCA_BLOCKLIST_INFO struBlockListInfo;
+            public uint dwBlockListPicID;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 20, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;              // 保留字节
         }
@@ -13184,7 +13184,7 @@ namespace DeviceService.SDK
         {
             public uint dwSize;     		// 结构大小
             public float fSimilarity; //相似度，[0.001,1]
-            public NET_VCA_FACESNAP_INFO_ALARM_LOG  struSnapInfoLog; //抓拍信息
+            public NET_VCA_FACESNAP_INFO_ALARM_LOG struSnapInfoLog; //抓拍信息
             public NET_VCA_BLOCKLIST_INFO_ALARM_LOG struBlockListInfoLog; //黑名单信息
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 60, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;              // 保留字节
@@ -13242,7 +13242,7 @@ namespace DeviceService.SDK
         //存储路径设置
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_VCA_SAVE_PATH_CFG
-        { 
+        {
             public uint dwSize;   //结构大小
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DISKNUM_V30, ArraySubType = UnmanagedType.Struct)]
             public NET_VCA_SINGLE_PATH[] struPathInfo; //单个分区
@@ -13253,7 +13253,7 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_DEV_ACCESS_CFG
         {
-            public uint   dwSize;
+            public uint dwSize;
             public NET_DVR_IPADDR struIP;		//接入设备的IP地址
             public ushort wDevicePort;			 	//端口号
             public byte byEnable;		         //是否启用，0-否，1-是
@@ -13351,10 +13351,10 @@ namespace DeviceService.SDK
 
         public const int MAX_WINDOWS = 16;//最大窗口数
         public const int MAX_WINDOWS_V41 = 36;
-        
+
         public const int STARTDISPCHAN_VGA = 1;
         public const int STARTDISPCHAN_BNC = 9;
-        public const int STARTDISPCHAN_HDMI	= 25;
+        public const int STARTDISPCHAN_HDMI = 25;
         public const int STARTDISPCHAN_DVI = 29;
 
         [StructLayoutAttribute(LayoutKind.Explicit)]
@@ -13410,7 +13410,7 @@ namespace DeviceService.SDK
             public uint dwDispChanNum; //显示输出号，此参数在全部获取时有效
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 76, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;
-        } 
+        }
 
         /*解码器设备状态*/
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -13429,7 +13429,7 @@ namespace DeviceService.SDK
             public byte[] byRes1;
             public uint dwDispChan; /*获取全部显示通道状态时有效，设置时可填0*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 24, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes2;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+            public byte[] byRes2;
         }
 
         /*解码器设备状态*/
@@ -13439,9 +13439,9 @@ namespace DeviceService.SDK
             public uint dwSize;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.Struct)]
             public NET_DVR_MATRIX_CHAN_STATUS[] struDecChanStatus;     /*解码通道状态*/
-	        /*显示通道状态*/
+            /*显示通道状态*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DISPNUM_V41, ArraySubType = UnmanagedType.Struct)]
-            public NET_DVR_DISP_CHAN_STATUS_V41[] struDispChanStatus;     
+            public NET_DVR_DISP_CHAN_STATUS_V41[] struDispChanStatus;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
             public byte[] byAlarmInStatus;         /*报警输入状态*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
@@ -13456,15 +13456,15 @@ namespace DeviceService.SDK
         public struct NET_DVR_MATRIX_DEC_REMOTE_PLAY_V41
         {
             public uint dwSize;
-            public NET_DVR_IPADDR	struIP;		/* DVR IP地址 */	
-            public ushort wDVRPort;			/* 端口号 */	
+            public NET_DVR_IPADDR struIP;       /* DVR IP地址 */
+            public ushort wDVRPort;         /* 端口号 */
             public byte byChannel;			/* 通道号 */
             public byte byReserve;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] sUserName;		/* 用户名 */
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = PASSWD_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] sPassword;		/* 密码 */
-            public uint dwPlayMode;   	/* 0－按文件 1－按时间*/        	
+            public uint dwPlayMode;     /* 0－按文件 1－按时间*/
             public NET_DVR_TIME StartTime;
             public NET_DVR_TIME StopTime;
             [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 128)]
@@ -13550,8 +13550,8 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_PU_STREAM_CFG_SCENE
         {
-            public NET_DVR_STREAM_MEDIA_SERVER_CFG_SCENE	streamMediaServerCfg;
-            public NET_DVR_DEV_CHAN_INFO_SCENE				struDevChanInfo;
+            public NET_DVR_STREAM_MEDIA_SERVER_CFG_SCENE streamMediaServerCfg;
+            public NET_DVR_DEV_CHAN_INFO_SCENE struDevChanInfo;
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -13560,8 +13560,8 @@ namespace DeviceService.SDK
             public byte byEnable;	/* 是否启用 0－否 1－启用*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
-            public NET_DVR_STREAM_MEDIA_SERVER_CFG_SCENE	struStreamMediaSvrCfg;	
-            public NET_DVR_DEV_CHAN_INFO_SCENE			struDecChanInfo;	/*轮巡解码通道信息*/
+            public NET_DVR_STREAM_MEDIA_SERVER_CFG_SCENE struStreamMediaSvrCfg;
+            public NET_DVR_DEV_CHAN_INFO_SCENE struDecChanInfo;	/*轮巡解码通道信息*/
         }
 
         //轮巡解码结构
@@ -13630,12 +13630,13 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 21, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
-        
+
         /*******************************窗口设置*******************************/
         public const int MAX_WIN_COUNT = 224; //支持的最大开窗数
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
-        public struct NET_DVR_SCREEN_WINCFG{
+        public struct NET_DVR_SCREEN_WINCFG
+        {
             public uint dwSize;
             public byte byVaild;
             public byte byInputType;		//见CAM_MDOE
@@ -13650,7 +13651,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 16, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_WINLIST
         {
@@ -13694,31 +13695,31 @@ namespace DeviceService.SDK
 
         public enum NET_DVR_CAM_MODE
         {
-	        NET_DVR_UNKNOW  = 0,//无效
-	        NET_DVR_CAM_BNC,
-	        NET_DVR_CAM_VGA,
-	        NET_DVR_CAM_DVI,
-	        NET_DVR_CAM_HDMI,
-	        NET_DVR_CAM_IP,
-	        NET_DVR_CAM_RGB,
+            NET_DVR_UNKNOW = 0,//无效
+            NET_DVR_CAM_BNC,
+            NET_DVR_CAM_VGA,
+            NET_DVR_CAM_DVI,
+            NET_DVR_CAM_HDMI,
+            NET_DVR_CAM_IP,
+            NET_DVR_CAM_RGB,
             NET_DVR_CAM_DECODER,
-	        NET_DVR_CAM_MATRIX,
-	        NET_DVR_CAM_YPBPR,
-	        NET_DVR_CAM_USB,
+            NET_DVR_CAM_MATRIX,
+            NET_DVR_CAM_YPBPR,
+            NET_DVR_CAM_USB,
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_INPUTSTREAMCFG
         {
-            public uint dwSize ;
-            public byte byValid ;
+            public uint dwSize;
+            public byte byValid;
             public byte byCamMode;						//信号输入源类型，见NET_DVR_CAM_MODE
             public ushort wInputNo;						//信号源序号0-224
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] sCamName;			//信号输入源名称
             public NET_DVR_VIDEOEFFECT struVideoEffect;	//视频参数
             public NET_DVR_PU_STREAM_CFG struPuStream;	//ip输入时使用
-            public ushort wBoardNum ;						//信号源所在的板卡号
+            public ushort wBoardNum;						//信号源所在的板卡号
             public ushort wInputIdxOnBoard;				//信号源在板卡上的位置
             public ushort wResolutionX;					//分辨率
             public ushort wResolutionY;
@@ -13727,7 +13728,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] sGroupName;	//网络信号源分组 组名
             public byte byJointMatrix;			//  关联矩阵 ，0-不关联  1-关联
-            public byte byRes;  
+            public byte byRes;
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -13745,12 +13746,12 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_OUTPUTPARAM
         {
-            public uint  dwSize;
+            public uint dwSize;
             public byte byMonMode;		/*输出连接模式,1-BNC,2-VGA,3-DVI,4-HDMI*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;
-            public uint  dwResolution;	/*分辨率，根据能力集获取所支持的进行设置*/
-            public NET_DVR_VIDEOEFFECT  struVideoEffect;	/*输出通道视频参数配置*/
+            public uint dwResolution;	/*分辨率，根据能力集获取所支持的进行设置*/
+            public NET_DVR_VIDEOEFFECT struVideoEffect;	/*输出通道视频参数配置*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;
         }
@@ -13773,7 +13774,7 @@ namespace DeviceService.SDK
 
         /*******************************能力集*******************************/
         public const int SCREEN_PROTOCOL_NUM = 20;   //支持的最大大屏控制器协议数
-        
+
         //多屏服务器能力集
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_SCREENSERVER_ABILITY
@@ -13810,7 +13811,7 @@ namespace DeviceService.SDK
             public byte byPlanNum;    		/*预案个数*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 5, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;
-            public byte byIsSupportPlayBack;  /*是否支持回放*/	
+            public byte byIsSupportPlayBack;  /*是否支持回放*/
             public byte byMatrixInputNum;  //支持输入矩阵最大个数
             public byte byMatrixOutputNum; //支持输出矩阵最大个数
             public NET_DVR_DISPINFO struVgaInfo;//VGA输出信息
@@ -13822,7 +13823,7 @@ namespace DeviceService.SDK
             public ushort wDVCSDevNum;	//分布式大屏控制器最大设备数
             public ushort wNetSignalNum;	//最大网络输入源个数
             public ushort wBaseCoordinateX;//基准坐标
-            public ushort wBaseCoordinateY; 
+            public ushort wBaseCoordinateY;
             public byte byExternalMatrixNum;	//最大外接矩阵个数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 49, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;
@@ -13837,7 +13838,7 @@ namespace DeviceService.SDK
             public byte byVideoFormat;		/*视频制式，1：NTSC,2：PAL,0：无*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 46, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
-        } 
+        }
 
         [StructLayoutAttribute(LayoutKind.Explicit)]
         public struct NET_DVR_INPUTSTATUS_UNION
@@ -13852,7 +13853,7 @@ namespace DeviceService.SDK
             public NET_DVR_ANALOGINPUTSTATUS struAnalogInputStatus;
              * */
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_INPUTSTATUS
         {
@@ -13887,7 +13888,7 @@ namespace DeviceService.SDK
             public ushort wStartInputNum; // 异常输入源（异常起点） 
             public ushort wEndInputNum;	// 异常输入源（异常终点） 
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 16, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes2;	   
+            public byte[] byRes2;
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -13906,7 +13907,7 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_DIGITALSCREEN
         {
-            public NET_DVR_IPADDR  struAddress;/*设备为数字设备时的IP信息*/
+            public NET_DVR_IPADDR struAddress;/*设备为数字设备时的IP信息*/
             public ushort wPort;		//通道号
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 26, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;  //保留
@@ -13918,7 +13919,7 @@ namespace DeviceService.SDK
             public byte byDevSerPortNum;   /*连接设备的串口号*/
             public byte byScreenSerPort;  /*连接大屏的串口号*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 130, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes;   
+            public byte[] byRes;
             public NET_DVR_MATRIX_CFG struMatrixCfg;
         }
 
@@ -13927,8 +13928,8 @@ namespace DeviceService.SDK
         {
             [FieldOffsetAttribute(0)]
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 172, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes;  
-            
+            public byte[] byRes;
+
             /*[FieldOffsetAttribute(0)]
             public NET_DVR_DIGITALSCREEN struDigitalScreen;
             [FieldOffsetAttribute(0)]
@@ -13950,7 +13951,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] sUserName;	/*登录用户名*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = PASSWD_LEN, ArraySubType = UnmanagedType.I1)]
-            public byte[] sPassword; /*登录密码*/   
+            public byte[] sPassword; /*登录密码*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] sDevName;	/*设备名称*/
             public NET_DVR_SCREEN_UNION struScreenUnion;
@@ -13964,18 +13965,18 @@ namespace DeviceService.SDK
         /*******************************底图上传*******************************/
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_BASEMAP_CFG
-        {	
+        {
             public byte byScreenIndex;         //屏幕的序号
             public byte byMapNum;				/*被分割成了多少块*/
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I1)]
             public byte[] res;
             public ushort wSourWidth;			/* 原图片的宽度 */
             public ushort wSourHeight;			/* 原图片的高度 */
-        }            
+        }
 
         /*******************************OSD*******************************/
         public const int MAX_OSDCHAR_NUM = 256;
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_OSDCFG
         {
@@ -14002,8 +14003,8 @@ namespace DeviceService.SDK
         /*******************************获取串口信息*******************************/
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_SERIAL_CONTROL
-        { 
-            public uint dwSize ;
+        {
+            public uint dwSize;
             public byte bySerialNum;        // 串口个数
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;
@@ -14017,14 +14018,14 @@ namespace DeviceService.SDK
         //屏幕输入源控制
         public enum INPUT_INTERFACE_TYPE
         {
-	        INTERFACE_VGA = 0,
-	        INTERFACE_SVIDEO, // 2046NL不支持，2046NH支持
-	        INTERFACE_YPBPR,
-	        INTERFACE_DVI ,
-	        INTERFACE_BNC , 
-	        INTERFACE_DVI_LOOP,//(环通) 2046NH不支持，2046NL支持
-	        INTERFACE_BNC_LOOP, //(环通) 2046NH不支持，2046NL.支持
-	        INTERFACE_HDMI,
+            INTERFACE_VGA = 0,
+            INTERFACE_SVIDEO, // 2046NL不支持，2046NH支持
+            INTERFACE_YPBPR,
+            INTERFACE_DVI,
+            INTERFACE_BNC,
+            INTERFACE_DVI_LOOP,//(环通) 2046NH不支持，2046NL支持
+            INTERFACE_BNC_LOOP, //(环通) 2046NH不支持，2046NL.支持
+            INTERFACE_HDMI,
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -14034,13 +14035,13 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 15, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
-        
+
         //显示单元颜色控制
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_DISPLAY_COLOR_CTRL
         {
             public byte byColorType;		//1-亮度 2-对比度 3-饱和度 4-清晰度
-            public char	byScale;			//-1 、0、+1三个值
+            public char byScale;			//-1 、0、+1三个值
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 14, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
@@ -14073,31 +14074,31 @@ namespace DeviceService.SDK
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_SCREEN_CONTROL
-        { 	
-            public uint dwSize;			 
-            public uint dwCommand ;      /* 控制方法 1-开 2-关 3-屏幕输入源选择 4-显示单元颜色控制 5-显示单元位置控制*/
+        {
+            public uint dwSize;
+            public uint dwCommand;      /* 控制方法 1-开 2-关 3-屏幕输入源选择 4-显示单元颜色控制 5-显示单元位置控制*/
             public byte byProtocol;      //串口协议类型,1:LCD-S1,2:LCD-S2
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;
-            public NET_DVR_SCREEN_CONTROL_PARAM	struControlParam;
+            public NET_DVR_SCREEN_CONTROL_PARAM struControlParam;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 52, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes2;	
+            public byte[] byRes2;
         }
 
         /*******************************屏幕控制V41*******************************/
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_SCREEN_CONTROL_V41
-        { 	
+        {
             public uint dwSize;
             public byte bySerialNo;		//串口号
             public byte byBeginAddress;	//左上角屏幕号，从1开始
             public byte byEndAddress;	//右下角屏幕号，从1开始
             public byte byProtocol;      	   // 串口协议类型  1-LCD-S1 , 2-LCD-S2 , 3-LCD-L1 ， 4-LCD-DLP， 5-LCD-S3 , 6-LCD-H1 
-            public uint dwCommand ;      /* 控制方法 1-开 2-关 3-屏幕输入源选择 4-显示单元颜色控制 5-显示单元位置控制*/
-            public NET_DVR_SCREEN_CONTROL_PARAM	struControlParam;
+            public uint dwCommand;      /* 控制方法 1-开 2-关 3-屏幕输入源选择 4-显示单元颜色控制 5-显示单元位置控制*/
+            public NET_DVR_SCREEN_CONTROL_PARAM struControlParam;
             public byte byWallNo;		// 电视墙号
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 51, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes;	
+            public byte[] byRes;
         }
 
         /*******************************预案管理*******************************/
@@ -14107,9 +14108,9 @@ namespace DeviceService.SDK
 
         public enum NET_DVR_PLAN_OPERATE_TYPE
         {
-	        NET_DVR_SWITCH_LAYOUT = 1, 		// 布局切换 默认
-	        NET_DVR_SCREEN_POWER_OFF,  		// 关闭大屏幕显示
-	        NET_DVR_SCREEN_POWER_ON,   		// 打开大屏幕显示
+            NET_DVR_SWITCH_LAYOUT = 1,      // 布局切换 默认
+            NET_DVR_SCREEN_POWER_OFF,       // 关闭大屏幕显示
+            NET_DVR_SCREEN_POWER_ON,   		// 打开大屏幕显示
         }
 
         /*预案项信息*/
@@ -14130,7 +14131,7 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_CYCLE_TIME
         {
-            public byte byValid; 
+            public byte byValid;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
             public NET_DVR_TIME_EX struTime;
@@ -14208,7 +14209,7 @@ namespace DeviceService.SDK
             public uint dwSize;
             [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 32)]
             public string sCameraInfo;		// 前端相机信息
-            public byte  byInterfaceType;		// 前端接入接口类型，1:VGA, 2:HDMI, 3:YPbPr 4:SDI 5:FC
+            public byte byInterfaceType;		// 前端接入接口类型，1:VGA, 2:HDMI, 3:YPbPr 4:SDI 5:FC
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;
             public uint dwChannel;
@@ -14233,7 +14234,7 @@ namespace DeviceService.SDK
             public byte byDehazeMode; //0-不启用，1-自动模式，2-开
             public byte byLevel; //等级，0-100
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 6, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes; 
+            public byte[] byRes;
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -14265,7 +14266,7 @@ namespace DeviceService.SDK
         //设置前端相机类型状态
         public const int SET_CAMERA_TYPE_SUCCESS = 1;  // 成功
         public const int SET_CAMERA_TYPE_FAIL = 2;  // 失败
-        public const int SET_CAMERA_TYPE_PROCESSING	= 3;   // 正在处理
+        public const int SET_CAMERA_TYPE_PROCESSING = 3;   // 正在处理
 
         //9000 2.2
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -14302,7 +14303,7 @@ namespace DeviceService.SDK
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_MANUAL_RECORD_PARA
         {
-            public NET_DVR_STREAM_INFO struStreamInfo; 
+            public NET_DVR_STREAM_INFO struStreamInfo;
             public uint lRecordType;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
@@ -14398,7 +14399,7 @@ namespace DeviceService.SDK
             public byte byTransactionType;       //交易类型 0-全部，1-查询， 2-取款， 3-存款， 4-修改密码，5-转账， 6-无卡查询 7-无卡存款， 8-吞钞 9-吞卡 10-自定义
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 3, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;    //保留
-            public uint dwTransationAmount ;     //交易金额 ;
+            public uint dwTransationAmount;     //交易金额 ;
         }
 
         [StructLayoutAttribute(LayoutKind.Explicit)]
@@ -14406,10 +14407,10 @@ namespace DeviceService.SDK
         {
             [FieldOffsetAttribute(0)]
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.I1)]
-            public byte[] byLenth ;
-           /* [FieldOffsetAttribute(0)]
-            public NET_DVR_ATMFINDINFO struATMFindInfo;	       //ATM查询
-            * */
+            public byte[] byLenth;
+            /* [FieldOffsetAttribute(0)]
+             public NET_DVR_ATMFINDINFO struATMFindInfo;	       //ATM查询
+             * */
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -14426,11 +14427,11 @@ namespace DeviceService.SDK
             public byte byDrawFrame; //0:不抽帧，1：抽帧
             public byte byFindType; //0:查询普通卷，1：查询存档卷
             public byte byQuickSearch; //0:普通查询，1：快速（日历）查询
-            public byte bySpecialFindInfoType ;    //专有查询条件类型 0-无效， 1-带ATM查询条件  
+            public byte bySpecialFindInfoType;    //专有查询条件类型 0-无效， 1-带ATM查询条件  
             public uint dwVolumeNum;  //存档卷号
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = GUID_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] byWorkingDeviceGUID;    //工作机GUID，通过获取N+1得到
-            public NET_DVR_SPECIAL_FINDINFO_UNION uSpecialFindInfo ;   //专有查询条件
+            public NET_DVR_SPECIAL_FINDINFO_UNION uSpecialFindInfo;   //专有查询条件
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;    //保留
         }
@@ -14456,7 +14457,7 @@ namespace DeviceService.SDK
             }
         }
 
-        public const int SEARCH_EVENT_INFO_LEN_V40 = 800; 
+        public const int SEARCH_EVENT_INFO_LEN_V40 = 800;
 
         [StructLayout(LayoutKind.Explicit)]
         public struct UNION_EVENT_PARAM
@@ -14468,8 +14469,8 @@ namespace DeviceService.SDK
             {
                 byLen = new byte[SEARCH_EVENT_INFO_LEN_V40];
             }
-         }
-        
+        }
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct struMotionParam
         {
@@ -14525,8 +14526,8 @@ namespace DeviceService.SDK
         {
             [FieldOffset(0)]
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 800, ArraySubType = UnmanagedType.I1)]
-            public byte[] byLen;                 
-         }
+            public byte[] byLen;
+        }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct struMotionRet
@@ -14602,7 +14603,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 200, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;          //保留
         }
-     
+
         //预览V40接口
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_PREVIEWINFO
@@ -14815,7 +14816,7 @@ namespace DeviceService.SDK
             public IntPtr pBuffer;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 12)]
             public byte[] byRes2;
-        }  
+        }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_ITS_PLATE_RESULT
@@ -14877,35 +14878,35 @@ namespace DeviceService.SDK
             public uint dwPicNum;        //图片数量（与picGroupNum不同，代表本条信息附带的图片数量，图片信息由struVehicleInfoEx定义    
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 6, ArraySubType = UnmanagedType.Struct)]
             public NET_ITS_PICTURE_INFO[] struPicInfo;         //图片信息,单张回调，最多6张图，由序号区分
-        }     
-        
+        }
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_ITS_PARK_VEHICLE
         {
             public uint dwSize;
-            public byte byGroupNum;      
-            public byte byPicNo;      
-            public byte byLocationNum;    
-            public byte byParkError;    
+            public byte byGroupNum;
+            public byte byPicNo;
+            public byte byLocationNum;
+            public byte byParkError;
             [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = MAX_PARKNO_LEN)]
-            public string byParkingNo;    
-            public byte byLocationStatus;    
-            public byte bylogicalLaneNum;    
-            public ushort wUpLoadType;     
+            public string byParkingNo;
+            public byte byLocationStatus;
+            public byte bylogicalLaneNum;
+            public ushort wUpLoadType;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 4, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes1;        
-            public uint dwChanIndex;  
-            public NET_DVR_PLATE_INFO      struPlateInfo;
-            public NET_DVR_VEHICLE_INFO    struVehicleInfo;
+            public byte[] byRes1;
+            public uint dwChanIndex;
+            public NET_DVR_PLATE_INFO struPlateInfo;
+            public NET_DVR_VEHICLE_INFO struVehicleInfo;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_ID_LEN, ArraySubType = UnmanagedType.I1)]
-            public byte[] byMonitoringSiteID;  
+            public byte[] byMonitoringSiteID;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_ID_LEN, ArraySubType = UnmanagedType.I1)]
-            public byte[] byDeviceID;  
-            public uint dwPicNum;  
+            public byte[] byDeviceID;
+            public uint dwPicNum;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.Struct)]
             public NET_ITS_PICTURE_INFO[] struPicInfo;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 256, ArraySubType = UnmanagedType.I1)]
-            public byte[] byRes2;     
+            public byte[] byRes2;
         }
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -14933,7 +14934,7 @@ namespace DeviceService.SDK
             public byte byMonoResult;         //黑白图像检测结果，0-未检测，1-正常，2-异常
             public byte byShakeResult;        //视频抖动检测结果，0-未检测，1-正常，2-异常
             [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 256)]
-            public string sSNapShotURL;	
+            public string sSNapShotURL;
             public byte byFlashResult;        //视频剧变检测结果，0-未检测，1-正常，2-异常
             public byte byCoverResult;        //视频遮挡检测结果，0-未检测，1-正常，2-异常
             public byte bySceneResult;        //场景变更检测结果，0-未检测，1-正常，2-异常
@@ -15033,7 +15034,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = ACS_CARD_NO_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] byCardNo; //卡号，为0无效
             public byte byCardType; //卡类型，1-普通卡，2-残疾人卡，3-黑名单卡，4-巡更卡，5-胁迫卡，6-超级卡，7-来宾卡，为0无效
-            public byte byAllowListNo; 
+            public byte byAllowListNo;
             public byte byReportChannel; //报告上传通道，1-布防上传，2-中心组1上传，3-中心组2上传，为0无效
             public byte byCardReaderKind; //读卡器属于哪一类，0-无效，1-IC读卡器，2-身份证读卡器，3-二维码读卡器,4-指纹头
             public uint dwCardReaderNo; //读卡器编号，为0无效
@@ -15197,7 +15198,7 @@ namespace DeviceService.SDK
             public byte[] byBelongGroup; //所属群组，按字节表示，1-属于，0-不属于
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = CARD_PASSWORD_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] byCardPassword; //卡密码
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DOOR_NUM_256*MAX_CARD_RIGHT_PLAN_NUM, ArraySubType = UnmanagedType.U2)]
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_DOOR_NUM_256 * MAX_CARD_RIGHT_PLAN_NUM, ArraySubType = UnmanagedType.U2)]
             public ushort[] wCardRightPlan; //卡权限计划，取值为计划模板编号，同个门（锁）不同计划模板采用权限或的方式处理
             public uint dwMaxSwipeTime; //最大刷卡次数，0为无次数限制（开锁次数）
             public uint dwSwipeTime; //已刷卡次数
@@ -15233,7 +15234,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = NAME_LEN, ArraySubType = UnmanagedType.I1)]
             public byte[] bySIMNum; //SIM卡号（手机号）
         }
-        
+
 
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_CHECK_FACE_PICTURE_COND
@@ -15259,7 +15260,7 @@ namespace DeviceService.SDK
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 236, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes1;    //预留
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_LOCAL_CHECK_DEV
         {
@@ -15295,14 +15296,14 @@ namespace DeviceService.SDK
             public byte[] szFilename;
             public IntPtr pPicData;
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_EXTERNAL_DEVICE_STATE_UNION
         {
-           [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 512, ArraySubType = UnmanagedType.I1)]
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 512, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes;
         }
-        
+
         [StructLayoutAttribute(LayoutKind.Sequential)]
         public struct NET_DVR_ALARMHOST_EXTERNAL_DEVICE_STATE
         {
@@ -15313,7 +15314,7 @@ namespace DeviceService.SDK
             public NET_DVR_EXTERNAL_DEVICE_STATE_UNION struDevState;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
             public byte[] byRes2;
-       }
+        }
 
         //设备区域设置
         public const int REGIONTYPE = 0;//代表区域
@@ -15675,8 +15676,8 @@ namespace DeviceService.SDK
         [DllImport(@"HIKlib/HCNetSDK.dll")]
         public static extern int NET_DVR_RealPlay_V40(int iUserID, ref NET_DVR_PREVIEWINFO lpPreviewInfo, REALDATACALLBACK fRealDataCallBack_V30, IntPtr pUser);
 
-       // [DllImport(@"HIKlib/HCNetSDK.dll")]
-       // public static extern int NET_DVR_GetRealPlayerIndex(int lRealHandle);
+        // [DllImport(@"HIKlib/HCNetSDK.dll")]
+        // public static extern int NET_DVR_GetRealPlayerIndex(int lRealHandle);
         /*********************************************************
 		Function:	NET_DVR_StopRealPlay
 		Desc:		停止预览。
@@ -15892,7 +15893,7 @@ namespace DeviceService.SDK
 
         [DllImport(@"HIKlib/HCNetSDK.dll")]
         public static extern bool NET_DVR_PlayBackControl(int lPlayHandle, uint dwControlCode, uint dwInValue, ref uint LPOutValue);
-        
+
         [DllImport(@"HIKlib/HCNetSDK.dll")]
         public static extern bool NET_DVR_PlayBackControl_V40(int lPlayHandle, uint dwControlCode, IntPtr lpInBuffer, uint dwInValue, IntPtr lpOutBuffer, ref uint LPOutValue);
 
@@ -16670,7 +16671,7 @@ namespace DeviceService.SDK
             VCA_VIDEO_RECOGNIZE_SUCCESS_OF_NEW_LICENSE,//视频识别到新的车牌
             VCA_VIDEO_RECOGNIZE_FINISH_OF_CUR_LICENSE,//视频识别车牌结束
         }
-        
+
 
         //视频识别触发类型
         public enum VCA_TRIGGER_TYPE
@@ -16784,7 +16785,7 @@ namespace DeviceService.SDK
             public byte[] byRes;//保留，置0
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = MAX_SEGMENT_NUM, ArraySubType = UnmanagedType.Struct)]
             public NET_VCA_LINE_SEGMENT[] struSeg;
-        }      
+        }
 
         //2009-8-18 抓拍机
         public const int PLATE_INFO_LEN = 1024;
