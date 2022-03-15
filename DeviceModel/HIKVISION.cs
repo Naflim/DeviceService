@@ -10,11 +10,10 @@ namespace DeviceService.DeviceModel
 {
     public abstract class HIKVISION : IDevice
     {
+        /// <summary>
+        /// 设备连接状态
+        /// </summary>
         public bool LinkStatus { get { return linkStatus; } }
-        ///// <summary>
-        ///// 登录ID
-        ///// </summary>
-        //public int UserID { get { return userID; } }
 
         /// <summary>
         /// 设备IP
@@ -32,6 +31,11 @@ namespace DeviceService.DeviceModel
         protected string ip;
         protected int port;
         bool linkStatus;
+
+        /// <summary>
+        /// 连接回调函数
+        /// </summary>
+        public Action<HIKVISION> LinkOk { get; set; }
 
         public void Connect(ConnectModel connect)
         {
@@ -69,6 +73,7 @@ namespace DeviceService.DeviceModel
         {
             if (!CHCNetSDK.NET_DVR_Logout(userID))
                 throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
+            linkStatus = false;
         }
 
         /// <summary>
@@ -87,6 +92,7 @@ namespace DeviceService.DeviceModel
                 userID = lUserID;
                 linkStatus = true;
                 GetDeviceInfo();
+                LinkOk?.Invoke(this);
             }
             catch (Exception ex)
             {
@@ -106,7 +112,7 @@ namespace DeviceService.DeviceModel
                 throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
 
             nETCFG_V30 = (CHCNetSDK.NET_DVR_NETCFG_V30)Marshal.PtrToStructure(ptrNetCfg, typeof(CHCNetSDK.NET_DVR_NETCFG_V30));
-            ip = nETCFG_V30.struEtherNet[0].struDVRIP.sIpV4;
+            ip = Encoding.Default.GetString(nETCFG_V30.struEtherNet[0].struDVRIP.sIpV4);
             port = nETCFG_V30.struEtherNet[0].wDVRPort;
         }
     }

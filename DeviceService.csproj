@@ -36,9 +36,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\NaflimHelperLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Study\Demo\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="rfidLink, Version=1.2.2.13, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\CardWriteCETClib\rfidLink.dll</HintPath>
+    </Reference>
+    <Reference Include="RFIDReaderNetwork_SerialSDK_ForCSharp, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\RFIDReaderNetwork_SerialSDK_ForCSharp.dll</HintPath>
     </Reference>
     <Reference Include="RSNetDevice, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -69,6 +76,7 @@
     <Compile Include="DeviceModel\UHFReader09.cs" />
     <Compile Include="DeviceModel\CardWriteCETC.cs" />
     <Compile Include="DeviceModel\UHFReader86.cs" />
+    <Compile Include="DeviceModel\UHFReaderCETC.cs" />
     <Compile Include="EntranceGuardHIK.cs" />
     <Compile Include="ICReader.cs" />
     <Compile Include="DeviceModel\UHFGate.cs" />
@@ -82,7 +90,10 @@
     <Compile Include="Model\ExceptionModels\UHF09Exception.cs" />
     <Compile Include="Model\ExceptionModels\UHF288Exception.cs" />
     <Compile Include="Model\ExceptionModels\UHF86Exception.cs" />
+    <Compile Include="Model\ExceptionModels\UHFCETCException.cs" />
     <Compile Include="Model\ExceptionModels\UHFGateException.cs" />
+    <Compile Include="Model\HIKModel.cs" />
+    <Compile Include="Model\PersonnelModel.cs" />
     <Compile Include="Model\TempHumModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadOrWrite.cs" />
@@ -149,6 +160,7 @@
     <Content Include="lib\NaflimHelperLibrary.dll" />
     <Content Include="lib\ICReaderlib\function.dll" />
     <Content Include="lib\ICReaderlib\USB.dll" />
+    <Content Include="lib\RFIDReaderNetwork_SerialSDK_ForCSharp.dll" />
     <Content Include="lib\RSNetDevice.dll" />
     <Content Include="lib\UHFGate.dll" />
     <Content Include="lib\UHFReader09lib\Basic.dll" />
@@ -166,6 +178,7 @@
     <None Include="lib\HIKlib\HCNetSDKCom\HCPreview.lib" />
     <None Include="lib\HIKlib\LocalXml.zip" />
     <None Include="lib\HIKlib\PlayCtrl.lib" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
