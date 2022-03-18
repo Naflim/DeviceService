@@ -262,7 +262,7 @@ namespace DeviceService.DeviceModel
                             else
                                 throw UHF288Exception.AbnormalJudgment(fCmdRet);
                         }
-                        string[] EPCarr = DataConversion.GetEPC(EPC);//byte数组以EPC格式转换为字符串数组
+                        string[] EPCarr = DataConversion.GetEPC(EPC).Where(v => !string.IsNullOrEmpty(v)).ToArray();//byte数组以EPC格式转换为字符串数组
                         foreach (string item in EPCarr)
                         {
                             if (item != null && !cacheEPC.Contains(item))
@@ -321,7 +321,7 @@ namespace DeviceService.DeviceModel
                 else
                     throw UHF288Exception.AbnormalJudgment(fCmdRet);
             }
-            string[] EPCarr = DataConversion.GetEPC(EPC);//byte数组以EPC格式转换为字符串数组
+            string[] EPCarr = DataConversion.GetEPC(EPC).Where(v => !string.IsNullOrEmpty(v)).ToArray();//byte数组以EPC格式转换为字符串数组
             foreach (string item in EPCarr)
             {
                 if (item != null && !cacheEPC.Contains(item))

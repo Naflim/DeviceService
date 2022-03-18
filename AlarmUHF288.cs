@@ -37,9 +37,9 @@ namespace DeviceService
         public int GPIOinterval { get; set; } = 100;
 
         /// <summary>
-        /// 开始监听GPIO
+        /// 开始报警服务
         /// </summary>
-        /// <param name="adoptTrigger">方向判断成功触发事件</param>
+        /// <param name="adoptTrigger">报警触发事件</param>
         public void StartAlarmServer(Action<IAlarm, AlarmModel> adoptTrigger)
         {
             if (DefGPIO == byte.MaxValue) throw new Exception("默认GPIO不可为空");

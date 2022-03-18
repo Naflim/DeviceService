@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="libzkfpcsharp, Version=1.0.0.1, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\东识科技\software(demo)\智能柜\中控指纹仪\ZKFinger SDK 5.0.0.29\C#\lib\x64\libzkfpcsharp.dll</HintPath>
+    </Reference>
     <Reference Include="NaflimHelperLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\NaflimHelperLibrary.dll</HintPath>
@@ -65,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlarmUHF288NotGPIO.cs" />
     <Compile Include="CabinetSilverBox.cs" />
     <Compile Include="CameraHIK.cs" />
     <Compile Include="AlarmUHF288.cs" />
@@ -77,9 +82,11 @@
     <Compile Include="DeviceModel\CardWriteCETC.cs" />
     <Compile Include="DeviceModel\UHFReader86.cs" />
     <Compile Include="DeviceModel\UHFReaderCETC.cs" />
+    <Compile Include="DeviceModel\ZKTECO.cs" />
     <Compile Include="EntranceGuardHIK.cs" />
     <Compile Include="ICReader.cs" />
     <Compile Include="DeviceModel\UHFGate.cs" />
+    <Compile Include="Live20FS.cs" />
     <Compile Include="Model\AlarmModel.cs" />
     <Compile Include="Model\ChannelGateModel.cs" />
     <Compile Include="Model\ExceptionModels\CETCException.cs" />
@@ -92,6 +99,7 @@
     <Compile Include="Model\ExceptionModels\UHF86Exception.cs" />
     <Compile Include="Model\ExceptionModels\UHFCETCException.cs" />
     <Compile Include="Model\ExceptionModels\UHFGateException.cs" />
+    <Compile Include="Model\ExceptionModels\ZKTECOException.cs" />
     <Compile Include="Model\HIKModel.cs" />
     <Compile Include="Model\PersonnelModel.cs" />
     <Compile Include="Model\TempHumModel.cs" />
@@ -157,6 +165,7 @@
     <Content Include="lib\HIKlib\SuperRender.dll" />
     <Content Include="lib\HIKlib\YUVProcess.dll" />
     <Content Include="lib\HIKlib\zlib1.dll" />
+    <Content Include="lib\libzkfpcsharp.dll" />
     <Content Include="lib\NaflimHelperLibrary.dll" />
     <Content Include="lib\ICReaderlib\function.dll" />
     <Content Include="lib\ICReaderlib\USB.dll" />
