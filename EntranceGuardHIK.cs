@@ -15,6 +15,16 @@ namespace DeviceService
 {
     public class EntranceGuardHIK : HIKVISION
     {
+        public EntranceGuardHIK()
+        {
+
+        }
+
+        EntranceGuardHIK(int userID)
+        {
+            this.userID = userID;
+        }
+
         /// <summary>
         /// 单次执行数量
         /// </summary>
@@ -23,28 +33,44 @@ namespace DeviceService
         /// <summary>
         /// 门禁触发事件
         /// </summary>
-        Action<EntranceGuardHIK, PersonnelModel, DateTime> MonitoringEvent;
+        static Action<string, PersonnelModel, DateTime> MonitoringEvent;
 
-        CHCNetSDK.MSGCallBack callBack;
+        static CHCNetSDK.MSGCallBack callBack;
 
-        public void StartMonitoring(Action<EntranceGuardHIK, PersonnelModel, DateTime> action)
+        /// <summary>
+        /// 设置报警回调函数
+        /// </summary>
+        /// <param name="action">回调函数</param>
+        /// <exception cref="HIKException">海康SDK内部错误</exception>
+        public static void SetCallBack(Action<string, PersonnelModel, DateTime> action)
         {
             MonitoringEvent = action;
+            callBack = MSGCallBack;
+
+            if (!CHCNetSDK.NET_DVR_SetDVRMessageCallBack_V30(callBack, IntPtr.Zero))
+                throw new HIKException("事件注册失败");
+        }
+
+        /// <summary>
+        /// 设备布防
+        /// </summary>
+        /// <param name="guardHIK">门禁机</param>
+        /// <param name="action">回调函数</param>
+        public static void StartMonitoring(EntranceGuardHIK guardHIK, Action<string, PersonnelModel, DateTime> action = null)
+        {
             CHCNetSDK.NET_DVR_SETUPALARM_PARAM struSetupAlarmParam = new CHCNetSDK.NET_DVR_SETUPALARM_PARAM();
             struSetupAlarmParam.dwSize = (uint)Marshal.SizeOf(struSetupAlarmParam);
             struSetupAlarmParam.byLevel = 1;
             struSetupAlarmParam.byAlarmInfoType = 1;
             struSetupAlarmParam.byDeployType = 1;
-            if (CHCNetSDK.NET_DVR_SetupAlarmChan_V41(userID, ref struSetupAlarmParam) < 0)
+            if (CHCNetSDK.NET_DVR_SetupAlarmChan_V41(guardHIK.userID, ref struSetupAlarmParam) < 0)
                 throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
 
-            callBack = MSGCallBack;
-
-            if (!CHCNetSDK.NET_DVR_SetDVRMessageCallBack_V50(0, callBack, IntPtr.Zero))
-                throw new HIKException("事件注册失败");
+            if (action != null)
+                SetCallBack(action);
         }
 
-        void MSGCallBack(int lCommand, ref CHCNetSDK.NET_DVR_ALARMER pAlarmer, IntPtr pAlarmInfo, uint dwBufLen, IntPtr pUser)
+        static void MSGCallBack(int lCommand, ref CHCNetSDK.NET_DVR_ALARMER pAlarmer, IntPtr pAlarmInfo, uint dwBufLen, IntPtr pUser)
         {
             if (lCommand != CHCNetSDK.COMM_ALARM_ACS)
                 return;
@@ -60,8 +86,8 @@ namespace DeviceService
 
             DateTime date = Convert.ToDateTime($"{struTime.dwYear}-{struTime.dwMonth}-{struTime.dwDay} {struTime.dwHour}:{struTime.dwMinute}:{struTime.dwSecond}");
             personnel.CardID = Encoding.UTF8.GetString(struAcsAlarmInfo.struAcsEventInfo.byCardNo).TrimEnd('\0');
-            personnel.DeviceIp = Encoding.Default.GetString(pAlarmer.sDeviceIP).Replace("\0","");
-            List<CUserInfo> user = GetUserInfos(new List<string> { employeeID.ToString() });
+            string ip = Encoding.Default.GetString(pAlarmer.sDeviceIP).Replace("\0","");
+            List<CUserInfo> user = new EntranceGuardHIK(pAlarmer.lUserID).GetUserInfos(new List<string> { employeeID.ToString() });
             if (user != null && user.Count > 0)
             {
                 personnel.Name = user[0].name;
@@ -70,7 +96,7 @@ namespace DeviceService
 
             personnel.EmployeeID = employeeID;
 
-            MonitoringEvent(this, personnel, date);
+            MonitoringEvent(ip, personnel, date);
         }
 
         /// <summary>

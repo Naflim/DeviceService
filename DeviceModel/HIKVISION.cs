@@ -27,7 +27,7 @@ namespace DeviceService.DeviceModel
 
         private CHCNetSDK.NET_DVR_DEVICEINFO_V40 DeviceInfo;
 
-        protected int userID;
+        protected internal int userID;
         protected string ip;
         protected int port;
         bool linkStatus;
