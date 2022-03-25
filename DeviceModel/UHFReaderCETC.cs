@@ -11,7 +11,7 @@ namespace DeviceService.DeviceModel
 {
     public class UHFReaderCETC : IDevice
     {
-        RFIDClient client;
+        protected RFIDClient client;
         private string ip;
         bool workFlag;
 

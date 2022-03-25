@@ -37,6 +37,11 @@ namespace DeviceService.DeviceModel
         /// </summary>
         public Action<HIKVISION> LinkOk { get; set; }
 
+        /// <summary>
+        /// 输出日志
+        /// </summary>
+        public Action<string> ThrowLog { get; set; }
+
         public void Connect(ConnectModel connect)
         {
             if (!CHCNetSDK.NET_DVR_Init())

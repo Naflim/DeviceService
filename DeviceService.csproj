@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="libzkfpcsharp">
+      <HintPath>lib\libzkfpcsharp.dll</HintPath>
+    </Reference>
     <Reference Include="NaflimHelperLibrary">
       <HintPath>lib\NaflimHelperLibrary.dll</HintPath>
     </Reference>

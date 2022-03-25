@@ -45,5 +45,10 @@ namespace DeviceService.Model
         /// 门权限
         /// </summary>
         public string DoorRight { get; set; }
+
+        /// <summary>
+        /// 设备ip
+        /// </summary>
+        public string DeviceIp { get; set; }
     }
 }

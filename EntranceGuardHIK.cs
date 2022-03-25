@@ -16,11 +16,6 @@ namespace DeviceService
     public class EntranceGuardHIK : HIKVISION
     {
         /// <summary>
-        /// 输出日志
-        /// </summary>
-        public Action<string> ThrowLog { get; set; }
-
-        /// <summary>
         /// 单次执行数量
         /// </summary>
         public int Batch { get; set; } = 100;
@@ -65,7 +60,7 @@ namespace DeviceService
 
             DateTime date = Convert.ToDateTime($"{struTime.dwYear}-{struTime.dwMonth}-{struTime.dwDay} {struTime.dwHour}:{struTime.dwMinute}:{struTime.dwSecond}");
             personnel.CardID = Encoding.UTF8.GetString(struAcsAlarmInfo.struAcsEventInfo.byCardNo).TrimEnd('\0');
-
+            personnel.DeviceIp = Encoding.Default.GetString(pAlarmer.sDeviceIP).Replace("\0","");
             List<CUserInfo> user = GetUserInfos(new List<string> { employeeID.ToString() });
             if (user != null && user.Count > 0)
             {
