@@ -27,9 +27,14 @@ namespace DeviceService.Model
     public class ChannelGateModel
     {
         /// <summary>
+        /// 通道门标识
+        /// </summary>
+        public string ChannelGateId { get; set; }
+
+        /// <summary>
         /// 进出方向
         /// </summary>
-       
+
         public Direction Direction { get; set; }
 
         /// <summary>
@@ -43,6 +48,13 @@ namespace DeviceService.Model
         {
             Direction = direction;
             EPC = epc;
+        }
+
+        public ChannelGateModel(Direction direction, List<string> epc,string id)
+        {
+            Direction = direction;
+            EPC = epc;
+            ChannelGateId = id;
         }
     }
 }

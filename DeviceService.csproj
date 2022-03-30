@@ -36,10 +36,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\东识科技\software(demo)\智能柜\中控指纹仪\ZKFinger SDK 5.0.0.29\C#\lib\x64\libzkfpcsharp.dll</HintPath>
     </Reference>
-    <Reference Include="NaflimHelperLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\NaflimHelperLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\Study\Demo\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -73,21 +69,25 @@
     <Compile Include="CabinetSilverBox.cs" />
     <Compile Include="CameraHIK.cs" />
     <Compile Include="AlarmUHF288.cs" />
+    <Compile Include="ChannelGateCETCServer.cs" />
     <Compile Include="ChannelGateUHF288.cs" />
     <Compile Include="ChannelGateUHFGate.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="DeviceModel\HIKVISION.cs" />
     <Compile Include="DeviceModel\Protocol.cs" />
+    <Compile Include="DeviceModel\ProtocolServer.cs" />
     <Compile Include="DeviceModel\UHFReader09.cs" />
     <Compile Include="DeviceModel\CardWriteCETC.cs" />
     <Compile Include="DeviceModel\UHFReader86.cs" />
     <Compile Include="DeviceModel\UHFReaderCETC.cs" />
+    <Compile Include="DeviceModel\UHFReaderCETCServer.cs" />
     <Compile Include="DeviceModel\ZKTECO.cs" />
     <Compile Include="EntranceGuardHIK.cs" />
     <Compile Include="ICReader.cs" />
     <Compile Include="DeviceModel\UHFGate.cs" />
     <Compile Include="Live20FS.cs" />
     <Compile Include="Model\AlarmModel.cs" />
+    <Compile Include="Model\ChannelGateCETCModels.cs" />
     <Compile Include="Model\ChannelGateModel.cs" />
     <Compile Include="Model\ExceptionModels\CETCException.cs" />
     <Compile Include="Model\ExceptionModels\ICReaderException.cs" />
@@ -188,6 +188,12 @@
     <None Include="lib\HIKlib\LocalXml.zip" />
     <None Include="lib\HIKlib\PlayCtrl.lib" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\NaflimHelperLibrary\4.5.2\NaflimHelperLibrary.csproj">
+      <Project>{bee8c0a8-2102-43fa-8432-f5a58923447a}</Project>
+      <Name>NaflimHelperLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

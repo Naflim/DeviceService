@@ -11,7 +11,7 @@ namespace DeviceService.DeviceModel
 {
     public class UHFReaderCETC : IDevice
     {
-        RFIDClient client;
+        protected RFIDClient client;
         private string ip;
         bool workFlag;
 
@@ -26,7 +26,6 @@ namespace DeviceService.DeviceModel
         public string Ip
         {
             get { return ip; }
-            set { }
         }
 
 
@@ -42,17 +41,19 @@ namespace DeviceService.DeviceModel
             client.m_OnErrorcallback += reader_OnErrorcallback;
             client.m_OnInventoryReport += reader_OnInventoryReport;
 
-
-
-            OperationResult operationResult = new OperationResult();
+            OperationResult operationResult;
             switch (connect.ConnectMode)
             {
                 case ConnectMode.Tcp:
-                    client.Connect(connect.Ip, connect.Port);
+                    operationResult = client.Connect(connect.Ip, connect.Port);
                     break;
-                case ConnectMode.SerialPort: client.ConnectSerial(connect.Com.ToString(), connect.BaudRate); break;
-                default: throw new UHFCETCException("意外的连接模式");
-            };
+                case ConnectMode.SerialPort:
+                    operationResult = client.ConnectSerial(connect.Com.ToString(), connect.BaudRate);
+                    break;
+                default:
+                    throw new UHFCETCException("意外的连接模式");
+            }
+
             if (operationResult != OperationResult.SUCCESS)
                 throw UHFCETCException.AbnormalJudgment(operationResult);
 
@@ -63,7 +64,7 @@ namespace DeviceService.DeviceModel
         {
             var linkflag = client.Disconnect();
 
-            if (linkflag != OperationResult.SUCCESS)
+            if(linkflag != OperationResult.SUCCESS)
                 throw UHFCETCException.AbnormalJudgment(linkflag);
         }
 
@@ -106,26 +107,8 @@ namespace DeviceService.DeviceModel
                 {
                     ErrorShow(ex);
                 }
-
+                
             });
-        }
-
-        public string[] test()
-        {
-            List<string> tags = new List<string>();
-            TagReport tagReport = new TagReport();
-            var flag = client.InventoryCycle(0, ref tagReport);
-
-            if (flag != OperationResult.SUCCESS)
-                ErrorShow?.Invoke(UHFCETCException.AbnormalJudgment(flag));
-
-            string epc;
-            tagReport.m_listTags.ForEach(v =>
-            {
-                epc = v.m_strEPC;
-                if (!tags.Contains(epc)) tags.Add(epc);
-            });
-            return tags.ToArray();
         }
 
         /// <summary>
@@ -149,7 +132,7 @@ namespace DeviceService.DeviceModel
 
         void reader_OnInventoryReport(object sender, InventoryReportEventArgs e)
         {
-            Console.WriteLine("reader_OnInventoryReport");
+            //Console.WriteLine(e.m_stInventoryResult.);
         }
 
 
