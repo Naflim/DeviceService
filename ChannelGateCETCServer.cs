@@ -32,18 +32,18 @@ namespace DeviceService
                 switch (message.Command)
                 {
                     case "REGISTER":
-                        Register register = XMLHelper.DESerializer<Register>(message.Params as XmlNode[]);
-                        ThrowLog?.Invoke($"{register.LocalIP}连接成功！");
-
                         ResultRFIDMessage sendREGISTER = new ResultRFIDMessage("REGISTER")
                         {
-                            Params = new { KeepAliveSeconds = 15 }
+                            Params = new 
+                            {
+                                KeepAliveSeconds = 60
+                            }
                         };
-                        SendClientMessage(ip, sendREGISTER.ToXml());
+                        SendClientMessage(ip, sendREGISTER.ToXml("RFIDMessage"));
                         break;
                     case "KEEPALIVE":
                         ResultRFIDMessage sendKEEPALIVE = new ResultRFIDMessage("KEEPALIVE");
-                        SendClientMessage(ip, sendKEEPALIVE.ToXml());
+                        SendClientMessage(ip, sendKEEPALIVE.ToXml("RFIDMessage"));
                         break;
                     case "INVENTORYREPORT":
                         InventoryReport inventoryReport = XMLHelper.DESerializer<InventoryReport>(message.Params as XmlNode[]);
@@ -117,9 +117,19 @@ namespace DeviceService
                         new Model.GpoControl.RFIDMessageGpo(3,0),
                     });
                     break;
+                case AlarmLightColor.Black:
+                    message = new Model.GpoControl.RFIDMessage(new Model.GpoControl.RFIDMessageGpo[]
+                   {
+                        new Model.GpoControl.RFIDMessageGpo(0,0),
+                        new Model.GpoControl.RFIDMessageGpo(1,0),
+                        new Model.GpoControl.RFIDMessageGpo(2,0),
+                        new Model.GpoControl.RFIDMessageGpo(3,0),
+                   });
+                    break;
                 default:
                     return;
             }
+
             SendClientMessage(ip, XMLHelper.XmlSerialize(message));
         }
 
@@ -133,6 +143,7 @@ namespace DeviceService
         {
             string output = xml.Declaration.ToString() + xml.ToString();
             SendClientMessage(ip, output);
+           
         }
     }
 }

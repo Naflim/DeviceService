@@ -170,9 +170,9 @@
     <Content Include="lib\HIKlib\YUVProcess.dll" />
     <Content Include="lib\HIKlib\zlib1.dll" />
     <Content Include="lib\libzkfpcsharp.dll" />
-    <Content Include="lib\NaflimHelperLibrary.dll" />
     <Content Include="lib\ICReaderlib\function.dll" />
     <Content Include="lib\ICReaderlib\USB.dll" />
+    <Content Include="lib\NaflimHelperLibrary.dll" />
     <Content Include="lib\RFIDReaderNetwork_SerialSDK_ForCSharp.dll" />
     <Content Include="lib\RSNetDevice.dll" />
     <Content Include="lib\UHFGate.dll" />

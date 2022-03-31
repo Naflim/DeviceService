@@ -13,7 +13,7 @@ namespace DeviceService.DeviceModel
         /// <summary>
         /// 服务器端口
         /// </summary>
-        public int ServerPort { get; set; }
+        public int ServerPort { get; set; } = 6000;
 
         /// <summary>
         /// 设备连接
@@ -47,7 +47,7 @@ namespace DeviceService.DeviceModel
         {
             clientList = new Dictionary<string, Socket>();
             server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPEndPoint point = new IPEndPoint(IPAddress.Any, 6666);
+            IPEndPoint point = new IPEndPoint(IPAddress.Any, ServerPort);
             server.Bind(point);
             server.Listen(10);
             Task.Factory.StartNew(() => Listen(server), TaskCreationOptions.LongRunning);
