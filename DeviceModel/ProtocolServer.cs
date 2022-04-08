@@ -93,6 +93,10 @@ namespace DeviceService.DeviceModel
                     clientMsg?.Invoke(client,ip, msg);
                 }
             }
+            catch (ObjectDisposedException ex)
+            {
+                new NaflimHelperLibrary.Log().PrintLog(ex.Message);
+            }
             catch (Exception ex)
             {
                 ErrowShow?.Invoke(ex);
