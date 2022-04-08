@@ -11,6 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="ArcFaceSDK">
+      <HintPath>lib\Arcfacelib\ArcFaceSDK.dll</HintPath>
+    </Reference>
     <Reference Include="libzkfpcsharp">
       <HintPath>lib\libzkfpcsharp.dll</HintPath>
     </Reference>
@@ -26,6 +29,10 @@
     <Reference Include="UHFReader09CSharp">
       <HintPath>lib\UHFReader09lib\UHFReader09CSharp.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="lib\x86\" />
   </ItemGroup>
 
 </Project>
