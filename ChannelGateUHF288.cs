@@ -11,14 +11,15 @@ using NaflimHelperLibrary;
 
 namespace DeviceService
 {
+   
     public class ChannelGateUHF288 : UHFReader288, IChannelGate
     {
-        private byte gpio;
-
-        byte ago = byte.MaxValue;
-        byte rear = byte.MaxValue;
-        byte total = byte.MaxValue;
-        byte oldGPIO;
+        InGPIO inGpio = InGPIO.Init;
+        InGPIO defIN = InGPIO.Init;
+        InGPIO ago = InGPIO.Init;
+        InGPIO rear = InGPIO.Init;
+        InGPIO total = InGPIO.Init;
+        InGPIO oldIN = InGPIO.Init;
         DateTime endStart;
         Direction direction = Direction.Null;
         bool directionFlag;
@@ -27,7 +28,7 @@ namespace DeviceService
         /// <summary>
         /// 显示GPIO
         /// </summary>
-        public Action<ChannelGateUHF288, byte> ShowGPIO { get; set; }
+        public Action<ChannelGateUHF288, InGPIO> ShowGPIO { get; set; }
 
         /// <summary>
         /// 超时结束查询
@@ -44,6 +45,8 @@ namespace DeviceService
         /// </summary>
         public int GPIOinterval { get; set; } = 100;
 
+        
+
         /// <summary>
         /// 设置红外模式
         /// </summary>
@@ -52,15 +55,17 @@ namespace DeviceService
         {
             if (mode)
             {
-                ago = (byte)(DefGPIO - 1);
-                rear = (byte)(DefGPIO - 2);
-                total = (byte)(DefGPIO - 3);
+                defIN = InGPIO.All;
+                ago = InGPIO.In2;
+                rear = InGPIO.In1;
+                total = InGPIO.None;
             }
             else
             {
-                ago = (byte)(DefGPIO + 1);
-                rear = (byte)(DefGPIO + 2);
-                total = (byte)(DefGPIO + 3);
+                defIN = InGPIO.None;
+                ago = InGPIO.In1;
+                rear = InGPIO.In2;
+                total = InGPIO.All;
             }
         }
 
@@ -69,9 +74,9 @@ namespace DeviceService
         /// </summary>
         public void ReverseDirection()
         {
-            ago ^= rear;
-            rear = (byte)(ago ^ rear);
-            ago ^= rear;
+            InGPIO count = ago;
+            ago = rear;
+            rear = count;
         }
 
         /// <summary>
@@ -80,7 +85,7 @@ namespace DeviceService
         /// <param name="adoptTrigger">方向判断成功触发事件</param>
         public void StartChannelGateServer(Action<IChannelGate, ChannelGateModel> adoptTrigger)
         {
-            if (DefGPIO == byte.MaxValue) throw new Exception("默认GPIO不可为空");
+            if (defIN == InGPIO.Init) throw new Exception("红外模式未设置");
             this.adoptTrigger = adoptTrigger;
             Task.Factory.StartNew(async () =>
             {
@@ -98,8 +103,9 @@ namespace DeviceService
 
                         if (GPIOflag == 0)
                         {
-                            SetGPIO(outupPin);
-                            ShowGPIO?.Invoke(this, outupPin);
+                            InGPIO gpio = GetInGPIO(outupPin);
+                            SetGPIO(gpio);
+                            ShowGPIO?.Invoke(this, gpio);
 
                             if (selFlag)
                             {
@@ -128,8 +134,17 @@ namespace DeviceService
                     else
                         ErrorShow(ex);
                     Reset();
-                    Reconnection();
-                    StartChannelGateServer(adoptTrigger);
+
+                    switch (mode)
+                    {
+                        case ConnectMode.Tcp:
+                            Disconnect();
+                            break;
+                        case ConnectMode.SerialPort:
+                            ComDisconnect();
+                            break;
+                    }
+                    Reconnection?.Invoke(this);
                 }
             }, TaskCreationOptions.LongRunning);
         }
@@ -138,10 +153,10 @@ namespace DeviceService
         /// 更新GPIO值
         /// </summary>
         /// <param name="GPIO">GPIO</param>
-        void SetGPIO(byte GPIO)
+        void SetGPIO(InGPIO inGPIO)
         {
-            gpio = GPIO;
-            if (GPIO != DefGPIO)
+            inGpio = inGPIO;
+            if (inGPIO != defIN)
                 GPIO_ValueChanged();
             else
             {
@@ -162,7 +177,7 @@ namespace DeviceService
             selFlag = true;
             endStart = DateTime.Now;
 
-            if (gpio != oldGPIO)
+            if (inGpio != oldIN)
                 DirectionJudgment();
         }
 
@@ -171,14 +186,12 @@ namespace DeviceService
         /// </summary>
         void DirectionJudgment()
         {
-            if (ago == byte.MaxValue || rear == byte.MaxValue) throw new Exception("未设置红外模式");
-
             if (directionFlag) return;
 
-            if ((oldGPIO == ago && (gpio == rear || gpio == total)) || oldGPIO == total && gpio == rear)
+            if ((oldIN == ago && (inGpio == rear || inGpio == total)) || oldIN == total && inGpio == rear)
                 direction = Direction.In;
 
-            if (oldGPIO == rear && (gpio == ago || gpio == total) || oldGPIO == total && gpio == ago)
+            if (oldIN == rear && (inGpio == ago || inGpio == total) || oldIN == total && inGpio == ago)
                 direction = Direction.Out;
 
             if (direction != Direction.Null)
@@ -188,8 +201,8 @@ namespace DeviceService
                     AdoptTrigger(new ChannelGateModel(direction, cacheEPC));
             }
 
-            if (!directionFlag && gpio != DefGPIO)
-                oldGPIO = gpio;
+            if (!directionFlag && inGpio != defIN)
+                oldIN = inGpio;
         }
 
 
@@ -205,7 +218,7 @@ namespace DeviceService
             StopSel();
             ClearCache();
             direction = Direction.Null;
-            oldGPIO = 0;
+            oldIN = InGPIO.Init;
         }
     }
 }

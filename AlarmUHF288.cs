@@ -13,6 +13,10 @@ namespace DeviceService
 {
     public class AlarmUHF288 : UHFReader288, IAlarm
     {
+        /// <summary>
+        /// 默认输出口
+        /// </summary>
+        public InGPIO DefIN { get; set; } = InGPIO.Init;
         DateTime endStart;
         Action<AlarmUHF288, AlarmModel> adoptTrigger;
 
@@ -42,7 +46,7 @@ namespace DeviceService
         /// <param name="adoptTrigger">报警触发事件</param>
         public void StartAlarmServer(Action<IAlarm, AlarmModel> adoptTrigger)
         {
-            if (DefGPIO == byte.MaxValue) throw new Exception("默认GPIO不可为空");
+            if (DefIN == InGPIO.Init) throw new Exception("红外模式未设置");
             this.adoptTrigger = adoptTrigger;
             Task.Factory.StartNew(async () =>
             {
@@ -60,7 +64,7 @@ namespace DeviceService
 
                         if (GPIOflag == 0)
                         {
-                            SetGPIO(outupPin);
+                            SetGPIO(GetInGPIO(outupPin));
                             ShowGPIO?.Invoke(this, outupPin);
 
                             if (selFlag)
@@ -90,8 +94,19 @@ namespace DeviceService
                     else
                         ErrorShow(ex);
                     Reset();
-                    Reconnection();
-                    StartAlarmServer(adoptTrigger);
+
+                    switch (mode)
+                    {
+                        case ConnectMode.Tcp:
+                            Disconnect();
+                            break;
+                        case ConnectMode.SerialPort:
+                            ComDisconnect();
+                            break;
+                    }
+
+                    Reconnection?.Invoke(this);
+                    //FReconnection();
                 }
             }, TaskCreationOptions.LongRunning);
         }
@@ -100,9 +115,9 @@ namespace DeviceService
         /// 更新GPIO值
         /// </summary>
         /// <param name="GPIO">GPIO</param>
-        void SetGPIO(byte GPIO)
+        void SetGPIO(InGPIO inGPIO)
         {
-            if (GPIO != DefGPIO)
+            if (inGPIO != DefIN)
                 GPIO_ValueChanged();
             else
             {

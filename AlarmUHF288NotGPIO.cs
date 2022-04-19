@@ -122,8 +122,6 @@ namespace DeviceService
                         Log.PrintError(ex);
                     else
                         ErrorShow(ex);
-                    Reconnection();
-                    if (selFlag) StartSel();
                 }
             }, TaskCreationOptions.LongRunning);
         }

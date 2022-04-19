@@ -10,19 +10,17 @@ using NaflimHelperLibrary;
 
 namespace DeviceService.DeviceModel
 {
-    public enum AlarmLightColor 
+    public enum AlarmLightColor
     {
         Black,
         Red,
         Green
     }
 
+    public enum InGPIO { Init, None, In1, In2, All }
+
     public abstract class UHFReader288 : IDevice
     {
-        /// <summary>
-        /// 默认GPIO
-        /// </summary>
-        public byte DefGPIO { get; set; } = byte.MaxValue;
         /// <summary>
         /// 红灯端口
         /// </summary>
@@ -55,13 +53,26 @@ namespace DeviceService.DeviceModel
         public Action<string> ThrowLog { get; set; }
 
         /// <summary>
+        /// 断线事件
+        /// </summary>
+        public Action<UHFReader288> Reconnection { get; set; }
+
+        /// <summary>
         /// 设备ip
         /// </summary>
         public string IP
         {
             get { return ip; }
-            set {  }
         }
+
+        /// <summary>
+        /// 端口
+        /// </summary>
+        public int Port
+        {
+            get { return port; }
+        }
+
 
         /// <summary>
         /// 设备名
@@ -74,20 +85,40 @@ namespace DeviceService.DeviceModel
         protected bool selFlag;
         protected byte errorNum;
         protected string ip;
+        private int port;
         protected readonly List<string> cacheEPC = new List<string>();
-        ConnectMode mode;
-        ConnectModel connectModel;
+        protected ConnectMode mode;
+
+        /// <summary>
+        /// GPIO转换为IN口
+        /// </summary>
+        /// <param name="gpio">gpio值</param>
+        /// <returns>IN口</returns>
+        protected InGPIO GetInGPIO(byte gpio)
+        {
+            List<InGPIO> inGPIOs = new List<InGPIO>();
+            if ((gpio & 0x01) == 1)
+                inGPIOs.Add(InGPIO.In1);
+
+            if ((gpio & 0x02) == 2)
+                inGPIOs.Add(InGPIO.In2);
+
+            if (inGPIOs.Count == 0)
+                return InGPIO.None;
+            else if (inGPIOs.Count >= 2)
+                return InGPIO.All;
+            else
+                return inGPIOs[0];
+        }
 
         public void Connect(ConnectModel connect)
         {
-            connectModel = connect;
-
             int linkflag = UHF288SDK.OpenNetPort(connect.Port, connect.Ip, ref comAdr, ref handle);
-
             if (linkflag != 0) throw UHF288Exception.AbnormalJudgment(linkflag);
 
-            ip = connect.Ip;
 
+            ip = connect.Ip;
+            port = connect.Port;
             mode = ConnectMode.Tcp;
         }
 
@@ -97,8 +128,6 @@ namespace DeviceService.DeviceModel
         /// <param name="connect">连接参数</param>
         public void ComConnect(ConnectModel connect)
         {
-            connectModel = connect;
-
             byte baud = Convert.ToByte(connect.Com);
             if (baud > 2)
                 baud = Convert.ToByte(baud + 2);
@@ -108,6 +137,7 @@ namespace DeviceService.DeviceModel
             else
                 linkflag = UHF288SDK.OpenComPort(connect.Com, ref comAdr, baud, ref handle);
 
+           
             if (linkflag != 0)
                 throw UHF288Exception.AbnormalJudgment(linkflag);
 
@@ -117,7 +147,6 @@ namespace DeviceService.DeviceModel
         public void Disconnect()
         {
             int linkflag = UHF288SDK.CloseNetPort(handle);
-
             if (linkflag != 0) throw UHF288Exception.AbnormalJudgment(linkflag);
         }
 
@@ -129,6 +158,15 @@ namespace DeviceService.DeviceModel
             int linkflag = UHF288SDK.CloseComPort();
 
             if (linkflag != 0) throw UHF288Exception.AbnormalJudgment(linkflag);
+        }
+
+        /// <summary>
+        /// 刷新句柄
+        /// </summary>
+        /// <param name="reader288">设备句柄</param>
+        public void RefreshHandle(UHFReader288 reader288)
+        {
+            handle = reader288.handle;
         }
 
         /// <summary>
@@ -252,7 +290,7 @@ namespace DeviceService.DeviceModel
                         await Task.Delay(0);
                         int fCmdRet = UHF288SDK.Inventory_G2(ref comAdr, Qvalue, Session, MaskMem, MaskAdr, MaskLen, MaskData, MaskFlag, tidAddr, tidLen, TIDFlag, Target, InAnt, Scantime, FastFlag, EPC, ref Ant, ref Totallen, ref TagNum, handle);
 
-                        if (fCmdRet != 0x01 && fCmdRet != 0x02) 
+                        if (fCmdRet != 0x01 && fCmdRet != 0x02)
                         {
                             if (errorNum < 3)
                             {
@@ -269,7 +307,7 @@ namespace DeviceService.DeviceModel
                                 cacheEPC.Add(item);
                         }
                         count++;
-                        
+
                     }
                 }
                 catch (Exception ex)
@@ -278,7 +316,7 @@ namespace DeviceService.DeviceModel
                         Log.PrintError(ex);
                     else
                         ErrorShow(ex);
-                    Reconnection();
+                    Reconnection?.Invoke(this);
                     if (selFlag) StartSel();
                 }
             }, TaskCreationOptions.LongRunning);
@@ -360,10 +398,28 @@ namespace DeviceService.DeviceModel
         /// <summary>
         /// 断线重连
         /// </summary>
-        protected void Reconnection()
+        protected void FReconnection()
         {
             ThrowLog?.Invoke($"{ip}-开始断线重连...");
             int count = 1;
+            try
+            {
+                switch (mode)
+                {
+                    case ConnectMode.Tcp:
+                        Disconnect();
+                        break;
+                    case ConnectMode.SerialPort:
+                        ComDisconnect();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                ThrowLog($"{ex.Message}");
+            }
+            
+
             while (true)
             {
                 ThrowLog?.Invoke($"{ip}-重连开始，重连次数{count}...");
@@ -372,10 +428,9 @@ namespace DeviceService.DeviceModel
                     switch (mode)
                     {
                         case ConnectMode.Tcp:
-                            Connect(connectModel);
-                            return;
-                        case ConnectMode.SerialPort:
-                            ComConnect(connectModel);
+                            ThrowLog?.Invoke($"ip:{ip}port:{port}");
+                            Connect(new ConnectModel(ip,port));
+                            ThrowLog?.Invoke("重连成功！");
                             return;
                     }
                 }
@@ -385,9 +440,9 @@ namespace DeviceService.DeviceModel
                 }
 
                 count++;
-                System.Threading.Thread.Sleep(3000);
+                System.Threading.Thread.Sleep(5000);
             };
-            
+
         }
 
         /// <summary>
@@ -395,7 +450,7 @@ namespace DeviceService.DeviceModel
         /// </summary>
         /// <param name="lightColor">警报灯颜色</param>
         /// <param name="alarmTime">警报时长</param>
-        public void OpenAlarmLight(AlarmLightColor lightColor,int alarmTime)
+        public void OpenAlarmLight(AlarmLightColor lightColor, int alarmTime)
         {
             try
             {
