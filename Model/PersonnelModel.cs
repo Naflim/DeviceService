@@ -14,12 +14,12 @@ namespace DeviceService.Model
         /// <summary>
         /// 用户ID
         /// </summary>
-        public string UserID { get; set; }
+        public string? UserID { get; set; }
 
         /// <summary>
         /// 姓名
         /// </summary>
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// 人员性别
@@ -34,7 +34,7 @@ namespace DeviceService.Model
         /// <summary>
         /// 卡号
         /// </summary>
-        public string CardID { get; set; }
+        public string? CardID { get; set; }
 
         /// <summary>
         /// 工号
@@ -44,6 +44,6 @@ namespace DeviceService.Model
         /// <summary>
         /// 门权限
         /// </summary>
-        public string DoorRight { get; set; }
+        public string? DoorRight { get; set; }
     }
 }

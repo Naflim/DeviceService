@@ -18,7 +18,7 @@ namespace DeviceService.DeviceModel
         /// <summary>
         /// 设备IP
         /// </summary>
-        public string Ip { get { return ip; } }
+        public string? Ip { get { return ip; } }
 
         /// <summary>
         /// 设备端口
@@ -28,19 +28,19 @@ namespace DeviceService.DeviceModel
         private CHCNetSDK.NET_DVR_DEVICEINFO_V40 DeviceInfo;
 
         protected internal int userID;
-        protected string ip;
+        protected string? ip;
         protected int port;
         bool linkStatus;
 
         /// <summary>
         /// 连接回调函数
         /// </summary>
-        public Action<HIKVISION> LinkOk { get; set; }
+        public Action<HIKVISION>? LinkOk { get; set; }
 
         /// <summary>
         /// 输出日志
         /// </summary>
-        public Action<string> ThrowLog { get; set; }
+        public Action<string>? ThrowLog { get; set; }
 
         public void Connect(ConnectModel connect)
         {
@@ -116,7 +116,9 @@ namespace DeviceService.DeviceModel
             if (!CHCNetSDK.NET_DVR_GetDVRConfig(userID, CHCNetSDK.NET_DVR_GET_NETCFG_V30, -1, ptrNetCfg, (uint)size, ref dwReturn))
                 throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
 
+#pragma warning disable CS8605 // 取消装箱可能为 null 的值。
             nETCFG_V30 = (CHCNetSDK.NET_DVR_NETCFG_V30)Marshal.PtrToStructure(ptrNetCfg, typeof(CHCNetSDK.NET_DVR_NETCFG_V30));
+#pragma warning restore CS8605 // 取消装箱可能为 null 的值。
             ip = nETCFG_V30.struEtherNet[0].struDVRIP.sIpV4;
             port = nETCFG_V30.struEtherNet[0].wDVRPort;
         }

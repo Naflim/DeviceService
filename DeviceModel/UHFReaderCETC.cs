@@ -11,8 +11,8 @@ namespace DeviceService.DeviceModel
 {
     public class UHFReaderCETC : IDevice
     {
-        protected RFIDClient client;
-        private string ip;
+        protected RFIDClient client = null!;
+        private string? ip;
         bool workFlag;
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace DeviceService.DeviceModel
         /// <summary>
         /// Ip地址
         /// </summary>
-        public string Ip
+        public string? Ip
         {
             get { return ip; }
             set {   }
@@ -33,7 +33,7 @@ namespace DeviceService.DeviceModel
         /// <summary>
         /// 显示异常
         /// </summary>
-        public Action<Exception> ErrorShow { get; set; }
+        public Action<Exception>? ErrorShow { get; set; }
 
         public void Connect(ConnectModel connect)
         {
@@ -99,7 +99,7 @@ namespace DeviceService.DeviceModel
                 }
                 catch (Exception ex)
                 {
-                    ErrorShow(ex);
+                    ErrorShow?.Invoke(ex);
                 }
                 
             });
@@ -132,17 +132,17 @@ namespace DeviceService.DeviceModel
             QueryTag(SelTime, reSelTag);
         }
 
-        void reader_OnDisconnect(object sender, DisconnectEventArgs e)
+        void reader_OnDisconnect(object? sender, DisconnectEventArgs e)
         {
             Console.WriteLine("reader_OnDisconnect");
         }
 
-        void reader_OnErrorcallback(object sender, ErrorReportEventArgs e)
+        void reader_OnErrorcallback(object? sender, ErrorReportEventArgs e)
         {
             Console.WriteLine("errreader_OnErrorcallbackor");
         }
 
-        void reader_OnInventoryReport(object sender, InventoryReportEventArgs e)
+        void reader_OnInventoryReport(object? sender, InventoryReportEventArgs e)
         {
             Console.WriteLine("reader_OnInventoryReport");
         }

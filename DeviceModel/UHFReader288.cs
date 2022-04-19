@@ -38,26 +38,26 @@ namespace DeviceService.DeviceModel
         /// <summary>
         /// 天线列表
         /// </summary>
-        public List<byte> AntennaList { get; set; }
+        public List<byte> AntennaList { get; set; } = new List<byte>();
         /// <summary>
         /// 当前存储的EPC
         /// </summary>
-        public List<string> SelEPC { get { return cacheEPC; } set { } }
+        public List<string>? SelEPC { get { return cacheEPC; } set { } }
 
         /// <summary>
         /// 显示异常
         /// </summary>
-        public Action<Exception> ErrorShow { get; set; }
+        public Action<Exception>? ErrorShow { get; set; }
 
         /// <summary>
         /// 抛出日志
         /// </summary>
-        public Action<string> ThrowLog { get; set; }
+        public Action<string>? ThrowLog { get; set; }
 
         /// <summary>
         /// 设备ip
         /// </summary>
-        public string IP
+        public string? IP
         {
             get { return ip; }
             set {  }
@@ -66,17 +66,17 @@ namespace DeviceService.DeviceModel
         /// <summary>
         /// 设备名
         /// </summary>
-        public string DeviceName { get; set; }
+        public string? DeviceName { get; set; }
 
         protected int comPort;
         protected int handle = -1;
         protected byte comAdr = 255;
         protected bool selFlag;
         protected byte errorNum;
-        protected string ip;
+        protected string? ip;
         protected readonly List<string> cacheEPC = new List<string>();
         ConnectMode mode;
-        ConnectModel connectModel;
+        ConnectModel connectModel = null!;
 
         public void Connect(ConnectModel connect)
         {
@@ -150,8 +150,6 @@ namespace DeviceService.DeviceModel
             int infoflag = UHF288SDK.GetReaderInformation(ref comAdr, VersionInfo, ref ReaderType, ref TrType, ref dmaxfre, ref dminfre, ref powerdBm, ref ScanTime, ref Ant, ref BeepEn, ref OutputRep, ref CheckAnt, handle);
 
             if (infoflag != 0) throw UHF288Exception.AbnormalJudgment(infoflag);
-
-            AntennaList = new List<byte>();
 
             if ((Ant & 0x01) == 1)
                 AntennaList.Add(0x80);
@@ -381,7 +379,7 @@ namespace DeviceService.DeviceModel
                 }
                 catch (Exception ex)
                 {
-                    ThrowLog($"{ex.Message}");
+                    ThrowLog?.Invoke($"{ex.Message}");
                 }
 
                 count++;

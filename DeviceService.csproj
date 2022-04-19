@@ -3,16 +3,21 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Platforms>AnyCPU;x86</Platforms>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
     <PackageReference Include="System.IO.Ports" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="ArcFaceSDK">
       <HintPath>lib\Arcfacelib\ArcFaceSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="GReaderApi">
+      <HintPath>lib\x64\GReaderApi.dll</HintPath>
     </Reference>
     <Reference Include="libzkfpcsharp">
       <HintPath>lib\libzkfpcsharp.dll</HintPath>

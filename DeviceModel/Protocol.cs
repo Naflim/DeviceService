@@ -12,7 +12,7 @@ namespace DeviceService.DeviceModel
 #pragma warning disable CA1416 // 验证平台兼容性
     public abstract class Protocol : IDevice
     {
-        SerialPort serialPort;
+        SerialPort? serialPort;
         ConnectMode mode;
         public int ReceiveTimeOut { get; set; } = 60000;
 
@@ -38,7 +38,7 @@ namespace DeviceService.DeviceModel
 
         public void Disconnect()
         {
-            if (serialPort.IsOpen)
+            if (serialPort != null && serialPort.IsOpen)
                 serialPort.Close();
         }
 
@@ -57,7 +57,7 @@ namespace DeviceService.DeviceModel
         {
             if (serialPort is null)
                 throw new Exception("串口对象未定义");
-            serialPort.Write(sendMsg,0,sendMsg.Length);
+            serialPort.Write(sendMsg, 0, sendMsg.Length);
             MemoryStream memory = new MemoryStream();
             byte[] buffer = new byte[1024];
             DateTime start = DateTime.Now;
@@ -65,7 +65,7 @@ namespace DeviceService.DeviceModel
             while (true)
             {
                 System.Threading.Thread.Sleep(100);
-                if(serialPort.BytesToRead > 0)
+                if (serialPort.BytesToRead > 0)
                 {
                     int count = serialPort.Read(buffer, 0, buffer.Length);
                     memory.Write(buffer, 0, count);
@@ -76,8 +76,8 @@ namespace DeviceService.DeviceModel
                     if ((DateTime.Now - start).TotalMilliseconds > ReceiveTimeOut)
                     {
                         memory.Dispose();
-                        return null;
-                    } 
+                        return Array.Empty<byte>();
+                    }
                 }
             }
 

@@ -13,8 +13,6 @@ namespace DeviceService
 {
     public class ChannelGateCETC : UHFReaderCETC, IChannelGate
     {
-
-
         public void StartChannelGateServer(Action<IChannelGate, ChannelGateModel> adoptTrigger)
         {
             client.StartPerioInventory();

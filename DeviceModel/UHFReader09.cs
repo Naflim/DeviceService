@@ -91,7 +91,7 @@ namespace DeviceService.DeviceModel
 
                 return epcArr;
             }
-            else return null;
+            else return Array.Empty<string>();
         }
 
         /// <summary>
