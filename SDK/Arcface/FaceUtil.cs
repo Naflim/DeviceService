@@ -15,9 +15,9 @@ namespace DeviceService.SDK.Arcface
         /// <param name="pEngine">引擎Handle</param>
         /// <param name="image">图像</param>
         /// <returns></returns>
-        public static MultiFaceInfo DetectFaceAndLandMark(FaceEngine faceEngine, Image image)
+        public static MultiFaceInfo? DetectFaceAndLandMark(FaceEngine faceEngine, Image image)
         {
-            MultiFaceInfo multiFaceInfo = null;
+            MultiFaceInfo? multiFaceInfo = null;
             try
             {
                 int retCode = faceEngine.ASFDetectFacesEx(image, out multiFaceInfo);
@@ -44,9 +44,9 @@ namespace DeviceService.SDK.Arcface
         /// <param name="pEngine"></param>
         /// <param name="image"></param>
         /// <returns></returns>
-        public static MultiFaceInfo DetectFaceIR(FaceEngine faceEngine, Bitmap image)
+        public static MultiFaceInfo? DetectFaceIR(FaceEngine faceEngine, Bitmap image)
         {
-            MultiFaceInfo multiFaceInfo = null;
+            MultiFaceInfo? multiFaceInfo = null;
             try
             {
                 faceEngine.ASFDetectFacesEx(image,out multiFaceInfo,ASF_ImagePixelFormat.ASVL_PAF_GRAY);
@@ -127,9 +127,9 @@ namespace DeviceService.SDK.Arcface
         /// <param name="image">图片</param>
         /// <param name="singleFaceInfo">单人脸信息</param>
         /// <returns>单人脸特征</returns>
-        public static FaceFeature ExtractFeature(FaceEngine faceEngine, Image image, SingleFaceInfo singleFaceInfo)
+        public static FaceFeature? ExtractFeature(FaceEngine faceEngine, Image image, SingleFaceInfo singleFaceInfo)
         {
-            FaceFeature faceFeature = null;
+            FaceFeature? faceFeature = null;
             try
             {
                 MultiFaceInfo multiFaceInfo = new MultiFaceInfo();
