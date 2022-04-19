@@ -32,16 +32,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ArcFaceSDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\x64\Arcfacelib\ArcFaceSDK.dll</HintPath>
+    </Reference>
     <Reference Include="libzkfpcsharp, Version=1.0.0.1, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\东识科技\software(demo)\智能柜\中控指纹仪\ZKFinger SDK 5.0.0.29\C#\lib\x64\libzkfpcsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="NaflimHelperLibrary, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\AnyCPU\NaflimHelperLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\Study\Demo\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="rfidLink, Version=1.2.2.13, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\CardWriteCETClib\rfidLink.dll</HintPath>
+      <HintPath>lib\x86\CardWriteCETClib\rfidLink.dll</HintPath>
     </Reference>
     <Reference Include="RFIDReaderNetwork_SerialSDK_ForCSharp, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -53,6 +61,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -73,6 +82,7 @@
     <Compile Include="ChannelGateUHF288.cs" />
     <Compile Include="ChannelGateUHFGate.cs" />
     <Compile Include="Device.cs" />
+    <Compile Include="DeviceModel\Arcface.cs" />
     <Compile Include="DeviceModel\HIKVISION.cs" />
     <Compile Include="DeviceModel\Protocol.cs" />
     <Compile Include="DeviceModel\ProtocolServer.cs" />
@@ -89,6 +99,7 @@
     <Compile Include="Model\AlarmModel.cs" />
     <Compile Include="Model\ChannelGateCETCModels.cs" />
     <Compile Include="Model\ChannelGateModel.cs" />
+    <Compile Include="Model\ExceptionModels\ArcfaceException.cs" />
     <Compile Include="Model\ExceptionModels\CETCException.cs" />
     <Compile Include="Model\ExceptionModels\ICReaderException.cs" />
     <Compile Include="Model\ExceptionModels\RSException.cs" />
@@ -105,6 +116,7 @@
     <Compile Include="Model\TempHumModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadOrWrite.cs" />
+    <Compile Include="SDK\Arcface\FaceUtil.cs" />
     <Compile Include="SDK\CHCNetSDK.cs" />
     <Compile Include="SDK\ICReaderSDK.cs" />
     <Compile Include="SDK\UHF86SDK.cs" />
@@ -114,86 +126,86 @@
     <Compile Include="DeviceModel\UHFReader288.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="lib\CardWriteCETClib\cpl.dll" />
-    <Content Include="lib\CardWriteCETClib\rfid.dll" />
-    <Content Include="lib\CardWriteCETClib\rfidLink.dll" />
-    <Content Include="lib\CardWriteCETClib\rfidtx.dll" />
-    <Content Include="lib\HIKlib\AudioRender.dll" />
-    <Content Include="lib\HIKlib\ClientDemo.exe" />
-    <Content Include="lib\HIKlib\ClientDemoDll\calib.dll" />
-    <Content Include="lib\HIKlib\ClientDemoDll\iconv.dll" />
-    <Content Include="lib\HIKlib\ClientDemoDll\libcrypto-1_1-x64.dll" />
-    <Content Include="lib\HIKlib\ClientDemoDll\libcrypto-1_1.dll" />
-    <Content Include="lib\HIKlib\ClientDemoDll\libcurl.dll" />
-    <Content Include="lib\HIKlib\ClientDemoDll\libssl-1_1-x64.dll" />
-    <Content Include="lib\HIKlib\ClientDemoDll\libssl-1_1.dll" />
-    <Content Include="lib\HIKlib\ClientDemoDll\libxml2.dll" />
-    <Content Include="lib\HIKlib\ClientDemoDll\msvcr120.dll" />
-    <Content Include="lib\HIKlib\ClientDemoDll\ReadMe.txt" />
-    <Content Include="lib\HIKlib\ClientDemoDll\zlib1.dll" />
-    <Content Include="lib\HIKlib\gdiplus.dll" />
-    <Content Include="lib\HIKlib\HCCore.dll" />
-    <Content Include="lib\HIKlib\HCNetSDK.dll" />
-    <Content Include="lib\HIKlib\HCNetSDKCom\AnalyzeData.dll" />
-    <Content Include="lib\HIKlib\HCNetSDKCom\AudioIntercom.dll" />
-    <Content Include="lib\HIKlib\HCNetSDKCom\AudioRender.dll" />
-    <Content Include="lib\HIKlib\HCNetSDKCom\HCAlarm.dll" />
-    <Content Include="lib\HIKlib\HCNetSDKCom\HCCoreDevCfg.dll" />
-    <Content Include="lib\HIKlib\HCNetSDKCom\HCDisplay.dll" />
-    <Content Include="lib\HIKlib\HCNetSDKCom\HCGeneralCfgMgr.dll" />
-    <Content Include="lib\HIKlib\HCNetSDKCom\HCIndustry.dll" />
-    <Content Include="lib\HIKlib\HCNetSDKCom\HCPlayBack.dll" />
-    <Content Include="lib\HIKlib\HCNetSDKCom\HCPreview.dll" />
-    <Content Include="lib\HIKlib\HCNetSDKCom\HCVoiceTalk.dll" />
-    <Content Include="lib\HIKlib\HCNetSDKCom\libiconv2.dll" />
-    <Content Include="lib\HIKlib\HCNetSDKCom\msvcr90.dll" />
-    <Content Include="lib\HIKlib\HCNetSDKCom\OpenAL32.dll" />
-    <Content Include="lib\HIKlib\HCNetSDKCom\StreamTransClient.dll" />
-    <Content Include="lib\HIKlib\HCNetSDKCom\SystemTransform.dll" />
-    <Content Include="lib\HIKlib\hlog.dll" />
-    <Content Include="lib\HIKlib\HmMerge.dll" />
-    <Content Include="lib\HIKlib\hpr.dll" />
-    <Content Include="lib\HIKlib\HXVA.dll" />
-    <Content Include="lib\HIKlib\libeay32.dll" />
-    <Content Include="lib\HIKlib\libmmd.dll" />
-    <Content Include="lib\HIKlib\MP_Render.dll" />
-    <Content Include="lib\HIKlib\MP_VIE.dll" />
-    <Content Include="lib\HIKlib\NPQos.dll" />
-    <Content Include="lib\HIKlib\OpenAL32.dll" />
-    <Content Include="lib\HIKlib\PlayCtrl.dll" />
-    <Content Include="lib\HIKlib\ssleay32.dll" />
-    <Content Include="lib\HIKlib\SuperRender.dll" />
-    <Content Include="lib\HIKlib\YUVProcess.dll" />
-    <Content Include="lib\HIKlib\zlib1.dll" />
-    <Content Include="lib\libzkfpcsharp.dll" />
-    <Content Include="lib\ICReaderlib\function.dll" />
-    <Content Include="lib\ICReaderlib\USB.dll" />
-    <Content Include="lib\NaflimHelperLibrary.dll" />
-    <Content Include="lib\RFIDReaderNetwork_SerialSDK_ForCSharp.dll" />
-    <Content Include="lib\RSNetDevice.dll" />
-    <Content Include="lib\UHFGate.dll" />
-    <Content Include="lib\UHFReader09lib\Basic.dll" />
-    <Content Include="lib\UHFReader09lib\UHFReader09CSharp.dll" />
-    <Content Include="lib\UHFReader288.dll" />
-    <Content Include="lib\UHFReader86.dll" />
+    <Content Include="lib\x64\Arcfacelib\ArcFaceSDK.dll" />
+    <Content Include="lib\x64\Arcfacelib\libarcsoft_face.dll" />
+    <Content Include="lib\x64\Arcfacelib\libarcsoft_face_engine.dll" />
+    <Content Include="lib\AnyCPU\CardWriteCETClib\cpl.dll" />
+    <Content Include="lib\AnyCPU\CardWriteCETClib\rfid.dll" />
+    <Content Include="lib\AnyCPU\CardWriteCETClib\rfidLink.dll" />
+    <Content Include="lib\AnyCPU\CardWriteCETClib\rfidtx.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\AudioRender.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\ClientDemo.exe" />
+    <Content Include="lib\AnyCPU\HIKlib\ClientDemoDll\calib.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\ClientDemoDll\iconv.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\ClientDemoDll\libcrypto-1_1-x64.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\ClientDemoDll\libcrypto-1_1.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\ClientDemoDll\libcurl.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\ClientDemoDll\libssl-1_1-x64.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\ClientDemoDll\libssl-1_1.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\ClientDemoDll\libxml2.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\ClientDemoDll\msvcr120.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\ClientDemoDll\ReadMe.txt" />
+    <Content Include="lib\AnyCPU\HIKlib\ClientDemoDll\zlib1.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\gdiplus.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HCCore.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HCNetSDK.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HCNetSDKCom\AnalyzeData.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HCNetSDKCom\AudioIntercom.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HCNetSDKCom\AudioRender.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCAlarm.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCCoreDevCfg.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCDisplay.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCGeneralCfgMgr.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCIndustry.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCPlayBack.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCPreview.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCVoiceTalk.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HCNetSDKCom\libiconv2.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HCNetSDKCom\msvcr90.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HCNetSDKCom\OpenAL32.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HCNetSDKCom\StreamTransClient.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HCNetSDKCom\SystemTransform.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\hlog.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HmMerge.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\hpr.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\HXVA.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\libeay32.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\libmmd.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\MP_Render.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\MP_VIE.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\NPQos.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\OpenAL32.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\PlayCtrl.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\ssleay32.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\SuperRender.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\YUVProcess.dll" />
+    <Content Include="lib\AnyCPU\HIKlib\zlib1.dll" />
+    <Content Include="lib\AnyCPU\libzkfpcsharp.dll" />
+    <Content Include="lib\AnyCPU\ICReaderlib\function.dll" />
+    <Content Include="lib\AnyCPU\ICReaderlib\USB.dll" />
+    <Content Include="lib\AnyCPU\NaflimHelperLibrary.dll" />
+    <Content Include="lib\AnyCPU\RFIDReaderNetwork_SerialSDK_ForCSharp.dll" />
+    <Content Include="lib\AnyCPU\RSNetDevice.dll" />
+    <Content Include="lib\AnyCPU\UHFGate.dll" />
+    <Content Include="lib\AnyCPU\UHFReader09lib\Basic.dll" />
+    <Content Include="lib\AnyCPU\UHFReader09lib\UHFReader09CSharp.dll" />
+    <Content Include="lib\AnyCPU\UHFReader288.dll" />
+    <Content Include="lib\AnyCPU\UHFReader86.dll" />
+    <Content Include="lib\x86\Arcfacelib\ArcFaceSDK.dll" />
+    <Content Include="lib\x86\Arcfacelib\libarcsoft_face.dll" />
+    <Content Include="lib\x86\Arcfacelib\libarcsoft_face_engine.dll" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="lib\CardWriteCETClib\RFIDcomm.cfg" />
-    <None Include="lib\HIKlib\GdiPlus.lib" />
-    <None Include="lib\HIKlib\HCCore.lib" />
-    <None Include="lib\HIKlib\HCNetSDK.lib" />
-    <None Include="lib\HIKlib\HCNetSDKCom\HCAlarm.lib" />
-    <None Include="lib\HIKlib\HCNetSDKCom\HCGeneralCfgMgr.lib" />
-    <None Include="lib\HIKlib\HCNetSDKCom\HCPreview.lib" />
-    <None Include="lib\HIKlib\LocalXml.zip" />
-    <None Include="lib\HIKlib\PlayCtrl.lib" />
+    <None Include="lib\AnyCPU\CardWriteCETClib\RFIDcomm.cfg" />
+    <None Include="lib\AnyCPU\HIKlib\GdiPlus.lib" />
+    <None Include="lib\AnyCPU\HIKlib\HCCore.lib" />
+    <None Include="lib\AnyCPU\HIKlib\HCNetSDK.lib" />
+    <None Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCAlarm.lib" />
+    <None Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCGeneralCfgMgr.lib" />
+    <None Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCPreview.lib" />
+    <None Include="lib\AnyCPU\HIKlib\LocalXml.zip" />
+    <None Include="lib\AnyCPU\HIKlib\PlayCtrl.lib" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\NaflimHelperLibrary\4.5.2\NaflimHelperLibrary.csproj">
-      <Project>{bee8c0a8-2102-43fa-8432-f5a58923447a}</Project>
-      <Name>NaflimHelperLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
