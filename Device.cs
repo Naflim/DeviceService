@@ -40,9 +40,29 @@ namespace DeviceService
     }
 
     /// <summary>
+    /// 读写器
+    /// </summary>
+    public interface IReader : IDevice
+    {
+        /// <summary>
+        /// 循查标签
+        /// </summary>
+        /// <param name="seconds">循查时间</param>
+        /// <returns>标签</returns>
+        Task<string[]> CyclicQueryTags(int seconds);
+
+        /// <summary>
+        /// 查询标签
+        /// </summary>
+        /// <param name="Ant">天线</param>
+        /// <returns>标签</returns>
+        string[] QueryTags(int Ant = 0);
+    }
+
+    /// <summary>
     /// 温湿度
     /// </summary>
-    public interface ITempHumMeter :IDevice
+    public interface ITempHumMeter : IDevice
     {
         /// <summary>
         /// 获取温湿度列表

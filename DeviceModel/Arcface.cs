@@ -9,10 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DeviceService.DeviceModel
 {
@@ -137,7 +134,7 @@ namespace DeviceService.DeviceModel
         public void RegisteredFace(string id, string imgPath)
         {
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                throw new ArcfaceException("仅支持windows平台使用");
+                throw new PlatformNotSupportedException("仅支持windows平台使用");
 
             CheckImage(imgPath);
 
@@ -158,14 +155,14 @@ namespace DeviceService.DeviceModel
         /// <exception cref="ArcfaceException">人脸异常</exception>
         public void CompareFaces(string imgPath)
         {
+            if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                 throw new PlatformNotSupportedException("仅支持windows平台使用");
+
             if (!imageEngine.GetEngineStatus())
                 throw new ArcfaceException("请先初始化引擎！");
 
             if (faceDatabase.Count == 0)
                 throw new ArcfaceException("请注册人脸！");
-
-            if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                throw new ArcfaceException("仅支持windows平台使用");
 
             CheckImage(imgPath);
 
@@ -218,7 +215,7 @@ namespace DeviceService.DeviceModel
         static Image ScaleImage(string imagePath)
         {
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                throw new ArcfaceException("仅支持windows平台使用");
+                 throw new PlatformNotSupportedException("仅支持windows平台使用");
 
             var image = ImageUtil.ReadFromFile(imagePath);
             if (image == null) throw new ArcfaceException("图片读取失败");
@@ -241,7 +238,7 @@ namespace DeviceService.DeviceModel
         FaceFeature GetFaceFeature(ref Image image,PersonnelModel? personnel = null)
         {
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                throw new ArcfaceException("仅支持windows平台使用");
+                 throw new PlatformNotSupportedException("仅支持windows平台使用");
 
             int retCode = imageEngine.ASFDetectFacesEx(image, out MultiFaceInfo multiFaceInfo);
 
