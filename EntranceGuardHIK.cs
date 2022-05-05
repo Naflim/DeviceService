@@ -33,9 +33,9 @@ namespace DeviceService
         /// <summary>
         /// 门禁触发事件
         /// </summary>
-        static Action<string, PersonnelModel, DateTime> MonitoringEvent;
+        static Action<string, PersonnelModel, DateTime>? MonitoringEvent;
 
-        static CHCNetSDK.MSGCallBack callBack;
+        static CHCNetSDK.MSGCallBack? callBack;
 
         /// <summary>
         /// 设置报警回调函数
@@ -56,7 +56,7 @@ namespace DeviceService
         /// </summary>
         /// <param name="guardHIK">门禁机</param>
         /// <param name="action">回调函数</param>
-        public static void StartMonitoring(EntranceGuardHIK guardHIK, Action<string, PersonnelModel, DateTime> action = null)
+        public static void StartMonitoring(EntranceGuardHIK guardHIK, Action<string, PersonnelModel, DateTime>? action = null)
         {
             CHCNetSDK.NET_DVR_SETUPALARM_PARAM struSetupAlarmParam = new CHCNetSDK.NET_DVR_SETUPALARM_PARAM();
             struSetupAlarmParam.dwSize = (uint)Marshal.SizeOf(struSetupAlarmParam);
@@ -74,8 +74,11 @@ namespace DeviceService
         {
             if (lCommand != CHCNetSDK.COMM_ALARM_ACS)
                 return;
+#pragma warning disable CS8605 // 取消装箱可能为 null 的值。
             CHCNetSDK.NET_DVR_ACS_ALARM_INFO struAcsAlarmInfo = (CHCNetSDK.NET_DVR_ACS_ALARM_INFO)Marshal.PtrToStructure(pAlarmInfo,
                typeof(CHCNetSDK.NET_DVR_ACS_ALARM_INFO));
+#pragma warning restore CS8605 // 取消装箱可能为 null 的值。
+
 
             uint employeeID = struAcsAlarmInfo.struAcsEventInfo.dwEmployeeNo;
             if (employeeID == 0)
@@ -96,7 +99,7 @@ namespace DeviceService
 
             personnel.EmployeeID = employeeID;
 
-            MonitoringEvent(ip, personnel, date);
+            MonitoringEvent?.Invoke(ip, personnel, date);
         }
 
         /// <summary>
@@ -135,7 +138,8 @@ namespace DeviceService
             Marshal.StructureToPtr(struOuput, ptrOuput, false);
             if (CHCNetSDK.NET_DVR_STDXMLConfig(userID, ptrInput, ptrOuput))
             {
-                string json = Marshal.PtrToStringAnsi(struOuput.lpOutBuffer);
+                if (Marshal.PtrToStringAnsi(struOuput.lpOutBuffer) is not string json) return string.Empty;
+
                 string count = DataConversion.GetJsonItem(json, new string[] { "UserInfoCount", "userNumber" });
                 return count;
             }
@@ -247,12 +251,12 @@ namespace DeviceService
 
             uint dwReturned = 0;
             int dwState = CHCNetSDK.NET_DVR_SendWithRecvRemoteConfig(m_lSetUserCfgHandle, ptrJsonUserInfo, (uint)byJsonUserInfo.Length, ptrJsonData, 1024, ref dwReturned);
-            string strJsonData = Marshal.PtrToStringAnsi(ptrJsonData);
+            if (Marshal.PtrToStringAnsi(ptrJsonData) is not string strJsonData) return;
 
             switch (dwState)
             {
                 case (int)CHCNetSDK.NET_SDK_SENDWITHRECV_STATUS.NET_SDK_CONFIG_STATUS_SUCCESS:
-                    CResponseStatus JsonResponseStatus = JsonConvert.DeserializeObject<CResponseStatus>(strJsonData);
+                    if (JsonConvert.DeserializeObject<CResponseStatus>(strJsonData) is not CResponseStatus JsonResponseStatus) break;
 
                     if (JsonResponseStatus.statusCode == 1)
                         ThrowLog?.Invoke("设置成功！");
@@ -289,7 +293,7 @@ namespace DeviceService
         {
             try
             {
-                List<CUserInfo> userInfos = null;
+                List<CUserInfo> userInfos = new();
                 IntPtr ptrJsonData = Marshal.AllocHGlobal(1024 * Batch);
                 for (int i = 0; i < 1024; i++)
                     Marshal.WriteByte(ptrJsonData, i, 0);
@@ -345,8 +349,7 @@ namespace DeviceService
             }
             finally
             {
-                if (!CHCNetSDK.NET_DVR_StopRemoteConfig(m_lSetUserCfgHandle))
-                    throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
+                CHCNetSDK.NET_DVR_StopRemoteConfig(m_lSetUserCfgHandle);
             }
         }
 
@@ -423,13 +426,15 @@ namespace DeviceService
         /// <returns>base64字符值</returns>
         private string ProcessFaceData(IntPtr lpBuffer)
         {
+#pragma warning disable CS8605 // 取消装箱可能为 null 的值。
             CHCNetSDK.NET_DVR_JSON_DATA_CFG m_struJsonDataCfg = (CHCNetSDK.NET_DVR_JSON_DATA_CFG)Marshal.PtrToStructure(lpBuffer, typeof(CHCNetSDK.NET_DVR_JSON_DATA_CFG));
+#pragma warning restore CS8605 // 取消装箱可能为 null 的值。
             string strSearchFaceDataReturn = Marshal.PtrToStringAnsi(m_struJsonDataCfg.lpJsonData, (int)m_struJsonDataCfg.dwJsonDataSize);
             CSearchFaceDataReturn m_JsonSearchFaceDataReturn = TypeConversion.JsonToObject<CSearchFaceDataReturn>(strSearchFaceDataReturn);
             if (m_JsonSearchFaceDataReturn.totalMatches == 0)
             {
                 ThrowLog?.Invoke("无人脸数据");
-                return null;
+                return string.Empty;
             }
 
             int size = (int)m_struJsonDataCfg.dwPicDataSize;

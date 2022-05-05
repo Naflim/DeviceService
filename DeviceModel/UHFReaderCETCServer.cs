@@ -11,7 +11,7 @@ namespace DeviceService.DeviceModel
 {
     public class UHFReaderCETCServer : IDeviceServer
     {
-        protected RFIDServer server;
+        protected RFIDServer? server;
 
         public void CloseService()
         {
@@ -29,22 +29,22 @@ namespace DeviceService.DeviceModel
 
         }
 
-        private void OnUnregistered(object sender, UnregisteredEventArgs e)
+        private void OnUnregistered(object? sender, UnregisteredEventArgs e)
         {
             Console.WriteLine($"Unregistered");
         }
 
-        private void OnRegistered(object sender, RegisteredEventArgs e)
+        private void OnRegistered(object? sender, RegisteredEventArgs e)
         {
             Console.WriteLine($"{e.m_strReaderIp}已连接");
         }
 
-        private void OnErrorOccured(object sender, ErrorReportEventArgs e)
+        private void OnErrorOccured(object? sender, ErrorReportEventArgs e)
         {
             Console.WriteLine("ErrorOccured");
         }
 
-        void reader_OnInventoryReport(object sender, InventoryReportEventArgs e)
+        void reader_OnInventoryReport(object? sender, InventoryReportEventArgs e)
         {
             Console.WriteLine("reader_OnInventoryReport");
         }

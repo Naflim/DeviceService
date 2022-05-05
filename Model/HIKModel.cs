@@ -3,12 +3,15 @@ using System.ComponentModel;
 
 namespace DeviceService.Model
 {
+#pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑声明为可以为 null。
     #region Json:ResponseStatus
     public class CResponseStatus
     {
         public string requestURL { get; set; }
         public int statusCode { get; set; }
+
         public string statusString { get; set; }
+
         public string subStatusCode { get; set; }
         public int errorCode { get; set; }
         public string errorMsg { get; set; }
@@ -298,4 +301,5 @@ namespace DeviceService.Model
         public int cardReaderRecvStatus { get; set; } //opt,指纹读卡器状态：0-失败，1-成功，2-该指纹模组不在线，3-重试或指纹质量差，4-内存已满，5-已存在该指纹，6-已存在该指纹ID，7-非法指纹ID，8-该指纹模组无需配置，10-指纹读卡器版本过低（无法支持工号）
         public string errorMsg { get; set; } //opt
     }
+#pragma warning restore CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑声明为可以为 null。
 }

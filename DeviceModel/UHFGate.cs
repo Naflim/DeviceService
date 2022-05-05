@@ -16,25 +16,24 @@ namespace DeviceService.DeviceModel
         protected int handle = -1;
         protected byte comAdr = 255;
         protected int port;
-        protected string ip;
+        protected string? ip;
 
         /// <summary>
         /// 显示异常
         /// </summary>
-        public Action<Exception> ErrorShow { get; set; }
+        public Action<Exception>? ErrorShow { get; set; }
 
         /// <summary>
         /// 抛出日志
         /// </summary>
-        public Action<string> ThrowLog { get; set; }
+        public Action<string>? ThrowLog { get; set; }
 
         /// <summary>
         /// 设备ip
         /// </summary>
-        public string IP
+        public string? IP
         {
             get { return ip; }
-            set { }
         }
 
         public void Connect(ConnectModel connect)
@@ -98,7 +97,7 @@ namespace DeviceService.DeviceModel
         /// 获取设备消息
         /// </summary>
         /// <returns>设备消息</returns>
-        public UHFGateMsg GetChannelMessage()
+        public UHFGateMsg? GetChannelMessage()
         {
             UHFGateMsg gateMsg = new UHFGateMsg();
             byte packetNo = 0;
@@ -153,6 +152,6 @@ namespace DeviceService.DeviceModel
         /// <summary>
         /// 消息数据
         /// </summary>
-        public byte[] MsgData { get; set; }
+        public byte[] MsgData { get; set; } = Array.Empty<byte>();
     }
 }

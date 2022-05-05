@@ -21,12 +21,12 @@ namespace DeviceService
         DateTime endStart;
         Direction direction = Direction.Null;
         bool directionFlag;
-        Action<ChannelGateUHF288, ChannelGateModel> adoptTrigger;
+        Action<ChannelGateUHF288, ChannelGateModel>? adoptTrigger;
 
         /// <summary>
         /// 显示GPIO
         /// </summary>
-        public Action<ChannelGateUHF288, byte> ShowGPIO { get; set; }
+        public Action<ChannelGateUHF288, byte>? ShowGPIO { get; set; }
 
         /// <summary>
         /// 超时结束查询
@@ -190,7 +190,7 @@ namespace DeviceService
 
         public void AdoptTrigger(ChannelGateModel channelGate)
         {
-            adoptTrigger(this,channelGate);
+            adoptTrigger?.Invoke(this,channelGate);
             Reset();
         }
 

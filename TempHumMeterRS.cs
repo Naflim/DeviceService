@@ -12,10 +12,10 @@ namespace DeviceService
 {
     public class TempHumMeterRS : ITempHumMeter
     {
-        RSServer sServer;
+        RSServer sServer = null!;
 
         bool registerFlag;
-        List<TempHumModel> tempHums;
+        List<TempHumModel> tempHums = null!;
 
         public void Connect(ConnectModel connect)
         {
@@ -89,7 +89,9 @@ namespace DeviceService
         {
             if (!registerFlag)
                 throw new RSException("前置条件未完成！");
-            return tempHums.Find(v => v.DeviceID == deviceID);
+            if(tempHums.Find(v => v.DeviceID == deviceID) is not TempHumModel tempHum)
+                throw new RSException("设备不存在！");
+            return tempHum;
         }
     }
 }

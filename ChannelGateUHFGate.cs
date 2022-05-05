@@ -13,7 +13,7 @@ namespace DeviceService
     {
         bool monitorFlag;
         Dictionary<DateTime, string> cacheEPC = new Dictionary<DateTime, string>();
-        Action<ChannelGateUHFGate, ChannelGateModel> adoptTrigger;
+        Action<ChannelGateUHFGate, ChannelGateModel>? adoptTrigger;
 
         /// <summary>
         /// 超时时间
@@ -23,7 +23,7 @@ namespace DeviceService
         /// <summary>
         /// 显示GPIO
         /// </summary>
-        public Action<int, bool> ShowGPIO { get; set; }
+        public Action<int, bool>? ShowGPIO { get; set; }
 
         /// <summary>
         /// 开始通道服务
@@ -37,8 +37,7 @@ namespace DeviceService
             {
                 while (monitorFlag)
                 {
-                    UHFGateMsg gateMsg = GetChannelMessage();
-                    if (gateMsg is null) continue;
+                    if (GetChannelMessage() is not UHFGateMsg gateMsg || gateMsg is null) continue;
                     switch (gateMsg.Type)
                     {
                         case MsgType.TakeInventory:
@@ -74,7 +73,7 @@ namespace DeviceService
                 byte[] EPC = new byte[EPCLen];
                 Array.Copy(data, 8, EPC, 0, EPCLen);//标签的EPC号
 
-                string epc = null;
+                string epc = string.Empty;
 
                 foreach (byte b in EPC)
                     epc += b.ToString("X2");
@@ -120,7 +119,7 @@ namespace DeviceService
 
         public void AdoptTrigger(ChannelGateModel channelGate)
         {
-            adoptTrigger(this, channelGate);
+            adoptTrigger?.Invoke(this, channelGate);
             cacheEPC.Clear();
         }
     }

@@ -20,19 +20,19 @@ namespace DeviceService
             if (nRet != 0)
             {
                 if (nRet == 1)
-                    return null;
+                    return string.Empty;
                 else
                     throw ICReaderException.AbnormalJudgment(nRet);
             }
 
             byte[] date = GetData(snr, 0, 7);
 
-            string cardID = null;
+            string cardID = string.Empty;
 
             int len = date.Length;
             for (int i = 0; i < len; i++)
                 cardID += date[i].ToString("X2");
-            return cardID;
+            return string.Empty;
         }
 
         protected byte[] GetData(byte[] data, int start, int end)

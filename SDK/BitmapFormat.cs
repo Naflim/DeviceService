@@ -180,7 +180,7 @@ namespace DeviceService.SDK
                 //图片旋转，解决指纹图片倒立的问题
                 RotatePic(buffer, nWidth, nHeight, ref ResBuf);
 
-                byte[] filter = null;
+                byte[] filter;
                 if (w - nWidth > 0)
                 {
                     filter = new byte[w - nWidth];
@@ -265,7 +265,7 @@ namespace DeviceService.SDK
 
                 //写图片
                 //TmpBinaryWriter.Write(ResBuf);
-                byte[] filter = null;
+                byte[] filter;
                 if (w - nWidth > 0)
                 {
                     filter = new byte[w - nWidth];

@@ -16,17 +16,17 @@ namespace DeviceService
         /// <summary>
         /// 异常显示
         /// </summary>
-        public Action<Exception> ErrorShow { get; set; }
+        public Action<Exception>? ErrorShow { get; set; }
 
         /// <summary>
         /// 日志抛出
         /// </summary>
-        public Action<string> ThrowLog { get; set; }
+        public Action<string>? ThrowLog { get; set; }
 
         /// <summary>
         /// 显示指纹
         /// </summary>
-        public Action<Stream> FingerprintShow { get; set; }
+        public Action<Stream>? FingerprintShow { get; set; }
 
 
 
@@ -74,7 +74,8 @@ namespace DeviceService
 
                     if (aFlag == 0)
                     {
-                        FingerprintShow?.Invoke(GetFingerprintPic(devices[index], FPBuffer));
+                        if (GetFingerprintPic(devices[index], FPBuffer) is not Stream stream) continue;
+                        FingerprintShow?.Invoke(stream);
                         tmps[tmpCount] = CapTmp;
                         tmpCount++;
                         ThrowLog?.Invoke($"已收录指纹{tmpCount}");
@@ -130,7 +131,8 @@ namespace DeviceService
 
                     if (aFlag == 0)
                     {
-                        FingerprintShow?.Invoke(GetFingerprintPic(devices[index], FPBuffer));
+                        if (GetFingerprintPic(devices[index], FPBuffer) is not Stream stream) continue;
+                        FingerprintShow?.Invoke(stream);
                         int iFlag = zkfp2.DBIdentify(dbHandle, CapTmp, ref fid, ref score);
 
                         if (iFlag != 0&&iFlag != -17)
@@ -175,7 +177,8 @@ namespace DeviceService
 
                     if (aFlag == 0)
                     {
-                        FingerprintShow?.Invoke(GetFingerprintPic(devices[index], FPBuffer));
+                        if (GetFingerprintPic(devices[index], FPBuffer) is not Stream stream) continue;
+                        FingerprintShow?.Invoke(stream);
                         int similarity = zkfp2.DBMatch(dbHandle, CapTmp, tmp);
                         ThrowLog?.Invoke($"相似度：{similarity}");
                     }
@@ -214,7 +217,7 @@ namespace DeviceService
             zkfp2.DBAdd(dbHandle, uid, tmp);
         }
 
-        Stream GetFingerprintPic(ZKTECODevice device, byte[] img)
+        Stream? GetFingerprintPic(ZKTECODevice device, byte[] img)
         {
             try
             {

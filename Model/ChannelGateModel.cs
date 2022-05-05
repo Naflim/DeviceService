@@ -37,8 +37,6 @@ namespace DeviceService.Model
         /// </summary>
         public List<string> EPC { get; set; }
 
-        public ChannelGateModel() { }
-
         public ChannelGateModel(Direction direction, List<string> epc) 
         {
             Direction = direction;

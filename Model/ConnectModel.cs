@@ -15,15 +15,15 @@ namespace DeviceService.Model
     public class ConnectModel
     {
         public ConnectMode ConnectMode { get; set; }
-        public string Ip { get; set; }
+        public string Ip { get; set; } = string.Empty;
         public int Port { get; set; } = int.MinValue;
         public int Com { get; set; } = int.MinValue;
         public int BaudRate { get; set; } = int.MinValue;
         public int DataBits { get; set; } = int.MinValue;
         public Parity Parity { get; set; }
         public StopBits StopBits { get; set; }
-        public string UserID { get; set; }
-        public string Pwd { get; set; }
+        public string? UserID { get; set; }
+        public string? Pwd { get; set; }
 
         public ConnectModel() { }
 
