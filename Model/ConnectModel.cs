@@ -22,8 +22,8 @@ namespace DeviceService.Model
         public int DataBits { get; set; } = int.MinValue;
         public Parity Parity { get; set; }
         public StopBits StopBits { get; set; }
-        public string? UserID { get; set; }
-        public string? Pwd { get; set; }
+        public string UserID { get; set; } = string.Empty;
+        public string Pwd { get; set; } = string.Empty;
 
         public ConnectModel() { }
 
