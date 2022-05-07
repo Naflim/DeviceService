@@ -1,0 +1,140 @@
+﻿using ArcFaceSDK.Entity;
+using ArcFaceSDK.SDKModels;
+using ArcFaceSDK.Utils;
+
+namespace DeviceService.SDK.Arcface
+{
+    /// <summary>
+    /// 活体状态
+    /// </summary>
+    public enum Liveness { Reality, Dummy, Uncertain, NotSupported }
+
+    /// <summary>
+    /// 视频检测缓存实体类
+    /// </summary>
+    public class FaceTrackUnit
+    {
+        /// <summary>
+        /// 人脸ID
+        /// </summary>
+        public int FaceId { get; set; }
+
+        /// <summary>
+        /// 人脸框
+        /// </summary>
+        public MRECT Rect { get; set; }
+
+        /// <summary>
+        /// 相似度结果
+        /// </summary>
+        public string Similarity { get; set; }
+
+        /// <summary>
+        /// 人脸定位
+        /// </summary>
+        public string FaceLocal { get; set; }
+
+        /// <summary>
+        /// Rgb活体
+        /// </summary>
+        public int RgbLiveness = -1;
+
+        /// <summary>
+        /// Rgb活体
+        /// </summary>
+        public Liveness RgbLive
+        {
+            get
+            {
+                switch (RgbLiveness)
+                {
+                    case 0:
+                        return Liveness.Dummy;
+                    case 1:
+                        return Liveness.Reality;
+                    case -1:
+                        return Liveness.Uncertain;
+                    default:
+                        return Liveness.NotSupported;
+                }
+            }
+        }
+
+        /// <summary>
+        /// IR活体
+        /// </summary>
+        public int IrLiveness = -1;
+
+        /// <summary>
+        /// 人脸角度
+        /// </summary>
+        public int FaceOrient { get; set; }
+
+        /// <summary>
+        /// 人脸信息
+        /// </summary>
+        public FaceDataInfo FaceDataInfo { get; set; }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public FaceTrackUnit() { }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="faceId">人脸Faceid</param>
+        /// <param name="rect">人脸框坐标</param>
+        /// <param name="faceOrient">人脸角度</param>
+        public FaceTrackUnit(int faceId, MRECT rect, int faceOrient, FaceDataInfo faceDataInfo)
+        {
+            FaceId = faceId;
+            Rect = rect;
+            FaceOrient = faceOrient;
+            FaceDataInfo = faceDataInfo;
+        }
+
+        /// <summary>
+        /// 设置匹配人脸Index和相似度
+        /// </summary>
+        /// <param name="faceIndex">匹配人脸Index</param>
+        /// <param name="similarity">相似度</param>
+        public void SetFaceIndexAndSimilarity(string faceLocal, string similarity)
+        {
+            if (!string.IsNullOrEmpty(faceLocal))
+            {
+                FaceLocal = faceLocal;
+                Similarity = similarity;
+            }
+        }
+
+        /// <summary>
+        /// 获取组合消息
+        /// </summary>
+        /// <returns></returns>
+        public string GetCombineMessage()
+        {
+            return string.Format("{0}|{1}|{2}", !string.IsNullOrEmpty(FaceLocal) ? string.Format("{0}号:{1}", FaceLocal, Similarity) : string.Empty,
+               string.Format("RGB:{0}", CommonUtil.TransLivenessResult(RgbLiveness)),
+               FaceId >= 0 ? string.Format("faceId:{0}", FaceId) : string.Empty).Trim();
+        }
+
+        /// <summary>
+        /// 获取Ir活体检测文本
+        /// </summary>
+        /// <returns></returns>
+        public string GetIrLivenessMessage()
+        {
+            return string.Format("IR:{0}", CommonUtil.TransLivenessResult(IrLiveness));
+        }
+
+        /// <summary>
+        /// 是否成功匹配
+        /// </summary>
+        /// <returns></returns>
+        public bool CertifySuccess()
+        {
+            return RgbLiveness.Equals(1) && !string.IsNullOrEmpty(FaceLocal);
+        }
+    }
+}

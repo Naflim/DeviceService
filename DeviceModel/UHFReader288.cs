@@ -116,7 +116,6 @@ namespace DeviceService.DeviceModel
             int linkflag = UHF288SDK.OpenNetPort(connect.Port, connect.Ip, ref comAdr, ref handle);
             if (linkflag != 0) throw UHF288Exception.AbnormalJudgment(linkflag);
 
-
             ip = connect.Ip;
             port = connect.Port;
             mode = ConnectMode.Tcp;

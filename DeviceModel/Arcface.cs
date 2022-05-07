@@ -173,7 +173,7 @@ namespace DeviceService.DeviceModel
         /// <summary>
         /// 初始化引擎
         /// </summary>
-        void InitEngine()
+        protected virtual void InitEngine()
         {
             //初始化引擎
             DetectionMode detectMode = DetectionMode.ASF_DETECT_MODE_IMAGE;
@@ -257,19 +257,19 @@ namespace DeviceService.DeviceModel
                     switch (genderInfo.genderArray[0])
                     {
                         case 0:
-                            personnel.Sex = PersonnelModel.PersonnelSex.man;
+                            personnel.Sex = PersonnelModel.PersonnelSex.Man;
                             break;
                         case 1:
-                            personnel.Sex = PersonnelModel.PersonnelSex.woman;
+                            personnel.Sex = PersonnelModel.PersonnelSex.Woman;
                             break;
                         default:
-                            personnel.Sex = PersonnelModel.PersonnelSex.other;
+                            personnel.Sex = PersonnelModel.PersonnelSex.Other;
                             break;
                     }
                 }
                 else
                 {
-                    personnel.Sex = PersonnelModel.PersonnelSex.other;
+                    personnel.Sex = PersonnelModel.PersonnelSex.Other;
                     ThrowLog?.Invoke(ArcfaceException.AbnormalJudgment(retCode_Gender).Message);
                 }
             }

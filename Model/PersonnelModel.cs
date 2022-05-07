@@ -9,7 +9,7 @@ namespace DeviceService.Model
         /// <summary>
         /// 性别
         /// </summary>
-        public enum PersonnelSex { man, woman, other }
+        public enum PersonnelSex { Man, Woman, Other }
 
         /// <summary>
         /// 用户ID

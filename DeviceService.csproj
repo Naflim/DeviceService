@@ -32,6 +32,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Study\Demo\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Study\Demo\packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Study\Demo\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
     <Reference Include="ArcFaceSDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\x64\Arcfacelib\ArcFaceSDK.dll</HintPath>
@@ -39,10 +48,6 @@
     <Reference Include="libzkfpcsharp, Version=1.0.0.1, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\东识科技\software(demo)\智能柜\中控指纹仪\ZKFinger SDK 5.0.0.29\C#\lib\x64\libzkfpcsharp.dll</HintPath>
-    </Reference>
-    <Reference Include="NaflimHelperLibrary, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\AnyCPU\NaflimHelperLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\Study\Demo\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -76,6 +81,7 @@
   <ItemGroup>
     <Compile Include="AlarmUHF288NotGPIO.cs" />
     <Compile Include="CabinetSilverBox.cs" />
+    <Compile Include="CameraArcface.cs" />
     <Compile Include="CameraHIK.cs" />
     <Compile Include="AlarmUHF288.cs" />
     <Compile Include="ChannelGateCETCServer.cs" />
@@ -116,6 +122,7 @@
     <Compile Include="Model\TempHumModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadOrWrite.cs" />
+    <Compile Include="SDK\Arcface\FaceTrackUnit.cs" />
     <Compile Include="SDK\Arcface\FaceUtil.cs" />
     <Compile Include="SDK\CHCNetSDK.cs" />
     <Compile Include="SDK\ICReaderSDK.cs" />
@@ -206,6 +213,12 @@
     <None Include="lib\AnyCPU\HIKlib\PlayCtrl.lib" />
     <None Include="lib\x86\CardWriteCETClib\RFIDcomm.cfg" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\NaflimHelperLibrary\4.5.2\NaflimHelperLibrary.csproj">
+      <Project>{bee8c0a8-2102-43fa-8432-f5a58923447a}</Project>
+      <Name>NaflimHelperLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
