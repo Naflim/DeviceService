@@ -41,7 +41,7 @@ namespace DeviceService.DeviceModel
         /// <summary>
         /// 客户端消息
         /// </summary>
-        protected Action<Socket,string, string> clientMsg;
+        protected Action<Socket, string, string> clientMsg;
 
         public void OpenService()
         {
@@ -87,10 +87,10 @@ namespace DeviceService.DeviceModel
                     byte[] buffer = new byte[1024 * 1024];
 
                     int len = client.Receive(buffer);
-                    if (len == 0) break;
+                    if (len == 0) continue;
 
                     string msg = Encoding.Default.GetString(buffer, 0, len);
-                    clientMsg?.Invoke(client,ip, msg);
+                    clientMsg?.Invoke(client, ip, msg);
                 }
             }
             catch (ObjectDisposedException ex)
@@ -109,7 +109,7 @@ namespace DeviceService.DeviceModel
                 clientList[ip].Send(Encoding.Default.GetBytes(msg));
         }
 
-        protected virtual bool ClientMonitor(string ip,Socket client)
+        protected virtual bool ClientMonitor(string ip, Socket client)
         {
             bool flag = client.Poll(1000, SelectMode.SelectRead);
             if (flag)
