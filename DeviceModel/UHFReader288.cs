@@ -248,7 +248,7 @@ namespace DeviceService.DeviceModel
             if (antflag != 0) throw UHF288Exception.AbnormalJudgment(antflag);
         }
 
-        void AddCacheEpcs(string epc)
+        protected void AddCacheEpcs(string epc)
         {
             if (string.IsNullOrEmpty(epc)) return;
 

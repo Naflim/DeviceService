@@ -126,8 +126,8 @@ namespace DeviceService
                     if (DelayMode)
                     {
                         if (selFlag && (DateTime.Now - endStart).TotalMilliseconds > EndTime)
-                            AdoptTrigger(new AlarmModel(cacheEPC));
-                    }else AdoptTrigger(new AlarmModel(cacheEPC));
+                            AdoptTrigger(new AlarmModel(SelEPC));
+                    }else AdoptTrigger(new AlarmModel(SelEPC));
                 }
             }
         }
