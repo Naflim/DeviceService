@@ -42,7 +42,19 @@ namespace DeviceService.Model
         /// </summary>
         public List<string> EPC { get; set; }
 
+        /// <summary>
+        /// 扫描的标签以及出现的次数
+        /// </summary>
+        public Dictionary<string,int> EpcsFrequency { get; set; }
+
         public ChannelGateModel() { }
+
+        public ChannelGateModel(Direction direction, Dictionary<string, int> epcsFrequency)
+        {
+            Direction = direction;
+            EpcsFrequency = epcsFrequency;
+            EPC = epcsFrequency.Keys.ToList();
+        }
 
         public ChannelGateModel(Direction direction, List<string> epc) 
         {

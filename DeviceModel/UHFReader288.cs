@@ -40,7 +40,7 @@ namespace DeviceService.DeviceModel
         /// <summary>
         /// 当前存储的EPC
         /// </summary>
-        public List<string> SelEPC { get { return cacheEPC; } set { } }
+        public List<string> SelEPC { get { return cacheEPC.Keys.ToList(); } set { } }
 
         /// <summary>
         /// 显示异常
@@ -86,7 +86,7 @@ namespace DeviceService.DeviceModel
         protected byte errorNum;
         protected string ip;
         private int port;
-        protected readonly List<string> cacheEPC = new List<string>();
+        protected readonly Dictionary<string,int> cacheEPC = new Dictionary<string, int>();
         protected ConnectMode mode;
 
         /// <summary>
@@ -248,6 +248,16 @@ namespace DeviceService.DeviceModel
             if (antflag != 0) throw UHF288Exception.AbnormalJudgment(antflag);
         }
 
+        void AddCacheEpcs(string epc)
+        {
+            if (string.IsNullOrEmpty(epc)) return;
+
+            if (cacheEPC.ContainsKey(epc))
+                cacheEPC[epc]++;
+            else
+                cacheEPC.Add(epc, 1);
+        }
+
         /// <summary>
         /// 开始查询
         /// </summary>
@@ -300,13 +310,11 @@ namespace DeviceService.DeviceModel
                                 throw UHF288Exception.AbnormalJudgment(fCmdRet);
                         }
                         string[] EPCarr = DataConversion.GetEPC(EPC).Where(v => !string.IsNullOrEmpty(v)).ToArray();//byte数组以EPC格式转换为字符串数组
-                        foreach (string item in EPCarr)
-                        {
-                            if (item != null && !cacheEPC.Contains(item))
-                                cacheEPC.Add(item);
-                        }
-                        count++;
 
+                        foreach (string item in EPCarr)
+                            AddCacheEpcs(item);
+
+                        count++;
                     }
                 }
                 catch (Exception ex)
@@ -359,11 +367,9 @@ namespace DeviceService.DeviceModel
                     throw UHF288Exception.AbnormalJudgment(fCmdRet);
             }
             string[] EPCarr = DataConversion.GetEPC(EPC).Where(v => !string.IsNullOrEmpty(v)).ToArray();//byte数组以EPC格式转换为字符串数组
+
             foreach (string item in EPCarr)
-            {
-                if (item != null && !cacheEPC.Contains(item))
-                    cacheEPC.Add(item);
-            }
+                AddCacheEpcs(item);
         }
 
         /// <summary>
