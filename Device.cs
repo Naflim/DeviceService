@@ -1,9 +1,6 @@
-﻿using System;
+﻿using DeviceService.Model;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DeviceService.Model;
 
 namespace DeviceService
 {

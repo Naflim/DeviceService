@@ -1,16 +1,12 @@
-﻿using System;
+﻿using DeviceService.DeviceModel;
+using DeviceService.Model;
+using NaflimHelperLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
-using DeviceService.DeviceModel;
-using DeviceService.Model;
-using DeviceService.Model.ExceptionModels;
-using DeviceService.SDK;
-using NaflimHelperLibrary;
 
 namespace DeviceService
 {

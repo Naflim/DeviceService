@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DeviceService.DeviceModel;
+﻿using DeviceService.DeviceModel;
 using DeviceService.Model;
 using DeviceService.Model.ExceptionModels;
 using DeviceService.SDK;
 using NaflimHelperLibrary;
+using System;
+using System.Threading.Tasks;
 
 namespace DeviceService
 {
-   
+
     public class ChannelGateUHF288 : UHFReader288, IChannelGate
     {
         InGPIO inGpio = InGPIO.Init;
