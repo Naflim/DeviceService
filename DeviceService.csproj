@@ -140,6 +140,7 @@
     <Compile Include="SDK\Arcface\DictionaryUnit.cs" />
     <Compile Include="SDK\Arcface\FaceTrackUnit.cs" />
     <Compile Include="SDK\Arcface\FaceUtil.cs" />
+    <Compile Include="SDK\BitmapFormat.cs" />
     <Compile Include="SDK\CHCNetSDK.cs" />
     <Compile Include="SDK\ICReaderSDK.cs" />
     <Compile Include="SDK\UHF86SDK.cs" />
