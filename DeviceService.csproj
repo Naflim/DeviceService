@@ -121,6 +121,7 @@
     <Compile Include="Model\ExceptionModels\ArcfaceException.cs" />
     <Compile Include="Model\ExceptionModels\CETCException.cs" />
     <Compile Include="Model\ExceptionModels\ICReaderException.cs" />
+    <Compile Include="Model\ExceptionModels\MotorSilverBoxException.cs" />
     <Compile Include="Model\ExceptionModels\RSException.cs" />
     <Compile Include="Model\ConnectModel.cs" />
     <Compile Include="Model\ExceptionModels\HIKException.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Model\HIKModel.cs" />
     <Compile Include="Model\PersonnelModel.cs" />
     <Compile Include="Model\TempHumModel.cs" />
+    <Compile Include="MotorSilverBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadOrWrite.cs" />
     <Compile Include="SDK\Arcface\DictionaryUnit.cs" />
