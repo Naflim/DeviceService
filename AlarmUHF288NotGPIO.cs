@@ -99,7 +99,7 @@ namespace DeviceService
                             {
                                 alarmFlag = false;
                                 UHF288SDK.SetGPIO(ref comAdr, 0, handle);
-                                adoptTrigger?.Invoke(this, new AlarmModel(SelEPC));
+                                adoptTrigger?.Invoke(this, new AlarmModel(cacheTags));
                                 Reset();
                             }
                         }

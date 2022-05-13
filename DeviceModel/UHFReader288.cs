@@ -37,10 +37,6 @@ namespace DeviceService.DeviceModel
         /// 天线列表
         /// </summary>
         public List<byte> AntennaList { get; set; }
-        /// <summary>
-        /// 当前存储的EPC
-        /// </summary>
-        public List<string> SelEPC { get { return cacheEPC.Keys.ToList(); } set { } }
 
         /// <summary>
         /// 显示异常
@@ -86,7 +82,7 @@ namespace DeviceService.DeviceModel
         protected byte errorNum;
         protected string ip;
         private int port;
-        protected readonly Dictionary<string,int> cacheEPC = new Dictionary<string, int>();
+        protected readonly List<Tag> cacheTags = new List<Tag>();
         protected ConnectMode mode;
 
         /// <summary>
@@ -252,10 +248,13 @@ namespace DeviceService.DeviceModel
         {
             if (string.IsNullOrEmpty(epc)) return;
 
-            if (cacheEPC.ContainsKey(epc))
-                cacheEPC[epc]++;
-            else
-                cacheEPC.Add(epc, 1);
+            if (cacheTags.Exists(v => v.EPC == epc))
+            {
+                var tag = cacheTags.Find(v => v.EPC == epc);
+                tag.Frequency++;
+                tag.QueryTime = DateTime.Now;
+            }
+            else cacheTags.Add(new Tag(epc));
         }
 
         /// <summary>
@@ -397,7 +396,7 @@ namespace DeviceService.DeviceModel
         /// </summary>
         public void ClearCache()
         {
-            cacheEPC.Clear();
+            cacheTags.Clear();
         }
 
         /// <summary>

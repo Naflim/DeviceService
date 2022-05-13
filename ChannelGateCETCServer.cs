@@ -59,7 +59,7 @@ namespace DeviceService
                                 direction = Direction.Null;
                                 break;
                         }
-                        List<string> epcs = inventoryReport.OpResultItem.Select(v => v.EPC).ToList();
+                        List<Tag> epcs = inventoryReport.OpResultItem.Select(v => new Tag(v.EPC)).ToList();
                         adoptTrigger?.Invoke(this, new ChannelGateModel(direction, epcs, ip));
                         break;
                     default:

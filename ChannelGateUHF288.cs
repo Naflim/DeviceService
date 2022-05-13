@@ -28,21 +28,26 @@ namespace DeviceService
         public Action<ChannelGateUHF288, InGPIO> ShowGPIO { get; set; }
 
         /// <summary>
-        /// 超时结束查询
+        /// 开启延时上传模式
+        /// </summary>
+        public bool DelayMode { get; set; }
+
+        /// <summary>
+        /// 上报延时时间
         /// </summary>
         public int EndTime { get; set; }
 
         /// <summary>
-        /// 开启延时上传模式
+        /// 超时清理时间
         /// </summary>
-        public bool DelayMode { get; set; }
+        public int ClearTime { get; set; } = 3000;
 
         /// <summary>
         /// GPIO间隙
         /// </summary>
         public int GPIOinterval { get; set; } = 100;
 
-        
+
 
         /// <summary>
         /// 设置红外模式
@@ -157,11 +162,14 @@ namespace DeviceService
                 GPIO_ValueChanged();
             else
             {
-                if (selFlag && (DateTime.Now - endStart).TotalMilliseconds > EndTime)
+                if (selFlag)
                 {
-                    if (DelayMode && direction != Direction.Null) AdoptTrigger(new ChannelGateModel(direction, cacheEPC));
-                    else Reset();
+                    if (DelayMode && direction != Direction.Null && (DateTime.Now - endStart).TotalMilliseconds > EndTime)
+                        AdoptTrigger(new ChannelGateModel(direction, cacheTags));
+                    else if ((DateTime.Now - endStart).TotalMilliseconds > ClearTime)
+                        Reset();
                 }
+
                 directionFlag = false;
             }
         }
@@ -195,13 +203,12 @@ namespace DeviceService
             {
                 directionFlag = true;
                 if (!DelayMode)
-                    AdoptTrigger(new ChannelGateModel(direction, cacheEPC));
+                    AdoptTrigger(new ChannelGateModel(direction, cacheTags));
             }
 
             if (!directionFlag && inGpio != defIN)
                 oldIN = inGpio;
         }
-
 
         public void AdoptTrigger(ChannelGateModel channelGate)
         {
