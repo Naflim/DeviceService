@@ -28,6 +28,11 @@ namespace DeviceService
         public Action<ChannelGateUHF288, InGPIO> ShowGPIO { get; set; }
 
         /// <summary>
+        /// 显示查询状态
+        /// </summary>
+        public Action<ChannelGateUHF288, bool> ShowSelState { get; set; }
+
+        /// <summary>
         /// 开启延时上传模式
         /// </summary>
         public bool DelayMode { get; set; }
@@ -109,6 +114,7 @@ namespace DeviceService
                             SetGPIO(gpio);
                             ShowGPIO?.Invoke(this, gpio);
 
+                            ShowSelState(this, selFlag);
                             if (selFlag)
                             {
                                 SelTag(count);
