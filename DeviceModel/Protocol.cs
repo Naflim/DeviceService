@@ -67,12 +67,15 @@ namespace DeviceService.DeviceModel
         /// <returns>返回消息</returns>
         protected byte[] Communication(byte[] sendMsg)
         {
-            switch (mode)
+            lock (this)
             {
-                case ConnectMode.SerialPort:
-                    return SerialCommunication(sendMsg);
-                default:
-                    throw new Exception("未定义的连接模式！");
+                switch (mode)
+                {
+                    case ConnectMode.SerialPort:
+                        return SerialCommunication(sendMsg);
+                    default:
+                        throw new Exception("未定义的连接模式！");
+                }
             }
         }
 

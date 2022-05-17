@@ -114,7 +114,7 @@ namespace DeviceService
                             SetGPIO(gpio);
                             ShowGPIO?.Invoke(this, gpio);
 
-                            ShowSelState(this, selFlag);
+                            ShowSelState?.Invoke(this, selFlag);
                             if (selFlag)
                             {
                                 SelTag(count);
