@@ -49,14 +49,32 @@ namespace DeviceService
         /// </summary>
         /// <param name="seconds">循查时间</param>
         /// <returns>标签</returns>
-        Task<string[]> CyclicQueryTags(int seconds);
+        Task<Tag[]> CyclicQueryTags(int seconds);
 
         /// <summary>
         /// 查询标签
         /// </summary>
-        /// <param name="Ant">天线</param>
+        /// <param name="ant">天线</param>
         /// <returns>标签</returns>
-        string[] QueryTags(int Ant = 0);
+        Tag[] QueryTags(int ant = 0);
+    }
+
+    public interface IReadOrWrite : IReader
+    {
+        /// <summary>
+        /// 自动串口连接
+        /// </summary>
+        void Connect();
+        /// <summary>
+        /// epc写入标签
+        /// </summary>
+        /// <param name="epc">写入的epc</param>
+        void WriteTag(string epc);
+        /// <summary>
+        /// 设置功率
+        /// </summary>
+        /// <param name="power">功率值</param>
+        void SetPower(int Ant, byte power);
     }
 
     /// <summary>

@@ -17,8 +17,20 @@ namespace DeviceService.DeviceModel
         Green
     }
 
+    public enum InGPIO { Init, None, In1, In2, All }
+
     public class UHFReader288 : IReader
     {
+        /// <summary>
+        /// 查询时间
+        /// </summary>
+        public int SelTime { get; set; }
+
+        /// <summary>
+        /// 查询间隙
+        /// </summary>
+        public int SelInterval { get; set; } = 0;
+
         /// <summary>
         /// 默认GPIO
         /// </summary>
@@ -39,10 +51,6 @@ namespace DeviceService.DeviceModel
         /// 天线列表
         /// </summary>
         public List<byte> AntennaList { get; set; } = new List<byte>();
-        /// <summary>
-        /// 当前存储的EPC
-        /// </summary>
-        public List<string>? SelEPC { get { return cacheEPC; } set { } }
 
         /// <summary>
         /// 显示异常
@@ -55,12 +63,24 @@ namespace DeviceService.DeviceModel
         public Action<string>? ThrowLog { get; set; }
 
         /// <summary>
+        /// 断线事件
+        /// </summary>
+        public Action<UHFReader288>? Reconnection { get; set; }
+
+        /// <summary>
         /// 设备ip
         /// </summary>
-        public string? IP
+        public string IP
         {
             get { return ip; }
-            set { }
+        }
+
+        /// <summary>
+        /// 端口
+        /// </summary>
+        public int Port
+        {
+            get { return port; }
         }
 
         /// <summary>
@@ -73,10 +93,33 @@ namespace DeviceService.DeviceModel
         protected byte comAdr = 255;
         protected bool selFlag;
         protected byte errorNum;
-        protected string? ip;
-        protected readonly List<string> cacheEPC = new List<string>();
-        ConnectMode mode;
+        protected string ip = string.Empty;
+        protected int port;
+        protected readonly List<Tag> cacheTags = new();
+        protected ConnectMode mode;
         ConnectModel connectModel = null!;
+
+        /// <summary>
+        /// GPIO转换为IN口
+        /// </summary>
+        /// <param name="gpio">gpio值</param>
+        /// <returns>IN口</returns>
+        protected InGPIO GetInGPIO(byte gpio)
+        {
+            List<InGPIO> inGPIOs = new List<InGPIO>();
+            if ((gpio & 0x01) == 1)
+                inGPIOs.Add(InGPIO.In1);
+
+            if ((gpio & 0x02) == 2)
+                inGPIOs.Add(InGPIO.In2);
+
+            if (inGPIOs.Count == 0)
+                return InGPIO.None;
+            else if (inGPIOs.Count >= 2)
+                return InGPIO.All;
+            else
+                return inGPIOs[0];
+        }
 
         public void Connect(ConnectModel connect)
         {
@@ -87,6 +130,7 @@ namespace DeviceService.DeviceModel
             if (linkflag != 0) throw UHF288Exception.AbnormalJudgment(linkflag);
 
             ip = connect.Ip;
+            port = connect.Port;
 
             mode = ConnectMode.Tcp;
         }
@@ -262,12 +306,8 @@ namespace DeviceService.DeviceModel
                         }
                         string[] EPCarr = DataConversion.GetEPC(EPC);//byte数组以EPC格式转换为字符串数组
                         foreach (string item in EPCarr)
-                        {
-                            if (item != null && !cacheEPC.Contains(item))
-                                cacheEPC.Add(item);
-                        }
+                            AddCacheEpcs(item);
                         count++;
-
                     }
                 }
                 catch (Exception ex)
@@ -276,10 +316,23 @@ namespace DeviceService.DeviceModel
                         Log.PrintError(ex);
                     else
                         ErrorShow(ex);
-                    Reconnection();
+                    Reconnection?.Invoke(this);
                     if (selFlag) StartSel();
                 }
             }, TaskCreationOptions.LongRunning);
+        }
+
+        private void AddCacheEpcs(string epc)
+        {
+            if (string.IsNullOrEmpty(epc)) return;
+
+            if(cacheTags.Find(v => v.EPC == epc) is not Tag tag)
+                cacheTags.Add(new Tag(epc));
+            else
+            {
+                tag.Frequency++;
+                tag.QueryTime = DateTime.Now;
+            }
         }
 
         /// <summary>
@@ -321,10 +374,7 @@ namespace DeviceService.DeviceModel
             }
             string[] EPCarr = DataConversion.GetEPC(EPC);//byte数组以EPC格式转换为字符串数组
             foreach (string item in EPCarr)
-            {
-                if (item != null && !cacheEPC.Contains(item))
-                    cacheEPC.Add(item);
-            }
+                AddCacheEpcs(item);
         }
 
         /// <summary>
@@ -352,16 +402,34 @@ namespace DeviceService.DeviceModel
         /// </summary>
         public void ClearCache()
         {
-            cacheEPC.Clear();
+            cacheTags.Clear();
         }
 
         /// <summary>
         /// 断线重连
         /// </summary>
-        protected void Reconnection()
+        protected void FReconnection()
         {
             ThrowLog?.Invoke($"{ip}-开始断线重连...");
             int count = 1;
+            try
+            {
+                switch (mode)
+                {
+                    case ConnectMode.Tcp:
+                        Disconnect();
+                        break;
+                    case ConnectMode.SerialPort:
+                        ComDisconnect();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                ThrowLog?.Invoke($"{ex.Message}");
+            }
+
+
             while (true)
             {
                 ThrowLog?.Invoke($"{ip}-重连开始，重连次数{count}...");
@@ -370,10 +438,9 @@ namespace DeviceService.DeviceModel
                     switch (mode)
                     {
                         case ConnectMode.Tcp:
-                            Connect(connectModel);
-                            return;
-                        case ConnectMode.SerialPort:
-                            ComConnect(connectModel);
+                            ThrowLog?.Invoke($"ip:{ip}port:{port}");
+                            Connect(new ConnectModel(ip, port));
+                            ThrowLog?.Invoke("重连成功！");
                             return;
                     }
                 }
@@ -383,7 +450,7 @@ namespace DeviceService.DeviceModel
                 }
 
                 count++;
-                System.Threading.Thread.Sleep(3000);
+                System.Threading.Thread.Sleep(5000);
             };
 
         }
@@ -426,10 +493,15 @@ namespace DeviceService.DeviceModel
             }
         }
 
-        async public Task<string[]> CyclicQueryTags(int seconds)
+        async public Task<Tag[]> CyclicQueryTags()
+        {
+            return await CyclicQueryTags(SelTime);
+        }
+
+        async public Task<Tag[]> CyclicQueryTags(int seconds)
         {
             int count = 0;
-            List<string> tags = new();
+            List<Tag> tags = new();
             try
             {
                 DateTime startTime = DateTime.Now;
@@ -466,13 +538,20 @@ namespace DeviceService.DeviceModel
                         throw UHF288Exception.AbnormalJudgment(fCmdRet);
 
                     string[] EPCarr = DataConversion.GetEPC(EPC);//byte数组以EPC格式转换为字符串数组
-                    foreach (string item in EPCarr)
+                    foreach (string epc in EPCarr)
                     {
-                        if (item != null && !tags.Contains(item))
-                            tags.Add(item);
+                        if (string.IsNullOrEmpty(epc)) continue;
+
+                        if (tags.Find(v => v.EPC == epc) is not Tag tag)
+                            tags.Add(new Tag(epc));
+                        else
+                        {
+                            tag.Frequency++;
+                            tag.QueryTime = DateTime.Now;
+                        }
                     }
                     count++;
-                    await Task.Delay(0);
+                    await Task.Delay(SelInterval);
                 }
                 return tags.ToArray();
             }
@@ -483,9 +562,9 @@ namespace DeviceService.DeviceModel
             }
         }
 
-        public string[] QueryTags(int ant)
+        public Tag[] QueryTags(int ant)
         {
-            List<string> tags = new();
+            List<Tag> tags = new();
             byte InAnt = AntennaList[ant];
 
             #region 读写器参数
@@ -514,10 +593,17 @@ namespace DeviceService.DeviceModel
                 throw UHF288Exception.AbnormalJudgment(fCmdRet);
 
             string[] EPCarr = DataConversion.GetEPC(EPC);//byte数组以EPC格式转换为字符串数组
-            foreach (string item in EPCarr)
+            foreach (string epc in EPCarr)
             {
-                if (item != null && !tags.Contains(item))
-                    tags.Add(item);
+                if (string.IsNullOrEmpty(epc)) continue;
+
+                if (tags.Find(v => v.EPC == epc) is not Tag tag)
+                    tags.Add(new Tag(epc));
+                else
+                {
+                    tag.Frequency++;
+                    tag.QueryTime = DateTime.Now;
+                }
             }
 
             return tags.ToArray();

@@ -10,7 +10,7 @@ using NaflimHelperLibrary;
 
 namespace DeviceService.DeviceModel
 {
-    public class UHFReader09 : IDevice
+    public class UHFReader09 : IReader
     {
         protected int port;                       //端口
         protected byte comAdr = 0xFF;             //读写器地址
@@ -23,6 +23,16 @@ namespace DeviceService.DeviceModel
         byte[] epcList = new byte[5000];
         int Totallen = 0;
         int cardNum = 0;
+
+        /// <summary>
+        /// 查询间隙
+        /// </summary>
+        public int SelInterval { get; set; } = 0;
+
+        /// <summary>
+        /// 显示异常
+        /// </summary>
+        public Action<Exception>? ErrorShow { get; set; }
 
         /// <summary>
         /// 自动串口连接
@@ -105,6 +115,95 @@ namespace DeviceService.DeviceModel
             int writeFlag = StaticClassReaderB.WriteEPC_G2(ref comAdr, new byte[] { 0, 0, 0, 0 }, epcArr, (byte)epcArr.Length, ref errorcode, handle);
 
             if (writeFlag != 0) throw UHF288Exception.AbnormalJudgment(writeFlag);
+        }
+
+        async public Task<Tag[]> CyclicQueryTags(int seconds)
+        {
+            List<Tag> tags = new();
+            try
+            {
+                DateTime startTime = DateTime.Now;
+
+                while (DateTime.Now < startTime.AddSeconds(seconds))
+                {
+                    int state = StaticClassReaderB.Inventory_G2(ref comAdr, adrTID, lenTID, tidFlag, epcList, ref Totallen, ref cardNum, handle);
+
+                    if (state == 0x01 || state == 0x02 || state == 0x03 || state == 0x04)
+                    {
+
+                        int index = 0;
+
+                        for (int i = 0; i < cardNum; i++)
+                        {
+                            int len = epcList[index];
+
+                            StringBuilder sb = new();
+
+                            for (int j = 0; j < len; j++)
+                                sb.Append(Convert.ToString(epcList[index + 1 + j], 16).PadLeft(2, '0').ToUpper());
+
+                            string epc = sb.ToString();
+
+                            if (tags.Find(v => v.EPC == epc) is not Tag tag)
+                                tags.Add(new Tag(epc));
+                            else
+                            {
+                                tag.Frequency++;
+                                tag.QueryTime = DateTime.Now;
+                            }
+
+                            index += len + 1;
+                        }
+                    }
+
+                    await Task.Delay(SelInterval);
+                }
+
+                return tags.ToArray();
+            }
+            catch (Exception ex)
+            {
+                ErrorShow?.Invoke(ex);
+                return tags.ToArray();
+            }
+        }
+
+        public virtual Tag[] QueryTags(int ant = 0)
+        {
+            int state = StaticClassReaderB.Inventory_G2(ref comAdr, adrTID, lenTID, tidFlag, epcList, ref Totallen, ref cardNum, handle);
+
+            if (state == 0x01 || state == 0x02 || state == 0x03 || state == 0x04)
+            {
+
+                int index = 0;
+
+                List<Tag> tags = new();
+
+                for (int i = 0; i < cardNum; i++)
+                {
+                    int len = epcList[index];
+
+                    StringBuilder sb = new();
+
+                    for (int j = 0; j < len; j++)
+                        sb.Append(Convert.ToString(epcList[index + 1 + j], 16).PadLeft(2, '0').ToUpper());
+
+                    string epc = sb.ToString();
+
+                    if (tags.Find(v => v.EPC == epc) is not Tag tag)
+                        tags.Add(new Tag(epc));
+                    else
+                    {
+                        tag.Frequency++;
+                        tag.QueryTime = DateTime.Now;
+                    }
+
+                    index += len + 1;
+                }
+
+                return tags.ToArray();
+            }
+            else return Array.Empty<Tag>();
         }
     }
 }

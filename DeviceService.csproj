@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Platforms>AnyCPU;x86</Platforms>
+    <Platforms>AnyCPU;x86;x64</Platforms>
     <Nullable>enable</Nullable>
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
@@ -25,6 +25,9 @@
     </Reference>
     <Reference Include="NaflimHelperLibrary">
       <HintPath>lib\NaflimHelperLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="rfidLink">
+      <HintPath>lib\x86\CardWriteCETClib\rfidLink.dll</HintPath>
     </Reference>
     <Reference Include="RFIDReaderNetwork_SerialSDK_ForCSharp">
       <HintPath>lib\RFIDReaderNetwork_SerialSDK_ForCSharp.dll</HintPath>
