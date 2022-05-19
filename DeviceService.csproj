@@ -22,7 +22,7 @@
       <HintPath>lib\AnyCPU\GReaderApi.dll</HintPath>
     </Reference>
     <Reference Include="libzkfpcsharp">
-      <HintPath>..\..\..\..\东识科技\software(demo)\智能柜\中控指纹仪\ZKFinger SDK 5.0.0.29\C#\lib\x86\libzkfpcsharp.dll</HintPath>
+      <HintPath>lib\x86\libzkfpcsharp-x86.dll</HintPath>
     </Reference>
     <Reference Include="NaflimHelperLibrary">
       <HintPath>lib\NaflimHelperLibrary.dll</HintPath>
