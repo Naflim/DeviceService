@@ -4,7 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <Platforms>AnyCPU;x86;x64</Platforms>
     <Nullable>enable</Nullable>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,7 +22,7 @@
       <HintPath>lib\AnyCPU\GReaderApi.dll</HintPath>
     </Reference>
     <Reference Include="libzkfpcsharp">
-      <HintPath>lib\libzkfpcsharp.dll</HintPath>
+      <HintPath>..\..\..\..\东识科技\software(demo)\智能柜\中控指纹仪\ZKFinger SDK 5.0.0.29\C#\lib\x86\libzkfpcsharp.dll</HintPath>
     </Reference>
     <Reference Include="NaflimHelperLibrary">
       <HintPath>lib\NaflimHelperLibrary.dll</HintPath>

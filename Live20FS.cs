@@ -35,12 +35,63 @@ namespace DeviceService
         void ParametersTo(int index, out byte[] FPBuffer, out byte[] CapTmp, out int cbCapTmp)
         {
             var device = devices[index];
-            JudgeWorkingStatus(device.workingState);
-            devices[index] = device.SetWorkState(WorkingState.CollectFingerprints);
+            JudgeWorkingStatus(device.WorkingState);
+            devices[index].WorkingState = WorkingState.CollectFingerprints;
 
             cbCapTmp = TMPSIZE;
             CapTmp = new byte[TMPSIZE];
-            FPBuffer = new byte[device.ImgSize()];
+            FPBuffer = new byte[device.ImgSize];
+        }
+
+        /// <summary>
+        /// 获取指纹模板
+        /// </summary>
+        /// <param name="deviceIndex">设备编号</param>
+        /// <returns>指纹模板</returns>
+        public byte[] GetFingerprints(out string fingerprintImg, int deviceIndex = 0)
+        {
+            fingerprintImg = string.Empty;
+            ParametersTo(deviceIndex, out byte[] FPBuffer, out byte[] CapTmp, out int cbCapTmp);
+            while (devices[deviceIndex].WorkingState != WorkingState.Idle)
+            {
+                int aFlag = zkfp2.AcquireFingerprint(devices[deviceIndex].Handle, FPBuffer, CapTmp, ref cbCapTmp);
+                if (aFlag != 0 && aFlag != -8)
+                    throw ZKTECOException.AbnormalJudgment(aFlag);
+
+                if (aFlag == 0)
+                {
+                    if (GetFingerprintPic(devices[deviceIndex], FPBuffer) is not Stream stream) continue;
+
+                    MemoryStream ms = new();
+                    stream.CopyTo(ms);
+                    byte[] buffer = ms.ToArray();
+                    fingerprintImg = Convert.ToBase64String(buffer);
+                    ExitWorking(deviceIndex);
+                    return CapTmp;
+                }
+            }
+            ExitWorking(deviceIndex);
+            return Array.Empty<byte>();
+        }
+
+        /// <summary>
+        /// 合成指纹模板
+        /// </summary>
+        /// <param name="tmp1">模板1</param>
+        /// <param name="tmp2">模板2</param>
+        /// <param name="tmp3">模板3</param>
+        /// <returns>合成模板</returns>
+        public byte[] SynthesisFingerprints(byte[] tmp1, byte[] tmp2, byte[] tmp3)
+        {
+            int cbRegTmp = TMPSIZE;
+            byte[] RegTmp = new byte[TMPSIZE];
+            int mFlag = zkfp2.DBMerge(dbHandle, tmp1, tmp2, tmp3, RegTmp, ref cbRegTmp);
+            if (mFlag != 0)
+                throw ZKTECOException.AbnormalJudgment(mFlag);
+
+            byte[] fingerprint = new byte[cbRegTmp];
+            Array.Copy(RegTmp, fingerprint, cbRegTmp);
+            return fingerprint;
         }
 
         /// <summary>
@@ -56,7 +107,7 @@ namespace DeviceService
         /// 指定设备记录指纹
         /// </summary>
         /// <param name="index">设备索引</param>
-        public void CollectFingerprints(int index,Action<byte[]> GetTmp)
+        public void CollectFingerprints(int index, Action<byte[]> GetTmp)
         {
             ParametersTo(index, out byte[] FPBuffer, out byte[] CapTmp, out int cbCapTmp);
 
@@ -66,9 +117,9 @@ namespace DeviceService
                 ThrowLog?.Invoke($"设备{index}开始采集指纹!");
                 byte[][] tmps = new byte[3][];
 
-                while (tmpCount < 3 && devices[index].workingState != WorkingState.Idle)
+                while (tmpCount < 3 && devices[index].WorkingState != WorkingState.Idle)
                 {
-                    int aFlag = zkfp2.AcquireFingerprint(devices[index].handle, FPBuffer, CapTmp, ref cbCapTmp);
+                    int aFlag = zkfp2.AcquireFingerprint(devices[index].Handle, FPBuffer, CapTmp, ref cbCapTmp);
                     if (aFlag != 0 && aFlag != -8)
                         ErrorShow?.Invoke(ZKTECOException.AbnormalJudgment(aFlag));
 
@@ -95,7 +146,7 @@ namespace DeviceService
                 }
 
                 byte[] fingerprint = new byte[cbRegTmp];
-                Array.Copy(RegTmp, fingerprint, cbCapTmp);
+                Array.Copy(RegTmp, fingerprint, cbRegTmp);
                 ThrowLog?.Invoke($"收集完成!");
                 GetTmp(fingerprint);
                 ExitWorking(index);
@@ -122,10 +173,10 @@ namespace DeviceService
             Task.Run(async () =>
             {
                 ThrowLog?.Invoke($"设备{index}开始识别指纹!");
-                while (devices[index].workingState != WorkingState.Idle)
+                while (devices[index].WorkingState != WorkingState.Idle)
                 {
                     int fid = 0, score = 0;
-                    int aFlag = zkfp2.AcquireFingerprint(devices[index].handle, FPBuffer, CapTmp, ref cbCapTmp);
+                    int aFlag = zkfp2.AcquireFingerprint(devices[index].Handle, FPBuffer, CapTmp, ref cbCapTmp);
                     if (aFlag != 0 && aFlag != -8)
                         ErrorShow?.Invoke(ZKTECOException.AbnormalJudgment(aFlag));
 
@@ -135,7 +186,7 @@ namespace DeviceService
                         FingerprintShow?.Invoke(stream);
                         int iFlag = zkfp2.DBIdentify(dbHandle, CapTmp, ref fid, ref score);
 
-                        if (iFlag != 0&&iFlag != -17)
+                        if (iFlag != 0 && iFlag != -17)
                             ErrorShow?.Invoke(ZKTECOException.AbnormalJudgment(iFlag));
 
                         if (iFlag == 0)
@@ -169,9 +220,9 @@ namespace DeviceService
             Task.Run(async () =>
             {
                 ThrowLog?.Invoke($"设备{index}开始对比指纹!");
-                while (devices[index].workingState != WorkingState.Idle)
+                while (devices[index].WorkingState != WorkingState.Idle)
                 {
-                    int aFlag = zkfp2.AcquireFingerprint(devices[index].handle, FPBuffer, CapTmp, ref cbCapTmp);
+                    int aFlag = zkfp2.AcquireFingerprint(devices[index].Handle, FPBuffer, CapTmp, ref cbCapTmp);
                     if (aFlag != 0 && aFlag != -8)
                         ErrorShow?.Invoke(ZKTECOException.AbnormalJudgment(aFlag));
 
@@ -204,7 +255,7 @@ namespace DeviceService
         public void ExitWorking(int index)
         {
             ThrowLog?.Invoke($"设备{index}退出工作状态!");
-            devices[index] = devices[index].SetWorkState(WorkingState.Idle);
+            devices[index].WorkingState = WorkingState.Idle;
         }
 
         /// <summary>
@@ -212,7 +263,7 @@ namespace DeviceService
         /// </summary>
         /// <param name="uid">指纹id号</param>
         /// <param name="tmp">指纹模板</param>
-        public void SaveFingerprint(int uid,byte[] tmp)
+        public void SaveFingerprint(int uid, byte[] tmp)
         {
             zkfp2.DBAdd(dbHandle, uid, tmp);
         }
@@ -221,8 +272,8 @@ namespace DeviceService
         {
             try
             {
-                MemoryStream ms = new MemoryStream();
-                BitmapFormat.GetBitmap(img, device.imgWidth, device.imgHeight, ref ms);
+                MemoryStream ms = new();
+                BitmapFormat.GetBitmap(img, device.ImgWidth, device.ImgHeight, ref ms);
                 return ms;
             }
             catch (Exception ex)

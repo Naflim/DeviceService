@@ -126,6 +126,18 @@ namespace DeviceService.DeviceModel
         }
 
         /// <summary>
+        /// 图片获取人脸特征
+        /// </summary>
+        /// <param name="imgPath">人脸图片路径</param>
+        /// <returns>人脸特征</returns>
+        public FaceFeature GetFacialFeature(string imgPath)
+        {
+            CheckImage(imgPath);
+            var image = ScaleImage(imgPath);
+            return GetFaceFeature(ref image);
+        }
+
+        /// <summary>
         /// 注册人脸
         /// </summary>
         /// <param name="id">人脸id</param>
