@@ -1,6 +1,7 @@
 ﻿using DeviceService.Model;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DeviceService
 {
@@ -34,6 +35,26 @@ namespace DeviceService
         /// 断开连接
         /// </summary>
         void Disconnect();
+    }
+
+    /// <summary>
+    /// 读写器
+    /// </summary>
+    public interface IReader : IDevice
+    {
+        /// <summary>
+        /// 循查标签
+        /// </summary>
+        /// <param name="seconds">循查时间</param>
+        /// <returns>标签</returns>
+        Task<Tag[]> CyclicQueryTags(int seconds);
+
+        /// <summary>
+        /// 查询标签
+        /// </summary>
+        /// <param name="ant">天线</param>
+        /// <returns>标签</returns>
+        Tag[] QueryTags(int ant = 0);
     }
 
     /// <summary>

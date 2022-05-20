@@ -19,8 +19,18 @@ namespace DeviceService.DeviceModel
 
     public enum InGPIO { Init, None, In1, In2, All }
 
-    public abstract class UHFReader288 : IDevice
+    public class UHFReader288 : IReader
     {
+        /// <summary>
+        /// 查询时间
+        /// </summary>
+        public int SelTime { get; set; }
+
+        /// <summary>
+        /// 查询间隙
+        /// </summary>
+        public int SelInterval { get; set; } = 0;
+
         /// <summary>
         /// 红灯端口
         /// </summary>
@@ -485,6 +495,117 @@ namespace DeviceService.DeviceModel
                 else
                     ErrorShow(ex);
             }
+        }
+
+        async public Task<Tag[]> CyclicQueryTags(int seconds)
+        {
+            int count = 0;
+            List<Tag> tags = new List<Tag>();
+            try
+            {
+                DateTime startTime = DateTime.Now;
+
+                while (DateTime.Now < startTime.AddSeconds(seconds))
+                {
+                    if (count >= AntennaList.Count)
+                        count = 0;
+
+                    #region 读写器参数
+                    byte InAnt = AntennaList[count];//不可变
+                    byte FastFlag = 1;//不可变
+                    byte Qvalue = 4;//可变
+                    byte tidAddr = 0;//可变
+                    byte tidLen = 0;//可变
+                    byte TIDFlag = 0;//可变
+                    byte Scantime = 20;//可变
+                    byte Target = 0;
+                    byte Ant = 0;
+                    byte MaskMem = 0;
+                    byte MaskLen = 0;
+                    byte MaskFlag = 0;
+                    byte Session = 0;
+                    byte[] MaskAdr = new byte[2];
+                    byte[] MaskData = new byte[100];
+                    byte[] EPC = new byte[50000];
+                    int TagNum = 0;
+                    int Totallen = 0;
+                    #endregion
+
+                    int fCmdRet = UHF288SDK.Inventory_G2(ref comAdr, Qvalue, Session, MaskMem, MaskAdr, MaskLen, MaskData, MaskFlag, tidAddr, tidLen, TIDFlag, Target, InAnt, Scantime, FastFlag, EPC, ref Ant, ref Totallen, ref TagNum, handle);
+
+                    if (fCmdRet != 0x01 && fCmdRet != 0x02)
+                        throw UHF288Exception.AbnormalJudgment(fCmdRet);
+
+                    string[] EPCarr = DataConversion.GetEPC(EPC);//byte数组以EPC格式转换为字符串数组
+                    foreach (string epc in EPCarr)
+                    {
+                        if (string.IsNullOrEmpty(epc)) continue;
+
+                        if (tags.Exists(v => v.EPC == epc))
+                        {
+                            var tag = tags.Find(v => v.EPC == epc);
+                            tag.Frequency++;
+                            tag.QueryTime = DateTime.Now;
+                        }
+                        else tags.Add(new Tag(epc));
+                    }
+                    count++;
+                    await Task.Delay(SelInterval);
+                }
+                return tags.ToArray();
+            }
+            catch (Exception ex)
+            {
+                ErrorShow?.Invoke(ex);
+                return tags.ToArray();
+            }
+        }
+
+        public Tag[] QueryTags(int ant = 0)
+        {
+            List<Tag> tags = new List<Tag>();
+            byte InAnt = AntennaList[ant];
+
+            #region 读写器参数
+            byte FastFlag = 1;//不可变
+            byte Qvalue = 4;//可变
+            byte tidAddr = 0;//可变
+            byte tidLen = 0;//可变
+            byte TIDFlag = 0;//可变
+            byte Scantime = 20;//可变
+            byte Target = 0;
+            byte Ant = 0;
+            byte MaskMem = 0;
+            byte MaskLen = 0;
+            byte MaskFlag = 0;
+            byte Session = 0;
+            byte[] MaskAdr = new byte[2];
+            byte[] MaskData = new byte[100];
+            byte[] EPC = new byte[50000];
+            int TagNum = 0;
+            int Totallen = 0;
+            #endregion
+
+            int fCmdRet = UHF288SDK.Inventory_G2(ref comAdr, Qvalue, Session, MaskMem, MaskAdr, MaskLen, MaskData, MaskFlag, tidAddr, tidLen, TIDFlag, Target, InAnt, Scantime, FastFlag, EPC, ref Ant, ref Totallen, ref TagNum, handle);
+
+            if (fCmdRet != 0x01 && fCmdRet != 0x02)
+                throw UHF288Exception.AbnormalJudgment(fCmdRet);
+
+            string[] EPCarr = DataConversion.GetEPC(EPC);//byte数组以EPC格式转换为字符串数组
+            foreach (string epc in EPCarr)
+            {
+                if (string.IsNullOrEmpty(epc)) continue;
+
+                if (tags.Exists(v => v.EPC == epc))
+                {
+                    var tag = tags.Find(v => v.EPC == epc);
+                    tag.Frequency++;
+                    tag.QueryTime = DateTime.Now;
+                }
+                else tags.Add(new Tag(epc));
+            }
+
+            return tags.ToArray();
         }
     }
 }
