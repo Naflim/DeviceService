@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.IO;
 using DeviceService.SDK;
+using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace DeviceService
 {
@@ -62,10 +64,19 @@ namespace DeviceService
                 {
                     if (GetFingerprintPic(devices[deviceIndex], FPBuffer) is not Stream stream) continue;
 
-                    MemoryStream ms = new();
-                    stream.CopyTo(ms);
-                    byte[] buffer = ms.ToArray();
-                    fingerprintImg = Convert.ToBase64String(buffer);
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                    {
+                        Bitmap bitmap = new(stream);
+                        MemoryStream ms = new MemoryStream();
+                        bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                        byte[] buffer = new byte[ms.Length];
+                        ms.Position = 0;
+                        ms.Read(buffer, 0, (int)ms.Length);
+                        ms.Close();
+                        fingerprintImg = Convert.ToBase64String(buffer);
+                    }
+                        
                     ExitWorking(deviceIndex);
                     return CapTmp;
                 }

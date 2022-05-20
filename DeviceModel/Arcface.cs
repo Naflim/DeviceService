@@ -137,6 +137,7 @@ namespace DeviceService.DeviceModel
             return GetFaceFeature(ref image);
         }
 
+
         /// <summary>
         /// 注册人脸
         /// </summary>

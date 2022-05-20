@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DeviceService.Model.ExceptionModels;
 using DeviceService.SDK;
-using DeviceService.Model.ExceptionModels;
+using System;
 
 namespace DeviceService
 {
@@ -32,7 +28,7 @@ namespace DeviceService
             int len = date.Length;
             for (int i = 0; i < len; i++)
                 cardID += date[i].ToString("X2");
-            return string.Empty;
+            return cardID;
         }
 
         protected byte[] GetData(byte[] data, int start, int end)

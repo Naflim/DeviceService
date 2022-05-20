@@ -22,6 +22,7 @@ namespace DeviceService.Model.ExceptionModels
         {
             return state switch
             {
+                -1 => new ZKTECOException("初始化算法库失败"),
                 -7=> new ZKTECOException("无效句柄"),
                 -8 => new ZKTECOException("取像失败"),
                 -17 => new ZKTECOException("操作失败"),
