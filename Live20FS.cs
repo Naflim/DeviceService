@@ -31,7 +31,6 @@ namespace DeviceService
         public Action<Stream>? FingerprintShow { get; set; }
 
 
-
         const int TMPSIZE = 2048;
 
         void ParametersTo(int index, out byte[] FPBuffer, out byte[] CapTmp, out int cbCapTmp)

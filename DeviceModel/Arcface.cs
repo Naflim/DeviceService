@@ -137,7 +137,6 @@ namespace DeviceService.DeviceModel
             return GetFaceFeature(ref image);
         }
 
-
         /// <summary>
         /// 注册人脸
         /// </summary>
@@ -215,8 +214,8 @@ namespace DeviceService.DeviceModel
         {
             if (string.IsNullOrEmpty(imagePath)) throw new ArcfaceException("非法路径");
             FileInfo fileCheck = new(imagePath);
-            if (!fileCheck.Exists) throw new ArcfaceException("文件不存在");
-            if (fileCheck.Length > MAX_SIZE) throw new ArcfaceException("图片大小超过2M，请压缩后再导入");
+            if (!fileCheck.Exists) throw new ArcfaceException($"{imagePath}不存在");
+            if (fileCheck.Length > MAX_SIZE) throw new ArcfaceException($"{imagePath}大小超过2M，请压缩后再导入");
         }
 
         /// <summary>
