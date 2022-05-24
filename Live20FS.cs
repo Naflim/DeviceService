@@ -218,6 +218,14 @@ namespace DeviceService
             zkfp2.DBAdd(dbHandle, uid, tmp);
         }
 
+        /// <summary>
+        /// 清空内存中所有指纹模板
+        /// </summary>
+        public void ClearFingerprint()
+        {
+            zkfp2.DBClear(dbHandle);
+        }
+
         Stream GetFingerprintPic(ZKTECODevice device, byte[] img)
         {
             try
