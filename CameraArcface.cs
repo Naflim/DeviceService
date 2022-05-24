@@ -286,7 +286,7 @@ namespace DeviceService
                             FaceTrackUnit tempFaceTrack = rgbTrackUnitDict.GetElementByKey(tempFaceId);
 
                             //RGB活体检测
-                            ThrowLog.Invoke(string.Format("faceId:{0},活体检测第{1}次\r\n", tempFaceId, tryTime));
+                            ThrowLog?.Invoke(string.Format("faceId:{0},活体检测第{1}次\r\n", tempFaceId, tryTime));
                             SingleFaceInfo singleFaceInfo = new SingleFaceInfo
                             {
                                 faceOrient = tempFaceTrack.FaceOrient,
@@ -327,7 +327,7 @@ namespace DeviceService
                     }
                     catch (Exception ex)
                     {
-                        ErrorShow.Invoke(ex);
+                        ErrorShow?.Invoke(ex);
                     }
                 }
             });
@@ -376,7 +376,7 @@ namespace DeviceService
                             //特征搜索
                             string faceIndex = string.Empty;
                             float similarity = 0f;
-                            ThrowLog.Invoke(string.Format("faceId:{0},特征搜索第{1}次\r\n", tempFaceId, tryTime));
+                            ThrowLog?.Invoke(string.Format("faceId:{0},特征搜索第{1}次\r\n", tempFaceId, tryTime));
                             //提取人脸特征
                             SingleFaceInfo singleFaceInfo = new SingleFaceInfo
                             {
@@ -423,7 +423,7 @@ namespace DeviceService
                     }
                     catch (Exception ex)
                     {
-                        ErrorShow.Invoke(ex);
+                        ErrorShow?.Invoke(ex);
                     }
                 }
             });
@@ -457,7 +457,7 @@ namespace DeviceService
             }
             catch (Exception ex)
             {
-                ErrorShow.Invoke(ex);
+                ErrorShow?.Invoke(ex);
             }
             return result;
         }

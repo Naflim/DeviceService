@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -150,9 +151,19 @@
     <Compile Include="DeviceModel\UHFReader288.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="lib\x64\Arcfacelib\ArcFaceSDK.dll" />
-    <Content Include="lib\x64\Arcfacelib\libarcsoft_face.dll" />
-    <Content Include="lib\x64\Arcfacelib\libarcsoft_face_engine.dll" />
+    <None Include="lib\AnyCPU\HIKlib\GdiPlus.lib" />
+    <None Include="lib\AnyCPU\HIKlib\HCCore.lib" />
+    <None Include="lib\AnyCPU\HIKlib\HCNetSDK.lib" />
+    <None Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCAlarm.lib" />
+    <None Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCGeneralCfgMgr.lib" />
+    <None Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCPreview.lib" />
+    <None Include="lib\AnyCPU\HIKlib\LocalXml.zip" />
+    <None Include="lib\AnyCPU\HIKlib\PlayCtrl.lib" />
+    <None Include="lib\x86\CardWriteCETClib\RFIDcomm.cfg" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\AnyCPU\GReaderApi.dll" />
     <Content Include="lib\AnyCPU\HIKlib\AudioRender.dll" />
     <Content Include="lib\AnyCPU\HIKlib\ClientDemo.exe" />
     <Content Include="lib\AnyCPU\HIKlib\ClientDemoDll\calib.dll" />
@@ -200,7 +211,6 @@
     <Content Include="lib\AnyCPU\HIKlib\SuperRender.dll" />
     <Content Include="lib\AnyCPU\HIKlib\YUVProcess.dll" />
     <Content Include="lib\AnyCPU\HIKlib\zlib1.dll" />
-    <Content Include="lib\AMD64\libzkfpcsharp.dll" />
     <Content Include="lib\AnyCPU\ICReaderlib\function.dll" />
     <Content Include="lib\AnyCPU\ICReaderlib\USB.dll" />
     <Content Include="lib\AnyCPU\NaflimHelperLibrary.dll" />
@@ -209,8 +219,12 @@
     <Content Include="lib\AnyCPU\UHFGate.dll" />
     <Content Include="lib\AnyCPU\UHFReader09lib\Basic.dll" />
     <Content Include="lib\AnyCPU\UHFReader09lib\UHFReader09CSharp.dll" />
-    <Content Include="lib\AnyCPU\UHFReader288.dll" />
-    <Content Include="lib\AnyCPU\UHFReader86.dll" />
+    <Content Include="lib\CurrentCPU\libzkfpcsharp.dll" />
+    <Content Include="lib\x64\Arcfacelib\ArcFaceSDK.dll" />
+    <Content Include="lib\x64\Arcfacelib\libarcsoft_face.dll" />
+    <Content Include="lib\x64\Arcfacelib\libarcsoft_face_engine.dll" />
+    <Content Include="lib\x64\libzkfpcsharp.dll" />
+    <Content Include="lib\x64\UHFReader288.dll" />
     <Content Include="lib\x86\Arcfacelib\ArcFaceSDK.dll" />
     <Content Include="lib\x86\Arcfacelib\libarcsoft_face.dll" />
     <Content Include="lib\x86\Arcfacelib\libarcsoft_face_engine.dll" />
@@ -218,18 +232,9 @@
     <Content Include="lib\x86\CardWriteCETClib\rfid.dll" />
     <Content Include="lib\x86\CardWriteCETClib\rfidLink.dll" />
     <Content Include="lib\x86\CardWriteCETClib\rfidtx.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="lib\AnyCPU\HIKlib\GdiPlus.lib" />
-    <None Include="lib\AnyCPU\HIKlib\HCCore.lib" />
-    <None Include="lib\AnyCPU\HIKlib\HCNetSDK.lib" />
-    <None Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCAlarm.lib" />
-    <None Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCGeneralCfgMgr.lib" />
-    <None Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCPreview.lib" />
-    <None Include="lib\AnyCPU\HIKlib\LocalXml.zip" />
-    <None Include="lib\AnyCPU\HIKlib\PlayCtrl.lib" />
-    <None Include="lib\x86\CardWriteCETClib\RFIDcomm.cfg" />
-    <None Include="packages.config" />
+    <Content Include="lib\x86\libzkfpcsharp.dll" />
+    <Content Include="lib\x86\UHFReader288.dll" />
+    <Content Include="lib\x86\UHFReader86.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
