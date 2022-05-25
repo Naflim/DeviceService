@@ -83,7 +83,7 @@ namespace DeviceService
                 }
                 catch (Exception ex)
                 {
-                    ErrowShow.Invoke(ex);
+                    ErrowShow?.Invoke(ex);
                 }
                 
             }, TaskCreationOptions.LongRunning);

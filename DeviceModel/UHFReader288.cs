@@ -142,7 +142,7 @@ namespace DeviceService.DeviceModel
             else
                 linkflag = UHF288SDK.OpenComPort(connect.Com, ref comAdr, baud, ref handle);
 
-           
+
             if (linkflag != 0)
                 throw UHF288Exception.AbnormalJudgment(linkflag);
 
@@ -432,7 +432,7 @@ namespace DeviceService.DeviceModel
             {
                 ThrowLog($"{ex.Message}");
             }
-            
+
 
             while (true)
             {
@@ -443,7 +443,7 @@ namespace DeviceService.DeviceModel
                     {
                         case ConnectMode.Tcp:
                             ThrowLog?.Invoke($"ip:{ip}port:{port}");
-                            Connect(new ConnectModel(ip,port));
+                            Connect(new ConnectModel(ip, port));
                             ThrowLog?.Invoke("重连成功！");
                             return;
                     }
@@ -494,6 +494,67 @@ namespace DeviceService.DeviceModel
                     Log.PrintError(ex);
                 else
                     ErrorShow(ex);
+            }
+        }
+
+        /// <summary>
+        /// 获取单个标签
+        /// </summary>
+        /// <returns>标签</returns>
+        async public Task<Tag> CyclicQueryOneTags()
+        {
+            int count = 0;
+            try
+            {
+                DateTime startTime = DateTime.Now;
+                
+                while (DateTime.Now < startTime.AddSeconds(SelTime))
+                {
+                    if (count >= AntennaList.Count)
+                        count = 0;
+
+                    #region 读写器参数
+                    byte InAnt = AntennaList[count];//不可变
+                    byte FastFlag = 1;//不可变
+                    byte Qvalue = 4;//可变
+                    byte tidAddr = 0;//可变
+                    byte tidLen = 0;//可变
+                    byte TIDFlag = 0;//可变
+                    byte Scantime = 20;//可变
+                    byte Target = 0;
+                    byte Ant = 0;
+                    byte MaskMem = 0;
+                    byte MaskLen = 0;
+                    byte MaskFlag = 0;
+                    byte Session = 0;
+                    byte[] MaskAdr = new byte[2];
+                    byte[] MaskData = new byte[100];
+                    byte[] EPC = new byte[50000];
+                    int TagNum = 0;
+                    int Totallen = 0;
+                    #endregion
+
+                    int fCmdRet = UHF288SDK.Inventory_G2(ref comAdr, Qvalue, Session, MaskMem, MaskAdr, MaskLen, MaskData, MaskFlag, tidAddr, tidLen, TIDFlag, Target, InAnt, Scantime, FastFlag, EPC, ref Ant, ref Totallen, ref TagNum, handle);
+
+                    if (fCmdRet != 0x01 && fCmdRet != 0x02)
+                        throw UHF288Exception.AbnormalJudgment(fCmdRet);
+
+                    string[] EPCarr = DataConversion.GetEPC(EPC);//byte数组以EPC格式转换为字符串数组
+                    foreach (string epc in EPCarr)
+                    {
+                        if (string.IsNullOrEmpty(epc)) continue;
+
+                        return new Tag(epc);
+                    }
+                    count++;
+                    await Task.Delay(SelInterval);
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                ErrorShow?.Invoke(ex);
+                return null;
             }
         }
 
