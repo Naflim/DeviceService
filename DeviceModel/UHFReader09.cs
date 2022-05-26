@@ -1,7 +1,8 @@
-﻿using DeviceService.Model;
+﻿extern alias UHF09Dll;
+using UHF09Dll.ReaderB;
+using DeviceService.Model;
 using DeviceService.Model.ExceptionModels;
 using NaflimHelperLibrary;
-using ReaderB;
 using System;
 using System.Text;
 

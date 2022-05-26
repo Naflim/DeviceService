@@ -90,6 +90,12 @@
     <Reference Include="UHFReader09CSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\UHFReader09CSharp.dll</HintPath>
+      <Aliases>UHF09Dll</Aliases>
+    </Reference>
+    <Reference Include="UHFReader188CSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\CurrentCPU\UHF188\UHFReader188CSharp.dll</HintPath>
+      <Aliases>UHF188Dll</Aliases>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +114,7 @@
     <Compile Include="DeviceModel\ProtocolServer.cs" />
     <Compile Include="DeviceModel\UHFReader09.cs" />
     <Compile Include="DeviceModel\CardWriteCETC.cs" />
+    <Compile Include="DeviceModel\UHFReader188.cs" />
     <Compile Include="DeviceModel\UHFReader86.cs" />
     <Compile Include="DeviceModel\UHFReaderCETC.cs" />
     <Compile Include="DeviceModel\UHFReaderCETCServer.cs" />
@@ -127,6 +134,7 @@
     <Compile Include="Model\ConnectModel.cs" />
     <Compile Include="Model\ExceptionModels\HIKException.cs" />
     <Compile Include="Model\ExceptionModels\UHF09Exception.cs" />
+    <Compile Include="Model\ExceptionModels\UHF188Exception.cs" />
     <Compile Include="Model\ExceptionModels\UHF288Exception.cs" />
     <Compile Include="Model\ExceptionModels\UHF86Exception.cs" />
     <Compile Include="Model\ExceptionModels\UHFCETCException.cs" />
@@ -220,10 +228,14 @@
     <Content Include="lib\AnyCPU\UHFReader09lib\Basic.dll" />
     <Content Include="lib\AnyCPU\UHFReader09lib\UHFReader09CSharp.dll" />
     <Content Include="lib\CurrentCPU\libzkfpcsharp.dll" />
+    <Content Include="lib\CurrentCPU\UHF188\Basic.dll" />
+    <Content Include="lib\CurrentCPU\UHF188\UHFReader188CSharp.dll" />
     <Content Include="lib\x64\Arcfacelib\ArcFaceSDK.dll" />
     <Content Include="lib\x64\Arcfacelib\libarcsoft_face.dll" />
     <Content Include="lib\x64\Arcfacelib\libarcsoft_face_engine.dll" />
     <Content Include="lib\x64\libzkfpcsharp.dll" />
+    <Content Include="lib\x64\UHF188\Basic.dll" />
+    <Content Include="lib\x64\UHF188\UHFReader188CSharp.dll" />
     <Content Include="lib\x64\UHFReader288.dll" />
     <Content Include="lib\x86\Arcfacelib\ArcFaceSDK.dll" />
     <Content Include="lib\x86\Arcfacelib\libarcsoft_face.dll" />
@@ -233,6 +245,8 @@
     <Content Include="lib\x86\CardWriteCETClib\rfidLink.dll" />
     <Content Include="lib\x86\CardWriteCETClib\rfidtx.dll" />
     <Content Include="lib\x86\libzkfpcsharp.dll" />
+    <Content Include="lib\x86\UHF188\Basic.dll" />
+    <Content Include="lib\x86\UHF188\UHFReader188CSharp.dll" />
     <Content Include="lib\x86\UHFReader288.dll" />
     <Content Include="lib\x86\UHFReader86.dll" />
   </ItemGroup>
