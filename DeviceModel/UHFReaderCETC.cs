@@ -9,7 +9,7 @@ using DeviceService.Model.ExceptionModels;
 
 namespace DeviceService.DeviceModel
 {
-    public class UHFReaderCETC : IDevice
+    public class UHFReaderCETC : IReader
     {
         protected RFIDClient client = null!;
         private string? ip;
@@ -147,6 +147,38 @@ namespace DeviceService.DeviceModel
             Console.WriteLine("reader_OnInventoryReport");
         }
 
+        public Task<Model.Tag[]> CyclicQueryTags(int seconds)
+        {
+            throw new NotImplementedException();
+        }
 
+        public Model.Tag[] QueryTags(int ant = 0)
+        {
+            List<Model.Tag> tags = new();
+
+            TagReport tagReport = new TagReport();
+            var flag = client.InventoryCycle(ant, ref tagReport);
+
+            if (flag != OperationResult.SUCCESS)
+                throw UHFCETCException.AbnormalJudgment(flag);
+
+            string epc;
+
+            foreach(var item in tagReport.m_listTags)
+            {
+                epc = item.m_strEPC;
+                if (string.IsNullOrEmpty(epc)) continue;
+
+                if (tags.Find(v => v.EPC == epc) is not Model.Tag tag)
+                    tags.Add(new Model.Tag(epc));
+                else
+                {
+                    tag.Frequency++;
+                    tag.QueryTime = DateTime.Now;
+                }
+            }
+
+            return tags.ToArray();
+        }
     }
 }
