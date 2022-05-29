@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DeviceService.DeviceModel;
+﻿using DeviceService.DeviceModel;
 using DeviceService.Model;
 using DeviceService.Model.ExceptionModels;
 using DeviceService.SDK;
 using NaflimHelperLibrary;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DeviceService
 {
@@ -101,16 +99,13 @@ namespace DeviceService
                             {
                                 alarmFlag = false;
                                 UHF288SDK.SetGPIO(ref comAdr, 0, handle);
-                                adoptTrigger?.Invoke(this, new AlarmModel(cacheEPC));
+                                adoptTrigger?.Invoke(this, new AlarmModel(cacheTags));
                                 Reset();
                             }
                         }
 
                         foreach (string item in EPCarr)
-                        {
-                            if (item != null && !cacheEPC.Contains(item))
-                                cacheEPC.Add(item);
-                        }
+                            AddCacheEpcs(item);
 
                         count++;
                         await Task.Delay(100);

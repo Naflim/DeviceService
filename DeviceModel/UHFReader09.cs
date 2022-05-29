@@ -1,12 +1,10 @@
-﻿using DeviceService.Model;
+﻿extern alias UHF09Dll;
+using UHF09Dll.ReaderB;
+using DeviceService.Model;
 using DeviceService.Model.ExceptionModels;
-using ReaderB;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NaflimHelperLibrary;
+using System;
+using System.Text;
 
 namespace DeviceService.DeviceModel
 {
@@ -17,10 +15,10 @@ namespace DeviceService.DeviceModel
         protected byte baud = 4;                  //波特率
         protected int handle;                  //读写器链接句柄
 
-        byte adrTID = 02;
-        byte lenTID = 04;
-        byte tidFlag = 0;
-        byte[] epcList = new byte[5000];
+        const byte ADR_TID = 02;
+        const byte LEN_TID = 04;
+        const byte TID_FLAG = 0;
+        readonly byte[] epcList = new byte[5000];
         int Totallen = 0;
         int cardNum = 0;
 
@@ -66,7 +64,7 @@ namespace DeviceService.DeviceModel
         /// <returns>标签组</returns>
         public virtual string[] SelTag()
         {
-            int state = StaticClassReaderB.Inventory_G2(ref comAdr, adrTID, lenTID, tidFlag, epcList, ref Totallen, ref cardNum, handle);
+            int state = StaticClassReaderB.Inventory_G2(ref comAdr, ADR_TID, LEN_TID, TID_FLAG, epcList, ref Totallen, ref cardNum, handle);
 
             if (state == 0x01 || state == 0x02 || state == 0x03 || state == 0x04)
             {

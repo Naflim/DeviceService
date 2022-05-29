@@ -12,13 +12,13 @@ namespace DeviceService.Model
         /// <summary>
         /// 扫描的标签
         /// </summary>
-        public List<string> EPC { get; set; }
+        public List<Tag> Tags { get; set; }
 
         public AlarmModel() { }
 
-        public AlarmModel(List<string> epc) 
+        public AlarmModel(List<Tag> tags) 
         {
-            EPC = epc;
+            Tags = tags;
         }
     }
 }

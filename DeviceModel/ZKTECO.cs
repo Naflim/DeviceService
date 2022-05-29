@@ -10,16 +10,49 @@ namespace DeviceService.DeviceModel
     public class ZKTECO : IDevice
     {
         /// <summary>
+        /// 工作状态枚举
+        /// </summary>
+        protected enum WorkingState
+        {
+            Idle,
+            CollectFingerprints,
+            FingerprintIdentification
+        }
+
+        /// <summary>
         /// 熵基科技设备
         /// </summary>
         protected struct ZKTECODevice
         {
             public IntPtr handle;
-            public int imgSize;
-            public ZKTECODevice(IntPtr handle)
+            public int imgWidth;
+            public int imgHeight;
+            public WorkingState workingState;
+            public ZKTECODevice(IntPtr handle, int width, int height)
             {
                 this.handle = handle;
-                imgSize = 0;
+                imgWidth = width;
+                imgHeight = height;
+                workingState = WorkingState.Idle;
+            }
+
+            public ZKTECODevice(IntPtr handle, int width, int height, WorkingState workingState)
+            {
+                this.handle = handle;
+                imgWidth = width;
+                imgHeight = height;
+                this.workingState = workingState;
+            }
+
+            public ZKTECODevice SetWorkState(WorkingState state)
+            {
+                workingState = state;
+                return this;
+            }
+
+            public int ImgSize()
+            {
+                return imgHeight * imgWidth;
             }
         }
 
@@ -65,9 +98,7 @@ namespace DeviceService.DeviceModel
         {
             deviceCount = zkfp2.GetDeviceCount();
             for (int i = 0; i < deviceCount; i++)
-                devices.Add(new ZKTECODevice(zkfp2.OpenDevice(i)));
-
-            GetParameters();
+                devices.Add(GetParameters(zkfp2.OpenDevice(i)));
         }
 
         public void Connect(ConnectModel connect)
@@ -81,24 +112,30 @@ namespace DeviceService.DeviceModel
             devices.Clear();
         }
 
-        void GetParameters()
+        ZKTECODevice GetParameters(IntPtr handle)
         {
             byte[] paramValue = new byte[4];
             int size = 4;
-            devices.ForEach(v =>
+            int mfpWidth = 0, mfpHeight = 0;
+            zkfp2.GetParameters(handle, 1, paramValue, ref size);
+            zkfp2.ByteArray2Int(paramValue, ref mfpWidth);
+
+            size = 4;
+            zkfp2.GetParameters(handle, 2, paramValue, ref size);
+            zkfp2.ByteArray2Int(paramValue, ref mfpHeight);
+
+            return new ZKTECODevice(handle, mfpWidth, mfpHeight);
+        }
+
+        protected void JudgeWorkingStatus(WorkingState workingState)
+        {
+            switch (workingState)
             {
-                int mfpWidth = 0, mfpHeight = 0;
-                zkfp2.GetParameters(v.handle, 1, paramValue, ref size);
-                zkfp2.ByteArray2Int(paramValue, ref mfpWidth);
-
-                size = 4;
-                zkfp2.GetParameters(v.handle, 2, paramValue, ref size);
-                zkfp2.ByteArray2Int(paramValue, ref mfpHeight);
-
-                v.imgSize = mfpWidth * mfpHeight;
-            });
-
-            
+                case WorkingState.CollectFingerprints:
+                    throw new ZKTECOException("设备处于收录指纹状态，请先关闭此状态！");
+                case WorkingState.FingerprintIdentification:
+                    throw new ZKTECOException("设备处于指纹识别状态，请先关闭此状态！");
+            }
         }
     }
 }

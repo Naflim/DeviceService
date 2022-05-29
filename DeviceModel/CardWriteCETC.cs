@@ -1,19 +1,14 @@
 ﻿using DeviceService.Model;
 using DeviceService.Model.ExceptionModels;
-using DeviceService.SDK;
-using NaflimHelperLibrary;
 using rfidLink.Extend;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DeviceService.DeviceModel
 {
     public class CardWriteCETC : IDevice
     {
-        LinkageExtend link = new LinkageExtend();
+        readonly LinkageExtend link = new LinkageExtend();
         List<RadioInformation> eqList;
         ReadParms readParms;
         WriteParms writeParms;

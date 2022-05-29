@@ -127,6 +127,39 @@ namespace DeviceService.DeviceModel
         }
 
         /// <summary>
+        /// 注册人脸
+        /// </summary>
+        /// <param name="id">人脸id</param>
+        /// <param name="faceData">人脸特征</param>
+        public void RegisteredFace(string id, byte[] faceData)
+        {
+            FaceFeature faceFeature = new FaceFeature
+            {
+                feature = faceData,
+                featureSize = faceData.Length
+            };
+
+            faceDatabase.Add(id, faceFeature);
+        }
+
+        /// <summary>
+        /// 删除指定人脸模板
+        /// </summary>
+        /// <param name="id"></param>
+        public void DelFace(string id)
+        {
+            faceDatabase.Remove(id);
+        }
+
+        /// <summary>
+        /// 清空人脸库
+        /// </summary>
+        public void ClearFace()
+        {
+            faceDatabase.Clear();
+        }
+
+        /// <summary>
         /// 比对人脸
         /// </summary>
         /// <param name="imgPath">人脸图片路径</param>

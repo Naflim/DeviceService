@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,6 +35,15 @@
   <ItemGroup>
     <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
       <HintPath>packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Controls, Version=2.2.5.0, Culture=neutral, PublicKeyToken=a8ac264d1dc6b9d9, processorArchitecture=MSIL">
+      <HintPath>packages\AForge.Controls.2.2.5\lib\AForge.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
+      <HintPath>packages\AForge.Imaging.2.2.5\lib\AForge.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Math, Version=2.2.5.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
+      <HintPath>packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
     </Reference>
     <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
       <HintPath>packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
@@ -80,6 +90,12 @@
     <Reference Include="UHFReader09CSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\UHFReader09CSharp.dll</HintPath>
+      <Aliases>UHF09Dll</Aliases>
+    </Reference>
+    <Reference Include="UHFReader188CSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\CurrentCPU\UHF188\UHFReader188CSharp.dll</HintPath>
+      <Aliases>UHF188Dll</Aliases>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +114,7 @@
     <Compile Include="DeviceModel\ProtocolServer.cs" />
     <Compile Include="DeviceModel\UHFReader09.cs" />
     <Compile Include="DeviceModel\CardWriteCETC.cs" />
+    <Compile Include="DeviceModel\UHFReader188.cs" />
     <Compile Include="DeviceModel\UHFReader86.cs" />
     <Compile Include="DeviceModel\UHFReaderCETC.cs" />
     <Compile Include="DeviceModel\UHFReaderCETCServer.cs" />
@@ -112,10 +129,12 @@
     <Compile Include="Model\ExceptionModels\ArcfaceException.cs" />
     <Compile Include="Model\ExceptionModels\CETCException.cs" />
     <Compile Include="Model\ExceptionModels\ICReaderException.cs" />
+    <Compile Include="Model\ExceptionModels\MotorSilverBoxException.cs" />
     <Compile Include="Model\ExceptionModels\RSException.cs" />
     <Compile Include="Model\ConnectModel.cs" />
     <Compile Include="Model\ExceptionModels\HIKException.cs" />
     <Compile Include="Model\ExceptionModels\UHF09Exception.cs" />
+    <Compile Include="Model\ExceptionModels\UHF188Exception.cs" />
     <Compile Include="Model\ExceptionModels\UHF288Exception.cs" />
     <Compile Include="Model\ExceptionModels\UHF86Exception.cs" />
     <Compile Include="Model\ExceptionModels\UHFCETCException.cs" />
@@ -124,10 +143,13 @@
     <Compile Include="Model\HIKModel.cs" />
     <Compile Include="Model\PersonnelModel.cs" />
     <Compile Include="Model\TempHumModel.cs" />
+    <Compile Include="MotorSilverBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadOrWrite.cs" />
+    <Compile Include="SDK\Arcface\DictionaryUnit.cs" />
     <Compile Include="SDK\Arcface\FaceTrackUnit.cs" />
     <Compile Include="SDK\Arcface\FaceUtil.cs" />
+    <Compile Include="SDK\BitmapFormat.cs" />
     <Compile Include="SDK\CHCNetSDK.cs" />
     <Compile Include="SDK\ICReaderSDK.cs" />
     <Compile Include="SDK\UHF86SDK.cs" />
@@ -137,9 +159,19 @@
     <Compile Include="DeviceModel\UHFReader288.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="lib\x64\Arcfacelib\ArcFaceSDK.dll" />
-    <Content Include="lib\x64\Arcfacelib\libarcsoft_face.dll" />
-    <Content Include="lib\x64\Arcfacelib\libarcsoft_face_engine.dll" />
+    <None Include="lib\AnyCPU\HIKlib\GdiPlus.lib" />
+    <None Include="lib\AnyCPU\HIKlib\HCCore.lib" />
+    <None Include="lib\AnyCPU\HIKlib\HCNetSDK.lib" />
+    <None Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCAlarm.lib" />
+    <None Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCGeneralCfgMgr.lib" />
+    <None Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCPreview.lib" />
+    <None Include="lib\AnyCPU\HIKlib\LocalXml.zip" />
+    <None Include="lib\AnyCPU\HIKlib\PlayCtrl.lib" />
+    <None Include="lib\x86\CardWriteCETClib\RFIDcomm.cfg" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\AnyCPU\GReaderApi.dll" />
     <Content Include="lib\AnyCPU\HIKlib\AudioRender.dll" />
     <Content Include="lib\AnyCPU\HIKlib\ClientDemo.exe" />
     <Content Include="lib\AnyCPU\HIKlib\ClientDemoDll\calib.dll" />
@@ -187,7 +219,6 @@
     <Content Include="lib\AnyCPU\HIKlib\SuperRender.dll" />
     <Content Include="lib\AnyCPU\HIKlib\YUVProcess.dll" />
     <Content Include="lib\AnyCPU\HIKlib\zlib1.dll" />
-    <Content Include="lib\AMD64\libzkfpcsharp.dll" />
     <Content Include="lib\AnyCPU\ICReaderlib\function.dll" />
     <Content Include="lib\AnyCPU\ICReaderlib\USB.dll" />
     <Content Include="lib\AnyCPU\NaflimHelperLibrary.dll" />
@@ -196,8 +227,16 @@
     <Content Include="lib\AnyCPU\UHFGate.dll" />
     <Content Include="lib\AnyCPU\UHFReader09lib\Basic.dll" />
     <Content Include="lib\AnyCPU\UHFReader09lib\UHFReader09CSharp.dll" />
-    <Content Include="lib\AnyCPU\UHFReader288.dll" />
-    <Content Include="lib\AnyCPU\UHFReader86.dll" />
+    <Content Include="lib\CurrentCPU\libzkfpcsharp.dll" />
+    <Content Include="lib\CurrentCPU\UHF188\Basic.dll" />
+    <Content Include="lib\CurrentCPU\UHF188\UHFReader188CSharp.dll" />
+    <Content Include="lib\x64\Arcfacelib\ArcFaceSDK.dll" />
+    <Content Include="lib\x64\Arcfacelib\libarcsoft_face.dll" />
+    <Content Include="lib\x64\Arcfacelib\libarcsoft_face_engine.dll" />
+    <Content Include="lib\x64\libzkfpcsharp.dll" />
+    <Content Include="lib\x64\UHF188\Basic.dll" />
+    <Content Include="lib\x64\UHF188\UHFReader188CSharp.dll" />
+    <Content Include="lib\x64\UHFReader288.dll" />
     <Content Include="lib\x86\Arcfacelib\ArcFaceSDK.dll" />
     <Content Include="lib\x86\Arcfacelib\libarcsoft_face.dll" />
     <Content Include="lib\x86\Arcfacelib\libarcsoft_face_engine.dll" />
@@ -205,18 +244,11 @@
     <Content Include="lib\x86\CardWriteCETClib\rfid.dll" />
     <Content Include="lib\x86\CardWriteCETClib\rfidLink.dll" />
     <Content Include="lib\x86\CardWriteCETClib\rfidtx.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="lib\AnyCPU\HIKlib\GdiPlus.lib" />
-    <None Include="lib\AnyCPU\HIKlib\HCCore.lib" />
-    <None Include="lib\AnyCPU\HIKlib\HCNetSDK.lib" />
-    <None Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCAlarm.lib" />
-    <None Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCGeneralCfgMgr.lib" />
-    <None Include="lib\AnyCPU\HIKlib\HCNetSDKCom\HCPreview.lib" />
-    <None Include="lib\AnyCPU\HIKlib\LocalXml.zip" />
-    <None Include="lib\AnyCPU\HIKlib\PlayCtrl.lib" />
-    <None Include="lib\x86\CardWriteCETClib\RFIDcomm.cfg" />
-    <None Include="packages.config" />
+    <Content Include="lib\x86\libzkfpcsharp.dll" />
+    <Content Include="lib\x86\UHF188\Basic.dll" />
+    <Content Include="lib\x86\UHF188\UHFReader188CSharp.dll" />
+    <Content Include="lib\x86\UHFReader288.dll" />
+    <Content Include="lib\x86\UHFReader86.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

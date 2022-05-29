@@ -89,7 +89,7 @@ namespace DeviceService
             int dir_Type = data[6];//方向
 
             Direction direction;
-            List<string> epc = new List<string>();
+            List<Tag> epc = new List<Tag>();
             switch (dir_Type)
             {
                 case 0:
@@ -105,7 +105,7 @@ namespace DeviceService
 
             foreach (var item in cacheEPC)
                 if ((DateTime.Now - item.Key).TotalMilliseconds < Timeout)
-                    epc.Add(item.Value);
+                    epc.Add(new Tag(item.Value));
 
             AdoptTrigger(new ChannelGateModel(direction, epc));
 

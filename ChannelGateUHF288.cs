@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DeviceService.DeviceModel;
+﻿using DeviceService.DeviceModel;
 using DeviceService.Model;
 using DeviceService.Model.ExceptionModels;
 using DeviceService.SDK;
 using NaflimHelperLibrary;
+using System;
+using System.Threading.Tasks;
 
 namespace DeviceService
 {
-   
+
     public class ChannelGateUHF288 : UHFReader288, IChannelGate
     {
         InGPIO inGpio = InGPIO.Init;
@@ -31,9 +28,9 @@ namespace DeviceService
         public Action<ChannelGateUHF288, InGPIO> ShowGPIO { get; set; }
 
         /// <summary>
-        /// 超时结束查询
+        /// 显示查询状态
         /// </summary>
-        public int EndTime { get; set; }
+        public Action<ChannelGateUHF288, bool> ShowSelState { get; set; }
 
         /// <summary>
         /// 开启延时上传模式
@@ -41,11 +38,21 @@ namespace DeviceService
         public bool DelayMode { get; set; }
 
         /// <summary>
+        /// 上报延时时间
+        /// </summary>
+        public int EndTime { get; set; }
+
+        /// <summary>
+        /// 超时清理时间
+        /// </summary>
+        public int ClearTime { get; set; } = 3000;
+
+        /// <summary>
         /// GPIO间隙
         /// </summary>
         public int GPIOinterval { get; set; } = 100;
 
-        
+
 
         /// <summary>
         /// 设置红外模式
@@ -107,6 +114,7 @@ namespace DeviceService
                             SetGPIO(gpio);
                             ShowGPIO?.Invoke(this, gpio);
 
+                            ShowSelState?.Invoke(this, selFlag);
                             if (selFlag)
                             {
                                 SelTag(count);
@@ -160,11 +168,14 @@ namespace DeviceService
                 GPIO_ValueChanged();
             else
             {
-                if (selFlag && (DateTime.Now - endStart).TotalMilliseconds > EndTime)
+                if (selFlag)
                 {
-                    if (DelayMode && direction != Direction.Null) AdoptTrigger(new ChannelGateModel(direction, cacheEPC));
-                    else Reset();
+                    if (DelayMode && direction != Direction.Null && (DateTime.Now - endStart).TotalMilliseconds > EndTime)
+                        AdoptTrigger(new ChannelGateModel(direction, cacheTags));
+                    else if ((DateTime.Now - endStart).TotalMilliseconds > ClearTime)
+                        Reset();
                 }
+
                 directionFlag = false;
             }
         }
@@ -198,13 +209,12 @@ namespace DeviceService
             {
                 directionFlag = true;
                 if (!DelayMode)
-                    AdoptTrigger(new ChannelGateModel(direction, cacheEPC));
+                    AdoptTrigger(new ChannelGateModel(direction, cacheTags));
             }
 
             if (!directionFlag && inGpio != defIN)
                 oldIN = inGpio;
         }
-
 
         public void AdoptTrigger(ChannelGateModel channelGate)
         {

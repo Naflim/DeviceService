@@ -13,6 +13,8 @@ namespace DeviceService.Model.ExceptionModels
         {
             switch (state)
             {
+                case 4:
+                    return new ArcfaceException("内存不足");
                 case 28676:
                     return new ArcfaceException("SDKKey和使用的SDK不匹配");
                 case 90127:
