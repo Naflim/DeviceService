@@ -22,37 +22,37 @@ namespace DeviceService.DeviceModel
         /// <summary>
         /// 熵基科技设备
         /// </summary>
-        protected struct ZKTECODevice
+        protected class ZKTECODevice
         {
-            public IntPtr handle;
-            public int imgWidth;
-            public int imgHeight;
-            public WorkingState workingState;
+
+            public IntPtr Handle
+            {
+                get { return handle; }
+            }
+
+            public int ImgSize { get { return ImgWidth * ImgHeight; } }
+
+            public int ImgWidth { get; set; }
+
+            public int ImgHeight { get; set; }
+
+            public WorkingState WorkingState { get; set; }
+
+            private readonly IntPtr handle;
             public ZKTECODevice(IntPtr handle, int width, int height)
             {
                 this.handle = handle;
-                imgWidth = width;
-                imgHeight = height;
-                workingState = WorkingState.Idle;
+                ImgWidth = width;
+                ImgHeight = height;
+                WorkingState = WorkingState.Idle;
             }
 
             public ZKTECODevice(IntPtr handle, int width, int height, WorkingState workingState)
             {
                 this.handle = handle;
-                imgWidth = width;
-                imgHeight = height;
-                this.workingState = workingState;
-            }
-
-            public ZKTECODevice SetWorkState(WorkingState state)
-            {
-                workingState = state;
-                return this;
-            }
-
-            public int ImgSize()
-            {
-                return imgHeight * imgWidth;
+                ImgWidth = width;
+                ImgHeight = height;
+                WorkingState = workingState;
             }
         }
 
@@ -108,7 +108,7 @@ namespace DeviceService.DeviceModel
 
         public void Disconnect()
         {
-            devices.ForEach(v => zkfp2.CloseDevice(v.handle));
+            devices.ForEach(v => zkfp2.CloseDevice(v.Handle));
             devices.Clear();
         }
 

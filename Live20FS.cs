@@ -32,15 +32,15 @@ namespace DeviceService
 
         const int TMPSIZE = 2048;
 
-        void ParametersTo(int index, out byte[] FPBuffer, out byte[] CapTmp, out int cbCapTmp)
+        void ParametersTo(int index, WorkingState state, out byte[] FPBuffer, out byte[] CapTmp, out int cbCapTmp)
         {
             var device = devices[index];
-            JudgeWorkingStatus(device.workingState);
-            devices[index] = device.SetWorkState(WorkingState.CollectFingerprints);
+            JudgeWorkingStatus(device.WorkingState);
+            devices[index].WorkingState = state;
 
             cbCapTmp = TMPSIZE;
             CapTmp = new byte[TMPSIZE];
-            FPBuffer = new byte[device.ImgSize()];
+            FPBuffer = new byte[device.ImgSize];
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace DeviceService
         /// <param name="index">设备索引</param>
         public void CollectFingerprints(int index, Action<byte[]> GetTmp)
         {
-            ParametersTo(index, out byte[] FPBuffer, out byte[] CapTmp, out int cbCapTmp);
+            ParametersTo(index, WorkingState.CollectFingerprints, out byte[] FPBuffer, out byte[] CapTmp, out int cbCapTmp);
 
             int tmpCount = 0;
             Task.Run(async () =>
@@ -66,9 +66,9 @@ namespace DeviceService
                 ThrowLog?.Invoke($"设备{index}开始采集指纹!");
                 byte[][] tmps = new byte[3][];
 
-                while (tmpCount < 3 && devices[index].workingState != WorkingState.Idle)
+                while (tmpCount < 3 && devices[index].WorkingState != WorkingState.Idle)
                 {
-                    int aFlag = zkfp2.AcquireFingerprint(devices[index].handle, FPBuffer, CapTmp, ref cbCapTmp);
+                    int aFlag = zkfp2.AcquireFingerprint(devices[index].Handle, FPBuffer, CapTmp, ref cbCapTmp);
                     if (aFlag != 0 && aFlag != -8)
                         ErrorShow?.Invoke(ZKTECOException.AbnormalJudgment(aFlag));
 
@@ -105,27 +105,29 @@ namespace DeviceService
         /// <summary>
         /// 识别指纹
         /// </summary>
-        public void FingerprintIdentification()
+        /// <param name="distinguish">识别成功事件</param>
+        public void FingerprintIdentification(Action<int, int> distinguish)
         {
             for (int i = 0; i < DeviceCount; i++)
-                FingerprintIdentification(i);
+                FingerprintIdentification(i, distinguish);
         }
 
         /// <summary>
         /// 指定设备识别指纹
         /// </summary>
         /// <param name="index">设备索引</param>
-        public void FingerprintIdentification(int index)
+        /// <param name="distinguish">识别成功事件</param>
+        public void FingerprintIdentification(int index, Action<int, int> distinguish)
         {
-            ParametersTo(index, out byte[] FPBuffer, out byte[] CapTmp, out int cbCapTmp);
+            ParametersTo(index, WorkingState.FingerprintIdentification, out byte[] FPBuffer, out byte[] CapTmp, out int cbCapTmp);
 
             Task.Run(async () =>
             {
                 ThrowLog?.Invoke($"设备{index}开始识别指纹!");
-                while (devices[index].workingState != WorkingState.Idle)
+                while (devices[index].WorkingState != WorkingState.Idle)
                 {
                     int fid = 0, score = 0;
-                    int aFlag = zkfp2.AcquireFingerprint(devices[index].handle, FPBuffer, CapTmp, ref cbCapTmp);
+                    int aFlag = zkfp2.AcquireFingerprint(devices[index].Handle, FPBuffer, CapTmp, ref cbCapTmp);
                     if (aFlag != 0 && aFlag != -8)
                         ErrorShow?.Invoke(ZKTECOException.AbnormalJudgment(aFlag));
 
@@ -140,7 +142,11 @@ namespace DeviceService
                             ErrorShow?.Invoke(ZKTECOException.AbnormalJudgment(iFlag));
 
                         if (iFlag == 0)
+                        {
                             ThrowLog?.Invoke($"识别成功！id：{fid}，相似度：{score}");
+                            distinguish(fid, score);
+                            ExitWorking(index);
+                        }
                     }
 
                     await Task.Delay(200);
@@ -155,7 +161,7 @@ namespace DeviceService
         public void FingerprintIdentification(byte[] tmp)
         {
             for (int i = 0; i < DeviceCount; i++)
-                FingerprintIdentification(i);
+                FingerprintIdentification(i, tmp);
         }
 
         /// <summary>
@@ -165,14 +171,14 @@ namespace DeviceService
         /// <param name="tmp">指纹模板</param>
         public void FingerprintIdentification(int index, byte[] tmp)
         {
-            ParametersTo(index, out byte[] FPBuffer, out byte[] CapTmp, out int cbCapTmp);
+            ParametersTo(index, WorkingState.FingerprintIdentification, out byte[] FPBuffer, out byte[] CapTmp, out int cbCapTmp);
 
             Task.Run(async () =>
             {
                 ThrowLog?.Invoke($"设备{index}开始对比指纹!");
-                while (devices[index].workingState != WorkingState.Idle)
+                while (devices[index].WorkingState != WorkingState.Idle)
                 {
-                    int aFlag = zkfp2.AcquireFingerprint(devices[index].handle, FPBuffer, CapTmp, ref cbCapTmp);
+                    int aFlag = zkfp2.AcquireFingerprint(devices[index].Handle, FPBuffer, CapTmp, ref cbCapTmp);
                     if (aFlag != 0 && aFlag != -8)
                         ErrorShow?.Invoke(ZKTECOException.AbnormalJudgment(aFlag));
 
@@ -205,7 +211,7 @@ namespace DeviceService
         public void ExitWorking(int index)
         {
             ThrowLog?.Invoke($"设备{index}退出工作状态!");
-            devices[index] = devices[index].SetWorkState(WorkingState.Idle);
+            devices[index].WorkingState = WorkingState.Idle;
         }
 
         /// <summary>
@@ -231,7 +237,7 @@ namespace DeviceService
             try
             {
                 MemoryStream ms = new MemoryStream();
-                BitmapFormat.GetBitmap(img, device.imgWidth, device.imgHeight, ref ms);
+                BitmapFormat.GetBitmap(img, device.ImgWidth, device.ImgHeight, ref ms);
                 return ms;
             }
             catch (Exception ex)
