@@ -3,15 +3,26 @@ using DeviceService.Model.ExceptionModels;
 using rfidLink.Extend;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DeviceService.DeviceModel
 {
-    public class CardWriteCETC : IDevice
+    public class CardWriteCETC : IReader
     {
         readonly LinkageExtend link = new LinkageExtend();
         List<RadioInformation> eqList;
         ReadParms readParms;
         WriteParms writeParms;
+
+        /// <summary>
+        /// 查询间隙
+        /// </summary>
+        public int SelInterval { get; set; } = 0;
+
+        /// <summary>
+        /// 显示异常
+        /// </summary>
+        public Action<Exception> ErrorShow { get; set; }
 
         /// <summary>
         /// 自动串口连接
@@ -177,6 +188,86 @@ namespace DeviceService.DeviceModel
         public void Connect(ConnectModel connect)
         {
             throw new NotImplementedException();
+        }
+
+        async public Task<Tag[]> CyclicQueryTags(int seconds)
+        {
+            List<Tag> tags = new List<Tag>();
+            try
+            {
+                DateTime startTime = DateTime.Now;
+
+                while (DateTime.Now < startTime.AddSeconds(seconds))
+                {
+                    eqList.ForEach(v =>
+                    {
+                        var flag = link.TagInfoRead(v.radioHandle, readParms, out List<ReadResult> result);
+
+                        if (flag == operResult.Ok)
+                        {
+                            result.ForEach(val =>
+                            {
+                                string epc = val.flagID;
+                                if (!string.IsNullOrEmpty(epc))
+                                {
+                                    var tag = tags.Find(t => t.EPC == epc);
+
+                                    if (tag is Tag)
+                                    {
+                                        tag.Frequency++;
+                                        tag.QueryTime = DateTime.Now;
+                                    }
+                                    else tags.Add(new Tag(epc));
+                                }
+                            });
+                        }
+                        else
+                            if (flag != operResult.NoTag)
+                            throw CETCException.AbnormalJudgment(flag);
+                    });
+
+                    await Task.Delay(SelInterval);
+                }
+
+                return tags.ToArray();
+            }
+            catch (Exception ex)
+            {
+                ErrorShow?.Invoke(ex);
+                return tags.ToArray();
+            }
+        }
+
+        public Tag[] QueryTags(int ant = 0)
+        {
+            List<Tag> tags = new List<Tag>();
+            eqList.ForEach(v =>
+            {
+                var flag = link.TagInfoRead(v.radioHandle, readParms, out List<ReadResult> result);
+
+                if (flag == operResult.Ok)
+                {
+                    result.ForEach(val =>
+                    {
+                        string epc = val.flagID;
+                        if (!string.IsNullOrEmpty(epc))
+                        {
+                            var tag = tags.Find(t => t.EPC == epc);
+
+                            if (tag is Tag)
+                            {
+                                tag.Frequency++;
+                                tag.QueryTime = DateTime.Now;
+                            }
+                            else tags.Add(new Tag(epc));
+                        }
+                    });
+                }
+                else
+                    if (flag != operResult.NoTag)
+                    throw CETCException.AbnormalJudgment(flag);
+            });
+            return tags.ToArray();
         }
     }
 }

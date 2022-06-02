@@ -118,6 +118,7 @@
     <Compile Include="DeviceModel\UHFReader86.cs" />
     <Compile Include="DeviceModel\UHFReaderCETC.cs" />
     <Compile Include="DeviceModel\UHFReaderCETCServer.cs" />
+    <Compile Include="DeviceModel\UHFReaderRFID.cs" />
     <Compile Include="DeviceModel\ZKTECO.cs" />
     <Compile Include="EntranceGuardHIK.cs" />
     <Compile Include="ICReader.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="Model\ExceptionModels\UHF86Exception.cs" />
     <Compile Include="Model\ExceptionModels\UHFCETCException.cs" />
     <Compile Include="Model\ExceptionModels\UHFGateException.cs" />
+    <Compile Include="Model\ExceptionModels\UHFRFIDException.cs" />
     <Compile Include="Model\ExceptionModels\ZKTECOException.cs" />
     <Compile Include="Model\HIKModel.cs" />
     <Compile Include="Model\PersonnelModel.cs" />
@@ -155,6 +157,8 @@
     <Compile Include="SDK\UHF86SDK.cs" />
     <Compile Include="SDK\UHFGateSDK.cs" />
     <Compile Include="SDK\UHF288SDK.cs" />
+    <Compile Include="SDK\UHFRFID\Cmd.cs" />
+    <Compile Include="SDK\UHFRFID\UHFRFIDSDK.cs" />
     <Compile Include="TempHumMeterRS.cs" />
     <Compile Include="DeviceModel\UHFReader288.cs" />
   </ItemGroup>
@@ -237,6 +241,7 @@
     <Content Include="lib\x64\UHF188\Basic.dll" />
     <Content Include="lib\x64\UHF188\UHFReader188CSharp.dll" />
     <Content Include="lib\x64\UHFReader288.dll" />
+    <Content Include="lib\x64\UHFRFID.dll" />
     <Content Include="lib\x86\Arcfacelib\ArcFaceSDK.dll" />
     <Content Include="lib\x86\Arcfacelib\libarcsoft_face.dll" />
     <Content Include="lib\x86\Arcfacelib\libarcsoft_face_engine.dll" />
@@ -249,6 +254,7 @@
     <Content Include="lib\x86\UHF188\UHFReader188CSharp.dll" />
     <Content Include="lib\x86\UHFReader288.dll" />
     <Content Include="lib\x86\UHFReader86.dll" />
+    <Content Include="lib\x86\UHFRFID.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

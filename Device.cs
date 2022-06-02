@@ -141,17 +141,12 @@ namespace DeviceService
     /// <summary>
     /// 键盘模式发卡器
     /// </summary>
-    public interface IReadOrWrite : IDevice
+    public interface IReadOrWrite : IReader
     {
         /// <summary>
         /// 自动串口连接
         /// </summary>
         void Connect();
-        /// <summary>
-        /// 查询标签
-        /// </summary>
-        /// <returns>标签组</returns>
-        string[] SelTag();
         /// <summary>
         /// epc写入标签
         /// </summary>
@@ -161,6 +156,6 @@ namespace DeviceService
         /// 设置功率
         /// </summary>
         /// <param name="power">功率值</param>
-        void SetPower(int Ant,byte power);
+        void SetPower(int ant,byte power);
     }
 }
