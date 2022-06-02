@@ -78,12 +78,11 @@ namespace DeviceService.DeviceModel
         /// </summary>
         /// <param name="ant">天线</param>
         /// <param name="power">功率</param>
-        public void SetPower(int ant, byte power)
+        public void SetPower(byte power, int ant = 0)
         {
             eqList.ForEach(v =>
             {
-                AntennaPortConfigurationAndStatus result;
-                var flag = link.GetAntennaPortConfigurationAndStatus(v.radioHandle, ant, out result);
+                var flag = link.GetAntennaPortConfigurationAndStatus(v.radioHandle, ant, out AntennaPortConfigurationAndStatus result);
 
                 if (flag == operResult.Ok)
                 {
@@ -117,8 +116,7 @@ namespace DeviceService.DeviceModel
             List<string> epcList = new List<string>();
             eqList.ForEach(v =>
             {
-                List<ReadResult> result;
-                var flag = link.TagInfoRead(v.radioHandle, readParms, out result);
+                var flag = link.TagInfoRead(v.radioHandle, readParms, out List<ReadResult> result);
 
                 if (flag == operResult.Ok)
                 {

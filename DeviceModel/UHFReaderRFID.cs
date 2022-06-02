@@ -102,7 +102,7 @@ namespace DeviceService.DeviceModel
             ip = string.Empty;
         }
 
-        public void SetPower(int ant, byte power)
+        public void SetPower(byte power, int ant = 0)
         {
             int InLen = 6;
             uint OutLen = 0;

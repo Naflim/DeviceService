@@ -42,9 +42,9 @@ namespace DeviceService.DeviceModel
         public void Connect(ConnectModel connect)
         {
             client = new RFIDClient();
-            client.m_OnDisconnect += reader_OnDisconnect;
-            client.m_OnErrorcallback += reader_OnErrorcallback;
-            client.m_OnInventoryReport += reader_OnInventoryReport;
+            client.m_OnDisconnect += Reader_OnDisconnect;
+            client.m_OnErrorcallback += Reader_OnErrorcallback;
+            client.m_OnInventoryReport += Reader_OnInventoryReport;
 
             OperationResult operationResult;
             switch (connect.ConnectMode)
@@ -125,17 +125,17 @@ namespace DeviceService.DeviceModel
             QueryTag(SelTime, reSelTag);
         }
 
-        void reader_OnDisconnect(object sender, DisconnectEventArgs e)
+        void Reader_OnDisconnect(object sender, DisconnectEventArgs e)
         {
             Console.WriteLine("reader_OnDisconnect");
         }
 
-        void reader_OnErrorcallback(object sender, ErrorReportEventArgs e)
+        void Reader_OnErrorcallback(object sender, ErrorReportEventArgs e)
         {
             Console.WriteLine("errreader_OnErrorcallbackor");
         }
 
-        void reader_OnInventoryReport(object sender, InventoryReportEventArgs e)
+        void Reader_OnInventoryReport(object sender, InventoryReportEventArgs e)
         {
             //Console.WriteLine(e.m_stInventoryResult.);
         }

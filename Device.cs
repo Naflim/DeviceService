@@ -166,6 +166,6 @@ namespace DeviceService
         /// 设置功率
         /// </summary>
         /// <param name="power">功率值</param>
-        void SetPower(int ant, byte power);
+        void SetPower(byte power, int ant = 0);
     }
 }
