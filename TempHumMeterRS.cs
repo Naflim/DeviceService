@@ -17,6 +17,16 @@ namespace DeviceService
         bool registerFlag;
         List<TempHumModel> tempHums = null!;
 
+        /// <summary>
+        /// 抛出日志
+        /// </summary>
+        public Action<string>? ThrowLog { get; set; }
+
+        /// <summary>
+        /// 显示异常
+        /// </summary>
+        public Action<Exception>? ErrorShow { get; set; }
+
         public void Connect(ConnectModel connect)
         {
             if (string.IsNullOrEmpty(connect.Ip) || connect.Port == int.MinValue)

@@ -26,9 +26,18 @@ namespace DeviceService.DeviceModel
         public string? Ip
         {
             get { return ip; }
-            set {   }
+            set { }
         }
 
+        /// <summary>
+        /// 查询间隙
+        /// </summary>
+        public int SelInterval { get; set; } = 0;
+
+        // <summary>
+        /// 抛出日志
+        /// </summary>
+        public Action<string>? ThrowLog { get; set; }
 
         /// <summary>
         /// 显示异常
@@ -58,7 +67,7 @@ namespace DeviceService.DeviceModel
         {
             var linkflag = client.Disconnect();
 
-            if(linkflag != OperationResult.SUCCESS)
+            if (linkflag != OperationResult.SUCCESS)
                 throw UHFCETCException.AbnormalJudgment(linkflag);
         }
 
@@ -101,26 +110,8 @@ namespace DeviceService.DeviceModel
                 {
                     ErrorShow?.Invoke(ex);
                 }
-                
+
             });
-        }
-
-        public string[] test()
-        {
-            List<string> tags = new List<string>();
-            TagReport tagReport = new TagReport();
-            var flag = client.InventoryCycle(0, ref tagReport);
-
-            if (flag != OperationResult.SUCCESS)
-                ErrorShow?.Invoke(UHFCETCException.AbnormalJudgment(flag));
-
-            string epc;
-            tagReport.m_listTags.ForEach(v =>
-            {
-                epc = v.m_strEPC;
-                if (!tags.Contains(epc)) tags.Add(epc);
-            });
-            return tags.ToArray();
         }
 
         /// <summary>
@@ -147,9 +138,45 @@ namespace DeviceService.DeviceModel
             Console.WriteLine("reader_OnInventoryReport");
         }
 
-        public Task<Model.Tag[]> CyclicQueryTags(int seconds)
+        async public Task<Model.Tag[]> CyclicQueryTags(int seconds)
         {
-            throw new NotImplementedException();
+            List<Model.Tag> tags = new();
+            try
+            {
+                DateTime startTime = DateTime.Now;
+
+                while (DateTime.Now < startTime.AddSeconds(seconds))
+                {
+                    TagReport tagReport = new TagReport();
+                    var flag = client.InventoryCycle(0, ref tagReport);
+
+                    if (flag != OperationResult.SUCCESS)
+                        throw UHFCETCException.AbnormalJudgment(flag);
+
+                    string epc;
+
+                    foreach (var item in tagReport.m_listTags)
+                    {
+                        epc = item.m_strEPC;
+                        if (string.IsNullOrEmpty(epc)) continue;
+
+                        if (tags.Find(v => v.EPC == epc) is not Model.Tag tag)
+                            tags.Add(new Model.Tag(epc));
+                        else
+                        {
+                            tag.Frequency++;
+                            tag.QueryTime = DateTime.Now;
+                        }
+                    }
+                    await Task.Delay(SelInterval);
+                }
+                return tags.ToArray();
+            }
+            catch (Exception ex)
+            {
+                ErrorShow?.Invoke(ex);
+                return tags.ToArray();
+            }
         }
 
         public Model.Tag[] QueryTags(int ant = 0)
@@ -164,7 +191,7 @@ namespace DeviceService.DeviceModel
 
             string epc;
 
-            foreach(var item in tagReport.m_listTags)
+            foreach (var item in tagReport.m_listTags)
             {
                 epc = item.m_strEPC;
                 if (string.IsNullOrEmpty(epc)) continue;

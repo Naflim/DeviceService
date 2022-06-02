@@ -23,6 +23,11 @@ namespace DeviceService.DeviceModel
         public int SelInterval { get; set; } = 0;
 
         /// <summary>
+        /// 抛出日志
+        /// </summary>
+        public Action<string>? ThrowLog { get; set; }
+
+        /// <summary>
         /// 显示异常
         /// </summary>
         public Action<Exception>? ErrorShow { get; set; }
@@ -62,48 +67,6 @@ namespace DeviceService.DeviceModel
             int powerflag = UHF86SDK.SetRfPower(ref comAdr, power, handle);
 
             if (powerflag != 0) throw UHF86Exception.AbnormalJudgment(powerflag);
-        }
-
-        /// <summary>
-        /// 查询标签
-        /// </summary>
-        /// <returns>标签组</returns>
-        public virtual string[] SelTag()
-        {
-            byte Ant = 0;
-            int CardNum = 0;
-            int Totallen = 0;
-            byte[] EPC = new byte[50000];
-            byte MaskMem = 0;
-            byte[] MaskAdr = new byte[2];
-            byte MaskLen = 0;
-            byte[] MaskData = new byte[100];
-            byte MaskFlag = 0;
-            byte AdrTID = 0;
-            byte LenTID = 6;
-
-            byte Qvalue = 0;
-            byte Session = 0;
-            byte TIDFlag = 0;
-            byte Target = 0;
-            byte InAnt = 0;
-            byte Scantime = 0;
-            byte FastFlag = 0;
-            int state = UHF86SDK.Inventory_G2(ref comAdr, Qvalue, Session, MaskMem, MaskAdr, MaskLen, MaskData, MaskFlag, AdrTID, LenTID, TIDFlag, Target, InAnt, Scantime, FastFlag, EPC, ref Ant, ref Totallen, ref CardNum, handle);
-
-            if (state == 0x01 || state == 0x02 || state == 0x03 || state == 0x04)
-            {
-
-                var epcArr = DataConversion.GetEPC(EPC);//byte数组以EPC格式转换为字符串数组
-
-                string[] selEpc = new string[CardNum];
-
-                for (int i = 0; i < CardNum; i++)
-                    selEpc[i] = epcArr[i];
-
-                return selEpc;
-            }
-            else throw UHF86Exception.AbnormalJudgment(state);
         }
 
         /// <summary>

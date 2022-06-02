@@ -28,6 +28,16 @@ namespace DeviceService
     public interface IDevice
     {
         /// <summary>
+        /// 显示异常
+        /// </summary>
+        Action<Exception>? ErrorShow { get; set; }
+
+        /// <summary>
+        /// 抛出日志
+        /// </summary>
+        Action<string>? ThrowLog { get; set; }
+
+        /// <summary>
         /// 连接设备
         /// </summary>
         /// <param name="connect">连接参数</param>
@@ -74,7 +84,7 @@ namespace DeviceService
         /// 设置功率
         /// </summary>
         /// <param name="power">功率值</param>
-        void SetPower(int Ant, byte power);
+        void SetPower(byte power, int ant = 0);
     }
 
     /// <summary>

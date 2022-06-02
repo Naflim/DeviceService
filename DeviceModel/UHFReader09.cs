@@ -30,6 +30,11 @@ namespace DeviceService.DeviceModel
         public int SelInterval { get; set; } = 0;
 
         /// <summary>
+        /// 抛出日志
+        /// </summary>
+        public Action<string>? ThrowLog { get; set; }
+
+        /// <summary>
         /// 显示异常
         /// </summary>
         public Action<Exception>? ErrorShow { get; set; }
@@ -68,40 +73,6 @@ namespace DeviceService.DeviceModel
             int powerflag = StaticClassReaderB.SetPowerDbm(ref comAdr, power, handle);
 
             if (powerflag != 0) throw UHF288Exception.AbnormalJudgment(powerflag);
-        }
-
-        /// <summary>
-        /// 查询标签
-        /// </summary>
-        /// <returns>标签组</returns>
-        public virtual string[] SelTag()
-        {
-            int state = StaticClassReaderB.Inventory_G2(ref comAdr, adrTID, lenTID, tidFlag, epcList, ref Totallen, ref cardNum, handle);
-
-            if (state == 0x01 || state == 0x02 || state == 0x03 || state == 0x04)
-            {
-
-                int index = 0;
-
-                string[] epcArr = new string[cardNum];
-
-                for (int i = 0; i < cardNum; i++)
-                {
-                    int len = epcList[index];
-
-                    StringBuilder sb = new StringBuilder();
-
-                    for (int j = 0; j < len; j++)
-                        sb.Append(Convert.ToString(epcList[index + 1 + j], 16).PadLeft(2, '0').ToUpper());
-
-                    epcArr[i] = sb.ToString();
-
-                    index += len + 1;
-                }
-
-                return epcArr;
-            }
-            else return Array.Empty<string>();
         }
 
         /// <summary>

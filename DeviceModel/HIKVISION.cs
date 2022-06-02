@@ -38,9 +38,14 @@ namespace DeviceService.DeviceModel
         public Action<HIKVISION>? LinkOk { get; set; }
 
         /// <summary>
-        /// 输出日志
+        /// 抛出日志
         /// </summary>
         public Action<string>? ThrowLog { get; set; }
+
+        /// <summary>
+        /// 显示异常
+        /// </summary>
+        public Action<Exception>? ErrorShow { get; set; }
 
         public void Connect(ConnectModel connect)
         {

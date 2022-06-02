@@ -76,6 +76,16 @@ namespace DeviceService.DeviceModel
         /// </summary>
         protected IntPtr dbHandle = IntPtr.Zero;
 
+        /// <summary>
+        /// 抛出日志
+        /// </summary>
+        public Action<string>? ThrowLog { get; set; }
+
+        /// <summary>
+        /// 显示异常
+        /// </summary>
+        public Action<Exception>? ErrorShow { get; set; }
+
         public ZKTECO()
         {
             Init();

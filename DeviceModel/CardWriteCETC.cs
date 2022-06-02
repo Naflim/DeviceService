@@ -9,21 +9,26 @@ namespace DeviceService.DeviceModel
 {
     public class CardWriteCETC : IReader
     {
+        readonly LinkageExtend link = new();
+        List<RadioInformation> eqList = null!;
+        ReadParms readParms = null!;
+        WriteParms writeParms = null!;
+
+
         /// <summary>
         /// 查询间隙
         /// </summary>
         public int SelInterval { get; set; } = 0;
 
         /// <summary>
+        /// 抛出日志
+        /// </summary>
+        public Action<string>? ThrowLog { get; set; }
+
+        /// <summary>
         /// 显示异常
         /// </summary>
         public Action<Exception>? ErrorShow { get; set; }
-
-
-        readonly LinkageExtend link = new();
-        List<RadioInformation> eqList = null!;
-        ReadParms readParms = null!;
-        WriteParms writeParms = null!;
 
         /// <summary>
         /// 自动串口连接
@@ -74,7 +79,7 @@ namespace DeviceService.DeviceModel
         /// </summary>
         /// <param name="ant">天线</param>
         /// <param name="power">功率</param>
-        public void SetPower(int ant, byte power)
+        public void SetPower(byte power, int ant = 0)
         {
             eqList.ForEach(v =>
             {

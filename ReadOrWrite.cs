@@ -4,7 +4,7 @@ namespace DeviceService
 {
     public class ReadOrWriteUHF09 : UHFReader09, IReadOrWrite
     {
-        public void SetPower(int Ant, byte power)
+        public void SetPower(byte power, int ant = 0)
         {
             SetPower(power);
         }
@@ -12,7 +12,7 @@ namespace DeviceService
 
     public class ReadOrWriteUHF86 : UHFReader86, IReadOrWrite
     {
-        public void SetPower(int Ant, byte power)
+        public void SetPower(byte power, int ant = 0)
         {
             SetPower(power);
         }

@@ -14,6 +14,17 @@ namespace DeviceService.DeviceModel
     {
         SerialPort? serialPort;
         ConnectMode mode;
+
+        /// <summary>
+        /// 抛出日志
+        /// </summary>
+        public Action<string>? ThrowLog { get; set; }
+
+        /// <summary>
+        /// 显示异常
+        /// </summary>
+        public Action<Exception>? ErrorShow { get; set; }
+
         public int ReceiveTimeOut { get; set; } = 60000;
 
         public void Connect(ConnectModel connect)

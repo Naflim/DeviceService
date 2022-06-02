@@ -16,16 +16,6 @@ namespace DeviceService
     public class Live20FS : ZKTECO, IFingerprintScanner
     {
         /// <summary>
-        /// 异常显示
-        /// </summary>
-        public Action<Exception>? ErrorShow { get; set; }
-
-        /// <summary>
-        /// 日志抛出
-        /// </summary>
-        public Action<string>? ThrowLog { get; set; }
-
-        /// <summary>
         /// 显示指纹
         /// </summary>
         public Action<Stream>? FingerprintShow { get; set; }
@@ -66,7 +56,7 @@ namespace DeviceService
                     if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                     {
                         Bitmap bitmap = new(stream);
-                        MemoryStream ms = new MemoryStream();
+                        MemoryStream ms = new();
                         bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
 
                         byte[] buffer = new byte[ms.Length];
@@ -75,7 +65,7 @@ namespace DeviceService
                         ms.Close();
                         fingerprintImg = Convert.ToBase64String(buffer);
                     }
-                        
+
                     ExitWorking(deviceIndex);
                     return CapTmp;
                 }
@@ -215,7 +205,7 @@ namespace DeviceService
         public void FingerprintIdentification(byte[] tmp)
         {
             for (int i = 0; i < DeviceCount; i++)
-                FingerprintIdentification(i);
+                FingerprintIdentification(i, tmp);
         }
 
         /// <summary>
