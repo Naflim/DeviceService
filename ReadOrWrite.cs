@@ -22,4 +22,9 @@ namespace DeviceService
     {
 
     }
+
+    public class ReadOrWriteUHFRFID : UHFReaderRFID
+    {
+
+    }
 }

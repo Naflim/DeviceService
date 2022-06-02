@@ -14,16 +14,6 @@ namespace DeviceService
     public class Live20FS : ZKTECO
     {
         /// <summary>
-        /// 异常显示
-        /// </summary>
-        public Action<Exception> ErrorShow { get; set; }
-
-        /// <summary>
-        /// 日志抛出
-        /// </summary>
-        public Action<string> ThrowLog { get; set; }
-
-        /// <summary>
         /// 显示指纹
         /// </summary>
         public Action<Stream> FingerprintShow { get; set; }

@@ -20,9 +20,9 @@ namespace DeviceService.DeviceModel
         public Action<string> ThrowLog { get; set; }
 
         /// <summary>
-        /// 日志显示
+        /// 显示异常
         /// </summary>
-        public Action<Exception> ErrowShow { get; set; }
+        public Action<Exception> ErrorShow { get; set; }
 
         protected SerialPort serialPort;
         protected ConnectMode mode;
@@ -189,7 +189,7 @@ namespace DeviceService.DeviceModel
             }
             catch (Exception ex)
             {
-                ErrowShow?.Invoke(ex);
+                ErrorShow?.Invoke(ex);
             }
         }
     }

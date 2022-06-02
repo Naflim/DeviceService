@@ -30,6 +30,11 @@ namespace DeviceService.DeviceModel
 
 
         /// <summary>
+        /// 抛出日志
+        /// </summary>
+        public Action<string> ThrowLog { get; set; }
+
+        /// <summary>
         /// 显示异常
         /// </summary>
         public Action<Exception> ErrorShow { get; set; }

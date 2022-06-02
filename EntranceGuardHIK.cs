@@ -14,11 +14,6 @@ namespace DeviceService
     public class EntranceGuardHIK : HIKVISION
     {
         /// <summary>
-        /// 输出日志
-        /// </summary>
-        public Action<string> ThrowLog { get; set; }
-
-        /// <summary>
         /// 单次执行数量
         /// </summary>
         public int Batch { get; set; } = 100;

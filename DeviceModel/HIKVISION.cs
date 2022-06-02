@@ -10,6 +10,14 @@ namespace DeviceService.DeviceModel
 {
     public abstract class HIKVISION : IDevice
     {
+        private CHCNetSDK.NET_DVR_DEVICEINFO_V40 DeviceInfo;
+        bool linkStatus;
+
+        protected int userID;
+        protected string ip;
+        protected int port;
+
+
         /// <summary>
         /// 设备连接状态
         /// </summary>
@@ -25,12 +33,17 @@ namespace DeviceService.DeviceModel
         /// </summary>
         public int Port { get { return port; } }
 
-        private CHCNetSDK.NET_DVR_DEVICEINFO_V40 DeviceInfo;
+        // <summary>
+        /// 抛出日志
+        /// </summary>
+        public Action<string> ThrowLog { get; set; }
 
-        protected int userID;
-        protected string ip;
-        protected int port;
-        bool linkStatus;
+        /// <summary>
+        /// 显示异常
+        /// </summary>
+        public Action<Exception> ErrorShow { get; set; }
+
+       
 
         /// <summary>
         /// 连接回调函数

@@ -20,6 +20,11 @@ namespace DeviceService.DeviceModel
         public int SelInterval { get; set; } = 0;
 
         /// <summary>
+        /// 抛出日志
+        /// </summary>
+        public Action<string> ThrowLog { get; set; }
+
+        /// <summary>
         /// 显示异常
         /// </summary>
         public Action<Exception> ErrorShow { get; set; }
