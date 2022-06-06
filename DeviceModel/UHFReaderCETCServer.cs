@@ -24,7 +24,7 @@ namespace DeviceService.DeviceModel
             server.m_OnErrorOccured += OnErrorOccured;
             server.m_OnRegistered += OnRegistered;
             server.m_OnUnregistered += OnUnregistered;
-            server.m_OnInventoryReport += reader_OnInventoryReport;
+            server.m_OnInventoryReport += Reader_OnInventoryReport;
             server.StartServer();
 
         }
@@ -44,7 +44,7 @@ namespace DeviceService.DeviceModel
             Console.WriteLine("ErrorOccured");
         }
 
-        void reader_OnInventoryReport(object? sender, InventoryReportEventArgs e)
+        void Reader_OnInventoryReport(object? sender, InventoryReportEventArgs e)
         {
             Console.WriteLine("reader_OnInventoryReport");
         }
