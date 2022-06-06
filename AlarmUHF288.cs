@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DeviceService.DeviceModel;
+﻿using DeviceService.DeviceModel;
 using DeviceService.Model;
 using DeviceService.Model.ExceptionModels;
 using DeviceService.SDK;
 using NaflimHelperLibrary;
+using System;
+using System.Threading.Tasks;
 
 namespace DeviceService
 {
@@ -23,7 +20,7 @@ namespace DeviceService
         /// <summary>
         /// 显示GPIO
         /// </summary>
-        public Action<AlarmUHF288, byte> ShowGPIO { get; set; }
+        public Action<AlarmUHF288, InGPIO> ShowGPIO { get; set; }
 
         /// <summary>
         /// 超时结束查询
@@ -46,7 +43,7 @@ namespace DeviceService
         /// <param name="adoptTrigger">报警触发事件</param>
         public void StartAlarmServer(Action<IAlarm, AlarmModel> adoptTrigger)
         {
-            if (DefIN == InGPIO.Init) throw new Exception("红外模式未设置");
+            if (DefIN == InGPIO.Init) throw new Exception("未设置默认GPIO口");
             this.adoptTrigger = adoptTrigger;
             Task.Factory.StartNew(async () =>
             {
@@ -64,8 +61,9 @@ namespace DeviceService
 
                         if (GPIOflag == 0)
                         {
-                            SetGPIO(GetInGPIO(outupPin));
-                            ShowGPIO?.Invoke(this, outupPin);
+                            var newIn = GetInGPIO(outupPin);
+                            SetGPIO(newIn);
+                            ShowGPIO?.Invoke(this, newIn);
 
                             if (selFlag)
                             {
