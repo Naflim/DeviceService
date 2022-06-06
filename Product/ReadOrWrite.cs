@@ -1,8 +1,8 @@
 ﻿using DeviceService.DeviceModel;
 
-namespace DeviceService
+namespace DeviceService.Product
 {
-    public class ReadOrWriteUHF09 : UHFReader09 
+    public class ReadOrWriteUHF09 : UHFReader09
     {
     }
 

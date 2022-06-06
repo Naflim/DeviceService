@@ -2,7 +2,7 @@
 using DeviceService.SDK;
 using System;
 
-namespace DeviceService
+namespace DeviceService.Product
 {
     public class ICReader : IReaderIC
     {

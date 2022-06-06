@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeviceService
+namespace DeviceService.Product
 {
     public class TempHumMeterRS : ITempHumMeter
     {
@@ -46,7 +46,8 @@ namespace DeviceService
                 tempHums = new List<TempHumModel>();
                 registerFlag = true;
                 return true;
-            }else
+            }
+            else
                 return false;
         }
 
@@ -56,7 +57,7 @@ namespace DeviceService
 
             if (tempHum != null)
             {
-                
+
                 foreach (RSNetDevice.Model.NodeData ndata in data.NodeList)//遍历节点数据。数据包括网络设备的数据以及各个节点数据。模拟量一二数据存放在节点数据中
                 {
                     tempHum.Temperature = Math.Round(ndata.Tem, 2);
@@ -74,7 +75,7 @@ namespace DeviceService
                 }
                 tempHums.Add(tempHum);
             }
-            
+
         }
 
         public void Disconnect()
@@ -99,7 +100,7 @@ namespace DeviceService
         {
             if (!registerFlag)
                 throw new RSException("前置条件未完成！");
-            if(tempHums.Find(v => v.DeviceID == deviceID) is not TempHumModel tempHum)
+            if (tempHums.Find(v => v.DeviceID == deviceID) is not TempHumModel tempHum)
                 throw new RSException("设备不存在！");
             return tempHum;
         }

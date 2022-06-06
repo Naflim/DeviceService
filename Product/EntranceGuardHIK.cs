@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeviceService
+namespace DeviceService.Product
 {
     public class EntranceGuardHIK : HIKVISION
     {
@@ -89,7 +89,7 @@ namespace DeviceService
 
             DateTime date = Convert.ToDateTime($"{struTime.dwYear}-{struTime.dwMonth}-{struTime.dwDay} {struTime.dwHour}:{struTime.dwMinute}:{struTime.dwSecond}");
             personnel.CardID = Encoding.UTF8.GetString(struAcsAlarmInfo.struAcsEventInfo.byCardNo).TrimEnd('\0');
-            string ip = Encoding.Default.GetString(pAlarmer.sDeviceIP).Replace("\0","");
+            string ip = Encoding.Default.GetString(pAlarmer.sDeviceIP).Replace("\0", "");
             List<CUserInfo> user = new EntranceGuardHIK(pAlarmer.lUserID).GetUserInfos(new List<string> { employeeID.ToString() });
             if (user != null && user.Count > 0)
             {
@@ -307,7 +307,7 @@ namespace DeviceService
                     case (int)CHCNetSDK.NET_SDK_SENDWITHRECV_STATUS.NET_SDK_CONFIG_STATUS_SUCCESS:
                         byte[] bUserInfoSearch = new byte[1024 * 10];
                         Marshal.Copy(ptrJsonData, bUserInfoSearch, 0, (int)dwReturned);
-                        string strUserInfoSearch = System.Text.Encoding.UTF8.GetString(bUserInfoSearch);
+                        string strUserInfoSearch = Encoding.UTF8.GetString(bUserInfoSearch);
 
                         CUserInfoSearchCfg JsonUserInfoSearchCfg = new CUserInfoSearchCfg();
                         JsonUserInfoSearchCfg = TypeConversion.JsonToObject<CUserInfoSearchCfg>(strUserInfoSearch);

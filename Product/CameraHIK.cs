@@ -4,7 +4,7 @@ using DeviceService.SDK;
 using System;
 using System.IO;
 
-namespace DeviceService
+namespace DeviceService.Product
 {
     public class CameraHIK : HIKVISION, ICamera
     {
@@ -70,7 +70,7 @@ namespace DeviceService
             uint size = 0;
 
             //JPEG抓图 Capture a JPEG picture
-            if (!CHCNetSDK.NET_DVR_CaptureJPEGPicture_NEW(userID, lChannel, ref lpJpegPara, buffer,len,ref size))
+            if (!CHCNetSDK.NET_DVR_CaptureJPEGPicture_NEW(userID, lChannel, ref lpJpegPara, buffer, len, ref size))
                 throw HIKException.AbnormalJudgment(CHCNetSDK.NET_DVR_GetLastError());
 
             byte[] imgBuf = new byte[size];

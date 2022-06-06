@@ -6,7 +6,7 @@ using NaflimHelperLibrary;
 using System;
 using System.Threading.Tasks;
 
-namespace DeviceService
+namespace DeviceService.Product
 {
 
     public class ChannelGateUHF288 : UHFReader288, IChannelGate
@@ -199,7 +199,7 @@ namespace DeviceService
         {
             if (directionFlag) return;
 
-            if ((oldIN == ago && (inGpio == rear || inGpio == total)) || oldIN == total && inGpio == rear)
+            if (oldIN == ago && (inGpio == rear || inGpio == total) || oldIN == total && inGpio == rear)
                 direction = Direction.In;
 
             if (oldIN == rear && (inGpio == ago || inGpio == total) || oldIN == total && inGpio == ago)

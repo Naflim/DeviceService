@@ -9,7 +9,7 @@ using DeviceService.Model.ExceptionModels;
 using DeviceService.SDK;
 using NaflimHelperLibrary;
 
-namespace DeviceService
+namespace DeviceService.Product
 {
     public class ChannelGateCETC : UHFReaderCETC, IChannelGate
     {

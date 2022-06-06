@@ -11,7 +11,7 @@ using DeviceService.SDK;
 using System.Drawing;
 using System.Runtime.InteropServices;
 
-namespace DeviceService
+namespace DeviceService.Product
 {
     public class Live20FS : ZKTECO, IFingerprintScanner
     {

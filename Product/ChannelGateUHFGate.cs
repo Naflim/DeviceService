@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DeviceService;
 using DeviceService.DeviceModel;
 using DeviceService.Model;
 
-namespace DeviceService
+namespace DeviceService.Product
 {
     public class ChannelGateUHFGate : UHFGate, IChannelGate
     {
