@@ -130,19 +130,13 @@ namespace DeviceService.DeviceModel
 
             if (outputData[0] != 0x01)
             {
-                switch (outputData[1])
+                return outputData[1] switch
                 {
-                    case 0x01:
-                        ThrowLog?.Invoke("无标签");
-                        break;
-                    case 0x02:
-                        ThrowLog?.Invoke("访问密码错误");
-                        break;
-                    case 0x03:
-                        ThrowLog?.Invoke("读操作失败");
-                        break;
-                }
-                return Array.Empty<Tag>();
+                    0x01 => throw new UHFRFIDException("无标签"),
+                    0x02 => throw new UHFRFIDException("访问密码错误"),
+                    0x03 => throw new UHFRFIDException("写操作失败"),
+                    _ => Array.Empty<Tag>(),
+                };
             }
 
             int len = (outputData[4] >> 3) * 2;
@@ -175,14 +169,11 @@ namespace DeviceService.DeviceModel
                         switch (outputData[1])
                         {
                             case 0x01:
-                                ThrowLog?.Invoke("无标签");
-                                break;
+                                throw new UHFRFIDException("无标签");
                             case 0x02:
-                                ThrowLog?.Invoke("访问密码错误");
-                                break;
+                                throw new UHFRFIDException("访问密码错误");
                             case 0x03:
-                                ThrowLog?.Invoke("读操作失败");
-                                break;
+                                throw new UHFRFIDException("写操作失败");
                         }
                     }
 
@@ -215,6 +206,8 @@ namespace DeviceService.DeviceModel
             if (epc.Length < 24)
                 epc = epc.PadLeft(24, '0');
 
+          
+
             List<byte> pInBuf = new () { 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 7, 48, 0 };
 
             pInBuf.AddRange(DataConversion.StrToHexByteArr(epc));
@@ -228,14 +221,11 @@ namespace DeviceService.DeviceModel
                 switch (outputData[1])
                 {
                     case 0x01:
-                        ThrowLog?.Invoke("无标签");
-                        break;
+                        throw new UHFRFIDException("无标签");
                     case 0x02:
-                        ThrowLog?.Invoke("访问密码错误");
-                        break;
+                        throw new UHFRFIDException("访问密码错误");
                     case 0x03:
-                        ThrowLog?.Invoke("写操作失败");
-                        break;
+                        throw new UHFRFIDException("写操作失败");
                 }
             }
 
