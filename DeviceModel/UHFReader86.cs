@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DeviceService.DeviceModel
 {
-    public class UHFReader86 : IReader
+    public class UHFReader86 : IReadOrWrite
     {
         protected int port;                       //端口
         protected byte comAdr = 0xFF;             //读写器地址
@@ -62,7 +62,7 @@ namespace DeviceService.DeviceModel
         /// 设置功率
         /// </summary>
         /// <param name="power">功率值</param>
-        public void SetPower(byte power)
+        public void SetPower(byte power, int ant = 0)
         {
             int powerflag = UHF86SDK.SetRfPower(ref comAdr, power, handle);
 
@@ -73,13 +73,15 @@ namespace DeviceService.DeviceModel
         /// epc写入标签
         /// </summary>
         /// <param name="epc">写入的epc</param>
-        public void WriteTag(string epc)
+        public void WriteTag(string epc, out string beforeChange, out string afterChange)
         {
             int errorcode = 0;
             byte[] epcArr = DataConversion.StrToHexByteArr(epc);
             int writeFlag = UHF86SDK.WriteEPC_G2(ref comAdr, new byte[] { 0, 0, 0, 0 }, epcArr, (byte)(epc.Length / 4), ref errorcode, handle);
 
             if (writeFlag != 0) throw UHF86Exception.AbnormalJudgment(writeFlag);
+            beforeChange = string.Empty;
+            afterChange = epc;
         }
 
         async public Task<Tag[]> CyclicQueryTags(int seconds)

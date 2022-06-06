@@ -204,7 +204,7 @@ namespace DeviceService.DeviceModel
             }
         }
 
-        public void WriteTag(string epc)
+        public void WriteTag(string epc, out string beforeChange, out string afterChange)
         {
             byte[] outputData = new byte[500];
             uint outLen = 0;
@@ -238,6 +238,9 @@ namespace DeviceService.DeviceModel
                         break;
                 }
             }
+
+            beforeChange = string.Empty;
+            afterChange = epc;
         }
     }
 }

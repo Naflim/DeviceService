@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DeviceService.DeviceModel
 {
-    public class CardWriteCETC : IReader
+    public class CardWriteCETC : IReadOrWrite
     {
         readonly LinkageExtend link = new();
         List<RadioInformation> eqList = null!;
@@ -141,8 +141,11 @@ namespace DeviceService.DeviceModel
         /// epc写入标签
         /// </summary>
         /// <param name="epc">写入的epc</param>
-        public void WriteTag(string epc)
+        public void WriteTag(string epc, out string beforeChange, out string afterChange)
         {
+            string beforeEpc = string.Empty;
+            afterChange = epc;
+
             int count = epc.Length / 4;
             writeParms = new WriteParms()
             {
@@ -164,7 +167,10 @@ namespace DeviceService.DeviceModel
 
                 if (flag != operResult.Ok && flag != operResult.NoTag)
                     throw CETCException.AbnormalJudgment(flag);
+
+                beforeEpc = tagOperResult.Count > 0 ? tagOperResult[0].flagID : string.Empty;
             });
+            beforeChange = beforeEpc;
         }
 
         private string GetPC(int count)

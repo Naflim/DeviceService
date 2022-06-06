@@ -2,23 +2,20 @@
 
 namespace DeviceService
 {
-    public class ReadOrWriteUHF09 : UHFReader09, IReadOrWrite
+    public class ReadOrWriteUHF09 : UHFReader09 
     {
-        public void SetPower(byte power, int ant = 0)
-        {
-            SetPower(power);
-        }
     }
 
-    public class ReadOrWriteUHF86 : UHFReader86, IReadOrWrite
+    public class ReadOrWriteUHF86 : UHFReader86
     {
-        public void SetPower(byte power, int ant = 0)
-        {
-            SetPower(power);
-        }
     }
 
-    public class ReadOrWriteCETC : CardWriteCETC, IReadOrWrite
+    public class ReadOrWriteCETC : CardWriteCETC
+    {
+
+    }
+
+    public class ReadOrWriteUHFRFID : UHFReaderRFID
     {
 
     }

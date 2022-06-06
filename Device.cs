@@ -79,7 +79,7 @@ namespace DeviceService
         /// epc写入标签
         /// </summary>
         /// <param name="epc">写入的epc</param>
-        void WriteTag(string epc);
+        void WriteTag(string epc, out string beforeChange, out string afterChange);
         /// <summary>
         /// 设置功率
         /// </summary>
