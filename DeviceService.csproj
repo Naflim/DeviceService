@@ -99,14 +99,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlarmUHF288NotGPIO.cs" />
-    <Compile Include="CabinetSilverBox.cs" />
-    <Compile Include="CameraArcface.cs" />
-    <Compile Include="CameraHIK.cs" />
-    <Compile Include="AlarmUHF288.cs" />
-    <Compile Include="ChannelGateCETCServer.cs" />
-    <Compile Include="ChannelGateUHF288.cs" />
-    <Compile Include="ChannelGateUHFGate.cs" />
+    <Compile Include="Product\AlarmUHF288NotGPIO.cs" />
+    <Compile Include="Product\CabinetSilverBox.cs" />
+    <Compile Include="Product\CameraArcface.cs" />
+    <Compile Include="Product\CameraHIK.cs" />
+    <Compile Include="Product\AlarmUHF288.cs" />
+    <Compile Include="Product\ChannelGateCETCServer.cs" />
+    <Compile Include="Product\ChannelGateUHF288.cs" />
+    <Compile Include="Product\ChannelGateUHFGate.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="DeviceModel\Arcface.cs" />
     <Compile Include="DeviceModel\HIKVISION.cs" />
@@ -120,10 +120,10 @@
     <Compile Include="DeviceModel\UHFReaderCETCServer.cs" />
     <Compile Include="DeviceModel\UHFReaderRFID.cs" />
     <Compile Include="DeviceModel\ZKTECO.cs" />
-    <Compile Include="EntranceGuardHIK.cs" />
-    <Compile Include="ICReader.cs" />
+    <Compile Include="Product\EntranceGuardHIK.cs" />
+    <Compile Include="Product\ICReader.cs" />
     <Compile Include="DeviceModel\UHFGate.cs" />
-    <Compile Include="Live20FS.cs" />
+    <Compile Include="Product\Live20FS.cs" />
     <Compile Include="Model\AlarmModel.cs" />
     <Compile Include="Model\ChannelGateCETCModels.cs" />
     <Compile Include="Model\ChannelGateModel.cs" />
@@ -145,9 +145,9 @@
     <Compile Include="Model\HIKModel.cs" />
     <Compile Include="Model\PersonnelModel.cs" />
     <Compile Include="Model\TempHumModel.cs" />
-    <Compile Include="MotorSilverBox.cs" />
+    <Compile Include="Product\MotorSilverBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReadOrWrite.cs" />
+    <Compile Include="Product\ReadOrWrite.cs" />
     <Compile Include="SDK\Arcface\DictionaryUnit.cs" />
     <Compile Include="SDK\Arcface\FaceTrackUnit.cs" />
     <Compile Include="SDK\Arcface\FaceUtil.cs" />
@@ -159,7 +159,7 @@
     <Compile Include="SDK\UHF288SDK.cs" />
     <Compile Include="SDK\UHFRFID\Cmd.cs" />
     <Compile Include="SDK\UHFRFID\UHFRFIDSDK.cs" />
-    <Compile Include="TempHumMeterRS.cs" />
+    <Compile Include="Product\TempHumMeterRS.cs" />
     <Compile Include="DeviceModel\UHFReader288.cs" />
   </ItemGroup>
   <ItemGroup>
