@@ -170,8 +170,7 @@ namespace DeviceService.DeviceModel
                     int isReader = StaticClassReaderB.Inventory_G2(ref comAdr, Qvalue, Session, AdrTID, LenTID, TIDFlag, EPC, ref Totallen, ref CardNum, handle);
                     if ((isReader == 1) | (isReader == 2) | (isReader == 3) | (isReader == 4) | (isReader == 0xFB))
                     {
-                        if (CardNum == 0)
-                            return null;
+                        if (CardNum == 0) continue;
                         byte[] buffer = new byte[Totallen];
                         Array.Copy(EPC, buffer, Totallen);
                         List<string> EPCarr = new List<string>();

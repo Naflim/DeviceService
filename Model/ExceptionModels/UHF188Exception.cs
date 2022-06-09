@@ -41,6 +41,8 @@ namespace DeviceService.Model.ExceptionModels
                     return new UHF188Exception("通讯错误。");
                 case 53:
                     return new UHF188Exception("端口已打开。");
+                case 254:
+                    return new UHF188Exception("不合法的命令。");
                 default:
                     return new UHF188Exception($"错误码：{state}");
             }
