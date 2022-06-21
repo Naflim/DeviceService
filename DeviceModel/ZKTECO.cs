@@ -122,6 +122,25 @@ namespace DeviceService.DeviceModel
             devices.Clear();
         }
 
+        /// <summary>
+        /// 获取设备是否在工作
+        /// </summary>
+        /// <returns>是否工作</returns>
+        public bool GetDeviceIsWork()
+        {
+            bool isWork = false;
+            devices.ForEach(v =>
+            {
+                if (v.WorkingState != WorkingState.Idle) 
+                {
+                    isWork = true;
+                    return;
+                }
+            });
+
+            return isWork;
+        }
+
         ZKTECODevice GetParameters(IntPtr handle)
         {
             byte[] paramValue = new byte[4];

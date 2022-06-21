@@ -13,6 +13,8 @@ namespace DeviceService.Model.ExceptionModels
         {
             switch (state)
             {
+                case 2:
+                    return new ArcfaceException("无效的参数");
                 case 4:
                     return new ArcfaceException("内存不足");
                 case 28676:

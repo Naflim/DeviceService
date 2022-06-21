@@ -32,6 +32,14 @@ namespace DeviceService
         /// 活体检测失败重试次数
         /// </summary>
         public int LiveMatchTime { get; set; } = 100;
+
+        /// <summary>
+        /// 设备工作状态
+        /// </summary>
+        public bool IsWork
+        {
+            get { return isWork; }
+        }
         #endregion
 
         #region 私有变量
@@ -86,6 +94,7 @@ namespace DeviceService
         readonly DictionaryUnit<int, int> rgbLivenessTryDict = new DictionaryUnit<int, int>();
         bool canRGBLiveness;
         bool canRGBFR;
+        private bool isWork = false;
         #endregion
 
         #region 初始化
@@ -143,11 +152,11 @@ namespace DeviceService
         /// <param name="sourcePlayer">视频播放控件</param>
         public void StartServer(VideoSourcePlayer sourcePlayer)
         {
-
             sourcePlayer.VideoSource = videoCapture;
             videoCapture.Start();
             VideoRGBLiveness();
             VideoRGBFR();
+            isWork = true;
         }
 
         /// <summary>
@@ -242,6 +251,7 @@ namespace DeviceService
             videoCapture.SignalToStop();
             canRGBFR = false;
             canRGBLiveness = false;
+            isWork = false;
         }
         #endregion
 

@@ -8,8 +8,21 @@ namespace DeviceService
 {
     public class ICReader : IReaderIC
     {
+
+        /// <summary>
+        /// 显示异常
+        /// </summary>
+        public Action<Exception> ErrorShow { get; set; }
         readonly List<string> ICsCache = new List<string>();
-        bool isWork = false;
+        private bool isWork = false;
+
+        /// <summary>
+        /// 设备工作状态
+        /// </summary>
+        public bool IsWork
+        {
+            get { return isWork; }
+        }
 
         /// <summary>
         /// 存储识别卡
@@ -37,17 +50,23 @@ namespace DeviceService
             isWork = true;
             Task.Run(() =>
             {
-                while (isWork)
+                try
                 {
-                    var cardID = GetCardID();
-
-                    if (ICsCache.Contains(cardID))
+                    while (isWork)
                     {
-                        distinguish(cardID);
-                        ExitWorking();
+                        var cardID = GetCardID();
+
+                        if (ICsCache.Contains(cardID))
+                        {
+                            distinguish(cardID);
+                            ExitWorking();
+                        }
                     }
                 }
-
+                catch (Exception ex)
+                {
+                    ErrorShow?.Invoke(ex);
+                }
             });
         }
 

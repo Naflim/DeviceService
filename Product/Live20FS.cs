@@ -134,8 +134,8 @@ namespace DeviceService
                         if (iFlag == 0)
                         {
                             ThrowLog?.Invoke($"识别成功！id：{fid}，相似度：{score}");
-                            distinguish(fid, score);
                             ExitWorking(index);
+                            distinguish(fid, score);
                         }
                     }
 

@@ -41,49 +41,56 @@ namespace DeviceService
             CanMonitor = true;
             Task.Factory.StartNew(() =>
             {
-                byte[] GetSQ(byte sq)
+                try
                 {
-                    List<byte> sendData = new List<byte>() { ADR, 0x03, 0x00, sq, 0x00, 0x01 };
-                    short crc = DataConversion.CRC16(sendData.ToArray(), sendData.Count);
-
-                    if (crc < 0)
+                    byte[] GetSQ(byte sq)
                     {
-                        sendData.Add((byte)(crc / 256 - 1));
-                        sendData.Add((byte)(crc % 256));
-                    }
-                    else
-                    {
-                        sendData.Add((byte)(crc / 256));
-                        sendData.Add((byte)(crc % 256));
+                        List<byte> sendData = new List<byte>() { ADR, 0x03, 0x00, sq, 0x00, 0x01 };
+                        short crc = DataConversion.CRC16(sendData.ToArray(), sendData.Count);
+
+                        if (crc < 0)
+                        {
+                            sendData.Add((byte)(crc / 256 - 1));
+                            sendData.Add((byte)(crc % 256));
+                        }
+                        else
+                        {
+                            sendData.Add((byte)(crc / 256));
+                            sendData.Add((byte)(crc % 256));
+                        }
+
+                        return Communication(sendData.ToArray());
                     }
 
-                    return Communication(sendData.ToArray());
+                    bool oldSq1 = true;
+                    bool oldSq2 = true;
+
+                    while (CanMonitor)
+                    {
+                        byte[] SQ1 = GetSQ(0x18);
+                        if (SQ1.Length > 2 && SQ1[1] == 0x86)
+                            throw MotorSilverBoxException.AbnormalJudgment(SQ1[2]);
+                        bool isSq1 = false;
+                        if (SQ1.Length > 4)
+                            isSq1 = Convert.ToBoolean(SQ1[4]);
+
+                        byte[] SQ2 = GetSQ(0x19);
+                        if (SQ2.Length > 2 && SQ2[1] == 0x86)
+                            throw MotorSilverBoxException.AbnormalJudgment(SQ2[2]);
+                        bool isSq2 = false;
+                        if (SQ2.Length > 4)
+                            isSq2 = Convert.ToBoolean(SQ2[4]);
+
+                        if (oldSq1 != isSq1 || oldSq2 != isSq2)
+                            SQChange(isSq1, isSq2);
+
+                        oldSq1 = isSq1;
+                        oldSq2 = isSq2;
+                    }
                 }
-
-                bool oldSq1 = true;
-                bool oldSq2 = true;
-
-                while (CanMonitor)
+                catch (Exception ex)
                 {
-                    byte[] SQ1 = GetSQ(0x18);
-                    if (SQ1.Length > 2 && SQ1[1] == 0x86)
-                        throw MotorSilverBoxException.AbnormalJudgment(SQ1[2]);
-                    bool isSq1 = false;
-                    if (SQ1.Length > 4)
-                        isSq1 = Convert.ToBoolean(SQ1[4]);
-
-                    byte[] SQ2 = GetSQ(0x19);
-                    if (SQ2.Length > 2 && SQ2[1] == 0x86)
-                        throw MotorSilverBoxException.AbnormalJudgment(SQ2[2]);
-                    bool isSq2 = false;
-                    if (SQ2.Length > 4)
-                        isSq2 = Convert.ToBoolean(SQ2[4]);
-
-                    if (oldSq1 != isSq1 || oldSq2 != isSq2)
-                        SQChange(isSq1, isSq2);
-
-                    oldSq1 = isSq1;
-                    oldSq2 = isSq2;
+                    ErrorShow?.Invoke(ex);
                 }
             }, TaskCreationOptions.LongRunning);
 
