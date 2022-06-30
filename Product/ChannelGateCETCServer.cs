@@ -64,6 +64,7 @@ namespace DeviceService
                         break;
                     default:
                         ThrowLog?.Invoke(message.Command);
+                        new Log("accidentXML").PrintLog(msg);
                         break;
                 }
             }
