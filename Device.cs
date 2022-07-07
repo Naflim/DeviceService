@@ -96,7 +96,7 @@ namespace DeviceService
         /// 获取温湿度列表
         /// </summary>
         /// <returns>温度</returns>
-        List<TempHumModel> GetTempHumList();
+        TempHumModel[] GetTempHums();
         /// <summary>
         /// 获取温湿度（通过设备编号）
         /// </summary>

@@ -9,7 +9,16 @@ namespace DeviceService.Model
     public class TempHumModel
     {
         public int DeviceID { get; set; }
-        public double Temperature { get; set; }
-        public double Humidity { get; set; }
+        public float Temperature { get; set; }
+        public float Humidity { get; set; }
+
+        public TempHumModel() { }
+
+        public TempHumModel(int deviceID, float temperature, float humidity)
+        {
+            DeviceID = deviceID;
+            Temperature = temperature;
+            Humidity = humidity;
+        }
     }
 }
