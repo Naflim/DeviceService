@@ -23,6 +23,8 @@ namespace DeviceService.Model.ExceptionModels
                     return new ArcfaceException("图片宽高不支持，宽度需四字节对齐");
                 case 98308:
                     return new ArcfaceException("ACTIVEKEY与APPID、SDKKEY不匹配");
+                case 98313:
+                    return new ArcfaceException("ACTIVEKEY已过期");
                 default:
                     return new ArcfaceException($"错误码：{state}");
             }

@@ -9,7 +9,7 @@ using DeviceService.Model.ExceptionModels;
 
 namespace DeviceService.DeviceModel
 {
-    public class UHFReaderCETC : IDevice
+    public class UHFReaderCETC : IReader
     {
         protected RFIDClient client;
         private string ip;
@@ -19,6 +19,11 @@ namespace DeviceService.DeviceModel
         /// 查询时间
         /// </summary>
         public int SelTime { get; set; }
+
+        /// <summary>
+        /// 查询间隙
+        /// </summary>
+        public int SelInterval { get; set; } = 0;
 
         /// <summary>
         /// Ip地址
@@ -65,11 +70,13 @@ namespace DeviceService.DeviceModel
             ip = connect.Ip;
         }
 
+
+
         public void Disconnect()
         {
             var linkflag = client.Disconnect();
 
-            if(linkflag != OperationResult.SUCCESS)
+            if (linkflag != OperationResult.SUCCESS)
                 throw UHFCETCException.AbnormalJudgment(linkflag);
         }
 
@@ -112,7 +119,7 @@ namespace DeviceService.DeviceModel
                 {
                     ErrorShow(ex);
                 }
-                
+
             });
         }
 
@@ -124,6 +131,8 @@ namespace DeviceService.DeviceModel
         {
             QueryTag(SelTime, reSelTag);
         }
+
+
 
         void Reader_OnDisconnect(object sender, DisconnectEventArgs e)
         {
@@ -140,6 +149,69 @@ namespace DeviceService.DeviceModel
             //Console.WriteLine(e.m_stInventoryResult.);
         }
 
+        public Model.Tag[] QueryTags(int ant = 0)
+        {
+            List<Model.Tag> tags = new List<Model.Tag>();
+            TagReport tagReport = new TagReport();
 
+            var flag = client.InventoryCycle(ant, ref tagReport);
+
+            if (flag != OperationResult.SUCCESS)
+                ErrorShow?.Invoke(UHFCETCException.AbnormalJudgment(flag));
+
+            foreach (var tag in tagReport.m_listTags)
+            {
+                if (string.IsNullOrEmpty(tag.m_strEPC)) continue;
+
+                if (tags.Exists(v => v.EPC == tag.m_strEPC))
+                {
+                    var nowTag = tags.Find(v => v.EPC == tag.m_strEPC);
+                    nowTag.Frequency++;
+                    nowTag.QueryTime = DateTime.Now;
+                }
+                else tags.Add(new Model.Tag(tag.m_strEPC));
+            }
+
+            return tags.ToArray();
+        }
+
+        public async Task<Model.Tag[]> CyclicQueryTags(int seconds)
+        {
+            List<Model.Tag> tags = new List<Model.Tag>();
+            try
+            {
+                DateTime startTime = DateTime.Now;
+
+                while (DateTime.Now < startTime.AddSeconds(seconds))
+                {
+                    TagReport tagReport = new TagReport();
+
+                    var flag = client.InventoryCycle(0, ref tagReport);
+                    if (flag != OperationResult.SUCCESS)
+                        ErrorShow?.Invoke(UHFCETCException.AbnormalJudgment(flag));
+
+                    foreach (var tag in tagReport.m_listTags)
+                    {
+                        if (string.IsNullOrEmpty(tag.m_strEPC)) continue;
+
+                        if (tags.Exists(v => v.EPC == tag.m_strEPC))
+                        {
+                            var nowTag = tags.Find(v => v.EPC == tag.m_strEPC);
+                            nowTag.Frequency++;
+                            nowTag.QueryTime = DateTime.Now;
+                        }
+                        else tags.Add(new Model.Tag(tag.m_strEPC));
+                    }
+
+                    await Task.Delay(SelInterval);
+                }
+                return tags.ToArray();
+            }
+            catch (Exception ex)
+            {
+                ErrorShow?.Invoke(ex);
+                return tags.ToArray();
+            }
+        }
     }
 }
