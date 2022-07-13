@@ -43,7 +43,7 @@ namespace DeviceService.Product
         public List<int> SmokeIdList { get; set; } = new();
 
         /// <summary>
-        /// 水浸
+        /// 水浸通道id
         /// </summary>
         public List<int> WaterInvasionList { get; set; } = new();
 
