@@ -36,6 +36,11 @@ namespace DeviceService
 
         bool canStop;
 
+        /// <summary>
+        /// 电机停止触发
+        /// </summary>
+        public Action MotorStop { get; set; }
+
         public void StartMonitorDevice()
         {
             CanMonitor = true;
@@ -145,6 +150,8 @@ namespace DeviceService
             Start(0);
 
             canStop = false;
+
+            MotorStop?.Invoke();
         }
     }
 }
