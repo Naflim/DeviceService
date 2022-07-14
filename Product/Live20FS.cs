@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 
 namespace DeviceService.Product
 {
-    public class Live20FS : ZKTECO, IFingerprintScanner
+    public class Live20FS : ZKTECO
     {
         /// <summary>
         /// 显示指纹

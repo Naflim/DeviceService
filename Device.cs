@@ -156,12 +156,4 @@ namespace DeviceService
         /// <returns>卡ID</returns>
         string GetCardID();
     }
-
-    /// <summary>
-    /// 指纹扫描仪
-    /// </summary>
-    public interface IFingerprintScanner
-    {
-
-    }
 }
