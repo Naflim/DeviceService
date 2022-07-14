@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace DeviceService.DeviceModel
 {
+    /// <summary>
+    /// UHFReader86型号读写器
+    /// </summary>
     public class UHFReader86 : IReadOrWrite
     {
         protected int port;                       //端口

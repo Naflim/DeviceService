@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace DeviceService.Product
 {
+    /// <summary>
+    /// 海康门禁
+    /// </summary>
     public class EntranceGuardHIK : HIKVISION
     {
         public EntranceGuardHIK()

@@ -7,6 +7,9 @@ using DeviceService.Model;
 
 namespace DeviceService.DeviceModel
 {
+    /// <summary>
+    /// 熵基科技产品
+    /// </summary>
     public class ZKTECO : IDevice
     {
         /// <summary>

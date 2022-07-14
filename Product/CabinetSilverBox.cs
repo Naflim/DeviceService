@@ -8,6 +8,9 @@ using NaflimHelperLibrary;
 
 namespace DeviceService.Product
 {
+    /// <summary>
+    /// 银箱智能柜锁控板
+    /// </summary>
     public class CabinetSilverBox : Protocol, ICabinet
     {
         public byte BoardPort { get; set; } = 0x01;

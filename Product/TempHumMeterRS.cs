@@ -9,6 +9,9 @@ using System.Collections.Generic;
 
 namespace DeviceService.Product
 {
+    /// <summary>
+    /// 仁硕温湿度
+    /// </summary>
     public class TempHumMeterRS : RSNet, ITempHumMeter
     {
         readonly List<TempHumModel> _tempHums = new ();

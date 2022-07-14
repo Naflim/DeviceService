@@ -26,6 +26,9 @@ using System.Threading.Tasks;
 
 namespace DeviceService.Product
 {
+    /// <summary>
+    /// 仁硕中控机
+    /// </summary>
     public class CentralControlRS : RSNet, ITempHumMeter
     {
         readonly List<TempHumModel> _tempHums = new();

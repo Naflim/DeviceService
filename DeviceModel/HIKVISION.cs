@@ -8,6 +8,9 @@ using System.Text;
 
 namespace DeviceService.DeviceModel
 {
+    /// <summary>
+    /// 海康威视设备
+    /// </summary>
     public abstract class HIKVISION : IDevice
     {
         /// <summary>

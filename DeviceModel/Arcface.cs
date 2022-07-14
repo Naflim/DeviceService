@@ -13,6 +13,9 @@ using System.Runtime.InteropServices;
 
 namespace DeviceService.DeviceModel
 {
+    /// <summary>
+    /// 虹软人脸识别算法
+    /// </summary>
     public class Arcface
     {
         #region 公开属性

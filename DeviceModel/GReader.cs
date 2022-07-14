@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace DeviceService.DeviceModel
 {
+    /// <summary>
+    /// GReader型号读写器
+    /// </summary>
     public class GReader : IDevice
     {
         /// <summary>

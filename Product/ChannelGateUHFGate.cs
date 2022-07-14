@@ -8,6 +8,9 @@ using DeviceService.Model;
 
 namespace DeviceService.Product
 {
+    /// <summary>
+    /// UHFGate通道门
+    /// </summary>
     public class ChannelGateUHFGate : UHFGate, IChannelGate
     {
         bool monitorFlag;

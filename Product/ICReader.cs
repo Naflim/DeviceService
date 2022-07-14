@@ -4,6 +4,9 @@ using System;
 
 namespace DeviceService.Product
 {
+    /// <summary>
+    /// IC读卡器
+    /// </summary>
     public class ICReader : IReaderIC
     {
         public string GetCardID()

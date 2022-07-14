@@ -10,6 +10,9 @@ using NaflimHelperLibrary;
 
 namespace DeviceService.DeviceModel
 {
+    /// <summary>
+    /// UHFReader09型号读写器
+    /// </summary>
     public class UHFReader09 : IReadOrWrite
     {
         protected int port;                       //端口

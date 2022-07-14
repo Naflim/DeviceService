@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 namespace DeviceService.DeviceModel
 {
 #pragma warning disable CA1416 // 验证平台兼容性
+    /// <summary>
+    /// 以通讯协议对接的设备
+    /// </summary>
     public abstract class Protocol : IDevice
     {
         SerialPort? serialPort;
