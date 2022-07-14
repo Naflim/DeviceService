@@ -23,6 +23,9 @@ using System.Threading.Tasks;
 
 namespace DeviceService.DeviceModel
 {
+    /// <summary>
+    /// UHFRFID读写器设备封装类库
+    /// </summary>
     public class UHFReaderRFID : IReadOrWrite
     {
         int com;

@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace DeviceService.DeviceModel
 {
+    /// <summary>
+    /// UHFGate型号读写器
+    /// </summary>
     public abstract class UHFGate : IDevice
     {
         ConnectMode mode;

@@ -25,6 +25,9 @@ using System.Threading.Tasks;
 
 namespace DeviceService.DeviceModel
 {
+    /// <summary>
+    /// UHFReader188型号读写器
+    /// </summary>
     public class UHFReader188 : IReader
     {
         /// <summary>

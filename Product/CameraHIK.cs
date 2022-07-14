@@ -6,6 +6,9 @@ using System.IO;
 
 namespace DeviceService
 {
+    /// <summary>
+    /// 海康摄像头
+    /// </summary>
     public class CameraHIK : HIKVISION, ICamera
     {
         public void Photograph(string path)

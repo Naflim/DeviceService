@@ -22,6 +22,9 @@ using NaflimHelperLibrary;
 
 namespace DeviceService
 {
+    /// <summary>
+    /// 银箱电机驱动板
+    /// </summary>
     public class MotorSilverBox : AnsweringProtocol
     {
         /// <summary>

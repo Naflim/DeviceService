@@ -15,6 +15,10 @@ using System.Threading.Tasks;
 namespace DeviceService
 {
     public enum IdentifyResults { None, NotLiving, NotIdentify, Ok }
+
+    /// <summary>
+    /// 虹软摄像头人脸识别
+    /// </summary>
     public class CameraArcface : Arcface
     {
         #region 公开属性

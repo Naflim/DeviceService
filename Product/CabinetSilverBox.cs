@@ -10,6 +10,10 @@ using System.IO.Ports;
 namespace DeviceService
 {
     public enum LockState { None, Open, Close }
+
+    /// <summary>
+    /// 银箱智能柜锁控板
+    /// </summary>
     public class CabinetSilverBox : CommunicationProtocol, ICabinet
     {
         /// <summary>

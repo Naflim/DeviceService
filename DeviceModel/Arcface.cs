@@ -12,6 +12,9 @@ using System.IO;
 
 namespace DeviceService.DeviceModel
 {
+    /// <summary>
+    /// 虹软人脸识别算法
+    /// </summary>
     public class Arcface
     {
         #region 公共委托

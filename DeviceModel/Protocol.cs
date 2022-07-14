@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace DeviceService.DeviceModel
 {
     /// <summary>
-    /// 协议
+    /// 以通讯协议对接的设备,SDK作为客户端
     /// </summary>
     public abstract class Protocol : IDevice
     {

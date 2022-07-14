@@ -11,6 +11,9 @@ using System.Text;
 
 namespace DeviceService
 {
+    /// <summary>
+    /// 海康门禁
+    /// </summary>
     public class EntranceGuardHIK : HIKVISION
     {
         /// <summary>

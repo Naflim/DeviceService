@@ -7,6 +7,9 @@ using System.Collections.Generic;
 
 namespace DeviceService
 {
+    /// <summary>
+    /// 仁硕温湿度
+    /// </summary>
     public class TempHumMeterRS : ITempHumMeter
     {
         RSServer sServer;

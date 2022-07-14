@@ -19,6 +19,9 @@ namespace DeviceService.DeviceModel
 
     public enum InGPIO { Init, None, In1, In2, All }
 
+    /// <summary>
+    /// UHFReader288型号读写器
+    /// </summary>
     public class UHFReader288 : IReader
     {
         /// <summary>

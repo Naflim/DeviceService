@@ -10,6 +10,9 @@ using System.Xml.Linq;
 
 namespace DeviceService
 {
+    /// <summary>
+    /// 中电海康通道门sdk服务端模式
+    /// </summary>
     public class ChannelGateCETCServer : ProtocolServer, IChannelGate
     {
         Action<ChannelGateCETCServer, ChannelGateModel> adoptTrigger;

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace DeviceService
 {
+    /// <summary>
+    /// UHF288报警器
+    /// </summary>
     public class AlarmUHF288 : UHFReader288, IAlarm
     {
         /// <summary>

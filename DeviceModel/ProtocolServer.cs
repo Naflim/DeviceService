@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace DeviceService.DeviceModel
 {
+    /// <summary>
+    /// 以通讯协议对接的设备,SDK作为服务器
+    /// </summary>
     public class ProtocolServer : IDeviceServer
     {
         /// <summary>

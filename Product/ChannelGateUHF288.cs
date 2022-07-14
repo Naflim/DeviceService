@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 
 namespace DeviceService
 {
-
+    /// <summary>
+    /// UHF288通道门
+    /// </summary>
     public class ChannelGateUHF288 : UHFReader288, IChannelGate
     {
         InGPIO inGpio = InGPIO.Init;

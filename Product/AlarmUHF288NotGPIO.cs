@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace DeviceService
 {
+    /// <summary>
+    /// UHF288无GPIO设备报警器
+    /// </summary>
     public class AlarmUHF288NotGPIO : UHFReader288, IAlarm
     {
         Action<AlarmUHF288NotGPIO, AlarmModel> adoptTrigger;

@@ -11,6 +11,9 @@ using DeviceService.SDK;
 
 namespace DeviceService
 {
+    /// <summary>
+    /// 熵基中控指纹采集仪
+    /// </summary>
     public class Live20FS : ZKTECO
     {
         /// <summary>

@@ -9,6 +9,9 @@ using DeviceService.Model.ExceptionModels;
 
 namespace DeviceService.DeviceModel
 {
+    /// <summary>
+    /// 中电海康读写器服务端模式
+    /// </summary>
     public class UHFReaderCETCServer : IDeviceServer
     {
         protected RFIDServer server;

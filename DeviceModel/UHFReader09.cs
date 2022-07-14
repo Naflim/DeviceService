@@ -10,6 +10,9 @@ using System.Collections.Generic;
 
 namespace DeviceService.DeviceModel
 {
+    /// <summary>
+    /// UHFReader09型号读写器
+    /// </summary>
     public class UHFReader09 : IReader
     {
         protected int port;                       //端口

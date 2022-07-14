@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace DeviceService.DeviceModel
 {
+    /// <summary>
+    /// CETC(黑盒子)型号发卡器
+    /// </summary>
     public class CardWriteCETC : IReader
     {
         readonly LinkageExtend link = new LinkageExtend();

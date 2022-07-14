@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DeviceService
 {
+    /// <summary>
+    /// IC读卡器
+    /// </summary>
     public class ICReader : IReaderIC
     {
 
