@@ -99,12 +99,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeviceModel\UHFReader289.cs" />
+    <Compile Include="Enum\AlarmLightColor.cs" />
+    <Compile Include="Enum\InGPIO.cs" />
     <Compile Include="Product\AlarmUHF288NotGPIO.cs" />
     <Compile Include="Product\CabinetSilverBox.cs" />
     <Compile Include="Product\CameraArcface.cs" />
     <Compile Include="Product\CameraHIK.cs" />
     <Compile Include="Product\AlarmUHF288.cs" />
     <Compile Include="Product\ChannelGateCETCServer.cs" />
+    <Compile Include="Product\ChannelGateUHF289.cs" />
     <Compile Include="Product\ChannelGateUHF288.cs" />
     <Compile Include="Product\ChannelGateUHFGate.cs" />
     <Compile Include="Device.cs" />
@@ -154,6 +158,7 @@
     <Compile Include="SDK\BitmapFormat.cs" />
     <Compile Include="SDK\CHCNetSDK.cs" />
     <Compile Include="SDK\ICReaderSDK.cs" />
+    <Compile Include="SDK\UHF289SDK.cs" />
     <Compile Include="SDK\UHF86SDK.cs" />
     <Compile Include="SDK\UHFGateSDK.cs" />
     <Compile Include="SDK\UHF288SDK.cs" />
@@ -161,6 +166,7 @@
     <Compile Include="SDK\UHFRFID\UHFRFIDSDK.cs" />
     <Compile Include="Product\TempHumMeterRS.cs" />
     <Compile Include="DeviceModel\UHFReader288.cs" />
+    <Compile Include="SDK\UHFSDK.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\AnyCPU\HIKlib\GdiPlus.lib" />
@@ -241,6 +247,7 @@
     <Content Include="lib\x64\UHF188\Basic.dll" />
     <Content Include="lib\x64\UHF188\UHFReader188CSharp.dll" />
     <Content Include="lib\x64\UHFReader288.dll" />
+    <Content Include="lib\x64\UHFReader289.dll" />
     <Content Include="lib\x64\UHFRFID.dll" />
     <Content Include="lib\x86\Arcfacelib\ArcFaceSDK.dll" />
     <Content Include="lib\x86\Arcfacelib\libarcsoft_face.dll" />
@@ -253,8 +260,10 @@
     <Content Include="lib\x86\UHF188\Basic.dll" />
     <Content Include="lib\x86\UHF188\UHFReader188CSharp.dll" />
     <Content Include="lib\x86\UHFReader288.dll" />
+    <Content Include="lib\x86\UHFReader289.dll" />
     <Content Include="lib\x86\UHFReader86.dll" />
     <Content Include="lib\x86\UHFRFID.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

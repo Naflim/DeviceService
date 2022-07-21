@@ -12,7 +12,7 @@ namespace DeviceService
     /// <summary>
     /// UHF288通道门
     /// </summary>
-    public class ChannelGateUHF288 : UHFReader288, IChannelGate
+    public class ChannelGateUHF289 : UHFReader289, IChannelGate
     {
         InGPIO inGpio = InGPIO.Init;
         InGPIO defIN = InGPIO.Init;
@@ -23,17 +23,17 @@ namespace DeviceService
         DateTime endStart;
         Direction direction = Direction.Null;
         bool directionFlag;
-        Action<ChannelGateUHF288, ChannelGateModel> adoptTrigger;
+        Action<ChannelGateUHF289, ChannelGateModel> adoptTrigger;
 
         /// <summary>
         /// 显示GPIO
         /// </summary>
-        public Action<ChannelGateUHF288, InGPIO> ShowGPIO { get; set; }
+        public Action<ChannelGateUHF289, InGPIO> ShowGPIO { get; set; }
 
         /// <summary>
         /// 显示查询状态
         /// </summary>
-        public Action<ChannelGateUHF288, bool> ShowSelState { get; set; }
+        public Action<ChannelGateUHF289, bool> ShowSelState { get; set; }
 
         /// <summary>
         /// 开启延时上传模式
@@ -109,7 +109,7 @@ namespace DeviceService
 
                         byte outupPin = 0;
 
-                        int GPIOflag = UHF288SDK.GetGPIOStatus(ref comAdr, ref outupPin, handle);
+                        int GPIOflag = UHF289SDK.GetGPIOStatus(ref comAdr, ref outupPin, handle);
 
                         if (GPIOflag == 0)
                         {

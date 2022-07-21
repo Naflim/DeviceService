@@ -12,9 +12,9 @@ using DeviceService.Enum;
 namespace DeviceService.DeviceModel
 {
     /// <summary>
-    /// UHFReader288型号读写器
+    /// UHFReader289型号读写器
     /// </summary>
-    public class UHFReader288 : IReader
+    public class UHFReader289 : IReader
     {
         /// <summary>
         /// 查询时间
@@ -56,7 +56,7 @@ namespace DeviceService.DeviceModel
         /// <summary>
         /// 断线事件
         /// </summary>
-        public Action<UHFReader288> Reconnection { get; set; }
+        public Action<UHFReader289> Reconnection { get; set; }
 
         /// <summary>
         /// 设备ip
@@ -114,7 +114,7 @@ namespace DeviceService.DeviceModel
 
         public void Connect(ConnectModel connect)
         {
-            int linkflag = UHF288SDK.OpenNetPort(connect.Port, connect.Ip, ref comAdr, ref handle);
+            int linkflag = UHF289SDK.OpenNetPort(connect.Port, connect.Ip, ref comAdr, ref handle);
             if (linkflag != 0) throw UHF288Exception.AbnormalJudgment(linkflag);
 
             ip = connect.Ip;
@@ -133,9 +133,9 @@ namespace DeviceService.DeviceModel
                 baud = Convert.ToByte(baud + 2);
             int linkflag;
             if (connect.Com == 0)
-                linkflag = UHF288SDK.AutoOpenComPort(ref comPort, ref comAdr, baud, ref handle);
+                linkflag = UHF289SDK.AutoOpenComPort(ref comPort, ref comAdr, baud, ref handle);
             else
-                linkflag = UHF288SDK.OpenComPort(connect.Com, ref comAdr, baud, ref handle);
+                linkflag = UHF289SDK.OpenComPort(connect.Com, ref comAdr, baud, ref handle);
 
 
             if (linkflag != 0)
@@ -146,7 +146,7 @@ namespace DeviceService.DeviceModel
 
         public void Disconnect()
         {
-            int linkflag = UHF288SDK.CloseNetPort(handle);
+            int linkflag = UHF289SDK.CloseNetPort(handle);
             if (linkflag != 0) throw UHF288Exception.AbnormalJudgment(linkflag);
         }
 
@@ -155,7 +155,7 @@ namespace DeviceService.DeviceModel
         /// </summary>
         public void ComDisconnect()
         {
-            int linkflag = UHF288SDK.CloseComPort();
+            int linkflag = UHF289SDK.CloseComPort();
 
             if (linkflag != 0) throw UHF288Exception.AbnormalJudgment(linkflag);
         }
@@ -164,15 +164,16 @@ namespace DeviceService.DeviceModel
         /// 刷新句柄
         /// </summary>
         /// <param name="reader288">设备句柄</param>
-        public void RefreshHandle(UHFReader288 reader288)
+        public void RefreshHandle(UHFReader289 reader289)
         {
-            handle = reader288.handle;
+            handle = reader289.handle;
         }
 
         /// <summary>
         /// 获取设备信息
         /// </summary>
-        public void GetUHF288Info()
+        /// <param name="power">功率</param>
+        public void GetUHF289Info(out byte power)
         {
             byte TrType = 0;
             byte[] VersionInfo = new byte[2];
@@ -185,23 +186,21 @@ namespace DeviceService.DeviceModel
             byte BeepEn = 0;
             byte OutputRep = 0;
             byte CheckAnt = 0;
-            int infoflag = UHF288SDK.GetReaderInformation(ref comAdr, VersionInfo, ref ReaderType, ref TrType, ref dmaxfre, ref dminfre, ref powerdBm, ref ScanTime, ref Ant, ref BeepEn, ref OutputRep, ref CheckAnt, handle);
+            int infoflag = UHF289SDK.GetReaderInformation(ref comAdr, VersionInfo, ref ReaderType, ref TrType, ref dmaxfre, ref dminfre, ref powerdBm, ref ScanTime, ref Ant, ref BeepEn, ref OutputRep, ref CheckAnt, handle);
 
             if (infoflag != 0) throw UHF288Exception.AbnormalJudgment(infoflag);
 
+            power = powerdBm;
             AntennaList = new List<byte>();
 
-            if ((Ant & 0x01) == 1)
-                AntennaList.Add(0x80);
-
-            if ((Ant & 0x02) == 2)
-                AntennaList.Add(0x81);
-
-            if ((Ant & 0x04) == 4)
-                AntennaList.Add(0x82);
-
-            if ((Ant & 0x08) == 8)
-                AntennaList.Add(0x83);
+            if ((Ant & 0x01) == 0x01) AntennaList.Add(0x80);
+            if ((Ant & 0x02) == 0x02) AntennaList.Add(0x81);
+            if ((Ant & 0x04) == 0x04) AntennaList.Add(0x82);
+            if ((Ant & 0x08) == 0x08) AntennaList.Add(0x83);
+            if ((Ant & 0x10) == 0x10) AntennaList.Add(0x84);
+            if ((Ant & 0x20) == 0x20) AntennaList.Add(0x85);
+            if ((Ant & 0x40) == 0x40) AntennaList.Add(0x86);
+            if ((Ant & 0x80) == 0x80) AntennaList.Add(0x87);
         }
 
         /// <summary>
@@ -210,43 +209,9 @@ namespace DeviceService.DeviceModel
         /// <param name="power"></param>
         public void SetPower(byte power)
         {
-            int powerflag = UHF288SDK.SetRfPower(ref comAdr, power, handle);
+            int powerflag = UHF289SDK.SetRfPower(ref comAdr, power, handle);
 
             if (powerflag != 0) throw UHF288Exception.AbnormalJudgment(powerflag);
-        }
-
-        /// <summary>
-        /// 获取天线功率
-        /// </summary>
-        /// <param name="len">天线数</param>
-        /// <returns>天线功率</returns>
-        public byte[] GetAntPower(int len)
-        {
-            byte[] powerDbm = new byte[len];
-            int powerflag = UHF288SDK.GetRfPowerByAnt(ref comAdr, powerDbm, handle);
-
-            if (powerflag != 0) throw UHF288Exception.AbnormalJudgment(powerflag);
-
-            return powerDbm;
-        }
-
-        /// <summary>
-        /// 设置天线功率
-        /// </summary>
-        /// <param name="antPower">天线功率</param>
-        /// <param name="save">是否掉电保存</param>
-        public void SetAntPower(byte[] antPower, bool save)
-        {
-            if (!save)
-            {
-                int len = antPower.Length;
-                for (int i = 0; i < len; i++)
-                    antPower[i] |= 0x80;
-            }
-
-            int antflag = UHF288SDK.SetRfPowerByAnt(ref comAdr, antPower, handle);
-
-            if (antflag != 0) throw UHF288Exception.AbnormalJudgment(antflag);
         }
 
         protected void AddCacheEpcs(string epc)
@@ -301,7 +266,7 @@ namespace DeviceService.DeviceModel
                         int Totallen = 0;
 
                         await Task.Delay(0);
-                        int fCmdRet = UHF288SDK.Inventory_G2(ref comAdr, Qvalue, Session, MaskMem, MaskAdr, MaskLen, MaskData, MaskFlag, tidAddr, tidLen, TIDFlag, Target, InAnt, Scantime, FastFlag, EPC, ref Ant, ref Totallen, ref TagNum, handle);
+                        int fCmdRet = UHF289SDK.Inventory_G2(ref comAdr, Qvalue, Session, MaskMem, MaskAdr, MaskLen, MaskData, MaskFlag, tidAddr, tidLen, TIDFlag, Target, InAnt, Scantime, FastFlag, EPC, ref Ant, ref Totallen, ref TagNum, handle);
 
                         if (fCmdRet != 0x01 && fCmdRet != 0x02)
                         {
@@ -358,7 +323,7 @@ namespace DeviceService.DeviceModel
             int TagNum = 0;
             int Totallen = 0;
 
-            int fCmdRet = UHF288SDK.Inventory_G2(ref comAdr, Qvalue, Session, MaskMem, MaskAdr, MaskLen, MaskData, MaskFlag, tidAddr, tidLen, TIDFlag, Target, InAnt, Scantime, FastFlag, EPC, ref Ant, ref Totallen, ref TagNum, handle);
+            int fCmdRet = UHF289SDK.Inventory_G2(ref comAdr, Qvalue, Session, MaskMem, MaskAdr, MaskLen, MaskData, MaskFlag, tidAddr, tidLen, TIDFlag, Target, InAnt, Scantime, FastFlag, EPC, ref Ant, ref Totallen, ref TagNum, handle);
 
             if (fCmdRet != 0x01 && fCmdRet != 0x02)
             {
@@ -383,7 +348,7 @@ namespace DeviceService.DeviceModel
         public byte GetGPIO()
         {
             byte outupPin = 0;
-            int GPIOflag = UHF288SDK.GetGPIOStatus(ref comAdr, ref outupPin, handle);
+            int GPIOflag = UHF289SDK.GetGPIOStatus(ref comAdr, ref outupPin, handle);
             if (GPIOflag != 0) throw UHF288Exception.AbnormalJudgment(GPIOflag);
             return outupPin;
         }
@@ -451,7 +416,6 @@ namespace DeviceService.DeviceModel
                 count++;
                 System.Threading.Thread.Sleep(5000);
             };
-
         }
 
         /// <summary>
@@ -469,19 +433,19 @@ namespace DeviceService.DeviceModel
                 switch (lightColor)
                 {
                     case AlarmLightColor.Black:
-                        UHF288SDK.SetGPIO(ref comAdr, 0, handle);
+                        UHF289SDK.SetGPIO(ref comAdr, 0, handle);
                         break;
                     case AlarmLightColor.Red:
-                        UHF288SDK.SetGPIO(ref comAdr, RedPort, handle);
+                        UHF289SDK.SetGPIO(ref comAdr, RedPort, handle);
                         break;
                     case AlarmLightColor.Green:
-                        UHF288SDK.SetGPIO(ref comAdr, GreenPort, handle);
+                        UHF289SDK.SetGPIO(ref comAdr, GreenPort, handle);
                         break;
                 }
                 System.Threading.Thread.Sleep(alarmTime);
-                UHF288SDK.SetGPIO(ref comAdr, 0, handle);
+                UHF289SDK.SetGPIO(ref comAdr, 0, handle);
                 byte test = 0;
-                int GPIOflag = UHF288SDK.GetGPIOStatus(ref comAdr, ref test, handle);
+                int GPIOflag = UHF289SDK.GetGPIOStatus(ref comAdr, ref test, handle);
             }
             catch (Exception ex)
             {
@@ -529,7 +493,7 @@ namespace DeviceService.DeviceModel
                     int Totallen = 0;
                     #endregion
 
-                    int fCmdRet = UHF288SDK.Inventory_G2(ref comAdr, Qvalue, Session, MaskMem, MaskAdr, MaskLen, MaskData, MaskFlag, tidAddr, tidLen, TIDFlag, Target, InAnt, Scantime, FastFlag, EPC, ref Ant, ref Totallen, ref TagNum, handle);
+                    int fCmdRet = UHF289SDK.Inventory_G2(ref comAdr, Qvalue, Session, MaskMem, MaskAdr, MaskLen, MaskData, MaskFlag, tidAddr, tidLen, TIDFlag, Target, InAnt, Scantime, FastFlag, EPC, ref Ant, ref Totallen, ref TagNum, handle);
 
                     if (fCmdRet != 0x01 && fCmdRet != 0x02)
                         throw UHF288Exception.AbnormalJudgment(fCmdRet);
@@ -587,7 +551,7 @@ namespace DeviceService.DeviceModel
                     int Totallen = 0;
                     #endregion
 
-                    int fCmdRet = UHF288SDK.Inventory_G2(ref comAdr, Qvalue, Session, MaskMem, MaskAdr, MaskLen, MaskData, MaskFlag, tidAddr, tidLen, TIDFlag, Target, InAnt, Scantime, FastFlag, EPC, ref Ant, ref Totallen, ref TagNum, handle);
+                    int fCmdRet = UHF289SDK.Inventory_G2(ref comAdr, Qvalue, Session, MaskMem, MaskAdr, MaskLen, MaskData, MaskFlag, tidAddr, tidLen, TIDFlag, Target, InAnt, Scantime, FastFlag, EPC, ref Ant, ref Totallen, ref TagNum, handle);
 
                     if (fCmdRet != 0x01 && fCmdRet != 0x02)
                         throw UHF288Exception.AbnormalJudgment(fCmdRet);
@@ -642,7 +606,7 @@ namespace DeviceService.DeviceModel
             int Totallen = 0;
             #endregion
 
-            int fCmdRet = UHF288SDK.Inventory_G2(ref comAdr, Qvalue, Session, MaskMem, MaskAdr, MaskLen, MaskData, MaskFlag, tidAddr, tidLen, TIDFlag, Target, InAnt, Scantime, FastFlag, EPC, ref Ant, ref Totallen, ref TagNum, handle);
+            int fCmdRet = UHF289SDK.Inventory_G2(ref comAdr, Qvalue, Session, MaskMem, MaskAdr, MaskLen, MaskData, MaskFlag, tidAddr, tidLen, TIDFlag, Target, InAnt, Scantime, FastFlag, EPC, ref Ant, ref Totallen, ref TagNum, handle);
 
             if (fCmdRet != 0x01 && fCmdRet != 0x02)
                 throw UHF288Exception.AbnormalJudgment(fCmdRet);
