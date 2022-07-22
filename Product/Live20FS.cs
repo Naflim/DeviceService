@@ -77,7 +77,7 @@ namespace DeviceService
                     await Task.Delay(200);
                 }
                 if (tmpCount < 3) return;
-
+                
                 int cbRegTmp = TMPSIZE;
                 byte[] RegTmp = new byte[TMPSIZE];
                 int mFlag = zkfp2.DBMerge(dbHandle, tmps[0], tmps[1], tmps[2], RegTmp, ref cbRegTmp);
@@ -134,7 +134,7 @@ namespace DeviceService
                         if (iFlag != 0 && iFlag != -17)
                             ErrorShow?.Invoke(ZKTECOException.AbnormalJudgment(iFlag));
 
-                        if (iFlag == 0)
+                        if (iFlag == 0|| iFlag == -17)
                         {
                             ThrowLog?.Invoke($"识别成功！id：{fid}，相似度：{score}");
                             ExitWorking(index);

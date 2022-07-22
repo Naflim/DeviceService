@@ -46,6 +46,7 @@
 * ### UHFGate(UHFGate型号读写器)
 > * ChannelGateUHFGate(UHFGate通道门)
 * ### UHFReader09(UHFReader09型号读写器)
+* ### UHFReader188(UHFReader188型号读写器)
 * ### UHFReader288(UHFReader288型号读写器)
 > * ChannelGateUHF288(UHF288通道门)
 > * AlarmUHF288(UHF288报警器)

@@ -74,6 +74,35 @@ namespace DeviceService
         }
 
         /// <summary>
+        /// 监听IC卡
+        /// </summary>
+        /// <param name="distinguish"></param>
+        public void MonitorIC(Action<string> distinguish)
+        {
+            isWork = true;
+            Task.Run(() =>
+            {
+                try
+                {
+                    while (isWork)
+                    {
+                        var cardID = GetCardID();
+
+                        if (!string.IsNullOrEmpty(cardID))
+                        {
+                            distinguish(cardID);
+                            ExitWorking();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ErrorShow?.Invoke(ex);
+                }
+            });
+        }
+
+        /// <summary>
         /// 退出工作状态
         /// </summary>
         public void ExitWorking()
