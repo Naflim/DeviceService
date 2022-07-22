@@ -1,4 +1,5 @@
 ﻿using DeviceService.DeviceModel;
+using DeviceService.Enum;
 using DeviceService.Model;
 using NaflimHelperLibrary;
 using System;
